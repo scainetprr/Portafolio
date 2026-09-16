@@ -54,17 +54,45 @@ ul.ck{list-style:none}ul.ck li{margin:6px 0}ul.ck li:before{content:"✓ ";color
 .term .g{color:var(--grn)}
 .video{aspect-ratio:16/9;width:100%;border:0;border-radius:12px}
 footer{padding:30px 0;color:var(--mut);font-size:13px;text-align:center;border-top:1px solid var(--line)}
-#secret{position:fixed;inset:0;background:#04050ad9;display:none;align-items:center;justify-content:center;z-index:99;padding:18px}
-#secret.open{display:flex}
+#secret{position:fixed;inset:0;background:#04050ad9;display:flex;align-items:center;justify-content:center;z-index:99;padding:18px;opacity:0;pointer-events:none;transition:opacity .35s;backdrop-filter:blur(6px)}
+#secret.open{opacity:1;pointer-events:auto}
+.sbox{transform:scale(.85) translateY(30px);transition:transform .45s cubic-bezier(.2,1.4,.4,1)}
+#secret.open .sbox{transform:none}
+#secret.open .bar i{animation:load 1.2s ease forwards}
+@keyframes load{from{width:0}to{width:100%}}
+#secret.open .star{animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#secret.open .sbox h2{animation:pop .5s .25s backwards}
+#secret.open .sbox p{animation:pop .5s .4s backwards}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}}
+.bar{height:6px;background:#0a0e1c;border-radius:99px;overflow:hidden;margin:14px 0}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--blue));border-radius:99px}
 .sbox{background:#151a2e;border:1px solid #3a4560;border-radius:8px;max-width:640px;width:100%;padding:38px 30px;text-align:center}
 .sbox .ag{letter-spacing:4px;font-size:12px;color:#8f9bb5;font-family:monospace;text-align:left}
 .sbox .row{display:flex;justify-content:space-between;font-family:monospace;font-size:13px;border-top:1px dashed #3a4560;border-bottom:1px dashed #3a4560;padding:12px 0;margin:18px 0;color:#cfd6e6}
 .sbox h2{font-size:34px;margin:18px 0}.sbox p{color:#9aa3b5}.star{width:64px;height:64px;border:1px solid #3a4560;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:26px}
 .copy{cursor:pointer}
+/* ===== ANIMACIONES ===== */
+#stars{position:fixed;inset:0;z-index:-2}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:-1;opacity:.35;pointer-events:none}
+.o1{width:480px;height:480px;background:#e11d2e;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}
+.o2{width:420px;height:420px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}
+.tw{color:#fff;font-weight:700}.caret{display:inline-block;width:3px;height:1.1em;background:var(--red);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.card,.stat,.tl .it{transition:transform .3s,box-shadow .3s,border-color .3s}
+.card:hover,.stat:hover{transform:translateY(-6px);border-color:var(--red);box-shadow:0 14px 40px #e11d2e33}
+.acard{animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
+.rv.vis{opacity:1;transform:none}
+.btn.p{animation:glow 2.6s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 26px #e11d2e88}}
 @media(max-width:820px){.heroGrid{grid-template-columns:1fr}h1{font-size:52px}}
 </style>
 </head>
 <body>
+<canvas id="stars"></canvas><div class="orb o1"></div><div class="orb o2"></div>
 <nav><div class="wrap"><span class="logo"><i>◆</i> scainetprr</span>
 <a class="nl" href="#sobre-mi">Perfil</a><a class="nl" href="#logros">Cualidades</a><a class="nl" href="#trayectoria">Experiencia</a><a class="nl" href="#proyectos">Proyectos</a><a class="nl" href="#skills">Skills</a><a class="nl" href="#contacto">Contacto</a><a class="nl" href="cv.html">CV 📄</a>
 </div></nav>
@@ -73,7 +101,7 @@ footer{padding:30px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 <div>
 <div class="kicker">STAFF PORTFOLIO · MINECRAFT &amp; DISCORD</div>
 <h1>Scainetprr</h1>
-<p class="subHero">Soy <b>Founder y Staff</b> enfocado en comunidades de Minecraft y Discord. <b>9 años creando servidores, 5 años moderando.</b> Survival OP / Custom.</p>
+<p class="subHero">Soy <span class="tw" id="tw"></span><span class="caret"></span> enfocado en comunidades de Minecraft y Discord. <b>9 años creando servidores, 5 años moderando.</b> Survival OP / Custom.</p>
 <a class="btn p" href="#proyectos">Ver proyectos</a>
 <a class="btn o" href="https://discord.com/users/1307246359895740448" target="_blank">Contactarme</a>
 <div class="mini">✦ Colombia &nbsp; ✦ 9 años creando · 5 staff &nbsp; ✦ Staff &amp; Configurador</div>
@@ -161,6 +189,7 @@ footer{padding:30px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 <div id="secret"><div class="sbox">
 <div class="ag">ACCESS GRANTED</div>
 <div class="row"><span>SECRET AREA</span><span>100%</span></div>
+<div class="bar"><i></i></div>
 <div class="star">✦</div>
 <h2>Zona secreta desbloqueada</h2>
 <p>Gracias por explorar mi portafolio hasta el último rincón.</p>
@@ -176,6 +205,18 @@ cp('cpD','1307246359895740448');cp('cpM','scainetprrmn@gmail.com');
 const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowUp','ArrowLeft','ArrowDown','b','a'];let pos=0;
 document.addEventListener('keydown',e=>{const k=e.key.length===1?e.key.toLowerCase():e.key;if(k===seq[pos]){pos++;if(pos===seq.length){document.getElementById('secret').classList.add('open');pos=0}}else{pos=(k===seq[0])?1:0}});
 document.getElementById('secret').onclick=e=>{if(e.target.id==='secret')e.target.classList.remove('open')};
+// typewriter roles
+const roles=['Staff','Founder','Configurador','Developer','Jr-Admin'];let ri=0,ci=0,del=false;
+function type(){const w=roles[ri];document.getElementById('tw').textContent=w.slice(0,ci);if(!del){ci++;if(ci>w.length){del=true;return void setTimeout(type,1600)}}else{ci--;if(ci===0){del=false;ri=(ri+1)%roles.length}}setTimeout(type,del?45:95)}
+type();
+// estrellas fondo
+const cv=document.getElementById('stars'),cx=cv.getContext('2d');let P=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
+for(let i=0;i<90;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.8+.4,s:Math.random()*.5+.15,c:['#ffffff','#e11d2e','#2b7fff'][i%3]});
+(function anim(){cx.clearRect(0,0,cv.width,cv.height);for(const p of P){p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.7;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}cx.globalAlpha=1;requestAnimationFrame(anim)})();
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.card,.stat,.tl .it').forEach(el=>{el.classList.add('rv');io.observe(el)});
 </script>
 </body>
 </html>
