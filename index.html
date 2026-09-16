@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -489,7 +489,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 </td>
 <td style="width:50%;padding-left:10px">
 <label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Servidor</label>
-<select name="servidor" required style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box;appearance:auto">
+<select name="servidor" id="servidorSelect" required onchange="toggleOtro()" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box;appearance:auto">
 <option value="">Selecciona...</option>
 <option value="Skylith">Skylith Network</option>
 <option value="Orecraft">Orecraft Network</option>
@@ -498,6 +498,12 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <option value="Hydra">Hydra Bot</option>
 <option value="Otro">Otro</option>
 </select>
+</td>
+</tr>
+<tr id="otroRow" style="display:none">
+<td colspan="2">
+<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Nombre del servidor</label>
+<input type="text" name="otroServidor" placeholder="Escribe el nombre del servidor" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
 </td>
 </tr>
 <tr>
@@ -532,14 +538,19 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 </section>
 
 <script>
-(function(){
 function setRating(n){
 document.getElementById('ratingVal').value=n;
 document.getElementById('ratingText').textContent=n+'/5';
-const spans=document.querySelectorAll('#reviewForm span[onclick^="setRating"]');
-spans.forEach((s,i)=>{s.style.color=(i+1)<=n?'#f5a623':'#444'});
+document.querySelectorAll('#reviewForm span[onclick^="setRating"]').forEach((s,i)=>{s.style.color=(i+1)<=n?'#f5a623':'#444'});
+}
+function toggleOtro(){
+const sel=document.getElementById('servidorSelect').value;
+const row=document.getElementById('otroRow');
+row.style.display=sel==='Otro'?'':'none';
+if(sel!=='Otro')document.querySelector('[name="otroServidor"]').value='';
 }
 setRating(5);
+(function(){
 
 async function loadReviews(){
 try{
