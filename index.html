@@ -79,7 +79,7 @@ section{padding:64px 0}
 /* aporte + cargos */
 .duo{display:grid;grid-template-columns:1fr 1.2fr;gap:16px}
 .ctable{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.ctable div{padding:16px 10px;text-align:center;font-size:14px;font-weight:600;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:transform .35s ease,box-shadow .35s ease,border-color .3s ease,background .3s ease;cursor:default;position:relative;background:var(--card)}
+.ctable div{padding:16px 10px;text-align:center;font-size:14px;font-weight:600;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card)}
 .ctable div:nth-child(4n){border-right:0}
 .ctable div:nth-last-child(-n+4){border-bottom:0}
 .ctable div.hl{color:#ffb3b9}
@@ -87,7 +87,7 @@ section{padding:64px 0}
 .filters button.on{background:var(--red);border-color:var(--red)}
 .shotV{display:none}
 ul.ck{list-style:none}ul.ck li{margin:8px 0}ul.ck li:before{content:"✓ ";color:var(--grn);font-weight:800}
-.faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0;transition:transform .35s ease,box-shadow .35s ease,border-color .3s ease}.faq details:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 8px 24px #e11d2e44}.ctable div:hover{transform:translateY(-4px) scale(1.03);border-color:var(--red);box-shadow:0 8px 24px #e11d2e55,inset 0 1px 0 rgba(255,255,255,.08);color:#fff;z-index:1}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0}
 .video{aspect-ratio:16/9;width:100%;border:0;border-radius:12px;margin-top:10px}
 /* CTA */
 .cta{background:linear-gradient(135deg,#1a1430,#101a33);border:1px solid var(--red);border-radius:20px;padding:48px;text-align:center;position:relative;overflow:hidden}
@@ -324,7 +324,13 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="bar"><i></i></div>
 <div class="star">✦</div>
 <h2>Zona secreta desbloqueada</h2>
-<p>Gracias por explorar mi portafolio hasta el último rincón.</p>
+<p>Gracias por explorar mi portafolio hasta el último rincón. Esto es solo para curiosos como tú:</p>
+<div style="text-align:left;margin:16px 0;display:grid;gap:10px">
+<div style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:12px 14px"><b>🤖 Hydra Bot — comandos</b><p style="color:#9aa3b5;font-size:14px>90+ comandos (70-80 estables): verificación con captcha (<code>/setup-verification</code>, <code>/captcha-test</code>), moderación (warn/mute/ban con registro), tickets con seguimiento y eventos HyperCity con recompensas. Pruébalo en Hydra Studio.</p></div>
+<div style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:12px 14px"><b>🗺️ Roadmap</b><p style="color:#9aa3b5;font-size:14px>Ahora: NodeJS Básico→Intermedio, Vulcan Normal→Avanzado, inglés básico→B1, Mineanimator. Meta: Jr-Admin → Admin/Head que forme staff.</p></div>
+<div style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:12px 14px"><b>🎁 Descuento explorador</b><p style="color:#9aa3b5;font-size:14px>Diagnóstico gratis de 30 min + 15% en tu primera config (solo dev único, a convenir). Menciona el código <b style="color:#fff">EXPLORER</b> al escribirme por Discord.</p></div>
+<div style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:12px 14px"><b>🎬 Demo privada</b><p style="color:#9aa3b5;font-size:14px>Evento HyperCity + paneles y scoreboards: <a href="https://www.youtube.com/@HydraStudioMC" target="_blank">@HydraStudioMC</a> · <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank">@HyperHardNetwork</a>. Extra: al contactarme con EXPLORER te paso референcias directas y checklist de configs.</p></div>
+</div>
 <p style="color:#fff;margin-top:8px"><b>— Dylan / scainetprr</b></p>
 <p style="margin-top:14px"><a class="btn p" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank">Invitar a Hydra Bot</a>
 <button class="btn o" onclick="document.getElementById('secret').classList.remove('open')">Continuar explorando</button></p>
