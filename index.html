@@ -115,7 +115,22 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 .tw{color:#fff;font-weight:700}.caret{display:inline-block;width:3px;height:1.1em;background:var(--red);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .card,.statBig,.vcard,.exp,.proj{transition:transform .3s,box-shadow .3s,border-color .3s}
-.card:hover,.statBig:hover,.vcard:hover,.exp:hover{transform:scale(1.035) translateY(-4px);border-color:var(--red);box-shadow:0 14px 40px #e11d2e33}
+.card:hover,.statBig:hover,.vcard:hover,.exp:hover{transform:scale(1.035) translateY(-4px);border-color:var(--red);box-shadow:0 14px 40px #e11d2e44}
+.proj:hover{transform:translateY(-5px);border-color:var(--red);box-shadow:0 18px 50px #e11d2e3d}
+.about:hover,.cta:hover{border-color:var(--red)}
+/* brillo que sigue el mouse */
+.card,.proj,.vcard,.exp,.statBig,.about{position:relative}
+.card::after,.proj::after,.vcard::after,.exp::after,.statBig::after,.about::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),#e11d2e2b,transparent 65%)}
+.card:hover::after,.proj:hover::after,.vcard:hover::after,.exp:hover::after,.statBig:hover::after,.about:hover::after{opacity:1}
+.strip{overflow:hidden}
+.strip img:hover{transform:scale(1.06)}
+.cbanner{height:130px;border-radius:10px;overflow:hidden;margin:-22px -22px 14px;position:relative}
+.cbanner img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.card:hover .cbanner img{transform:scale(1.07)}
+.cbanner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#e11d2e11,transparent 45%,var(--card) 98%)}
+.card.dev{border-color:#f59e0b;box-shadow:0 0 34px #f59e0b2e}
+.devbadge{display:inline-block;background:#f59e0b1e;border:1px solid #f59e0b;color:#fbbf24;border-radius:99px;padding:3px 12px;font-size:12px;font-weight:700;margin:6px 0;animation:blink2 1.6s ease-in-out infinite}
+@keyframes blink2{50%{opacity:.5}}
 .strip img{transition:transform .5s ease,filter .3s}.strip:hover img{filter:brightness(1.1)}
 @keyframes float{50%{transform:translateY(-10px)}}
 .rv{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
@@ -242,8 +257,8 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 <div class="shead"><span class="n">07</span><h2>Skills y servicios</h2></div>
 <p class="sub">Stack técnico y trabajo pago.</p>
 <div class="grid">
-<div class="card"><h3>⚙️ Minecraft — configuración</h3><p style="color:var(--mut);font-size:14px">Permisos, protecciones, economía, crates, hologramas, menús y anticheat:</p><p style="margin-top:8px"><span class="pill">LuckPerms</span><span class="pill">Essentials</span><span class="pill">CoreProtect</span><span class="pill">Vulcan AntiCheat</span><span class="pill">MythicMobs</span><span class="pill">Jobs Reborn</span><span class="pill">ExcellentCrates</span><span class="pill">DecentHolograms</span><span class="pill">CommandPanels / ZMenu</span><span class="pill">Tebex</span><span class="pill">GeyserMC</span><span class="pill">BattlePass</span><span class="pill">AxVaults / AxKoth</span><span class="pill">Shopkeepers</span><span class="pill">Proxys</span><span class="pill">VoiceChat</span><span class="pill">Chunky / BetterRTP</span></p></div>
-<div class="card"><h3>🤖 Discord + bots NodeJS</h3><p style="color:var(--mut);font-size:14px"><b>HyperHard Bot + Hydra Bot</b>: más de 90 comandos (70-80 estables) + moderación.</p><a class="btn o" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank">Invitar bot ↗</a></div>
+<div class="card"><div class="cbanner"><img src="Imagenes/HyperHard/2.png" alt="Minecraft" loading="lazy" onerror="this.closest('.cbanner').remove()"></div><h3>⚙️ Minecraft — configuración</h3><p style="color:var(--mut);font-size:14px">Permisos, protecciones, economía, crates, hologramas, menús y anticheat:</p><p style="margin-top:8px"><span class="pill">LuckPerms</span><span class="pill">Essentials</span><span class="pill">CoreProtect</span><span class="pill">Vulcan AntiCheat</span><span class="pill">MythicMobs</span><span class="pill">Jobs Reborn</span><span class="pill">ExcellentCrates</span><span class="pill">DecentHolograms</span><span class="pill">CommandPanels / ZMenu</span><span class="pill">Tebex</span><span class="pill">GeyserMC</span><span class="pill">BattlePass</span><span class="pill">AxVaults / AxKoth</span><span class="pill">Shopkeepers</span><span class="pill">Proxys</span><span class="pill">VoiceChat</span><span class="pill">Chunky / BetterRTP</span></p></div>
+<div class="card dev"><h3>🤖 Discord + bots NodeJS</h3><span class="devbadge">🛠️ Bot en desarrollo</span><p style="color:var(--mut);font-size:14px"><b>HyperHard Bot + Hydra Bot</b>: más de 90 comandos (70-80 estables) + moderación. Sigo agregando funciones, puede haber cambios o caídas puntuales.</p><a class="btn o" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank">Invitar bot ↗</a></div>
 <div class="card"><h3>🎬 Contenido + pago</h3><p style="color:var(--mut);font-size:14px">Filmora + Mineanimator. <a href="https://www.youtube.com/@HydraStudioMC" target="_blank">@HydraStudioMC</a> · <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank">@HyperHardNetwork</a>. Pagos solo como <b>dev único</b>, a convenir.</p></div>
 </div>
 </section>
@@ -321,6 +336,8 @@ const cv=document.getElementById('stars'),cx=cv.getContext('2d');let P=[];
 function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
 for(let i=0;i<90;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.8+.4,s:Math.random()*.5+.15,c:['#ffffff','#e11d2e','#2b7fff'][i%3]});
 (function anim(){cx.clearRect(0,0,cv.width,cv.height);for(const p of P){p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.7;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}cx.globalAlpha=1;requestAnimationFrame(anim)})();
+// brillo sigue-mouse en tarjetas
+document.querySelectorAll('.card,.proj,.vcard,.exp,.statBig,.about').forEach(el=>el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px')}));
 // reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.card,.statBig,.vcard,.exp,.proj,.about,.cta').forEach(el=>{el.classList.add('rv');io.observe(el)});
