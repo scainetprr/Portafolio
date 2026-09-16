@@ -133,10 +133,16 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 @keyframes blink2{50%{opacity:.5}}
 .strip img{transition:transform .5s ease,filter .3s}.strip:hover img{filter:brightness(1.1)}
 @keyframes float{50%{transform:translateY(-10px)}}
-.rv{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
 .rv.vis{opacity:1;transform:none}
 .btn.p{animation:glow 2.6s ease-in-out infinite}
+/* scroll to active nav */
+nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 @keyframes glow{50%{box-shadow:0 0 26px #e11d2e88}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.cta{transition:border-color .3s,box-shadow .3s}
+.cta:hover{box-shadow:0 0 60px #e11d2e44}
+.acard{transition:transform .4s}.acard:hover{transform:scale(1.04)}
 @media(max-width:820px){.heroGrid{grid-template-columns:1fr}h1{font-size:52px}.virt{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.expGrid{grid-template-columns:1fr}.duo{grid-template-columns:1fr}.ctable{grid-template-columns:repeat(3,1fr)}.strip img{height:130px}}
 </style>
 </head>
@@ -169,7 +175,7 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 <div class="shead"><span class="n">01</span><h2>Sobre mí</h2></div>
 <div class="about">
 <p>Soy <b>Dylan David Gomez</b>, conocido en las comunidades como <b>scainetprr</b>: tengo 19 años, vivo en Medellín, Colombia, y dedico mi tiempo a lo que mejor sé hacer — <b>crear, configurar y moderar servidores de Minecraft</b>. Mi recorrido empezó hace <b>9 años</b> levantando mis propios proyectos, lo que me obligó a aprender absolutamente todo: programación y configuración de plugins, construcción, economía, rangos, reclutamiento y dirección de equipos. Ser founder me enseñó algo que ningún tutorial enseña: <b>sé lo que necesita un owner, porque yo he sido el owner</b> — presupuestos ajustados, staff que falla y comunidades que hay que mantener vivas.</p>
-<p>Paralelamente llevo <b>5 años como staff</b> en servidores de otros. Mi trabajo real ha sido estar pendiente de los jugadores: revisar inventarios y comportamientos, aplicar <b>SS (screenshare)</b>, baneos, muteos y advertencias con criterio, separando a los hackers reales de los falsos positivos. He gestionado entre <b>3.000 y 7.000 tickets, reportes y problemas</b>, además de organizar eventos. Hoy soy <b>Jr-Admin en Skylith Network</b> (OneBlock), donde no solo modero sino que realizo la <b>inducción a los nuevos staff</b>, y <b>configurador / developer en BlizardMC</b> (FullPvP).</p>
+<p>Paralelamente llevo <b>5 años como staff</b> en servidores de otros. Mi trabajo real ha sido estar pendiente de los jugadores: revisar inventarios y comportamientos, aplicar <b>SS (screenshare)</b>, baneos, muteos y advertencias con criterio, separando a los hackers reales de los falsos positivos. He gestionado entre <b>3.000 y 7.000 tickets, reportes y problemas</b>, además de organizar eventos. Hoy soy <b>Jr-Admin en Skylith Network</b> (SkyBlock), donde no solo modero sino que realizo la <b>inducción a los nuevos staff</b>, y <b>configurador / developer en BlizardMC</b> (FullPvP).</p>
 <p>En el plano técnico domino la configuración de plugins — <b>LuckPerms, Essentials, CoreProtect, Vulcan AntiCheat, MythicMobs, Tebex, GeyserMC</b> y más de veinte otros —, administro servidores de <b>Discord</b> completos y programo <b>bots en NodeJS</b> (HyperHard Bot y Hydra Bot, con más de 90 comandos). También estoy aprendiendo creación de contenido con <b>Filmora y Mineanimator</b>. Hablo español, aprendo inglés básico, tengo micro y disponibilidad todos los días. Mi filosofía es simple: <b>respeto para todos, imparcialidad en cada caso y cero tolerancia a la corrupción</b>.</p>
 </div>
 <div class="grid3" style="margin-top:16px">
@@ -198,11 +204,11 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 <div class="shead"><span class="n">03</span><h2>Mi experiencia Staff</h2></div>
 <p class="sub">Cinco etapas, del proyecto propio al staff actual.</p>
 <div class="expGrid" id="expGrid">
-<div class="exp" data-cat="yes"><div class="top"><span class="yr">2022 – 2026 · HyperHard Network</span><span class="st">Founder</span></div><p>Mi network: FullPvP, Survival OP, OneBlock OP, Bedwars y minijuegos. Programaba, configuraba, construía y reclutaba — todo al hombro. En pausa por fondos y actividad, sigo siendo dueño. <b>mc.hyperhard.space</b></p></div>
-<div class="exp" data-cat="no"><div class="top"><span class="yr">2023 – 2024 · Orecraft</span><span class="st">Helper</span></div><p>Survival Custom: sana convivencia, tickets y dudas. Sin evidencia (Discord cerrado). Ref: <b>maicolfrantech</b>.</p></div>
-<div class="exp" data-cat="yes"><div class="top"><span class="yr">2025 – 2026 · Hydra Studio</span><span class="st">Founder</span></div><p>Mi studio de eventos Minecraft: organizo, programo mi bot y entrego recompensas. 3 eventos documentados.</p></div>
-<div class="exp" data-cat="no"><div class="top"><span class="yr">2026 · BlizardMC</span><span class="st">Config / Dev</span></div><p>FullPvP: fix de bugs, configuración de plugins y optimización. Sin evidencia por ahora. Ref: <b>franrol15</b>.</p></div>
-<div class="exp now" data-cat="yes"><div class="top"><span class="yr">2026 · Skylith Network — Actualmente</span><span class="st">Jr-Admin</span></div><p>OneBlock (SKYLITH.LIVE): tickets, vigilancia, sanciones e <b>inducción a nuevos staff</b>. Ref: L3xz.</p><a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank">Discord de SkyLith</a></div>
+<div class="exp" data-cat="yes"><div class="top"><span class="yr">2022 – 2026 · HyperHard Network</span><span class="st">Founder</span></div><p>Mi network personal: <b>FullPvP, Survival OP, OneBlock OP, Bedwars y minijuegos</b>. Fui el único encargado durante toda la vida del servidor — programaba, configuraba plugins, construía las modalidades, diseñaba los rangos y reclutaba staff. Aprendí a sostener un servidor completo con recursos limitados y a gestionar una comunidad de cero. El proyecto está en pausa por falta de fondos y actividad de los usuarios, pero sigo siendo el dueño y no lo descarto para el futuro. <b>IP: mc.hyperhard.space</b></p></div>
+<div class="exp" data-cat="no"><div class="top"><span class="yr">2023 – 2024 · Orecraft Network</span><span class="st">Helper</span></div><p>Survival Custom: mi trabajo era mantener la convivencia entre usuarios, atender tickets, resolver dudas de mecánicas del servidor y mediar conflictos. Desarrollé paciencia y criterio para tratar situaciones diversas. Sin evidencia disponible porque el Discord del servidor cerró. <b>Ref: maicolfrantech (575484448171229195) — maicolfrantech.com</b></p></div>
+<div class="exp" data-cat="yes"><div class="top"><span class="yr">2025 – 2026 · Hydra Studio</span><span class="st">Founder</span></div><p>Mi studio personal de eventos de Minecraft: diseño los mapas, organizo los eventos, programo el bot que gestiona las recompensas y controla las mecánicas, y coordino a los participantes. He documentado 3 eventos completos en video. Actualmente activo, es mi proyecto personal más reciente.</p></div>
+<div class="exp" data-cat="no"><div class="top"><span class="yr">2026 · BlizardMC</span><span class="st">Config / Dev</span></div><p>Servidor FullPvP: me encargo de fixear bugs evidentes, configurar plugins y optimizar el rendimiento del servidor. Trabajo bajo confianza con uno de los dueños. Sin evidencia disponible por ahora, pero verificable con el dueño. <b>Ref: franrol15 (889912844357886042)</b></p></div>
+<div class="exp now" data-cat="yes"><div class="top"><span class="yr">2026 – actual · Skylith Network</span><span class="st">Jr-Admin</span></div><p>SkyBlock en <b>SKYLITH.LIVE</b>: mi labor incluye revisión de tickets, vigilancia in-game para detectar hacks y comportamientos tóxicos, aplicación de sanciones (baneos, muteos, advertencias, SS). Además, realicé la <b>inducción de los nuevos staff</b>: les enseño las reglas, herramientas, protocolo de sanciones y los acompaño en su primer turno real para que estén preparados. Presencia activa en Discord con rol CODE. <b>Ref: L3xz (1431659598288523375)</b></p><a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank">Discord de SkyLith</a></div>
 </div>
 </section>
 
@@ -228,7 +234,7 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 <div class="proj" data-cat="yes" data-gal="sky">
 <div class="strip"><img src="Imagenes/Skylith/6.png" onerror="this.remove()"><img src="Imagenes/Skylith/download.png" onerror="this.remove()"><img src="Imagenes/Skylith/1.png" onerror="this.remove()"><span class="galBtn">⌕ Ver galería</span></div>
 <div class="pbody"><div class="plabel">03 · MINECRAFT · 2026 ACTUAL</div><h3>Skylith Network → Jr-Admin</h3>
-<p>Mi rol actual en <b>OneBlock (SKYLITH.LIVE)</b>: tab con JR-ADMIN junto al equipo, skin de traje en el lobby y presencia activa en Discord. Tickets, sanciones e inducción de nuevos staff.</p>
+<p>Mi rol actual en <b>SkyBlock (SKYLITH.LIVE)</b>: tab con JR-ADMIN junto al equipo, skin de traje en el lobby y presencia activa en Discord. Tickets, sanciones e inducción de nuevos staff.</p>
 <a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank">Discord de SkyLith</a></div>
 <div class="shotV"><img src="Imagenes/Skylith/4.png"></div>
 </div>
@@ -258,14 +264,14 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 <p class="sub">Stack técnico y trabajo pago.</p>
 <div class="grid">
 <div class="card"><div class="cbanner"><img src="Imagenes/HyperHard/2.png" alt="Minecraft" loading="lazy" onerror="this.closest('.cbanner').remove()"></div><h3>⚙️ Minecraft — configuración</h3><p style="color:var(--mut);font-size:14px">Permisos, protecciones, economía, crates, hologramas, menús y anticheat:</p><p style="margin-top:8px"><span class="pill">LuckPerms</span><span class="pill">Essentials</span><span class="pill">CoreProtect</span><span class="pill">Vulcan AntiCheat</span><span class="pill">MythicMobs</span><span class="pill">Jobs Reborn</span><span class="pill">ExcellentCrates</span><span class="pill">DecentHolograms</span><span class="pill">CommandPanels / ZMenu</span><span class="pill">Tebex</span><span class="pill">GeyserMC</span><span class="pill">BattlePass</span><span class="pill">AxVaults / AxKoth</span><span class="pill">Shopkeepers</span><span class="pill">Proxys</span><span class="pill">VoiceChat</span><span class="pill">Chunky / BetterRTP</span></p></div>
-<div class="card dev"><h3>🤖 Discord + bots NodeJS</h3><span class="devbadge">🛠️ Bot en desarrollo</span><p style="color:var(--mut);font-size:14px"><b>HyperHard Bot + Hydra Bot</b>: más de 90 comandos (70-80 estables) + moderación. Sigo agregando funciones, puede haber cambios o caídas puntuales.</p><a class="btn o" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank">Invitar bot ↗</a></div>
-<div class="card"><h3>🎬 Contenido + pago</h3><p style="color:var(--mut);font-size:14px">Filmora + Mineanimator. <a href="https://www.youtube.com/@HydraStudioMC" target="_blank">@HydraStudioMC</a> · <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank">@HyperHardNetwork</a>. Pagos solo como <b>dev único</b>, a convenir.</p></div>
+<div class="card dev"><div class="cbanner"><img src="Imagenes/Hydra/2.png" alt="Discord bots" loading="lazy" onerror="this.closest('.cbanner').remove()"></div><h3>🤖 Discord + bots NodeJS</h3><span class="devbadge">🛠️ Bot en desarrollo</span><p style="color:var(--mut);font-size:14px"><b>HyperHard Bot + Hydra Bot</b>: más de 90 comandos (70-80 estables) + moderación. Sigo agregando funciones, puede haber cambios o caídas puntuales.</p><a class="btn o" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank">Invitar bot ↗</a></div>
+<div class="card"><div class="cbanner"><img src="Imagenes/Hydra/download.png" alt="Contenido" loading="lazy" onerror="this.closest('.cbanner').remove()"></div><h3>🎬 Contenido + pago</h3><p style="color:var(--mut);font-size:14px">Filmora + Mineanimator. <a href="https://www.youtube.com/@HydraStudioMC" target="_blank">@HydraStudioMC</a> · <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank">@HyperHardNetwork</a>. Pagos solo como <b>dev único</b>, a convenir.</p></div>
 </div>
 </section>
 
 <section id="trayectoria2">
-<div class="shead"><span class="n">08</span><h2>Mi trayectoria</h2></div>
-<div class="card"><p style="color:#c6cddd">Mi recorrido ha sido construir, pausar y volver más fuerte: levanté <b>HyperHard Network</b> desde cero y lo sostuve solo durante años, pasé por <b>Orecraft</b> como Helper, fundé mi studio de eventos <b>Hydra</b> y hoy combino dos roles activos — <b>Jr-Admin en Skylith</b> y <b>configurador en BlizardMC</b>. Cada etapa me dejó algo: gestión, paciencia con usuarios, criterio para sancionar y técnica para configurar. Sigo creciendo y aceptando nuevos retos.</p></div>
+<div class="shead"><span class="n">08</span><h2>Mi enfoque</h2></div>
+<div class="card"><p style="color:#c6cddd">Busco seguir creciendo dentro de comunidades de Minecraft y Discord, combinando mi experiencia como Staff con mi experiencia como Developer. Me interesa formar parte de equipos donde pueda aportar organización, atención a la comunidad, liderazgo y soluciones prácticas. No me importa empezar desde abajo si el proyecto lo vale — lo importante es aportar, aprender y que el servidor crezca. Mi recorrido ha sido construir, pausar y volver más fuerte: levanté <b>HyperHard Network</b> desde cero y lo sostuve solo durante años, pasé por <b>Orecraft</b> como Helper, fundé mi studio de eventos <b>Hydra</b> y hoy combino dos roles activos — <b>Jr-Admin en Skylith</b> y <b>configurador en BlizardMC</b>. Cada etapa me dejó algo: gestión, paciencia con usuarios, criterio para sancionar y técnica para configurar. Sigo creciendo y aceptando nuevos retos.</p></div>
 <div class="cta" style="margin-top:18px">
 <div class="kicker">¿TRABAJAMOS JUNTOS?</div>
 <h2>Hablemos sobre tu proyecto.</h2>
@@ -275,8 +281,19 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 </div>
 </section>
 
+<section id="comunidades">
+<div class="shead"><span class="n">09</span><h2>Comunidades</h2></div>
+<p class="sub">Servidores en los que he participado o sigo participando.</p>
+<div class="grid">
+<a class="card" href="https://discord.gg/dkZpFtXXCj" target="_blank" style="text-decoration:none"><span class="tag hot">DISCORD</span><h3>Hydra Studio</h3><p style="color:var(--mut);font-size:14px">Mi studio de eventos Minecraft. Founder y dev.</p><span style="color:var(--blue);font-size:13px">Entrar al servidor ↗</span></a>
+<a class="card" href="https://discord.gg/qyyREajJgC" target="_blank" style="text-decoration:none"><span class="tag hot">DISCORD</span><h3>Skylith Network</h3><p style="color:var(--mut);font-size:14px">SkyBlock. Trabajo como Jr-Admin actualmente.</p><span style="color:var(--blue);font-size:13px">Entrar al servidor ↗</span></a>
+<a class="card" href="https://www.youtube.com/@HyperHardNetwork" target="_blank" style="text-decoration:none"><span class="tag">YOUTUBE</span><h3>HyperHard Network</h3><p style="color:var(--mut);font-size:14px">Mi network personal. FullPvP, Survival OP, Bedwars.</p><span style="color:var(--blue);font-size:13px">Ver en YouTube ↗</span></a>
+<a class="card" href="https://maicolfrantech.com/" target="_blank" style="text-decoration:none"><span class="tag no">SIN DISCORD</span><h3>Orecraft Network</h3><p style="color:var(--mut);font-size:14px">Survival Custom. Helper 2023-2024. Discord cerrado.</p><span style="color:var(--blue);font-size:13px">Web de ref ↗</span></a>
+</div>
+</section>
+
 <section id="contacto">
-<div class="shead"><span class="n">09</span><h2>Contacto</h2></div>
+<div class="shead"><span class="n">10</span><h2>Contacto</h2></div>
 <div class="grid">
 <div class="card"><h3>Discord (principal)</h3><p><b class="copy" id="cpD">scainetprrmn · 1307246359895740448 (copiar)</b></p><a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank">Abrir Discord ↗</a></div>
 <div class="card"><h3>Email / X / CV</h3><p class="copy" id="cpM">scainetprrmn@gmail.com (copiar)</p><p><a href="https://x.com/scainetprrMN" target="_blank">X @scainetprrMN</a> · <a href="cv.html">Descargar CV 📄</a></p></div>
@@ -338,9 +355,17 @@ for(let i=0;i<90;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHei
 (function anim(){cx.clearRect(0,0,cv.width,cv.height);for(const p of P){p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.7;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}cx.globalAlpha=1;requestAnimationFrame(anim)})();
 // brillo sigue-mouse en tarjetas
 document.querySelectorAll('.card,.proj,.vcard,.exp,.statBig,.about').forEach(el=>el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px')}));
-// reveal
+// reveal staggered
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.card,.statBig,.vcard,.exp,.proj,.about,.cta').forEach(el=>{el.classList.add('rv');io.observe(el)});
+document.querySelectorAll('.card,.statBig,.vcard,.exp,.proj,.about,.cta').forEach((el,i)=>{el.classList.add('rv');el.style.transitionDelay=(i%4)*.08+'s';io.observe(el)});
+// counter animado en stats
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.statBig b').forEach(b=>{const t=parseInt(b.textContent);if(!isNaN(t)){let c=0;const iv=setInterval(()=>{c+=Math.ceil(t/30);if(c>=t){c=t;clearInterval(iv)}b.textContent=c},30)}});cio.unobserve(e.target)}}),{threshold:.3});
+document.querySelectorAll('.grid3').forEach(el=>cio.observe(el));
+// nav active on scroll
+const sects=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav a.nl');
+const sno=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;navLinks.forEach(l=>{l.classList.toggle('act',l.getAttribute('href')==='#'+id)})}}),{threshold:.25});
+sects.forEach(s=>sno.observe(s));
 </script>
 </body>
 </html>
