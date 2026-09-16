@@ -6,12 +6,12 @@
 <title>scainetprr — Staff Portfolio | hyperhard.space</title>
 <meta name="description" content="Scainetprr (Dylan David Gomez) — Founder y Staff con 9 años creando servidores y 5 años moderando comunidades Minecraft. Survival OP/Custom, Jr-Admin Skylith, Dev BlizardMC.">
 <style>
-:root{--bg:#0a0e1a;--card:#131a30;--card2:#161d36;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84}
+:root{--bg:#08090d;--card:#11141c;--card2:#141821;--line:rgba(255,255,255,.09);--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;line-height:1.7;background-image:linear-gradient(#ffffff07 1px,transparent 1px),linear-gradient(90deg,#ffffff07 1px,transparent 1px);background-size:48px 48px}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;line-height:1.7;background-image:radial-gradient(900px 500px at 85% -5%,#e11d2e14,transparent 60%),radial-gradient(900px 520px at 8% 108%,#2b7fff12,transparent 62%);background-attachment:fixed}
 a{color:var(--blue)}
 .wrap{max-width:1060px;margin:auto;padding:0 26px}
-nav{position:sticky;top:0;z-index:50;background:#0a0e1acc;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:50;background:rgba(8,9,13,.78);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;gap:20px;padding:14px 26px;flex-wrap:wrap}
 .logo{font-weight:800;font-size:17px}.logo i{color:var(--red);font-style:normal}
 nav a.nl{color:#c3cadb;text-decoration:none;font-size:14px}nav a.nl:hover{color:#fff}
@@ -117,13 +117,13 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 .gnav button{background:#1c2440;color:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 18px;cursor:pointer;font-size:15px}
 .copy{cursor:pointer}
 #stars{position:fixed;inset:0;z-index:-2}
-.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:-1;opacity:.35;pointer-events:none}
+.orb{position:fixed;border-radius:50%;filter:blur(140px);z-index:-1;opacity:.22;pointer-events:none}
 .o1{width:480px;height:480px;background:#e11d2e;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}
 .o2{width:420px;height:420px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 18s ease-in-out infinite alternate-reverse}
 @keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}
 .tw{color:#fff;font-weight:700}.caret{display:inline-block;width:3px;height:1.1em;background:var(--red);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.card,.statBig,.vcard,.exp,.proj{transition:transform .4s cubic-bezier(.25,.8,.25,1),box-shadow .4s ease,border-color .3s ease}
+.card,.statBig,.vcard,.exp,.proj,.about,.cta{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.45)}.card,.statBig,.vcard,.exp,.proj{transition:transform .4s cubic-bezier(.25,.8,.25,1),box-shadow .4s ease,border-color .3s ease}
 .card:hover,.statBig:hover,.vcard:hover,.exp:hover{transform:translateY(-8px) scale(1.03);border-color:var(--red);box-shadow:0 14px 44px #e11d2e66,0 0 0 1px #e11d2e44}.proj:hover{transform:translateY(-8px) scale(1.01)}
 .proj:hover{transform:translateY(-8px);border-color:var(--red);box-shadow:0 12px 40px #e11d2e44}
 .about:hover,.cta:hover{border-color:var(--red)}
@@ -223,7 +223,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 
 <section id="proyectos">
 <div class="shead"><span class="n">04</span><h2>Proyectos y evidencia</h2></div>
-<div class="card" style="margin-bottom:22px;background-image:linear-gradient(135deg,#131a30e6,#131a30e6),url('Imagenes/HyperHard/1.png');background-size:cover;background-position:center"><b>📁 Sobre mi evidencia</b><p style="color:var(--mut);font-size:14px">Conservo capturas de <b>HyperHard, Hydra Studio y Skylith</b>. De Orecraft y Blizard no tengo respaldo por ahora, así que los marco con su referencia verificable. Toca cualquier tira para ver la galería completa.</p></div>
+<div class="card" style="margin-bottom:22px;background-image:linear-gradient(135deg,#11141cb8,#11141cb8),url('Imagenes/HyperHard/1.png');background-size:cover;background-position:center"><b>📁 Sobre mi evidencia</b><p style="color:var(--mut);font-size:14px">Conservo capturas de <b>HyperHard, Hydra Studio y Skylith</b>. De Orecraft y Blizard no tengo respaldo por ahora, así que los marco con su referencia verificable. Toca cualquier tira para ver la galería completa.</p></div>
 <div class="filters"><button class="on" data-f="all">Todos</button><button data-f="yes">Con evidencia</button><button data-f="no">Sin evidencia</button></div>
 <div id="projGrid">
 <div class="proj" data-cat="yes" data-gal="hh">
@@ -248,7 +248,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="shotV"><img src="Imagenes/Skylith/4.png"></div>
 </div>
 <div class="grid">
-<div class="card" data-cat="no" style="background-image:linear-gradient(135deg,#131a30e6,#131a30e6),url('Imagenes/Orecraft/orecraft.jpg');background-size:cover;background-position:center"><span class="tag no">Sin evidencia por ahora</span><h3>Orecraft → Helper</h3><small>2023-2024 · Survival Custom</small><p style="color:var(--mut);font-size:14px">Sana convivencia, tickets y dudas. Ref: <b>maicolfrantech (575484448171229195)</b> · <a href="https://maicolfrantech.com/" target="_blank">web</a></p></div>
+<div class="card" data-cat="no" style="background-image:linear-gradient(135deg,#11141cb8,#11141cb8),url('Imagenes/Orecraft/orecraft.jpg');background-size:cover;background-position:center"><span class="tag no">Sin evidencia por ahora</span><h3>Orecraft → Helper</h3><small>2023-2024 · Survival Custom</small><p style="color:var(--mut);font-size:14px">Sana convivencia, tickets y dudas. Ref: <b>maicolfrantech (575484448171229195)</b> · <a href="https://maicolfrantech.com/" target="_blank">web</a></p></div>
 <div class="card" data-cat="no"><span class="tag no">Sin evidencia por ahora</span><h3>BlizardMC → Config / Dev</h3><small>2026 · FullPvP</small><p style="color:var(--mut);font-size:14px">Fix de bugs y optimización. Ref: <b>franrol15 (889912844357886042)</b>. Capturas en camino.</p></div>
 </div>
 </div></section>
@@ -256,7 +256,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <section id="aporte">
 <div class="shead"><span class="n">05</span><h2>Lo que puedo aportar</h2></div>
 <div class="duo">
-<div class="card" style="background-image:linear-gradient(135deg,#131a30dd),url('Imagenes/Skylith/6.png');background-size:cover;background-position:center"><p style="color:#c0c8dc;text-shadow:0 1px 4px #000"><b style="color:#fff;text-shadow:0 0 12px #e11d2eaa">Minecraft:</b> administración de servidores, moderación con SS y sanciones, staff management, configuración de más de 20 plugins y desarrollo de sistemas (kits, crates, eventos).</p>
+<div class="card" style="background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Skylith/6.png');background-size:cover;background-position:center"><p style="color:#c0c8dc;text-shadow:0 1px 4px #000"><b style="color:#fff;text-shadow:0 0 12px #e11d2eaa">Minecraft:</b> administración de servidores, moderación con SS y sanciones, staff management, configuración de más de 20 plugins y desarrollo de sistemas (kits, crates, eventos).</p>
 <p style="margin-top:10px;color:#c0c8dc;text-shadow:0 1px 4px #000"><b style="color:#fff;text-shadow:0 0 12px #e11d2eaa">Discord:</b> administración y moderación, soporte por tickets, organización de comunidades y desarrollo de bots en NodeJS.</p>
 <p style="margin-top:10px;color:#c0c8dc;text-shadow:0 1px 4px #000"><b style="color:#fff;text-shadow:0 0 12px #e11d2eaa">Equipo:</b> asumo responsabilidades, me adapto a cualquier rango y colaboro con el resto del staff — incluso formando a los nuevos.</p></div>
 <div><div class="shead" style="margin-bottom:14px"><span class="n">06</span><h2 style="font-size:22px">Cargos que he desempeñado</h2></div>
@@ -280,7 +280,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 
 <section id="trayectoria2">
 <div class="shead"><span class="n">08</span><h2>Mi enfoque</h2></div>
-<div class="card" style="background-image:linear-gradient(135deg,#131a30e6,#131a30e6),url('Imagenes/Hydra/download.png');background-size:cover;background-position:center"><p style="color:#c6cddd">Busco seguir creciendo dentro de comunidades de Minecraft y Discord, combinando mi experiencia como Staff con mi experiencia como Developer. Me interesa formar parte de equipos donde pueda aportar organización, atención a la comunidad, liderazgo y soluciones prácticas. No me importa empezar desde abajo si el proyecto lo vale — lo importante es aportar, aprender y que el servidor crezca. Mi recorrido ha sido construir, pausar y volver más fuerte: levanté <b>HyperHard Network</b> desde cero y lo sostuve solo durante años, pasé por <b>Orecraft</b> como Helper, fundé mi studio de eventos <b>Hydra</b> y hoy combino dos roles activos — <b>Jr-Admin en Skylith</b> y <b>configurador en BlizardMC</b>. Cada etapa me dejó algo: gestión, paciencia con usuarios, criterio para sancionar y técnica para configurar. Sigo creciendo y aceptando nuevos retos.</p></div>
+<div class="card" style="background-image:linear-gradient(135deg,#11141cb8,#11141cb8),url('Imagenes/Hydra/download.png');background-size:cover;background-position:center"><p style="color:#c6cddd">Busco seguir creciendo dentro de comunidades de Minecraft y Discord, combinando mi experiencia como Staff con mi experiencia como Developer. Me interesa formar parte de equipos donde pueda aportar organización, atención a la comunidad, liderazgo y soluciones prácticas. No me importa empezar desde abajo si el proyecto lo vale — lo importante es aportar, aprender y que el servidor crezca. Mi recorrido ha sido construir, pausar y volver más fuerte: levanté <b>HyperHard Network</b> desde cero y lo sostuve solo durante años, pasé por <b>Orecraft</b> como Helper, fundé mi studio de eventos <b>Hydra</b> y hoy combino dos roles activos — <b>Jr-Admin en Skylith</b> y <b>configurador en BlizardMC</b>. Cada etapa me dejó algo: gestión, paciencia con usuarios, criterio para sancionar y técnica para configurar. Sigo creciendo y aceptando nuevos retos.</p></div>
 <div class="cta" style="margin-top:18px">
 <div class="kicker">¿TRABAJAMOS JUNTOS?</div>
 <h2>Hablemos sobre tu proyecto.</h2>
@@ -294,10 +294,10 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="shead"><span class="n">09</span><h2>Comunidades</h2></div>
 <p class="sub">Servidores en los que he participado o sigo participando.</p>
 <div class="grid">
-<a class="card" href="https://discord.gg/dkZpFtXXCj" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#131a30dd),url('Imagenes/Hydra/download.png');background-size:cover;background-position:center"><span class="tag hot">DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Hydra Studio</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Mi studio de eventos Minecraft. Founder y dev.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Entrar al servidor ↗</span></a>
-<a class="card" href="https://discord.gg/qyyREajJgC" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#131a30dd),url('Imagenes/Skylith/download.png');background-size:cover;background-position:center"><span class="tag hot">DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Skylith Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">SkyBlock. Trabajo como Jr-Admin actualmente.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Entrar al servidor ↗</span></a>
-<a class="card" href="https://www.youtube.com/@HyperHardNetwork" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#131a30dd),url('Imagenes/HyperHard/download.png');background-size:cover;background-position:center"><span class="tag">YOUTUBE</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">HyperHard Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Mi network personal. FullPvP, Survival OP, Bedwars.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Ver en YouTube ↗</span></a>
-<a class="card" href="https://maicolfrantech.com/" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#131a30dd),url('Imagenes/Orecraft/orecraft.jpg');background-size:cover;background-position:center"><span class="tag no">SIN DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Orecraft Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Survival Custom. Helper 2023-2024. Discord cerrado.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Web de ref ↗</span></a>
+<a class="card" href="https://discord.gg/dkZpFtXXCj" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Hydra/download.png');background-size:cover;background-position:center"><span class="tag hot">DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Hydra Studio</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Mi studio de eventos Minecraft. Founder y dev.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Entrar al servidor ↗</span></a>
+<a class="card" href="https://discord.gg/qyyREajJgC" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Skylith/download.png');background-size:cover;background-position:center"><span class="tag hot">DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Skylith Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">SkyBlock. Trabajo como Jr-Admin actualmente.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Entrar al servidor ↗</span></a>
+<a class="card" href="https://www.youtube.com/@HyperHardNetwork" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/HyperHard/download.png');background-size:cover;background-position:center"><span class="tag">YOUTUBE</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">HyperHard Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Mi network personal. FullPvP, Survival OP, Bedwars.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Ver en YouTube ↗</span></a>
+<a class="card" href="https://maicolfrantech.com/" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Orecraft/orecraft.jpg');background-size:cover;background-position:center"><span class="tag no">SIN DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Orecraft Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Survival Custom. Helper 2023-2024. Discord cerrado.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Web de ref ↗</span></a>
 </div>
 </section>
 
