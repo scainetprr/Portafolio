@@ -79,7 +79,7 @@ section{padding:64px 0}
 /* aporte + cargos */
 .duo{display:grid;grid-template-columns:1fr 1.2fr;gap:16px}
 .ctable{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.ctable div{padding:16px 10px;text-align:center;font-size:14px;font-weight:600;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card)}
+.ctable div{padding:16px 10px;text-align:center;font-size:14px;font-weight:600;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:transform .35s ease,box-shadow .35s ease,border-color .3s ease,background .3s ease;cursor:default;position:relative;background:var(--card)}
 .ctable div:nth-child(4n){border-right:0}
 .ctable div:nth-last-child(-n+4){border-bottom:0}
 .ctable div.hl{color:#ffb3b9}
@@ -87,7 +87,7 @@ section{padding:64px 0}
 .filters button.on{background:var(--red);border-color:var(--red)}
 .shotV{display:none}
 ul.ck{list-style:none}ul.ck li{margin:8px 0}ul.ck li:before{content:"✓ ";color:var(--grn);font-weight:800}
-.faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0;transition:transform .35s ease,box-shadow .35s ease,border-color .3s ease}.faq details:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 8px 24px #e11d2e44}.ctable div:hover{transform:translateY(-4px) scale(1.03);border-color:var(--red);box-shadow:0 8px 24px #e11d2e55,inset 0 1px 0 rgba(255,255,255,.08);color:#fff;z-index:1}
 .video{aspect-ratio:16/9;width:100%;border:0;border-radius:12px;margin-top:10px}
 /* CTA */
 .cta{background:linear-gradient(135deg,#1a1430,#101a33);border:1px solid var(--red);border-radius:20px;padding:48px;text-align:center;position:relative;overflow:hidden}
