@@ -1,5 +1,11 @@
 {
     "reviews":  [
-
+                    {
+                        "rating":  5,
+                        "nombre":  "Ejemplo",
+                        "fecha":  "2026-09-16",
+                        "mensaje":  "Esta es una reseña de ejemplo. Las reseñas reales aparecerán aquí cuando los jugadores envíen las suyas.",
+                        "servidor":  "HyperHard"
+                    }
                 ]
 }
