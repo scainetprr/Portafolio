@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -479,13 +479,15 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 </div>
 
 <div class="card" style="padding:24px;border:1px solid rgba(255,255,255,.08)">
-<form id="reviewForm" style="display:flex;flex-direction:column;gap:16px">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-<div>
+<h3 style="color:#fff;margin-bottom:16px;font-size:18px">✍️ Deja tu reseña</h3>
+<form id="reviewForm">
+<table style="width:100%;border-collapse:separate;border-spacing:0 12px">
+<tr>
+<td style="width:50%;padding-right:10px">
 <label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu nombre</label>
 <input type="text" name="nombre" required placeholder="Ej: L3xz" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
-</div>
-<div>
+</td>
+<td style="width:50%;padding-left:10px">
 <label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Servidor</label>
 <select name="servidor" required style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box;appearance:auto">
 <option value="">Selecciona...</option>
@@ -496,46 +498,48 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <option value="Hydra">Hydra Bot</option>
 <option value="Otro">Otro</option>
 </select>
-</div>
-</div>
-<h3 style="color:#fff;margin:4px 0;font-size:17px">✍️ Deja tu reseña</h3>
-<div style="display:flex;align-items:center;gap:10px">
-<label style="color:var(--mut);font-size:13px">Calificación:</label>
-<div id="stars" style="display:flex;gap:2px;font-size:28px;cursor:pointer">
-<span data-v="1" style="color:#f5a623;transition:all .15s">★</span>
-<span data-v="2" style="color:#f5a623;transition:all .15s">★</span>
-<span data-v="3" style="color:#f5a623;transition:all .15s">★</span>
-<span data-v="4" style="color:#f5a623;transition:all .15s">★</span>
-<span data-v="5" style="color:#f5a623;transition:all .15s">★</span>
-</div>
-<span id="ratingText" style="color:#f5a623;font-size:14px">5/5</span>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Calificación</label>
+<div style="display:flex;align-items:center;gap:8px">
+<span onclick="setRating(1)" style="font-size:24px;cursor:pointer;color:#f5a623">★</span>
+<span onclick="setRating(2)" style="font-size:24px;cursor:pointer;color:#f5a623">★</span>
+<span onclick="setRating(3)" style="font-size:24px;cursor:pointer;color:#f5a623">★</span>
+<span onclick="setRating(4)" style="font-size:24px;cursor:pointer;color:#f5a623">★</span>
+<span onclick="setRating(5)" style="font-size:24px;cursor:pointer;color:#f5a623">★</span>
+<span id="ratingText" style="color:#f5a623;font-size:14px;margin-left:4px">5/5</span>
 <input type="hidden" name="rating" id="ratingVal" value="5">
 </div>
-<div>
+</td>
+</tr>
+<tr>
+<td colspan="2">
 <label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu reseña</label>
 <textarea name="mensaje" required rows="4" placeholder="¿Qué tal fue tu experiencia trabajando conmigo?" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit"></textarea>
-</div>
-<button type="submit" id="submitBtn" style="padding:14px 28px;background:var(--red);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;align-self:flex-start">Publicar reseña</button>
-<p id="reviewMsg" style="font-size:13px;display:none;margin-top:4px"></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<button type="submit" id="submitBtn" style="padding:14px 28px;background:var(--red);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s">Publicar reseña</button>
+<p id="reviewMsg" style="font-size:13px;display:none;margin-top:8px"></p>
+</td>
+</tr>
+</table>
 </form>
 </div>
 </section>
 
 <script>
 (function(){
-const stars=document.querySelectorAll('#stars span[data-v]');
-const val=document.getElementById('ratingVal');
-const ratingText=document.getElementById('ratingText');
-
-function highlightStars(n){stars.forEach(x=>{x.style.color=x.dataset.v<=n?'#f5a623':'#444';x.style.transform=x.dataset.v<=n?'scale(1.1)':'scale(1)'})}
-function updateStars(){highlightStars(val.value);ratingText.textContent=val.value+'/5'}
-updateStars();
-
-stars.forEach(s=>{
-s.addEventListener('click',()=>{val.value=s.dataset.v;updateStars()});
-s.addEventListener('mouseenter',()=>{highlightStars(s.dataset.v)});
-s.addEventListener('mouseleave',()=>{updateStars()});
-});
+function setRating(n){
+document.getElementById('ratingVal').value=n;
+document.getElementById('ratingText').textContent=n+'/5';
+const spans=document.querySelectorAll('#reviewForm span[onclick^="setRating"]');
+spans.forEach((s,i)=>{s.style.color=(i+1)<=n?'#f5a623':'#444'});
+}
+setRating(5);
 
 async function loadReviews(){
 try{
