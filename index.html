@@ -12,16 +12,15 @@ body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sa
 a{color:var(--blue)}
 .wrap{max-width:1060px;margin:auto;padding:0 26px}
 nav{position:sticky;top:0;z-index:50;background:#0a0e1acc;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;gap:22px;padding:14px 26px;flex-wrap:wrap}
+nav .wrap{display:flex;align-items:center;gap:20px;padding:14px 26px;flex-wrap:wrap}
 .logo{font-weight:800;font-size:17px}.logo i{color:var(--red);font-style:normal}
 nav a.nl{color:#c3cadb;text-decoration:none;font-size:14px}nav a.nl:hover{color:#fff}
-/* HERO */
 .hero{padding:84px 0 70px}
 .heroGrid{display:grid;grid-template-columns:1.4fr .8fr;gap:40px;align-items:center}
 .kicker{letter-spacing:3px;font-size:12px;color:var(--red);font-weight:700}
 h1{font-size:76px;line-height:1;margin:14px 0;font-weight:800;letter-spacing:-2px}
 .subHero{color:#aab2c8;font-size:18px;max-width:560px}
-.btn{display:inline-block;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;margin:18px 10px 0 0;border:1px solid var(--line);font-size:15px}
+.btn{display:inline-block;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;margin:18px 10px 0 0;border:1px solid var(--line);font-size:15px;cursor:pointer}
 .btn.p{background:var(--red);border-color:var(--red);color:#fff}.btn.o{background:transparent;color:#fff}.btn:hover{filter:brightness(1.15)}
 .mini{margin-top:16px;color:var(--mut);font-size:13px}
 .acard{background:linear-gradient(180deg,#182036,#10172a);border:1px solid var(--line);border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 0 80px #e11d2e22;animation:float 5s ease-in-out infinite}
@@ -31,59 +30,83 @@ h1{font-size:76px;line-height:1;margin:14px 0;font-weight:800;letter-spacing:-2p
 .dot{color:var(--grn);font-size:13px;border-top:1px solid var(--line);margin-top:14px;padding-top:12px}
 .term{background:#080b14;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-family:Consolas,monospace;font-size:14px;color:#c8d0e0;margin:16px 0}
 .term .g{color:var(--grn)}
-/* SECTIONS aireadas */
 section{padding:64px 0}
 .shead{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:30px}
 .shead .n{color:var(--red);font-family:Consolas,monospace;font-size:15px}
 .shead h2{font-size:32px;font-weight:800}
 .sub{color:var(--mut);margin:-18px 0 26px}
-/* stat grandes */
+.about{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:32px}
+.about p{margin-bottom:14px;color:#c6cddd}.about b{color:#fff}
 .statBig{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden}
 .statBig b{font-size:38px;display:block;color:#fff}
 .statBig span{font-size:12px;letter-spacing:2px;color:var(--mut)}
 .statBig:after{content:"";position:absolute;right:-40px;bottom:-50px;width:150px;height:150px;border:1px solid var(--line);border-radius:50%}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-/* virtudes 2 col */
 .virt{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .vcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;gap:14px}
 .vico{width:38px;height:38px;min-width:38px;border-radius:10px;background:#1c2440;display:flex;align-items:center;justify-content:center;font-size:18px}
 .vcard b{font-size:16px}.vcard p{color:var(--mut);font-size:14px;margin-top:4px}
-/* genericas */
+/* experiencia cards */
+.expGrid{display:grid;grid-template-columns:1fr;gap:16px}
+.exp{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.exp .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.exp .yr{font-weight:800}.exp .yr:before{content:"■ ";color:var(--red);font-size:12px}
+.exp .st{font-size:12px;color:var(--mut)}
+.exp p{color:var(--mut);font-size:14px}
+.exp.now{grid-column:1/-1;border-color:var(--red);box-shadow:0 0 40px #e11d2e22}
+/* proyectos grandes */
+.proj{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:22px}
+.strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;position:relative;cursor:pointer}
+.strip img{width:100%;height:230px;object-fit:cover;display:block;border-right:1px solid var(--line)}
+.galBtn{position:absolute;right:14px;bottom:14px;background:#0a0e1add;border:1px solid var(--line);color:#fff;border-radius:10px;padding:8px 16px;font-size:13px;font-weight:700}
+.pbody{padding:26px 28px}
+.plabel{font-size:12px;letter-spacing:2px;color:var(--red);font-weight:700}
+.pbody h3{font-size:26px;margin:6px 0}
+.pbody p{color:var(--mut);font-size:15px;margin:8px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
 .card h3{margin-bottom:6px}.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:2px 10px;margin:2px;color:var(--mut)}
 .tag.hot{border-color:var(--red);color:#ffb3b9}.tag.ok{border-color:var(--grn);color:#7fe3a8}.tag.no{opacity:.6}
 .pill{font-size:12px;background:#1c2440;border-radius:6px;padding:2px 8px;margin:2px;display:inline-block}
-.tl{border-left:2px solid var(--line);margin-left:8px;padding-left:22px}
-.tl .it{margin:0 0 30px;position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
-.tl .it:before{content:"";position:absolute;left:-31px;top:22px;width:14px;height:14px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red)}
+/* aporte + cargos */
+.duo{display:grid;grid-template-columns:1fr 1.2fr;gap:16px}
+.ctable{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ctable div{padding:16px 10px;text-align:center;font-size:14px;font-weight:600;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card)}
+.ctable div:nth-child(4n){border-right:0}
+.ctable div:nth-last-child(-n+4){border-bottom:0}
+.ctable div.hl{color:#ffb3b9}
 .filters button{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 16px;margin:4px;cursor:pointer}
 .filters button.on{background:var(--red);border-color:var(--red)}
-.shot{background:#0b0f1e;border:1px dashed var(--line);border-radius:10px;min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--mut);font-size:13px;position:relative;overflow:hidden;margin:6px 0;padding:8px;text-align:center}
-.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 20px;min-width:140px}.stat b{font-size:26px;display:block}
-.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.shotV{display:none}
 ul.ck{list-style:none}ul.ck li{margin:8px 0}ul.ck li:before{content:"✓ ";color:var(--grn);font-weight:800}
 .faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0}
-.video{aspect-ratio:16/9;width:100%;border:0;border-radius:12px}
+.video{aspect-ratio:16/9;width:100%;border:0;border-radius:12px;margin-top:10px}
+/* CTA */
+.cta{background:linear-gradient(135deg,#1a1430,#101a33);border:1px solid var(--red);border-radius:20px;padding:48px;text-align:center;position:relative;overflow:hidden}
+.cta h2{font-size:38px}.cta p{color:var(--mut);max-width:640px;margin:10px auto}
 footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-top:1px solid var(--line)}
-#secret{position:fixed;inset:0;background:#04050ad9;display:flex;align-items:center;justify-content:center;z-index:99;padding:18px;opacity:0;pointer-events:none;transition:opacity .35s;backdrop-filter:blur(6px)}
-#secret.open{opacity:1;pointer-events:auto}
+/* modales */
+.modal{position:fixed;inset:0;background:#04050ad9;display:flex;align-items:center;justify-content:center;z-index:99;padding:18px;opacity:0;pointer-events:none;transition:opacity .35s;backdrop-filter:blur(6px)}
+.modal.open{opacity:1;pointer-events:auto}
 .sbox{background:#151a2e;border:1px solid #3a4560;border-radius:8px;max-width:640px;width:100%;padding:38px 30px;text-align:center;transform:scale(.85) translateY(30px);transition:transform .45s cubic-bezier(.2,1.4,.4,1)}
-#secret.open .sbox{transform:none}
+.modal.open .sbox{transform:none}
 .sbox .ag{letter-spacing:4px;font-size:12px;color:#8f9bb5;font-family:monospace;text-align:left}
 .sbox .row{display:flex;justify-content:space-between;font-family:monospace;font-size:13px;border-top:1px dashed #3a4560;border-bottom:1px dashed #3a4560;padding:12px 0;margin:18px 0;color:#cfd6e6}
 .sbox h2{font-size:34px;margin:18px 0}.sbox p{color:#9aa3b5}.star{width:64px;height:64px;border:1px solid #3a4560;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:26px}
-#secret.open .star{animation:spin 6s linear infinite}
+.modal.open .star{animation:spin 6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-#secret.open .sbox h2,#secret.open .sbox p{animation:pop .5s .3s backwards}
+.modal.open .sbox h2,.modal.open .sbox p{animation:pop .5s .3s backwards}
 @keyframes pop{from{opacity:0;transform:translateY(14px)}}
 .bar{height:6px;background:#0a0e1c;border-radius:99px;overflow:hidden;margin:14px 0}
 .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--blue));border-radius:99px}
-#secret.open .bar i{animation:load 1.2s ease forwards}
+.modal.open .bar i{animation:load 1.2s ease forwards}
 @keyframes load{from{width:0}to{width:100%}}
+.gbox{background:#0d1222;border:1px solid var(--line);border-radius:14px;max-width:900px;width:100%;padding:20px;transform:scale(.9);transition:transform .3s}
+.modal.open .gbox{transform:none}
+.gbox img{width:100%;border-radius:10px;max-height:70vh;object-fit:contain;background:#000}
+.gnav{display:flex;justify-content:space-between;align-items:center;margin-top:12px;color:var(--mut)}
+.gnav button{background:#1c2440;color:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 18px;cursor:pointer;font-size:15px}
 .copy{cursor:pointer}
-/* animaciones fondo + cards */
 #stars{position:fixed;inset:0;z-index:-2}
 .orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:-1;opacity:.35;pointer-events:none}
 .o1{width:480px;height:480px;background:#e11d2e;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}
@@ -91,22 +114,21 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 @keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}
 .tw{color:#fff;font-weight:700}.caret{display:inline-block;width:3px;height:1.1em;background:var(--red);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.card,.stat,.statBig,.vcard,.tl .it{transition:transform .3s,box-shadow .3s,border-color .3s}
-.card:hover,.stat:hover,.statBig:hover,.vcard:hover{transform:scale(1.035) translateY(-4px);border-color:var(--red);box-shadow:0 14px 40px #e11d2e33}
-.shot img{transition:transform .5s ease}
-.shot:hover img{transform:scale(1.08)}
+.card,.statBig,.vcard,.exp,.proj{transition:transform .3s,box-shadow .3s,border-color .3s}
+.card:hover,.statBig:hover,.vcard:hover,.exp:hover{transform:scale(1.035) translateY(-4px);border-color:var(--red);box-shadow:0 14px 40px #e11d2e33}
+.strip img{transition:transform .5s ease,filter .3s}.strip:hover img{filter:brightness(1.1)}
 @keyframes float{50%{transform:translateY(-10px)}}
 .rv{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
 .rv.vis{opacity:1;transform:none}
 .btn.p{animation:glow 2.6s ease-in-out infinite}
 @keyframes glow{50%{box-shadow:0 0 26px #e11d2e88}}
-@media(max-width:820px){.heroGrid{grid-template-columns:1fr}h1{font-size:52px}.virt{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}}
+@media(max-width:820px){.heroGrid{grid-template-columns:1fr}h1{font-size:52px}.virt{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.expGrid{grid-template-columns:1fr}.duo{grid-template-columns:1fr}.ctable{grid-template-columns:repeat(3,1fr)}.strip img{height:130px}}
 </style>
 </head>
 <body>
 <canvas id="stars"></canvas><div class="orb o1"></div><div class="orb o2"></div>
 <nav><div class="wrap"><span class="logo"><i>◆</i> scainetprr</span>
-<a class="nl" href="#sobre-mi">Perfil</a><a class="nl" href="#logros">Cualidades</a><a class="nl" href="#trayectoria">Experiencia</a><a class="nl" href="#proyectos">Proyectos</a><a class="nl" href="#skills">Skills</a><a class="nl" href="#contacto">Contacto</a><a class="nl" href="cv.html">CV 📄</a>
+<a class="nl" href="#sobre-mi">Perfil</a><a class="nl" href="#logros">Cualidades</a><a class="nl" href="#trayectoria">Experiencia</a><a class="nl" href="#proyectos">Proyectos</a><a class="nl" href="#aporte">Aporte</a><a class="nl" href="#contacto">Contacto</a><a class="nl" href="cv.html">CV 📄</a>
 </div></nav>
 
 <div class="hero"><div class="wrap heroGrid">
@@ -130,9 +152,11 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 
 <section id="sobre-mi">
 <div class="shead"><span class="n">01</span><h2>Sobre mí</h2></div>
-<p class="sub">Dylan David Gomez, 19 años, Medellín — staff por vocación, fundador por experiencia.</p>
-<div class="card"><p>Soy <b>Dylan David Gomez</b>, conocido como <b>scainetprr</b>. Llevo <b>9 años creando servidores</b> y <b>5 como staff</b>: empecé levantando mis propios proyectos, lo que me obligó a aprender de todo — programación, configuración, construcción, reclutamiento y gestión de equipos. Esa escuela me hizo versátil: sé lo que necesita un owner porque yo he sido el owner.</p>
-<p style="margin-top:10px">Hoy soy <b>Jr-Admin en Skylith Network</b> (OneBlock), donde además hago <b>inducción a nuevos staff</b>, y <b>configurador / dev en BlizardMC</b> (FullPvP). Mi especialidad es el <b>Survival OP y Custom</b>: revisar inventarios y comportamientos, aplicar SS, baneos, muteos y warns con criterio, separando hackers reales de falsos positivos. En Discord domino servidores completos — rangos, canales, estética, AutoMod, tickets — y programo <b>bots en NodeJS</b>. Edito contenido con Filmora y Mineanimator, hablo español y aprendo inglés básico.</p></div>
+<div class="about">
+<p>Soy <b>Dylan David Gomez</b>, conocido en las comunidades como <b>scainetprr</b>: tengo 19 años, vivo en Medellín, Colombia, y dedico mi tiempo a lo que mejor sé hacer — <b>crear, configurar y moderar servidores de Minecraft</b>. Mi recorrido empezó hace <b>9 años</b> levantando mis propios proyectos, lo que me obligó a aprender absolutamente todo: programación y configuración de plugins, construcción, economía, rangos, reclutamiento y dirección de equipos. Ser founder me enseñó algo que ningún tutorial enseña: <b>sé lo que necesita un owner, porque yo he sido el owner</b> — presupuestos ajustados, staff que falla y comunidades que hay que mantener vivas.</p>
+<p>Paralelamente llevo <b>5 años como staff</b> en servidores de otros. Mi trabajo real ha sido estar pendiente de los jugadores: revisar inventarios y comportamientos, aplicar <b>SS (screenshare)</b>, baneos, muteos y advertencias con criterio, separando a los hackers reales de los falsos positivos. He gestionado entre <b>3.000 y 7.000 tickets, reportes y problemas</b>, además de organizar eventos. Hoy soy <b>Jr-Admin en Skylith Network</b> (OneBlock), donde no solo modero sino que realizo la <b>inducción a los nuevos staff</b>, y <b>configurador / developer en BlizardMC</b> (FullPvP).</p>
+<p>En el plano técnico domino la configuración de plugins — <b>LuckPerms, Essentials, CoreProtect, Vulcan AntiCheat, MythicMobs, Tebex, GeyserMC</b> y más de veinte otros —, administro servidores de <b>Discord</b> completos y programo <b>bots en NodeJS</b> (HyperHard Bot y Hydra Bot, con más de 90 comandos). También estoy aprendiendo creación de contenido con <b>Filmora y Mineanimator</b>. Hablo español, aprendo inglés básico, tengo micro y disponibilidad todos los días. Mi filosofía es simple: <b>respeto para todos, imparcialidad en cada caso y cero tolerancia a la corrupción</b>.</p>
+</div>
 <div class="grid3" style="margin-top:16px">
 <div class="statBig"><b>9</b><span>AÑOS CREANDO SERVIDORES</span></div>
 <div class="statBig"><b>5</b><span>PROYECTOS / ETAPAS STAFF</span></div>
@@ -156,88 +180,104 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 </section>
 
 <section id="trayectoria">
-<div class="shead"><span class="n">03</span><h2>Mi trayectoria</h2></div>
-<p class="sub">De levantar mi propio network a formar staff en otros.</p>
-<div class="tl">
-<div class="it"><b>2022 – 2026 · HyperHard Network</b> — <span class="tag hot">Founder</span> <span class="tag">Dueño actual (apagado)</span><br><small>Mi network: FullPvP, Survival OP, OneBlock OP, Bedwars y minijuegos. Programaba, configuraba, construía y reclutaba — prácticamente todo al hombro ante la falta de compromiso de algunos miembros. Aprendí a sostener un servidor solo y a valorar un buen equipo. En pausa por fondos y actividad. <b>mc.hyperhard.space</b></small><br><span class="pill">Liderazgo</span><span class="pill">Config</span><span class="pill">Reclutamiento</span></div>
-<div class="it"><b>2023 – 2024 · Orecraft Network</b> — <span class="tag">Helper</span> <span class="tag no">Sin evidencia · ref. maicolfrantech</span><br><small>Survival Custom. Mi labor era la convivencia: atender tickets, resolver dudas y mediar conflictos entre usuarios con paciencia. Web de referencia: <a href="https://maicolfrantech.com/" target="_blank">maicolfrantech.com</a></small><br><span class="pill">Soporte</span><span class="pill">Tickets</span></div>
-<div class="it"><b>2025 – 2026 · Hydra Studio</b> — <span class="tag hot">Founder</span><br><small>Mi mini studio personal de eventos de Minecraft, aún activo. Organizo los eventos, programo mi propio bot y entrego las recompensas. 2 eventos propios + 1 del studio documentados en video.</small><br><span class="pill">Eventos</span><span class="pill">Bots NodeJS</span></div>
-<div class="it"><b>2026 · BlizardMC</b> — <span class="tag ok">Configurador / Dev</span> <span class="tag no">Sin evidencia por ahora · ref. franrol15</span><br><small>FullPvP. Me llaman para fixear bugs evidentes, configurar plugins y optimizar el servidor. Trabajo de confianza con uno de los dueños.</small><br><span class="pill">Debug</span><span class="pill">Optimización</span></div>
-<div class="it"><b>2026 – actual · Skylith Network</b> — <span class="tag ok">Jr-Admin</span><br><small>OneBlock (SKYLITH.LIVE). Respondo tickets, vigilo el servidor, sanciono cuando toca y —como plus— realizo la <b>inducción a los nuevos staff</b>: reglas, herramientas, sanciones y acompañamiento en turno real. Referencia: L3xz.</small><br><span class="pill">Moderación</span><span class="pill">Formación</span></div>
+<div class="shead"><span class="n">03</span><h2>Mi experiencia Staff</h2></div>
+<p class="sub">Cinco etapas, del proyecto propio al staff actual.</p>
+<div class="expGrid" id="expGrid">
+<div class="exp" data-cat="yes"><div class="top"><span class="yr">2022 – 2026 · HyperHard Network</span><span class="st">Founder</span></div><p>Mi network: FullPvP, Survival OP, OneBlock OP, Bedwars y minijuegos. Programaba, configuraba, construía y reclutaba — todo al hombro. En pausa por fondos y actividad, sigo siendo dueño. <b>mc.hyperhard.space</b></p></div>
+<div class="exp" data-cat="no"><div class="top"><span class="yr">2023 – 2024 · Orecraft</span><span class="st">Helper</span></div><p>Survival Custom: sana convivencia, tickets y dudas. Sin evidencia (Discord cerrado). Ref: <b>maicolfrantech</b>.</p></div>
+<div class="exp" data-cat="yes"><div class="top"><span class="yr">2025 – 2026 · Hydra Studio</span><span class="st">Founder</span></div><p>Mi studio de eventos Minecraft: organizo, programo mi bot y entrego recompensas. 3 eventos documentados.</p></div>
+<div class="exp" data-cat="no"><div class="top"><span class="yr">2026 · BlizardMC</span><span class="st">Config / Dev</span></div><p>FullPvP: fix de bugs, configuración de plugins y optimización. Sin evidencia por ahora. Ref: <b>franrol15</b>.</p></div>
+<div class="exp now" data-cat="yes"><div class="top"><span class="yr">2026 · Skylith Network — Actualmente</span><span class="st">Jr-Admin</span></div><p>OneBlock (SKYLITH.LIVE): tickets, vigilancia, sanciones e <b>inducción a nuevos staff</b>. Ref: L3xz.</p><a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank">Discord de SkyLith</a></div>
 </div>
 </section>
 
 <section id="proyectos">
 <div class="shead"><span class="n">04</span><h2>Proyectos y evidencia</h2></div>
-<p class="sub">Separo mi experiencia declarada de la evidencia que conservo. Orecraft y Blizard, con referencia verificable.</p>
+<div class="card" style="margin-bottom:22px"><b>📁 Sobre mi evidencia</b><p style="color:var(--mut);font-size:14px">Conservo capturas de <b>HyperHard, Hydra Studio y Skylith</b>. De Orecraft y Blizard no tengo respaldo por ahora, así que los marco con su referencia verificable. Toca cualquier tira para ver la galería completa.</p></div>
 <div class="filters"><button class="on" data-f="all">Todos</button><button data-f="yes">Con evidencia</button><button data-f="no">Sin evidencia</button></div>
-<div class="grid" id="projGrid">
-<div class="card" data-cat="yes"><span class="tag ok">Con evidencia</span><h3>HyperHard Network → Founder</h3><small>2022-2026 · mc.hyperhard.space · <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank">YouTube</a></small>
-<p style="color:var(--mut);font-size:14px">Mi network completo: dungeons con menús, kits y rangos configurados, zona de crates /tienda, lobbies y scoreboards. Las capturas muestran el rango FOUNDER y los sistemas que monté yo mismo.</p>
-<div class="shot"><span>Dungeons</span><img src="Imagenes/HyperHard/download.png" onerror="this.remove()"></div>
-<div class="shot"><span>Gameplay</span><img src="Imagenes/HyperHard/1.png" onerror="this.remove()"></div>
-<div class="shot"><span>Lobby</span><img src="Imagenes/HyperHard/2.png" onerror="this.remove()"></div>
-<div class="shot"><span>Extra</span><img src="Imagenes/HyperHard/3.png" onerror="this.remove()"></div>
-<div class="shot"><span>Extra</span><img src="Imagenes/HyperHard/4.png" onerror="this.remove()"></div>
-<div class="shot"><span>Kits</span><img src="Imagenes/HyperHard/5.png" onerror="this.remove()"></div>
-<div class="shot"><span>Kits</span><img src="Imagenes/HyperHard/6.png" onerror="this.remove()"></div>
+<div id="projGrid">
+<div class="proj" data-cat="yes" data-gal="hh">
+<div class="strip"><img src="Imagenes/HyperHard/download.png" onerror="this.remove()"><img src="Imagenes/HyperHard/1.png" onerror="this.remove()"><img src="Imagenes/HyperHard/2.png" onerror="this.remove()"><span class="galBtn">⌕ Ver galería</span></div>
+<div class="pbody"><div class="plabel">01 · MINECRAFT · 2022 – 2026</div><h3>HyperHard Network → Founder</h3>
+<p>Fui el <b>fundador y único desarrollador</b> durante mi etapa: dungeons con menús, kits y rangos configurados, zona de crates /tienda, lobbies y scoreboards. Las capturas muestran el rango FOUNDER y cada sistema montado por mí. Servidor en pausa, sigo siendo dueño.</p>
+<a class="btn p" href="https://www.youtube.com/@HyperHardNetwork" target="_blank">YouTube</a><span class="pill">mc.hyperhard.space</span></div>
+<div class="shotV"><img src="Imagenes/HyperHard/3.png"><img src="Imagenes/HyperHard/4.png"><img src="Imagenes/HyperHard/5.png"><img src="Imagenes/HyperHard/6.png"></div>
 </div>
-<div class="card" data-cat="yes"><span class="tag ok">Con evidencia</span><h3>Hydra Studio → Founder</h3><small>2025-2026 · <a href="https://discord.gg/dkZpFtXXCj" target="_blank">Discord</a> · <a href="https://www.youtube.com/@HydraStudioMC" target="_blank">YouTube</a></small>
-<p style="color:var(--mut);font-size:14px">Estudio de eventos: scoreboard de evento en mapa HyperCity, Discord organizado con mi rol CODE y mi bot Hydra entre 20 bots del servidor.</p>
-<iframe class="video" src="https://www.youtube.com/embed/edI-h8zjUgM" allowfullscreen></iframe>
-<div class="shot"><span>Scoreboard</span><img src="Imagenes/Hydra/download.png" onerror="this.remove()"></div>
-<div class="shot"><span>Discord CODE + Hydra Bot</span><img src="Imagenes/Hydra/2.png" onerror="this.remove()"></div>
+<div class="proj" data-cat="yes" data-gal="hydra">
+<div class="strip"><img src="Imagenes/Hydra/download.png" onerror="this.remove()"><img src="Imagenes/Hydra/2.png" onerror="this.remove()"><img src="Imagenes/Hydra/2.png" onerror="this.remove()"><span class="galBtn">⌕ Ver galería</span></div>
+<div class="pbody"><div class="plabel">02 · EVENTOS · 2025 – 2026</div><h3>Hydra Studio → Founder</h3>
+<p>Mi <b>studio personal de eventos</b>: scoreboard de evento en mapa HyperCity, Discord organizado con mi rol CODE y mi bot Hydra. Incluye el video de uno de nuestros eventos.</p>
+<a class="btn p" href="https://discord.gg/dkZpFtXXCj" target="_blank">Discord</a><a class="btn o" href="https://www.youtube.com/@HydraStudioMC" target="_blank">YouTube</a>
+<iframe class="video" src="https://www.youtube.com/embed/edI-h8zjUgM" allowfullscreen></iframe></div>
 </div>
-<div class="card" data-cat="yes"><span class="tag ok">Con evidencia</span><h3>Skylith → Jr-Admin actual</h3><small>SKYLITH.LIVE · <a href="https://discord.gg/qyyREajJgC" target="_blank">Discord</a> · Ref L3xz</small>
-<p style="color:var(--mut);font-size:14px">Mi rol actual: tab con JR-ADMIN junto al equipo, skin de traje en el lobby y presencia activa en el Discord con rol CODE.</p>
-<div class="shot"><span>Tab equipo</span><img src="Imagenes/Skylith/6.png" onerror="this.remove()"></div>
-<div class="shot"><span>Skin lobby</span><img src="Imagenes/Skylith/download.png" onerror="this.remove()"></div>
-<div class="shot"><span>Tab solo</span><img src="Imagenes/Skylith/1.png" onerror="this.remove()"></div>
-<div class="shot"><span>Discord</span><img src="Imagenes/Skylith/4.png" onerror="this.remove()"></div>
+<div class="proj" data-cat="yes" data-gal="sky">
+<div class="strip"><img src="Imagenes/Skylith/6.png" onerror="this.remove()"><img src="Imagenes/Skylith/download.png" onerror="this.remove()"><img src="Imagenes/Skylith/1.png" onerror="this.remove()"><span class="galBtn">⌕ Ver galería</span></div>
+<div class="pbody"><div class="plabel">03 · MINECRAFT · 2026 ACTUAL</div><h3>Skylith Network → Jr-Admin</h3>
+<p>Mi rol actual en <b>OneBlock (SKYLITH.LIVE)</b>: tab con JR-ADMIN junto al equipo, skin de traje en el lobby y presencia activa en Discord. Tickets, sanciones e inducción de nuevos staff.</p>
+<a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank">Discord de SkyLith</a></div>
+<div class="shotV"><img src="Imagenes/Skylith/4.png"></div>
 </div>
-<div class="card" data-cat="no"><span class="tag no">Sin evidencia por ahora</span><h3>Orecraft → Helper</h3><small>2023-2024 · Survival Custom · Discord cerrado</small><p style="color:var(--mut);font-size:14px">Sana convivencia, tickets y dudas. Verificable con el ex dueño: <b>maicolfrantech (575484448171229195)</b> · <a href="https://maicolfrantech.com/" target="_blank">web</a></p></div>
-<div class="card" data-cat="no"><span class="tag no">Sin evidencia por ahora</span><h3>BlizardMC → Config / Dev</h3><small>2026 · FullPvP</small><p style="color:var(--mut);font-size:14px">Fix de bugs, configuración de plugins y optimización. Verificable con <b>franrol15 (889912844357886042)</b>. Capturas en camino.</p></div>
+<div class="grid">
+<div class="card" data-cat="no"><span class="tag no">Sin evidencia por ahora</span><h3>Orecraft → Helper</h3><small>2023-2024 · Survival Custom</small><p style="color:var(--mut);font-size:14px">Sana convivencia, tickets y dudas. Ref: <b>maicolfrantech (575484448171229195)</b> · <a href="https://maicolfrantech.com/" target="_blank">web</a></p></div>
+<div class="card" data-cat="no"><span class="tag no">Sin evidencia por ahora</span><h3>BlizardMC → Config / Dev</h3><small>2026 · FullPvP</small><p style="color:var(--mut);font-size:14px">Fix de bugs y optimización. Ref: <b>franrol15 (889912844357886042)</b>. Capturas en camino.</p></div>
+</div>
 </div></section>
 
-<section id="skills">
-<div class="shead"><span class="n">05</span><h2>Skills y servicios</h2></div>
-<p class="sub">Lo que sé hacer y lo que ofrezco.</p>
-<div class="grid">
-<div class="card"><h3>⚙️ Minecraft — configuración</h3><p style="color:var(--mut);font-size:14px">Mi terreno fuerte: permisos, protecciones, economía, crates, hologramas, menús y anticheat. Los que más he trabajado:</p><p style="margin-top:8px"><span class="pill">LuckPerms</span><span class="pill">Essentials</span><span class="pill">CoreProtect</span><span class="pill">Vulcan AntiCheat</span><span class="pill">MythicMobs</span><span class="pill">Jobs Reborn</span><span class="pill">ExcellentCrates</span><span class="pill">DecentHolograms</span><span class="pill">CommandPanels / ZMenu</span><span class="pill">Tebex</span><span class="pill">GeyserMC</span><span class="pill">BattlePass</span><span class="pill">AxVaults / AxKoth</span><span class="pill">Shopkeepers</span><span class="pill">Proxys</span><span class="pill">VoiceChat</span><span class="pill">Chunky / BetterRTP</span></p></div>
-<div class="card"><h3>🤖 Discord + bots NodeJS</h3><p style="color:var(--mut);font-size:14px">Servidores completos (rangos, canales, estética, tickets) y bots propios: <b>HyperHard Bot + Hydra Bot</b>, con más de 90 comandos —70 a 80 estables— más sistema de moderación.</p><a class="btn o" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank">Invitar bot ↗</a></div>
-<div class="card"><h3>🎬 Contenido</h3><p style="color:var(--mut);font-size:14px">Aprendo creación de contenido: videos largos en Filmora y animaciones en Mineanimator. Publico en <a href="https://www.youtube.com/@HydraStudioMC" target="_blank">@HydraStudioMC</a> y <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank">@HyperHardNetwork</a>.</p></div>
-</div>
-<div class="grid" style="margin-top:14px">
-<div class="card"><h3>Moderación que aporto</h3><ul class="ck"><li>SS, baneos, muteos y warns con criterio</li><li>Detección de hacks y falsos positivos</li><li>Anti-raid y control de filtraciones</li><li>Inducción a nuevos staff (3 pasos)</li></ul></div>
-<div class="card"><h3>Dev / Config con pago</h3><p style="color:var(--mut);font-size:14px">Pido pagos <b>solo si soy el desarrollador único</b> del servidor. Precio a convenir según alcance: configuración, optimización o bots a medida.</p><a class="btn o" href="#contacto">Pedir cotización</a></div>
-<div class="card"><h3>Modalidades</h3><p style="color:var(--mut);font-size:14px">Domino las OP: <b>Survival OP, OneBlock OP, Survival Custom</b> y Bedwars. Base en BoxPvP y creciendo en FullPvP.</p><p style="margin-top:8px"><span class="tag">Founder</span><span class="tag">Owner</span><span class="tag">CEO</span><span class="tag">Head Admin</span><span class="tag">Admin</span><span class="tag">Dev</span><span class="tag">Config</span><span class="tag">Helper</span></p></div>
+<section id="aporte">
+<div class="shead"><span class="n">05</span><h2>Lo que puedo aportar</h2></div>
+<div class="duo">
+<div class="card"><p><b>Minecraft:</b> administración de servidores, moderación con SS y sanciones, staff management, configuración de más de 20 plugins y desarrollo de sistemas (kits, crates, eventos).</p>
+<p style="margin-top:10px"><b>Discord:</b> administración y moderación, soporte por tickets, organización de comunidades y desarrollo de bots en NodeJS.</p>
+<p style="margin-top:10px"><b>Equipo:</b> asumo responsabilidades, me adapto a cualquier rango y colaboro con el resto del staff — incluso formando a los nuevos.</p></div>
+<div><div class="shead" style="margin-bottom:14px"><span class="n">06</span><h2 style="font-size:22px">Cargos que he desempeñado</h2></div>
+<div class="ctable">
+<div class="hl">Founder</div><div>Admin</div><div>Manager</div><div>Dev</div>
+<div>Config</div><div>Mod</div><div>Helper</div><div>Support</div>
+<div>Head Dev</div><div>Head Admin</div><div>Community Manager</div><div class="hl">Owner</div>
+</div></div>
 </div>
 </section>
 
-<section id="etica">
-<div class="shead"><span class="n">06</span><h2>Código, disponibilidad y FAQ</h2></div>
+<section id="skills">
+<div class="shead"><span class="n">07</span><h2>Skills y servicios</h2></div>
+<p class="sub">Stack técnico y trabajo pago.</p>
 <div class="grid">
-<div class="card"><h3>Mi código ético</h3><p style="color:var(--mut);font-size:14px">Respeto hacia todos sin importar qué pase, imparcial en cada caso. Nunca he sido tentado por estafas o corrupción: serio cuando toca, amigable cuando conviene.</p><h3 style="margin-top:12px">Disponibilidad</h3><p style="color:var(--mut);font-size:14px">Lun-Dom · 1-2h en la mañana + 2-3h tarde/noche (Colombia GMT-5). 🎙️ Con micro para reuniones. Español (inglés básico).</p></div>
-<div class="card faq"><h3>Preguntas de reclutadores</h3>
-<details open><summary>¿Por qué saliste de otros servidores?</summary>Por cierres de los proyectos; los míos están en pausa por fondos y actividad. En Skylith estoy cómodo con el equipo.</details>
-<details><summary>¿Aceptas empezar desde Helper o prueba?</summary>Sí, acepto periodo de prueba en cualquier rango base.</details>
-<details><summary>¿Pides OP o cargos a cambio de entrar?</summary>No. Nunca pido OP ni acepto tratos corruptos.</details>
-<details><summary>¿Haces trabajo pago?</summary>Solo como desarrollador único del servidor, precio a convenir.</details>
-</div></div>
+<div class="card"><h3>⚙️ Minecraft — configuración</h3><p style="color:var(--mut);font-size:14px">Permisos, protecciones, economía, crates, hologramas, menús y anticheat:</p><p style="margin-top:8px"><span class="pill">LuckPerms</span><span class="pill">Essentials</span><span class="pill">CoreProtect</span><span class="pill">Vulcan AntiCheat</span><span class="pill">MythicMobs</span><span class="pill">Jobs Reborn</span><span class="pill">ExcellentCrates</span><span class="pill">DecentHolograms</span><span class="pill">CommandPanels / ZMenu</span><span class="pill">Tebex</span><span class="pill">GeyserMC</span><span class="pill">BattlePass</span><span class="pill">AxVaults / AxKoth</span><span class="pill">Shopkeepers</span><span class="pill">Proxys</span><span class="pill">VoiceChat</span><span class="pill">Chunky / BetterRTP</span></p></div>
+<div class="card"><h3>🤖 Discord + bots NodeJS</h3><p style="color:var(--mut);font-size:14px"><b>HyperHard Bot + Hydra Bot</b>: más de 90 comandos (70-80 estables) + moderación.</p><a class="btn o" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank">Invitar bot ↗</a></div>
+<div class="card"><h3>🎬 Contenido + pago</h3><p style="color:var(--mut);font-size:14px">Filmora + Mineanimator. <a href="https://www.youtube.com/@HydraStudioMC" target="_blank">@HydraStudioMC</a> · <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank">@HyperHardNetwork</a>. Pagos solo como <b>dev único</b>, a convenir.</p></div>
+</div>
+</section>
+
+<section id="trayectoria2">
+<div class="shead"><span class="n">08</span><h2>Mi trayectoria</h2></div>
+<div class="card"><p style="color:#c6cddd">Mi recorrido ha sido construir, pausar y volver más fuerte: levanté <b>HyperHard Network</b> desde cero y lo sostuve solo durante años, pasé por <b>Orecraft</b> como Helper, fundé mi studio de eventos <b>Hydra</b> y hoy combino dos roles activos — <b>Jr-Admin en Skylith</b> y <b>configurador en BlizardMC</b>. Cada etapa me dejó algo: gestión, paciencia con usuarios, criterio para sancionar y técnica para configurar. Sigo creciendo y aceptando nuevos retos.</p></div>
+<div class="cta" style="margin-top:18px">
+<div class="kicker">¿TRABAJAMOS JUNTOS?</div>
+<h2>Hablemos sobre tu proyecto.</h2>
+<p>Si quieres contactarme para hablar sobre un proyecto, una oportunidad de Staff o desarrollo, escríbeme directamente por Discord.</p>
+<p style="margin-top:6px;letter-spacing:2px;font-size:12px;color:var(--mut)">DISCORD · <b style="color:#fff">scainetprrmn</b></p>
+<a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank">Contactarme ↗</a>
+</div>
 </section>
 
 <section id="contacto">
-<div class="shead"><span class="n">07</span><h2>Contacto</h2></div>
-<p class="sub">¿Trabajamos juntos? Escríbeme por Discord.</p>
+<div class="shead"><span class="n">09</span><h2>Contacto</h2></div>
 <div class="grid">
 <div class="card"><h3>Discord (principal)</h3><p><b class="copy" id="cpD">scainetprrmn · 1307246359895740448 (copiar)</b></p><a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank">Abrir Discord ↗</a></div>
 <div class="card"><h3>Email / X / CV</h3><p class="copy" id="cpM">scainetprrmn@gmail.com (copiar)</p><p><a href="https://x.com/scainetprrMN" target="_blank">X @scainetprrMN</a> · <a href="cv.html">Descargar CV 📄</a></p></div>
-<div class="card"><h3>Referencias</h3><p style="color:var(--mut);font-size:14px">L3xz / lexz24.7 — 1431659598288523375 (Skylith)<br>franrol15 — 889912844357886042 (Blizard)<br>maicolfrantech — 575484448171229195 (Orecraft)</p></div>
-</div></section>
+<div class="card"><h3>Referencias</h3><p style="color:var(--mut);font-size:14px">L3xz / lexz24.7 — 1431659598288523375<br>franrol15 — 889912844357886042<br>maicolfrantech — 575484448171229195</p></div>
+</div>
+<div class="card faq" style="margin-top:14px"><h3>FAQ reclutadores</h3>
+<details open><summary>¿Por qué saliste de otros servidores?</summary>Por cierres; los míos en pausa por fondos/actividad. En Skylith estoy cómodo.</details>
+<details><summary>¿Aceptas prueba o empezar abajo?</summary>Sí, acepto periodo de prueba.</details>
+<details><summary>¿Pides OP o tratos?</summary>No. Nunca pido OP ni acepto corrupción.</details>
+<details><summary>¿Trabajo pago?</summary>Solo como dev único, a convenir.</details>
+</div>
+</section>
 <footer>© 2026 Dylan David Gomez · scainetprr · hyperhard.space · Pista secreta: ↑↑↓↑←↓ B A</footer>
 </div>
 
-<div id="secret"><div class="sbox">
+<div class="modal" id="secret"><div class="sbox">
 <div class="ag">ACCESS GRANTED</div>
 <div class="row"><span>SECRET AREA</span><span>100%</span></div>
 <div class="bar"><i></i></div>
@@ -249,22 +289,41 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 <button class="btn o" onclick="document.getElementById('secret').classList.remove('open')">Continuar explorando</button></p>
 </div></div>
 
+<div class="modal" id="gal"><div class="gbox">
+<img id="galImg" src="" alt="evidencia">
+<div class="gnav"><button id="galPrev">‹</button><span id="galCount"></span><button id="galNext">›</button><button id="galClose">✕ Cerrar</button></div>
+</div></div>
+
 <script>
-document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const f=b.dataset.f;document.querySelectorAll('#projGrid .card').forEach(c=>{c.style.display=(f==='all'||c.dataset.cat===f)?'':'none'})});
+// filtros (proyectos + experiencia)
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const f=b.dataset.f;document.querySelectorAll('#projGrid .proj,#projGrid .card').forEach(c=>{c.style.display=(f==='all'||c.dataset.cat===f)?'':'none'});document.querySelectorAll('#expGrid .exp').forEach(c=>{c.style.display=(f==='all'||c.dataset.cat===f)?'':'none'})});
 const cp=(id,txt)=>{document.getElementById(id).onclick=()=>{navigator.clipboard.writeText(txt);alert('Copiado: '+txt)}};
 cp('cpD','1307246359895740448');cp('cpM','scainetprrmn@gmail.com');
+// secreto
 const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowUp','ArrowLeft','ArrowDown','b','a'];let pos=0;
 document.addEventListener('keydown',e=>{const k=e.key.length===1?e.key.toLowerCase():e.key;if(k===seq[pos]){pos++;if(pos===seq.length){document.getElementById('secret').classList.add('open');pos=0}}else{pos=(k===seq[0])?1:0}});
 document.getElementById('secret').onclick=e=>{if(e.target.id==='secret')e.target.classList.remove('open')};
+// galería lightbox
+let GL=[],GI=0;
+function openGal(proj){GL=[...proj.querySelectorAll('img')].map(i=>i.src);const extra=[...proj.querySelectorAll('.shotV img')].map(i=>i.src);GL=GL.concat(extra);GI=0;showGal();document.getElementById('gal').classList.add('open')}
+function showGal(){document.getElementById('galImg').src=GL[GI];document.getElementById('galCount').textContent=(GI+1)+' / '+GL.length}
+document.querySelectorAll('.proj .strip').forEach(s=>s.onclick=()=>openGal(s.closest('.proj')));
+document.getElementById('galPrev').onclick=()=>{GI=(GI-1+GL.length)%GL.length;showGal()};
+document.getElementById('galNext').onclick=()=>{GI=(GI+1)%GL.length;showGal()};
+document.getElementById('galClose').onclick=()=>document.getElementById('gal').classList.remove('open');
+document.getElementById('gal').onclick=e=>{if(e.target.id==='gal')e.target.classList.remove('open')};
+// typewriter
 const roles=['Staff','Founder','Configurador','Developer','Jr-Admin'];let ri=0,ci=0,del=false;
 function type(){const w=roles[ri];document.getElementById('tw').textContent=w.slice(0,ci);if(!del){ci++;if(ci>w.length){del=true;return void setTimeout(type,1600)}}else{ci--;if(ci===0){del=false;ri=(ri+1)%roles.length}}setTimeout(type,del?45:95)}
 type();
+// estrellas
 const cv=document.getElementById('stars'),cx=cv.getContext('2d');let P=[];
 function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
 for(let i=0;i<90;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.8+.4,s:Math.random()*.5+.15,c:['#ffffff','#e11d2e','#2b7fff'][i%3]});
 (function anim(){cx.clearRect(0,0,cv.width,cv.height);for(const p of P){p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.7;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}cx.globalAlpha=1;requestAnimationFrame(anim)})();
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.card,.stat,.statBig,.vcard,.tl .it').forEach(el=>{el.classList.add('rv');io.observe(el)});
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.card,.statBig,.vcard,.exp,.proj,.about,.cta').forEach(el=>{el.classList.add('rv');io.observe(el)});
 </script>
 </body>
 </html>
