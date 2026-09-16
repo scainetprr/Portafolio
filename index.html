@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -472,34 +472,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 
 <section id="testimonios">
 <div class="shead"><span class="n">13</span><h2>Reseñas</h2></div>
-<p class="sub">Lo que dicen los owners para los que he trabajado.</p>
-
-<div class="grid" style="grid-template-columns:1fr;margin-bottom:30px">
-<div class="card" style="border-left:3px solid var(--red);padding:24px">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-<div><b style="color:#fff;font-size:16px">L3xz</b><small style="color:var(--mut);margin-left:8px">Owner · Skylith Network</small></div>
-<span style="color:#f5a623;font-size:14px">★★★★★</span>
-</div>
-<p style="color:#c0c8dc;font-size:14px;font-style:italic;line-height:1.6">"Dylan configuró todo el sistema de moderación de Skylith. Desde los plugins de staff hasta los tickets y el panel de administración. Cada detalle quedó perfecto y siempre está disponible para resolver cualquier duda."</p>
-<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><span class="pill">LuckPerms</span><span class="pill">Tickets</span><span class="pill">Moderación</span></div>
-</div>
-<div class="card" style="border-left:3px solid var(--blue);padding:24px">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-<div><b style="color:#fff;font-size:16px">maicolfrantech</b><small style="color:var(--mut);margin-left:8px">Owner · Orecraft Network</small></div>
-<span style="color:#f5a623;font-size:14px">★★★★★</span>
-</div>
-<p style="color:#c0c8dc;font-size:14px;font-style:italic;line-height:1.6">"Contraté a Dylan para configurar Orecraft y superó mis expectativas. Optimizó el rendimiento del servidor, configuró todos los plugins necesarios y creó un sistema de rangos que funciona a la perfección."</p>
-<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><span class="pill">Optimización</span><span class="pill">Rangos</span><span class="pill">Plugins</span></div>
-</div>
-<div class="card" style="border-left:3px solid var(--grn);padding:24px">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-<div><b style="color:#fff;font-size:16px">franrol15</b><small style="color:var(--mut);margin-left:8px">Owner · BlizardMC</small></div>
-<span style="color:#f5a623;font-size:14px">★★★★★</span>
-</div>
-<p style="color:#c0c8dc;font-size:14px;font-style:italic;line-height:1.6">"Dylan es el encargado de BlizardMC desde el inicio. Configuró el anti-che, los sistemas de protección, el economy y todo lo que necesita un servidor survival. Siempre cumple con los plazos y la calidad es excepcional."</p>
-<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><span class="pill">Vulcan</span><span class="pill">WorldGuard</span><span class="pill">Economy</span></div>
-</div>
-</div>
+<p class="sub">¿Trabajaste conmigo? Deja tu reseña aquí.</p>
 
 <div class="card" style="padding:24px;border:1px solid rgba(255,255,255,.08)">
 <h3 style="color:#fff;margin-bottom:16px;font-size:18px">✍️ Deja tu reseña</h3>
@@ -529,7 +502,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <span data-v="2" style="color:#555;transition:color .2s">★</span>
 <span data-v="3" style="color:#555;transition:color .2s">★</span>
 <span data-v="4" style="color:#555;transition:color .2s">★</span>
-<span data-v="5" style="color:#555;transition:color .2s">★</span>
+<span data-v="5" style="color:#f5a623;transition:color .2s">★</span>
 </div>
 <input type="hidden" name="rating" id="ratingVal" value="5">
 </div>
@@ -542,6 +515,25 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 </form>
 </div>
 </section>
+
+<script>
+(function(){
+const stars=document.querySelectorAll('#stars span');
+const val=document.getElementById('ratingVal');
+stars.forEach(s=>{s.addEventListener('click',()=>{val.value=s.dataset.v;updateStars()});s.addEventListener('mouseenter',()=>{highlightStars(s.dataset.v)});s.addEventListener('mouseleave',()=>{highlightStars(val.value)})});
+function highlightStars(n){stars.forEach(x=>x.style.color=x.dataset.v<=n?'#f5a623':'#555')}
+function updateStars(){highlightStars(val.value)}
+updateStars();
+
+document.getElementById('reviewForm').addEventListener('submit',async function(e){
+e.preventDefault();
+const fd=new FormData(this);
+const nombre=fd.get('nombre');const servidor=fd.get('servidor');const rating=fd.get('rating');const mensaje=fd.get('mensaje');
+const txt='⭐'.repeat(parseInt(rating))+` ${nombre} (${servidor}): ${mensaje}`;
+try{await navigator.clipboard.writeText(txt);document.getElementById('reviewMsg').textContent='✅ Reseña copiada. Pégala en Discord: scainetprrmn';document.getElementById('reviewMsg').style.display='block';this.reset();val.value='5';updateStars();setTimeout(()=>{document.getElementById('reviewMsg').style.display='none'},5000)}catch(er){document.getElementById('reviewMsg').textContent='⚠️ Copia manual: '+txt;document.getElementById('reviewMsg').style.display='block'}
+});
+})();
+</script>
 
 <script>
 (function(){
