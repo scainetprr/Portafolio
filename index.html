@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -474,17 +474,21 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="shead"><span class="n">13</span><h2>Reseñas</h2></div>
 <p class="sub">¿Trabajaste conmigo? Deja tu reseña aquí.</p>
 
+<div id="reviewsList" style="display:flex;flex-direction:column;gap:16px;margin-bottom:30px">
+<p style="color:var(--mut);font-size:14px">Cargando reseñas...</p>
+</div>
+
 <div class="card" style="padding:24px;border:1px solid rgba(255,255,255,.08)">
-<h3 style="color:#fff;margin-bottom:16px;font-size:18px">✍️ Deja tu reseña</h3>
-<form id="reviewForm" style="display:flex;flex-direction:column;gap:14px">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+<h3 style="color:#fff;margin-bottom:20px;font-size:18px">✍️ Deja tu reseña</h3>
+<form id="reviewForm" style="display:flex;flex-direction:column;gap:16px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
 <div>
-<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:4px">Tu nombre</label>
-<input type="text" name="nombre" required placeholder="Ej: L3xz" style="width:100%;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
+<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu nombre</label>
+<input type="text" name="nombre" required placeholder="Ej: L3xz" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
 </div>
 <div>
-<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:4px">Servidor</label>
-<select name="servidor" required style="width:100%;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
+<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Servidor</label>
+<select name="servidor" required style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box;appearance:auto">
 <option value="">Selecciona...</option>
 <option value="Skylith">Skylith Network</option>
 <option value="Orecraft">Orecraft Network</option>
@@ -495,26 +499,91 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 </select>
 </div>
 </div>
-<div>
-<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:4px">Calificación</label>
-<div id="stars" style="display:flex;gap:6px;font-size:24px;cursor:pointer">
-<span data-v="1" style="color:#555;transition:color .2s">★</span>
-<span data-v="2" style="color:#555;transition:color .2s">★</span>
-<span data-v="3" style="color:#555;transition:color .2s">★</span>
-<span data-v="4" style="color:#555;transition:color .2s">★</span>
-<span data-v="5" style="color:#f5a623;transition:color .2s">★</span>
+<div style="display:flex;align-items:center;gap:12px">
+<label style="color:var(--mut);font-size:12px;white-space:nowrap">Calificación</label>
+<div id="stars" style="display:flex;gap:4px;font-size:26px;cursor:pointer">
+<span data-v="1" style="color:#f5a623;transition:all .15s">★</span>
+<span data-v="2" style="color:#f5a623;transition:all .15s">★</span>
+<span data-v="3" style="color:#f5a623;transition:all .15s">★</span>
+<span data-v="4" style="color:#f5a623;transition:all .15s">★</span>
+<span data-v="5" style="color:#f5a623;transition:all .15s">★</span>
+<span id="ratingText" style="color:#f5a623;font-size:14px;margin-left:4px">5/5</span>
 </div>
 <input type="hidden" name="rating" id="ratingVal" value="5">
 </div>
 <div>
-<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:4px">Tu reseña</label>
-<textarea name="mensaje" required rows="4" placeholder="¿Qué tal fue tu experiencia trabajando conmigo?" style="width:100%;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:14px;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit"></textarea>
+<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu reseña</label>
+<textarea name="mensaje" required rows="4" placeholder="¿Qué tal fue tu experiencia trabajando conmigo?" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit"></textarea>
 </div>
-<button type="submit" style="padding:12px 24px;background:var(--red);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:all .3s;align-self:flex-start">Enviar reseña</button>
-<p id="reviewMsg" style="color:var(--grn);font-size:13px;display:none;margin-top:4px"></p>
+<button type="submit" id="submitBtn" style="padding:14px 28px;background:var(--red);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;align-self:flex-start">Publicar reseña</button>
+<p id="reviewMsg" style="font-size:13px;display:none;margin-top:4px"></p>
 </form>
 </div>
 </section>
+
+<script>
+(function(){
+const stars=document.querySelectorAll('#stars span[data-v]');
+const val=document.getElementById('ratingVal');
+const ratingText=document.getElementById('ratingText');
+
+function highlightStars(n){stars.forEach(x=>{x.style.color=x.dataset.v<=n?'#f5a623':'#444';x.style.transform=x.dataset.v<=n?'scale(1.1)':'scale(1)'})}
+function updateStars(){highlightStars(val.value);ratingText.textContent=val.value+'/5'}
+updateStars();
+
+stars.forEach(s=>{
+s.addEventListener('click',()=>{val.value=s.dataset.v;updateStars()});
+s.addEventListener('mouseenter',()=>{highlightStars(s.dataset.v)});
+s.addEventListener('mouseleave',()=>{updateStars()});
+});
+
+async function loadReviews(){
+try{
+const r=await fetch('rese%C3%B1as/data.json');
+if(!r.ok)throw new Error();
+const data=await r.json();
+renderReviews(data.reviews||[]);
+}catch(e){document.getElementById('reviewsList').innerHTML='<p style="color:var(--mut)">Aún no hay reseñas.</p>'}
+}
+
+function renderReviews(reviews){
+const el=document.getElementById('reviewsList');
+if(!reviews.length){el.innerHTML='<p style="color:var(--mut);font-size:14px">Aún no hay reseñas. Sé el primero en dejar la tuya.</p>';return}
+el.innerHTML=reviews.map(r=>{
+const stars='★'.repeat(r.rating)+'<span style="color:#444">'+'★'.repeat(5-r.rating)+'</span>';
+return '<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">'+esc(r.nombre)+'</b><small style="color:var(--mut);margin-left:8px">'+esc(r.servidor)+'</small></div><span style="color:#f5a623;font-size:16px">'+stars+'</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5">'+esc(r.mensaje)+'</p></div>'
+}).join('');
+}
+
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+document.getElementById('reviewForm').addEventListener('submit',async function(e){
+e.preventDefault();
+const btn=document.getElementById('submitBtn');
+btn.textContent='Copiando...';btn.disabled=true;
+
+const fd=new FormData(this);
+const rating=parseInt(fd.get('rating'));
+const stars='⭐'.repeat(rating);
+const txt=stars+' '+fd.get('nombre')+' ('+fd.get('servidor')+'): '+fd.get('mensaje');
+
+try{
+await navigator.clipboard.writeText(txt);
+document.getElementById('reviewMsg').innerHTML='✅ Reseña copiada. Pégala en <a href="https://discord.com/users/1307246359895740448" target="_blank" style="color:var(--blu);text-decoration:underline">mi Discord</a> para que la publique.';
+document.getElementById('reviewMsg').style.color='var(--grn)';
+document.getElementById('reviewMsg').style.display='block';
+this.reset();val.value='5';updateStars();
+}catch(er){
+document.getElementById('reviewMsg').textContent='⚠️ Copia manual: '+txt;
+document.getElementById('reviewMsg').style.color='var(--red)';
+document.getElementById('reviewMsg').style.display='block';
+}
+btn.textContent='Publicar reseña';btn.disabled=false;
+setTimeout(()=>{document.getElementById('reviewMsg').style.display='none'},8000);
+});
+loadReviews();
+})();
+</script>
 
 <script>
 (function(){
