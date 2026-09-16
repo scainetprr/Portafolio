@@ -36,26 +36,26 @@ section{padding:64px 0}
 .shead h2{font-size:32px;font-weight:800}
 .sub{color:var(--mut);margin:-18px 0 26px}
 .about{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:32px;position:relative;overflow:hidden}
-.about::before{content:"";position:absolute;inset:0;background-image:url('Imagenes/Banners/minecraft-et-le-pixel-art-989285.jpg');background-size:cover;background-position:center;opacity:.1;pointer-events:none}
+.about .bgimg{position:absolute;inset:0;background-image:url('Imagenes/Banners/minecraft-et-le-pixel-art-989285.jpg');background-size:cover;background-position:center;opacity:.1;pointer-events:none}
 .about p{margin-bottom:14px;color:#c6cddd}.about b{color:#fff}
-.statBig{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden}
-.statBig::before{content:"";position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;opacity:.2;pointer-events:none;transition:opacity .4s}
-.statBig:hover::before{opacity:.35}
-.statBig b{font-size:38px;display:block;color:#fff;text-shadow:0 0 20px #e11d2eaa,0 0 40px #e11d2e55,0 2px 8px #000;filter:brightness(1.2)}
-.statBig span{font-size:12px;letter-spacing:2px;color:var(--mut);text-shadow:0 1px 6px #000;font-weight:600}
+.statBig{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden}
+.statBig .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.25;pointer-events:none;transition:opacity .4s}
+.statBig:hover .bgimg{opacity:.4}
+.statBig b{font-size:38px;display:block;color:#fff;text-shadow:0 0 20px #e11d2eaa,0 0 40px #e11d2e55,0 2px 8px #000;filter:brightness(1.2);position:relative;z-index:1}
+.statBig span{font-size:12px;letter-spacing:2px;color:#aab4cc;text-shadow:0 1px 6px #000;font-weight:600;position:relative;z-index:1}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .virt{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .vcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;gap:14px;position:relative;overflow:hidden}
-.vcard::before{content:"";position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;opacity:0;pointer-events:none;transition:opacity .4s}
-.vcard:hover::before{opacity:.15}
+.vcard .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;pointer-events:none;transition:opacity .4s}
+.vcard:hover .bgimg{opacity:.18}
 .vcard>*{position:relative;z-index:1}
 .vico{width:38px;height:38px;min-width:38px;border-radius:10px;background:#1c2440;display:flex;align-items:center;justify-content:center;font-size:18px}
 .vcard b{font-size:16px;text-shadow:0 0 12px #e11d2e88,0 1px 4px #000}.vcard p{color:#c0c8dc;font-size:14px;margin-top:4px;text-shadow:0 1px 6px #000}
 /* experiencia cards */
 .expGrid{display:grid;grid-template-columns:1fr;gap:16px}
 .exp{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden}
-.exp::before{content:"";position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;opacity:.15;pointer-events:none;transition:opacity .4s}
-.exp:hover::before{opacity:.25}
+.exp .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.18;pointer-events:none;transition:opacity .4s}
+.exp:hover .bgimg{opacity:.3}
 .exp .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;position:relative;z-index:1}
 .exp .yr{font-weight:800;text-shadow:0 0 10px #e11d2e66}.exp .yr:before{content:"■ ";color:var(--red);font-size:12px}
 .exp .st{font-size:12px;color:#aab4cc;text-shadow:0 1px 4px #000;font-weight:600}
@@ -189,9 +189,9 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <p>En el plano técnico domino la configuración de plugins — <b>LuckPerms, Essentials, CoreProtect, Vulcan AntiCheat, MythicMobs, Tebex, GeyserMC</b> y más de veinte otros —, administro servidores de <b>Discord</b> completos y programo <b>bots en NodeJS</b> (HyperHard Bot y Hydra Bot, con más de 90 comandos). También estoy aprendiendo creación de contenido con <b>Filmora y Mineanimator</b>. Hablo español, aprendo inglés básico, tengo micro y disponibilidad todos los días. Mi filosofía es simple: <b>respeto para todos, imparcialidad en cada caso y cero tolerancia a la corrupción</b>.</p>
 </div>
 <div class="grid3" style="margin-top:16px">
-<div class="statBig" style="--bg:url('Imagenes/Banners/image 1.png')"><b>9</b><span>AÑOS CREANDO SERVIDORES</span></div>
-<div class="statBig" style="--bg:url('Imagenes/Banners/image.png')"><b>5</b><span>PROYECTOS / ETAPAS STAFF</span></div>
-<div class="statBig" style="--bg:url('Imagenes/Banners/3.jpg')"><b>2026</b><span>ACTIVO · SKYLITH + BLIZARD</span></div>
+<div class="statBig"><div class="bgimg" style="background-image:url('Imagenes/Banners/image 1.png')"></div><b>9</b><span>AÑOS CREANDO SERVIDORES</span></div>
+<div class="statBig"><div class="bgimg" style="background-image:url('Imagenes/Banners/image.png')"></div><b>5</b><span>PROYECTOS / ETAPAS STAFF</span></div>
+<div class="statBig"><div class="bgimg" style="background-image:url('Imagenes/Banners/3.jpg')"></div><b>2026</b><span>ACTIVO · SKYLITH + BLIZARD</span></div>
 </div>
 </section>
 
@@ -199,14 +199,14 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="shead"><span class="n">02</span><h2>Virtudes y cualidades</h2></div>
 <p class="sub">Cómo trabajo cuando nadie me supervisa.</p>
 <div class="virt">
-<div class="vcard" style="--bg:url('Imagenes/Banners/image.png')"><div class="vico">✓</div><div><b>Responsable</b><p>Me tomo en serio cada tarea asignada: turnos, tickets y reportes se atienden y se cierran, no se dejan a medias.</p></div></div>
-<div class="vcard" style="--bg:url('Imagenes/Banners/3.jpg')"><div class="vico">◆</div><div><b>Comprometido</b><p>Me involucro con los objetivos del proyecto y aporto de forma constante, incluso fuera de mi turno si la situación lo exige.</p></div></div>
-<div class="vcard" style="--bg:url('Imagenes/Banners/image 1.png')"><div class="vico">⚡</div><div><b>Eficaz</b><p>Busco soluciones prácticas y organizadas: verificar, sancionar, documentar y seguir. Sin drama, sin improvisar.</p></div></div>
-<div class="vcard" style="--bg:url('Imagenes/Banners/minecraft-et-le-pixel-art-989285.jpg')"><div class="vico">◉</div><div><b>Atento</b><p>Presto atención a usuarios y compañeros: una duda atendida a tiempo evita un conflicto después.</p></div></div>
-<div class="vcard" style="--bg:url('Imagenes/Banners/SPOILER_attachments_559284-png.png')"><div class="vico">∞</div><div><b>Trabajo en equipo</b><p>Me adapto a distintos equipos de staff con comunicación clara y respetuosa, también formando a los nuevos.</p></div></div>
-<div class="vcard" style="--bg:url('Imagenes/Banners/SPOILER_image.png')"><div class="vico">↗</div><div><b>Adaptabilidad</b><p>He sido Founder, Admin, Dev, Helper y Marketing: asumo el rango que el proyecto necesite, sin ego.</p></div></div>
-<div class="vcard" style="--bg:url('Imagenes/Banners/image.png')"><div class="vico">◌</div><div><b>Comunicación</b><p>Directa, respetuosa y clara con usuarios y staff. Lo difícil también se dice, pero bien dicho.</p></div></div>
-<div class="vcard" style="--bg:url('Imagenes/Banners/3.jpg')"><div class="vico">+</div><div><b>Aprendizaje constante</b><p>Sigo ampliando mi stack (plugins, bots, edición, inglés) y acepto correcciones como parte del rol.</p></div></div>
+<div class="vcard"><div class="bgimg" style="background-image:url('Imagenes/Banners/image.png')"></div><div class="vico">✓</div><div><b>Responsable</b><p>Me tomo en serio cada tarea asignada: turnos, tickets y reportes se atienden y se cierran, no se dejan a medias.</p></div></div>
+<div class="vcard"><div class="bgimg" style="background-image:url('Imagenes/Banners/3.jpg')"></div><div class="vico">◆</div><div><b>Comprometido</b><p>Me involucro con los objetivos del proyecto y aporto de forma constante, incluso fuera de mi turno si la situación lo exige.</p></div></div>
+<div class="vcard"><div class="bgimg" style="background-image:url('Imagenes/Banners/image 1.png')"></div><div class="vico">⚡</div><div><b>Eficaz</b><p>Busco soluciones prácticas y organizadas: verificar, sancionar, documentar y seguir. Sin drama, sin improvisar.</p></div></div>
+<div class="vcard"><div class="bgimg" style="background-image:url('Imagenes/Banners/minecraft-et-le-pixel-art-989285.jpg')"></div><div class="vico">◉</div><div><b>Atento</b><p>Presto atención a usuarios y compañeros: una duda atendida a tiempo evita un conflicto después.</p></div></div>
+<div class="vcard"><div class="bgimg" style="background-image:url('Imagenes/Banners/SPOILER_attachments_559284-png.png')"></div><div class="vico">∞</div><div><b>Trabajo en equipo</b><p>Me adapto a distintos equipos de staff con comunicación clara y respetuosa, también formando a los nuevos.</p></div></div>
+<div class="vcard"><div class="bgimg" style="background-image:url('Imagenes/Banners/SPOILER_image.png')"></div><div class="vico">↗</div><div><b>Adaptabilidad</b><p>He sido Founder, Admin, Dev, Helper y Marketing: asumo el rango que el proyecto necesite, sin ego.</p></div></div>
+<div class="vcard"><div class="bgimg" style="background-image:url('Imagenes/Banners/image.png')"></div><div class="vico">◌</div><div><b>Comunicación</b><p>Directa, respetuosa y clara con usuarios y staff. Lo difícil también se dice, pero bien dicho.</p></div></div>
+<div class="vcard"><div class="bgimg" style="background-image:url('Imagenes/Banners/3.jpg')"></div><div class="vico">+</div><div><b>Aprendizaje constante</b><p>Sigo ampliando mi stack (plugins, bots, edición, inglés) y acepto correcciones como parte del rol.</p></div></div>
 </div>
 </section>
 
@@ -214,11 +214,11 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="shead"><span class="n">03</span><h2>Mi experiencia Staff</h2></div>
 <p class="sub">Cinco etapas, del proyecto propio al staff actual.</p>
 <div class="expGrid" id="expGrid">
-<div class="exp" data-cat="yes" style="--bg:url('Imagenes/Banners/image.png')"><div class="top"><span class="yr">2022 – 2026 · HyperHard Network</span><span class="st">Founder</span></div><p>Mi network personal: <b>FullPvP, Survival OP, OneBlock OP, Bedwars y minijuegos</b>. Fui el único encargado durante toda la vida del servidor — programaba, configuraba plugins, construía las modalidades, diseñaba los rangos y reclutaba staff. Aprendí a sostener un servidor completo con recursos limitados y a gestionar una comunidad de cero. El proyecto está en pausa por falta de fondos y actividad de los usuarios, pero sigo siendo el dueño y no lo descarto para el futuro. <b>IP: mc.hyperhard.space</b></p></div>
-<div class="exp" data-cat="no" style="--bg:url('Imagenes/Banners/3.jpg')"><div class="top"><span class="yr">2023 – 2024 · Orecraft Network</span><span class="st">Helper</span></div><p>Survival Custom: mi trabajo era mantener la convivencia entre usuarios, atender tickets, resolver dudas de mecánicas del servidor y mediar conflictos. Desarrollé paciencia y criterio para tratar situaciones diversas. Sin evidencia disponible porque el Discord del servidor cerró. <b>Ref: maicolfrantech (575484448171229195) — maicolfrantech.com</b></p></div>
-<div class="exp" data-cat="yes" style="--bg:url('Imagenes/Banners/SPOILER_image.png')"><div class="top"><span class="yr">2025 – 2026 · Hydra Studio</span><span class="st">Founder</span></div><p>Mi studio personal de eventos de Minecraft: diseño los mapas, organizo los eventos, programo el bot que gestiona las recompensas y controla las mecánicas, y coordino a los participantes. He documentado 3 eventos completos en video. Actualmente activo, es mi proyecto personal más reciente.</p></div>
-<div class="exp" data-cat="no" style="--bg:url('Imagenes/Banners/minecraft-et-le-pixel-art-989285.jpg')"><div class="top"><span class="yr">2026 · BlizardMC</span><span class="st">Config / Dev</span></div><p>Servidor FullPvP: me encargo de fixear bugs evidentes, configurar plugins y optimizar el rendimiento del servidor. Trabajo bajo confianza con uno de los dueños. Sin evidencia disponible por ahora, pero verificable con el dueño. <b>Ref: franrol15 (889912844357886042)</b></p></div>
-<div class="exp now" data-cat="yes" style="--bg:url('Imagenes/Banners/SPOILER_attachments_559284-png.png')"><div class="top"><span class="yr">2026 – actual · Skylith Network</span><span class="st">Jr-Admin</span></div><p>SkyBlock en <b>SKYLITH.LIVE</b>: mi labor incluye revisión de tickets, vigilancia in-game para detectar hacks y comportamientos tóxicos, aplicación de sanciones (baneos, muteos, advertencias, SS). Además, realicé la <b>inducción de los nuevos staff</b>: les enseño las reglas, herramientas, protocolo de sanciones y los acompaño en su primer turno real para que estén preparados. Presencia activa en Discord con rol CODE. <b>Ref: L3xz (1431659598288523375)</b></p><a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank">Discord de SkyLith</a></div>
+<div class="exp" data-cat="yes"><div class="bgimg" style="background-image:url('Imagenes/Banners/image.png')"></div><div class="top"><span class="yr">2022 – 2026 · HyperHard Network</span><span class="st">Founder</span></div><p>Mi network personal: <b>FullPvP, Survival OP, OneBlock OP, Bedwars y minijuegos</b>. Fui el único encargado durante toda la vida del servidor — programaba, configuraba plugins, construía las modalidades, diseñaba los rangos y reclutaba staff. Aprendí a sostener un servidor completo con recursos limitados y a gestionar una comunidad de cero. El proyecto está en pausa por falta de fondos y actividad de los usuarios, pero sigo siendo el dueño y no lo descarto para el futuro. <b>IP: mc.hyperhard.space</b></p></div>
+<div class="exp" data-cat="no"><div class="bgimg" style="background-image:url('Imagenes/Banners/3.jpg')"></div><div class="top"><span class="yr">2023 – 2024 · Orecraft Network</span><span class="st">Helper</span></div><p>Survival Custom: mi trabajo era mantener la convivencia entre usuarios, atender tickets, resolver dudas de mecánicas del servidor y mediar conflictos. Desarrollé paciencia y criterio para tratar situaciones diversas. Sin evidencia disponible porque el Discord del servidor cerró. <b>Ref: maicolfrantech (575484448171229195) — maicolfrantech.com</b></p></div>
+<div class="exp" data-cat="yes"><div class="bgimg" style="background-image:url('Imagenes/Banners/SPOILER_image.png')"></div><div class="top"><span class="yr">2025 – 2026 · Hydra Studio</span><span class="st">Founder</span></div><p>Mi studio personal de eventos de Minecraft: diseño los mapas, organizo los eventos, programo el bot que gestiona las recompensas y controla las mecánicas, y coordino a los participantes. He documentado 3 eventos completos en video. Actualmente activo, es mi proyecto personal más reciente.</p></div>
+<div class="exp" data-cat="no"><div class="bgimg" style="background-image:url('Imagenes/Banners/minecraft-et-le-pixel-art-989285.jpg')"></div><div class="top"><span class="yr">2026 · BlizardMC</span><span class="st">Config / Dev</span></div><p>Servidor FullPvP: me encargo de fixear bugs evidentes, configurar plugins y optimizar el rendimiento del servidor. Trabajo bajo confianza con uno de los dueños. Sin evidencia disponible por ahora, pero verificable con el dueño. <b>Ref: franrol15 (889912844357886042)</b></p></div>
+<div class="exp now" data-cat="yes"><div class="bgimg" style="background-image:url('Imagenes/Banners/SPOILER_attachments_559284-png.png')"></div><div class="top"><span class="yr">2026 – actual · Skylith Network</span><span class="st">Jr-Admin</span></div><p>SkyBlock en <b>SKYLITH.LIVE</b>: mi labor incluye revisión de tickets, vigilancia in-game para detectar hacks y comportamientos tóxicos, aplicación de sanciones (baneos, muteos, advertencias, SS). Además, realicé la <b>inducción de los nuevos staff</b>: les enseño las reglas, herramientas, protocolo de sanciones y los acompaño en su primer turno real para que estén preparados. Presencia activa en Discord con rol CODE. <b>Ref: L3xz (1431659598288523375)</b></p><a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank">Discord de SkyLith</a></div>
 </div>
 </section>
 
