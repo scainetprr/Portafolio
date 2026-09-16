@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -72,7 +72,7 @@ section{padding:44px 0}
 .pbody h3{font-size:26px;margin:6px 0}
 .pbody p{color:var(--mut);font-size:15px;margin:8px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;transition:all .3s ease}.card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 40px rgba(225,29,46,.2);border-color:var(--red)}
 .card h3{margin-bottom:6px;text-shadow:0 0 10px #e11d2e44}.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:2px 10px;margin:2px;color:var(--mut)}
 .tag.hot{border-color:var(--red);color:#ffb3b9}.tag.ok{border-color:var(--grn);color:#7fe3a8}.tag.no{opacity:.6}
 .pill{font-size:12px;background:#1c2440;border-radius:6px;padding:2px 8px;margin:2px;display:inline-block}
@@ -470,78 +470,19 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 </div>
 </section>
 
-<section id="testimonios">
-<div class="shead"><span class="n">13</span><h2>Reseñas</h2></div>
-<p class="sub">¿Trabajaste conmigo? Deja tu reseña aquí.</p>
 
-<div id="reviewsList" style="display:flex;flex-direction:column;gap:16px;margin-bottom:30px">
-<p style="color:var(--mut);font-size:14px">Cargando reseñas...</p>
-</div>
-
-<div class="card" style="padding:24px;border:1px solid rgba(255,255,255,.08)">
-<h3 style="color:#fff;margin-bottom:16px;font-size:18px">✍️ Deja tu reseña</h3>
-<form id="reviewForm">
-<table style="width:100%;border-collapse:separate;border-spacing:0 12px">
-<tr>
-<td style="width:50%;padding-right:10px">
-<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu nombre</label>
-<input type="text" name="nombre" required placeholder="Ej: L3xz" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
-</td>
-<td style="width:50%;padding-left:10px">
-<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Servidor</label>
-<select name="servidor" id="servidorSelect" required onchange="toggleOtro()" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box;appearance:auto">
-<option value="">Selecciona...</option>
-<option value="Skylith">Skylith Network</option>
-<option value="Orecraft">Orecraft Network</option>
-<option value="BlizardMC">BlizardMC</option>
-<option value="HyperHard">HyperHard Network</option>
-<option value="Hydra">Hydra Bot</option>
-<option value="Otro">Otro</option>
-</select>
-</td>
-</tr>
-<tr id="otroRow" style="display:none">
-<td colspan="2">
-<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Nombre del servidor</label>
-<input type="text" name="otroServidor" placeholder="Escribe el nombre del servidor" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Calificación</label>
-<div style="display:flex;align-items:center;gap:8px">
-<span onclick="setRating(1)" style="font-size:24px;cursor:pointer;color:#f5a623">★</span>
-<span onclick="setRating(2)" style="font-size:24px;cursor:pointer;color:#f5a623">★</span>
-<span onclick="setRating(3)" style="font-size:24px;cursor:pointer;color:#f5a623">★</span>
-<span onclick="setRating(4)" style="font-size:24px;cursor:pointer;color:#f5a623">★</span>
-<span onclick="setRating(5)" style="font-size:24px;cursor:pointer;color:#f5a623">★</span>
-<span id="ratingText" style="color:#f5a623;font-size:14px;margin-left:4px">5/5</span>
-<input type="hidden" name="rating" id="ratingVal" value="5">
-</div>
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu reseña</label>
-<textarea name="mensaje" required rows="4" placeholder="¿Qué tal fue tu experiencia trabajando conmigo?" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit"></textarea>
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<button type="submit" id="submitBtn" style="padding:14px 28px;background:var(--red);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s">Publicar reseña</button>
-<p id="reviewMsg" style="font-size:13px;display:none;margin-top:8px"></p>
-</td>
-</tr>
-</table>
-</form>
-</div>
-</section>
 
 <script>
 function setRating(n){
 document.getElementById('ratingVal').value=n;
 document.getElementById('ratingText').textContent=n+'/5';
 document.querySelectorAll('#reviewForm span[onclick^="setRating"]').forEach((s,i)=>{s.style.color=(i+1)<=n?'#f5a623':'#444'});
+}
+function previewRating(n){
+document.querySelectorAll('#reviewForm span[onclick^="setRating"]').forEach((s,i)=>{s.style.color=(i+1)<=n?'#f5a623':'#444'});
+}
+function resetRating(){
+setRating(parseInt(document.getElementById('ratingVal').value));
 }
 function toggleOtro(){
 const sel=document.getElementById('servidorSelect').value;
@@ -644,6 +585,73 @@ try{await navigator.clipboard.writeText(txt);document.getElementById('reviewMsg'
 <a class="card" href="https://discord.gg/qyyREajJgC" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Skylith/download.png');background-size:cover;background-position:center"><span class="tag hot">DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Skylith Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">SkyBlock. Trabajo como Jr-Admin actualmente.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Entrar al servidor ↗</span></a>
 <a class="card" href="https://www.youtube.com/@HyperHardNetwork" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/HyperHard/download.png');background-size:cover;background-position:center"><span class="tag">YOUTUBE</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">HyperHard Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Mi network personal. FullPvP, Survival OP, Bedwars.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Ver en YouTube ↗</span></a>
 <a class="card" href="https://maicolfrantech.com/" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Orecraft/orecraft.jpg');background-size:cover;background-position:center"><span class="tag no">SIN DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Orecraft Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Survival Custom. Helper 2023-2024. Discord cerrado.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Web de ref ↗</span></a>
+</div>
+</section>
+
+<section id="testimonios">
+<div class="shead"><span class="n">13</span><h2>Reseñas</h2></div>
+<p class="sub">¿Trabajaste conmigo? Deja tu reseña aquí.</p>
+
+<div id="reviewsList" style="display:flex;flex-direction:column;gap:16px;margin-bottom:30px">
+<p style="color:var(--mut);font-size:14px">Cargando reseñas...</p>
+</div>
+
+<div class="card" style="padding:24px;border:1px solid rgba(255,255,255,.08)">
+<h3 style="color:#fff;margin-bottom:16px;font-size:18px">✍️ Deja tu reseña</h3>
+<form id="reviewForm">
+<table style="width:100%;border-collapse:separate;border-spacing:0 12px">
+<tr>
+<td style="width:50%;padding-right:10px">
+<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu nombre</label>
+<input type="text" name="nombre" required placeholder="Ej: L3xz" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
+</td>
+<td style="width:50%;padding-left:10px">
+<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Servidor</label>
+<select name="servidor" id="servidorSelect" required onchange="toggleOtro()" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box;appearance:auto">
+<option value="">Selecciona...</option>
+<option value="Skylith">Skylith Network</option>
+<option value="Orecraft">Orecraft Network</option>
+<option value="BlizardMC">BlizardMC</option>
+<option value="HyperHard">HyperHard Network</option>
+<option value="Hydra">Hydra Bot</option>
+<option value="Otro">Otro</option>
+</select>
+</td>
+</tr>
+<tr id="otroRow" style="display:none">
+<td colspan="2">
+<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Nombre del servidor</label>
+<input type="text" name="otroServidor" placeholder="Escribe el nombre del servidor" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Calificación</label>
+<div style="display:flex;align-items:center;gap:8px">
+<span onclick="setRating(1)" onmouseover="previewRating(1)" onmouseout="resetRating()" style="font-size:24px;cursor:pointer;color:#f5a623;transition:all .15s">★</span>
+<span onclick="setRating(2)" onmouseover="previewRating(2)" onmouseout="resetRating()" style="font-size:24px;cursor:pointer;color:#f5a623;transition:all .15s">★</span>
+<span onclick="setRating(3)" onmouseover="previewRating(3)" onmouseout="resetRating()" style="font-size:24px;cursor:pointer;color:#f5a623;transition:all .15s">★</span>
+<span onclick="setRating(4)" onmouseover="previewRating(4)" onmouseout="resetRating()" style="font-size:24px;cursor:pointer;color:#f5a623;transition:all .15s">★</span>
+<span onclick="setRating(5)" onmouseover="previewRating(5)" onmouseout="resetRating()" style="font-size:24px;cursor:pointer;color:#f5a623;transition:all .15s">★</span>
+<span id="ratingText" style="color:#f5a623;font-size:14px;margin-left:4px">5/5</span>
+<input type="hidden" name="rating" id="ratingVal" value="5">
+</div>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu reseña</label>
+<textarea name="mensaje" required rows="4" placeholder="¿Qué tal fue tu experiencia trabajando conmigo?" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit"></textarea>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<button type="submit" id="submitBtn" style="padding:14px 28px;background:var(--red);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s">Publicar reseña</button>
+<p id="reviewMsg" style="font-size:13px;display:none;margin-top:8px"></p>
+</td>
+</tr>
+</table>
+</form>
 </div>
 </section>
 
