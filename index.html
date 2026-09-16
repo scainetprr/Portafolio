@@ -36,32 +36,30 @@ section{padding:64px 0}
 .shead h2{font-size:32px;font-weight:800}
 .sub{color:var(--mut);margin:-18px 0 26px}
 .about{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:32px;position:relative;overflow:hidden}
-.about::before{content:"";position:absolute;inset:0;background:url('Imagenes/Banners/minecraft-et-le-pixel-art-989285.jpg') center/cover;opacity:.1;pointer-events:none}
+.about::before{content:"";position:absolute;inset:0;background-image:url('Imagenes/Banners/minecraft-et-le-pixel-art-989285.jpg');background-size:cover;background-position:center;opacity:.1;pointer-events:none}
 .about p{margin-bottom:14px;color:#c6cddd}.about b{color:#fff}
 .statBig{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden}
-.statBig::before{content:"";position:absolute;inset:0;background:var(--bg) center/cover no-repeat;opacity:.2;pointer-events:none;transition:opacity .4s}
+.statBig::before{content:"";position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;opacity:.2;pointer-events:none;transition:opacity .4s}
 .statBig:hover::before{opacity:.35}
 .statBig b{font-size:38px;display:block;color:#fff;text-shadow:0 0 20px #e11d2eaa,0 0 40px #e11d2e55,0 2px 8px #000;filter:brightness(1.2)}
 .statBig span{font-size:12px;letter-spacing:2px;color:var(--mut);text-shadow:0 1px 6px #000;font-weight:600}
-.statBig:after{content:"";position:absolute;right:-40px;bottom:-50px;width:150px;height:150px;border:1px solid var(--line);border-radius:50%}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .virt{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .vcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;gap:14px;position:relative;overflow:hidden}
-.vcard::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#e11d2e0a,transparent 60%);pointer-events:none}
-.vcard::after{content:"";position:absolute;inset:0;background:var(--bg) center/cover no-repeat;opacity:0;pointer-events:none;transition:opacity .4s;filter:blur(2px);z-index:0}
-.vcard:hover::after{opacity:.12}
+.vcard::before{content:"";position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;opacity:0;pointer-events:none;transition:opacity .4s}
+.vcard:hover::before{opacity:.15}
 .vcard>*{position:relative;z-index:1}
 .vico{width:38px;height:38px;min-width:38px;border-radius:10px;background:#1c2440;display:flex;align-items:center;justify-content:center;font-size:18px}
 .vcard b{font-size:16px;text-shadow:0 0 12px #e11d2e88,0 1px 4px #000}.vcard p{color:#c0c8dc;font-size:14px;margin-top:4px;text-shadow:0 1px 6px #000}
 /* experiencia cards */
 .expGrid{display:grid;grid-template-columns:1fr;gap:16px}
 .exp{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden}
-.exp::before{content:"";position:absolute;inset:0;background:var(--bg) center/cover no-repeat;opacity:.15;pointer-events:none;transition:opacity .4s}
+.exp::before{content:"";position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;opacity:.15;pointer-events:none;transition:opacity .4s}
 .exp:hover::before{opacity:.25}
-.exp .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.exp .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;position:relative;z-index:1}
 .exp .yr{font-weight:800;text-shadow:0 0 10px #e11d2e66}.exp .yr:before{content:"■ ";color:var(--red);font-size:12px}
 .exp .st{font-size:12px;color:#aab4cc;text-shadow:0 1px 4px #000;font-weight:600}
-.exp p{color:#bcc4d8;font-size:14px;text-shadow:0 1px 4px #000}
+.exp p{color:#bcc4d8;font-size:14px;text-shadow:0 1px 4px #000;position:relative;z-index:1}
 .exp.now{grid-column:1/-1;border-color:var(--red);box-shadow:0 0 40px #e11d2e22}
 /* proyectos grandes */
 .proj{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:22px}
