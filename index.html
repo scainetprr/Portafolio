@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -39,24 +39,18 @@ section{padding:44px 0}
 .about::before{content:"";position:absolute;inset:0;background:url('Imagenes/HyperHard/2.png') center/cover;opacity:.1;pointer-events:none}
 .about p{margin-bottom:14px;color:#c6cddd;position:relative;z-index:1}.about b{position:relative;z-index:1}.cta h2,.cta p,.cta a,.cta .kicker{position:relative;z-index:1}.ctable div{background-image:linear-gradient(135deg,rgba(19,26,48,.92),rgba(19,26,48,.92)),url('Imagenes/Skylith/4.png');background-size:cover;background-position:center}.about b{color:#fff}
 .statBig{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden}
-.statBig .bimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.35;pointer-events:none;transition:opacity .4s,transform .55s ease}
-.statBig:hover .bimg{opacity:.4;transform:scale(1.08)}
 .statBig b{font-size:38px;display:block;color:#fff;text-shadow:0 0 20px #e11d2eaa,0 0 40px #e11d2e55,0 2px 8px #000;filter:brightness(1.2);position:relative;z-index:1}
 .statBig span{font-size:12px;letter-spacing:2px;color:#aab4cc;text-shadow:0 1px 6px #000;font-weight:600;position:relative;z-index:1}
 .statBig:after{content:"";position:absolute;right:-40px;bottom:-50px;width:150px;height:150px;border:1px solid var(--line);border-radius:50%}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .virt{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .vcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;gap:14px;position:relative;overflow:hidden}
-.vcard .bimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.28;pointer-events:none;transition:opacity .4s,transform .55s ease}
-.vcard:hover .bimg{opacity:.38;transform:scale(1.08)}
 .vcard>*{position:relative;z-index:1}
 .vico{width:38px;height:38px;min-width:38px;border-radius:10px;background:#1c2440;display:flex;align-items:center;justify-content:center;font-size:18px}
 .vcard b{font-size:16px;text-shadow:0 0 12px #e11d2e88,0 1px 4px #000}.vcard p{color:#c0c8dc;font-size:14px;margin-top:4px;text-shadow:0 1px 6px #000}
 /* experiencia cards */
 .expGrid{display:grid;grid-template-columns:1fr;gap:16px}
 .exp{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden}
-.exp .bimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.28;pointer-events:none;transition:opacity .4s,transform .55s ease}
-.exp:hover .bimg{opacity:.34;transform:scale(1.08)}
 .exp .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;position:relative;z-index:1}
 .exp .yr{font-weight:800;text-shadow:0 0 10px #e11d2e66}.exp .yr:before{content:"■ ";color:var(--red);font-size:12px}
 .exp .st{font-size:12px;color:#aab4cc;text-shadow:0 1px 4px #000;font-weight:600}
@@ -170,12 +164,12 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <h1>Scainetprr</h1>
 <p class="subHero">Soy <span class="tw" id="tw"></span><span class="caret"></span> enfocado en comunidades de Minecraft y Discord. <b>9 años creando servidores, 5 años moderando.</b> Survival OP / Custom.</p>
 <a class="btn p" href="#proyectos">Ver proyectos</a>
-<a class="btn o" href="https://discord.com/users/1307246359895740448" target="_blank">Contactarme</a>
+<a class="btn o" href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener">Contactarme</a>
 <div class="mini">✦ Colombia · Medellín GMT-5 &nbsp; ✦ 9 años creando · 5 staff &nbsp; ✦ Staff &amp; Configurador &nbsp; ✦ Respondo &lt;24h &nbsp; ✦ Acepto prueba</div>
 <div class="term"><span class="g">scainetprr@hyperhard</span>:~ $ help — about · skills · timeline · bots · contact</div>
 </div>
 <div class="acard">
-<img src="Imagenes/avatar.png" alt="scainetprr" onerror="this.style.display='none'">
+<img fetchpriority="high" decoding="async" src="Imagenes/avatar.png" alt="scainetprr" onerror="this.style.display='none'">
 <div class="nick">NICK</div><h3>scainetprr</h3><p>Minecraft / Discord</p>
 <div class="dot">● Disponible para nuevos proyectos · Respondo en &lt;24h</div>
 </div>
@@ -191,9 +185,9 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <p>En el plano técnico domino la configuración de plugins — <b>LuckPerms, Essentials, CoreProtect, Vulcan AntiCheat, MythicMobs, Tebex, GeyserMC</b> y más de veinte otros —, administro servidores de <b>Discord</b> completos y programo <b>bots en NodeJS</b> (HyperHard Bot y Hydra Bot, con más de 90 comandos). También estoy aprendiendo creación de contenido con <b>Filmora y Mineanimator</b>. Hablo español, aprendo inglés básico, tengo micro y disponibilidad todos los días. Mi filosofía es simple: <b>respeto para todos, imparcialidad en cada caso y cero tolerancia a la corrupción</b>.</p>
 </div>
 <div class="grid3" style="margin-top:16px">
-<div class="statBig"><div class="bimg" style="background-image:url('Imagenes/HyperHard/download.png')"></div><b>9</b><span>AÑOS CREANDO SERVIDORES</span></div>
-<div class="statBig"><div class="bimg" style="background-image:url('Imagenes/Hydra/download.png')"></div><b>5</b><span>PROYECTOS / ETAPAS STAFF</span></div>
-<div class="statBig"><div class="bimg" style="background-image:url('Imagenes/Skylith/download.png')"></div><b>2026</b><span>ACTIVO · SKYLITH + BLIZARD</span></div>
+<div class="statBig" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/image 1.png');background-size:cover;background-position:center"><b>9</b><span>AÑOS CREANDO SERVIDORES</span></div>
+<div class="statBig" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/image.png');background-size:cover;background-position:center"><b>5</b><span>PROYECTOS / ETAPAS STAFF</span></div>
+<div class="statBig" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/3.jpg');background-size:cover;background-position:center"><b>2026</b><span>ACTIVO · SKYLITH + BLIZARD</span></div>
 </div>
 </section>
 
@@ -201,14 +195,14 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="shead"><span class="n">02</span><h2>Virtudes y cualidades</h2></div>
 <p class="sub">Cómo trabajo cuando nadie me supervisa.</p>
 <div class="virt">
-<div class="vcard"><div class="bimg" style="background-image:url('Imagenes/Hydra/download.png')"></div><div class="vico">✓</div><div><b>Responsable</b><p>Me tomo en serio cada tarea asignada: turnos, tickets y reportes se atienden y se cierran, no se dejan a medias.</p></div></div>
-<div class="vcard"><div class="bimg" style="background-image:url('Imagenes/Skylith/download.png')"></div><div class="vico">◆</div><div><b>Comprometido</b><p>Me involucro con los objetivos del proyecto y aporto de forma constante, incluso fuera de mi turno si la situación lo exige.</p></div></div>
-<div class="vcard"><div class="bimg" style="background-image:url('Imagenes/HyperHard/download.png')"></div><div class="vico">⚡</div><div><b>Eficaz</b><p>Busco soluciones prácticas y organizadas: verificar, sancionar, documentar y seguir. Sin drama, sin improvisar.</p></div></div>
-<div class="vcard"><div class="bimg" style="background-image:url('Imagenes/HyperHard/2.png')"></div><div class="vico">◉</div><div><b>Atento</b><p>Presto atención a usuarios y compañeros: una duda atendida a tiempo evita un conflicto después.</p></div></div>
-<div class="vcard"><div class="bimg" style="background-image:url('Imagenes/Skylith/6.png')"></div><div class="vico">∞</div><div><b>Trabajo en equipo</b><p>Me adapto a distintos equipos de staff con comunicación clara y respetuosa, también formando a los nuevos.</p></div></div>
-<div class="vcard"><div class="bimg" style="background-image:url('Imagenes/Hydra/2.png')"></div><div class="vico">↗</div><div><b>Adaptabilidad</b><p>He sido Founder, Admin, Dev, Helper y Marketing: asumo el rango que el proyecto necesite, sin ego.</p></div></div>
-<div class="vcard"><div class="bimg" style="background-image:url('Imagenes/Hydra/download.png')"></div><div class="vico">◌</div><div><b>Comunicación</b><p>Directa, respetuosa y clara con usuarios y staff. Lo difícil también se dice, pero bien dicho.</p></div></div>
-<div class="vcard"><div class="bimg" style="background-image:url('Imagenes/Skylith/download.png')"></div><div class="vico">+</div><div><b>Aprendizaje constante</b><p>Sigo ampliando mi stack (plugins, bots, edición, inglés) y acepto correcciones como parte del rol.</p></div></div>
+<div class="vcard" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/image.png');background-size:cover;background-position:center"><div class="vico">✓</div><div><b>Responsable</b><p>Me tomo en serio cada tarea asignada: turnos, tickets y reportes se atienden y se cierran, no se dejan a medias.</p></div></div>
+<div class="vcard" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/3.jpg');background-size:cover;background-position:center"><div class="vico">◆</div><div><b>Comprometido</b><p>Me involucro con los objetivos del proyecto y aporto de forma constante, incluso fuera de mi turno si la situación lo exige.</p></div></div>
+<div class="vcard" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/image 1.png');background-size:cover;background-position:center"><div class="vico">⚡</div><div><b>Eficaz</b><p>Busco soluciones prácticas y organizadas: verificar, sancionar, documentar y seguir. Sin drama, sin improvisar.</p></div></div>
+<div class="vcard" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/minecraft-et-le-pixel-art-989285.jpg');background-size:cover;background-position:center"><div class="vico">◉</div><div><b>Atento</b><p>Presto atención a usuarios y compañeros: una duda atendida a tiempo evita un conflicto después.</p></div></div>
+<div class="vcard" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/SPOILER_attachments_559284.jpg');background-size:cover;background-position:center"><div class="vico">∞</div><div><b>Trabajo en equipo</b><p>Me adapto a distintos equipos de staff con comunicación clara y respetuosa, también formando a los nuevos.</p></div></div>
+<div class="vcard" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/SPOILER_image.png');background-size:cover;background-position:center"><div class="vico">↗</div><div><b>Adaptabilidad</b><p>He sido Founder, Admin, Dev, Helper y Marketing: asumo el rango que el proyecto necesite, sin ego.</p></div></div>
+<div class="vcard" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/image.png');background-size:cover;background-position:center"><div class="vico">◌</div><div><b>Comunicación</b><p>Directa, respetuosa y clara con usuarios y staff. Lo difícil también se dice, pero bien dicho.</p></div></div>
+<div class="vcard" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/3.jpg');background-size:cover;background-position:center"><div class="vico">+</div><div><b>Aprendizaje constante</b><p>Sigo ampliando mi stack (plugins, bots, edición, inglés) y acepto correcciones como parte del rol.</p></div></div>
 </div>
 </section>
 
@@ -216,11 +210,11 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="shead"><span class="n">03</span><h2>Mi experiencia Staff</h2></div>
 <p class="sub">Cinco etapas, del proyecto propio al staff actual.</p>
 <div class="expGrid" id="expGrid">
-<div class="exp" data-cat="yes"><div class="bimg" style="background-image:url('Imagenes/Hydra/download.png')"></div><div class="top"><span class="yr">2022 – 2026 · HyperHard Network</span><span class="st">Founder</span></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 4px"><span class="pill">👥 200+ jugadores únicos</span><span class="pill">⚡ TPS 19-20</span><span class="pill">🎮 5 modalidades</span><span class="pill">💬 Discord 300+</span></div><p>Mi network personal: <b>FullPvP, Survival OP, OneBlock OP, Bedwars y minijuegos</b>. Fui el único encargado durante toda la vida del servidor — programaba, configuraba plugins, construía las modalidades, diseñaba los rangos y reclutaba staff. Aprendí a sostener un servidor completo con recursos limitados y a gestionar una comunidad de cero. El proyecto está en pausa por falta de fondos y actividad de los usuarios, pero sigo siendo el dueño y no lo descarto para el futuro. <b>IP: mc.hyperhard.space</b></p></div>
-<div class="exp" data-cat="no"><div class="bimg" style="background-image:url('Imagenes/Orecraft/orecraft.jpg')"></div><div class="top"><span class="yr">2023 – 2024 · Orecraft Network</span><span class="st">Helper</span></div><p>Survival Custom: mi trabajo era mantener la convivencia entre usuarios, atender tickets, resolver dudas de mecánicas del servidor y mediar conflictos. Desarrollé paciencia y criterio para tratar situaciones diversas. Sin evidencia disponible porque el Discord del servidor cerró.<div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 4px"><span class="pill">👥 100+ jugadores</span><span class="pill">📋 Tickets y convivencia</span></div> <b>Ref: maicolfrantech (575484448171229195) — maicolfrantech.com</b></p></div>
-<div class="exp" data-cat="yes"><div class="bimg" style="background-image:url('Imagenes/Hydra/2.png')"></div><div class="top"><span class="yr">2025 – 2026 · Hydra Studio</span><span class="st">Founder</span></div><p><div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 4px"><span class="pill">🎮 1 evento documentado</span><span class="pill">🤖 Bot multifunción</span><span class="pill">📹 YouTube</span></div><p>Mi studio personal de eventos de Minecraft: diseño los mapas, organizo los eventos, programo el bot que gestiona las recompensas y controla las mecánicas, y coordino a los participantes. He documentado 3 eventos completos en video. Actualmente activo, es mi proyecto personal más reciente.</p></div>
-<div class="exp" data-cat="no"><div class="top"><span class="yr">2026 · BlizardMC</span><span class="st">Config / Dev</span></div><p><div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 4px"><span class="pill">🔧 Fix de bugs</span><span class="pill">⚡ Optimización</span></div><p>Servidor FullPvP: me encargo de fixear bugs evidentes, configurar plugins y optimizar el rendimiento del servidor. Trabajo bajo confianza con uno de los dueños. Sin evidencia disponible por ahora, pero verificable con el dueño. <b>Ref: franrol15 (889912844357886042)</b></p></div>
-<div class="exp now" data-cat="yes"><div class="bimg" style="background-image:url('Imagenes/Skylith/6.png')"></div><div class="top"><span class="yr">2026 – actual · Skylith Network</span><span class="st">Jr-Admin</span></div><p><div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 4px"><span class="pill">👥 10+ activos</span><span class="pill">📋 ~10 tickets</span><span class="pill">💬 Discord 100+</span><span class="pill">🔧 15+ plugins</span></div><p>SkyBlock en <b>SKYLITH.LIVE</b>: mi labor incluye revisión de tickets, vigilancia in-game para detectar hacks y comportamientos tóxicos, aplicación de sanciones (baneos, muteos, advertencias, SS). Además, realicé la <b>inducción de los nuevos staff</b>: les enseño las reglas, herramientas, protocolo de sanciones y los acompaño en su primer turno real para que estén preparados. Presencia activa en Discord con rol CODE. En Skylith, comunidad pequeña, sana y en crecimiento, atiendo ~2 tickets diarios con seguimiento, evidencia y cierre documentado. <b>Ref: L3xz (1431659598288523375)</b></p><a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank">Discord de SkyLith</a></div>
+<div class="exp" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/image.png');background-size:cover;background-position:center" data-cat="yes"><div class="top"><span class="yr">2022 – 2026 · HyperHard Network</span><span class="st">Founder</span></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 4px"><span class="pill">👥 200+ jugadores únicos</span><span class="pill">⚡ TPS 19-20</span><span class="pill">🎮 5 modalidades</span><span class="pill">💬 Discord 300+</span></div><p>Mi network personal: <b>FullPvP, Survival OP, OneBlock OP, Bedwars y minijuegos</b>. Fui el único encargado durante toda la vida del servidor — programaba, configuraba plugins, construía las modalidades, diseñaba los rangos y reclutaba staff. Aprendí a sostener un servidor completo con recursos limitados y a gestionar una comunidad de cero. El proyecto está en pausa por falta de fondos y actividad de los usuarios, pero sigo siendo el dueño y no lo descarto para el futuro. <b>IP: mc.hyperhard.space</b></p></div>
+<div class="exp" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/3.jpg');background-size:cover;background-position:center" data-cat="no"><div class="top"><span class="yr">2023 – 2024 · Orecraft Network</span><span class="st">Helper</span></div><p>Survival Custom: mi trabajo era mantener la convivencia entre usuarios, atender tickets, resolver dudas de mecánicas del servidor y mediar conflictos. Desarrollé paciencia y criterio para tratar situaciones diversas. Sin evidencia disponible porque el Discord del servidor cerró.<div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 4px"><span class="pill">👥 100+ jugadores</span><span class="pill">📋 Tickets y convivencia</span></div> <b>Ref: maicolfrantech (575484448171229195) — maicolfrantech.com</b></p></div>
+<div class="exp" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/SPOILER_image.png');background-size:cover;background-position:center" data-cat="yes"><div class="top"><span class="yr">2025 – 2026 · Hydra Studio</span><span class="st">Founder</span></div><p><div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 4px"><span class="pill">🎮 1 evento documentado</span><span class="pill">🤖 Bot multifunción</span><span class="pill">📹 YouTube</span></div><p>Mi studio personal de eventos de Minecraft: diseño los mapas, organizo los eventos, programo el bot que gestiona las recompensas y controla las mecánicas, y coordino a los participantes. He documentado 3 eventos completos en video. Actualmente activo, es mi proyecto personal más reciente.</p></div>
+<div class="exp" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/minecraft-et-le-pixel-art-989285.jpg');background-size:cover;background-position:center" data-cat="no"><div class="top"><span class="yr">2026 · BlizardMC</span><span class="st">Config / Dev</span></div><p><div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 4px"><span class="pill">🔧 Fix de bugs</span><span class="pill">⚡ Optimización</span></div><p>Servidor FullPvP: me encargo de fixear bugs evidentes, configurar plugins y optimizar el rendimiento del servidor. Trabajo bajo confianza con uno de los dueños. Sin evidencia disponible por ahora, pero verificable con el dueño. <b>Ref: franrol15 (889912844357886042)</b></p></div>
+<div class="exp now" style="background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/SPOILER_attachments_559284.jpg');background-size:cover;background-position:center" data-cat="yes"><div class="top"><span class="yr">2026 – actual · Skylith Network</span><span class="st">Jr-Admin</span></div><p><div style="display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 4px"><span class="pill">👥 10+ activos</span><span class="pill">📋 ~10 tickets</span><span class="pill">💬 Discord 100+</span><span class="pill">🔧 15+ plugins</span></div><p>SkyBlock en <b>SKYLITH.LIVE</b>: mi labor incluye revisión de tickets, vigilancia in-game para detectar hacks y comportamientos tóxicos, aplicación de sanciones (baneos, muteos, advertencias, SS). Además, realicé la <b>inducción de los nuevos staff</b>: les enseño las reglas, herramientas, protocolo de sanciones y los acompaño en su primer turno real para que estén preparados. Presencia activa en Discord con rol CODE. En Skylith, comunidad pequeña, sana y en crecimiento, atiendo ~2 tickets diarios con seguimiento, evidencia y cierre documentado. <b>Ref: L3xz (1431659598288523375)</b></p><a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank" rel="noopener">Discord de SkyLith</a></div>
 </div>
 </section>
 
@@ -230,28 +224,28 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="filters"><button class="on" data-f="all">Todos</button><button data-f="yes">Con evidencia</button><button data-f="no">Sin evidencia</button></div>
 <div id="projGrid">
 <div class="proj" data-cat="yes" data-gal="hh">
-<div class="strip"><img src="Imagenes/HyperHard/download.png" onerror="this.remove()"><img src="Imagenes/HyperHard/1.png" onerror="this.remove()"><img src="Imagenes/HyperHard/2.png" onerror="this.remove()"><span class="galBtn">⌕ Ver galería</span></div>
+<div class="strip"><img loading="lazy" decoding="async" src="Imagenes/HyperHard/download.png" onerror="this.remove()"><img loading="lazy" decoding="async" src="Imagenes/HyperHard/1.png" onerror="this.remove()"><img loading="lazy" decoding="async" src="Imagenes/HyperHard/2.png" onerror="this.remove()"><span class="galBtn">⌕ Ver galería</span></div>
 <div class="pbody"><div class="plabel">01 · MINECRAFT · 2022 – 2026</div><h3>HyperHard Network → Founder</h3>
 <p>Fui el <b>fundador y único desarrollador</b> durante mi etapa: dungeons con menús, kits y rangos configurados, zona de crates /tienda, lobbies y scoreboards. Las capturas muestran el rango FOUNDER y cada sistema montado por mí. Servidor en pausa, sigo siendo dueño.</p>
-<a class="btn p" href="https://www.youtube.com/@HyperHardNetwork" target="_blank">YouTube</a><span class="pill">mc.hyperhard.space</span></div>
-<div class="shotV"><img src="Imagenes/HyperHard/3.png"><img src="Imagenes/HyperHard/4.png"><img src="Imagenes/HyperHard/5.png"><img src="Imagenes/HyperHard/6.png"></div>
+<a class="btn p" href="https://www.youtube.com/@HyperHardNetwork" target="_blank" rel="noopener">YouTube</a><span class="pill">mc.hyperhard.space</span></div>
+<div class="shotV"><img loading="lazy" decoding="async" src="Imagenes/HyperHard/3.png"><img loading="lazy" decoding="async" src="Imagenes/HyperHard/4.png"><img loading="lazy" decoding="async" src="Imagenes/HyperHard/5.png"><img loading="lazy" decoding="async" src="Imagenes/HyperHard/6.png"></div>
 </div>
 <div class="proj" data-cat="yes" data-gal="hydra">
-<div class="strip"><img src="Imagenes/Hydra/download.png" onerror="this.remove()"><img src="Imagenes/Hydra/2.png" onerror="this.remove()"><img src="Imagenes/Hydra/2.png" onerror="this.remove()"><span class="galBtn">⌕ Ver galería</span></div>
+<div class="strip"><img loading="lazy" decoding="async" src="Imagenes/Hydra/download.png" onerror="this.remove()"><img loading="lazy" decoding="async" src="Imagenes/Hydra/2.png" onerror="this.remove()"><img loading="lazy" decoding="async" src="Imagenes/Hydra/2.png" onerror="this.remove()"><span class="galBtn">⌕ Ver galería</span></div>
 <div class="pbody"><div class="plabel">02 · EVENTOS · 2025 – 2026</div><h3>Hydra Studio → Founder</h3>
 <p>Mi <b>studio personal de eventos</b>: scoreboard de evento en mapa HyperCity, Discord organizado con mi rol CODE y mi bot Hydra. Incluye el video de uno de nuestros eventos.</p>
-<a class="btn p" href="https://discord.gg/dkZpFtXXCj" target="_blank">Discord</a><a class="btn o" href="https://www.youtube.com/@HydraStudioMC" target="_blank">YouTube</a>
-<iframe class="video" src="https://www.youtube.com/embed/edI-h8zjUgM" allowfullscreen></iframe></div>
+<a class="btn p" href="https://discord.gg/dkZpFtXXCj" target="_blank" rel="noopener">Discord</a><a class="btn o" href="https://www.youtube.com/@HydraStudioMC" target="_blank" rel="noopener">YouTube</a>
+<iframe class="video" title="Evento Hydra Studio en YouTube" loading="lazy" src="https://www.youtube.com/embed/edI-h8zjUgM" allowfullscreen></iframe></div>
 </div>
 <div class="proj" data-cat="yes" data-gal="sky">
-<div class="strip"><img src="Imagenes/Skylith/6.png" onerror="this.remove()"><img src="Imagenes/Skylith/download.png" onerror="this.remove()"><img src="Imagenes/Skylith/1.png" onerror="this.remove()"><span class="galBtn">⌕ Ver galería</span></div>
+<div class="strip"><img loading="lazy" decoding="async" src="Imagenes/Skylith/6.png" onerror="this.remove()"><img loading="lazy" decoding="async" src="Imagenes/Skylith/download.png" onerror="this.remove()"><img loading="lazy" decoding="async" src="Imagenes/Skylith/1.png" onerror="this.remove()"><span class="galBtn">⌕ Ver galería</span></div>
 <div class="pbody"><div class="plabel">03 · MINECRAFT · 2026 ACTUAL</div><h3>Skylith Network → Jr-Admin</h3>
 <p>Mi rol actual en <b>SkyBlock (SKYLITH.LIVE)</b>: tab con JR-ADMIN junto al equipo, skin de traje en el lobby y presencia activa en Discord. Tickets, sanciones e inducción de nuevos staff.</p>
-<a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank">Discord de SkyLith</a></div>
-<div class="shotV"><img src="Imagenes/Skylith/4.png"></div>
+<a class="btn p" href="https://discord.gg/qyyREajJgC" target="_blank" rel="noopener">Discord de SkyLith</a></div>
+<div class="shotV"><img loading="lazy" decoding="async" src="Imagenes/Skylith/4.png"></div>
 </div>
 <div class="grid">
-<div class="card" data-cat="no" style="background-image:linear-gradient(135deg,#11141cb8,#11141cb8),url('Imagenes/Orecraft/orecraft.jpg');background-size:cover;background-position:center"><span class="tag no">Sin evidencia por ahora</span><h3>Orecraft → Helper</h3><small>2023-2024 · Survival Custom</small><p style="color:var(--mut);font-size:14px">Sana convivencia, tickets y dudas. Ref: <b>maicolfrantech (575484448171229195)</b> · <a href="https://maicolfrantech.com/" target="_blank">web</a></p></div>
+<div class="card" data-cat="no" style="background-image:linear-gradient(135deg,#11141cb8,#11141cb8),url('Imagenes/Orecraft/orecraft.jpg');background-size:cover;background-position:center"><span class="tag no">Sin evidencia por ahora</span><h3>Orecraft → Helper</h3><small>2023-2024 · Survival Custom</small><p style="color:var(--mut);font-size:14px">Sana convivencia, tickets y dudas. Ref: <b>maicolfrantech (575484448171229195)</b> · <a href="https://maicolfrantech.com/" target="_blank" rel="noopener">web</a></p></div>
 <div class="card" data-cat="no"><span class="tag no">Sin evidencia por ahora</span><h3>BlizardMC → Config / Dev</h3><small>2026 · FullPvP</small><p style="color:var(--mut);font-size:14px">Fix de bugs y optimización. Ref: <b>franrol15 (889912844357886042)</b>. Capturas en camino.</p></div>
 </div>
 </div></section>
@@ -297,7 +291,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="card" style="margin-top:14px;text-align:center;background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/2.png');background-size:cover;background-position:center">
 <p style="color:#c0c8dc;font-size:14px">✦ Diagnóstico GRATIS 30 min · 15% en primera config · 10% en configs recurrentes</p>
 <p style="color:var(--mut);font-size:13px;margin-top:8px">Código <b style="color:#fff">50COL</b> en Discord</p>
-<a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank">Contactar por Discord ↗</a> <a class="btn o" href="mailto:scainetprrmn@gmail.com">Contactar por correo ↗</a>
+<a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener">Contactar por Discord ↗</a> <a class="btn o" href="mailto:scainetprrmn@gmail.com">Contactar por correo ↗</a>
 </div>
 </section>
 
@@ -307,8 +301,8 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <p class="sub">Stack técnico y trabajo pago.</p>
 <div class="grid">
 <div class="card"><div class="cbanner"><img src="Imagenes/HyperHard/2.png" alt="Minecraft" loading="lazy" onerror="this.closest('.cbanner').remove()"></div><h3>⚙️ Minecraft — configuración</h3><p style="color:var(--mut);font-size:14px">Permisos, protecciones, economía, crates, hologramas, menús y anticheat:</p><p style="margin-top:8px"><span class="pill">LuckPerms · Avanzado</span><span class="pill">Essentials · Avanzado</span><span class="pill">TAB · Avanzado</span><span class="pill">CoreProtect</span><span class="pill">Vulcan · Normal</span><span class="pill">MythicMobs · Avanzado</span><span class="pill">Jobs Reborn</span><span class="pill">ExcellentCrates</span><span class="pill">DecentHolograms</span><span class="pill">CommandPanels / ZMenu</span><span class="pill">Tebex</span><span class="pill">GeyserMC</span><span class="pill">BattlePass</span><span class="pill">AxVaults / AxKoth</span><span class="pill">Shopkeepers</span><span class="pill">Proxys</span><span class="pill">VoiceChat · Avanzado</span><span class="pill">Chunky / BetterRTP</span><span class="pill">ChestShop</span><span class="pill">WorldEdit / WorldGuard</span><span class="pill">Citizens</span><span class="pill">ViaVersion</span></p></div>
-<div class="card dev"><div class="cbanner"><img src="Imagenes/Hydra/2.png" alt="Discord bots" loading="lazy" onerror="this.closest('.cbanner').remove()"></div><h3>🤖 Discord + bots NodeJS</h3><span class="devbadge">🛠️ Bot en desarrollo</span><p style="color:var(--mut);font-size:14px"><b>HyperHard Bot + Hydra Bot — NodeJS · Básico</b>: más de 90 comandos (70-80 estables) + moderación. Sigo agregando funciones, puede haber cambios o caídas puntuales.</p><a class="btn o" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank">Invitar bot ↗</a></div>
-<div class="card"><div class="cbanner"><img src="Imagenes/Hydra/download.png" alt="Contenido" loading="lazy" onerror="this.closest('.cbanner').remove()"></div><h3>🎬 Contenido + pago</h3><p style="color:var(--mut);font-size:14px">Optimización y configuración ClientSide · Avanzado — <a href="https://github.com/scainetprr/Hydra-Studio-Opti-Modpacks" target="_blank">Hydra-Studio-Opti-Modpacks</a></p><p style="color:var(--mut);font-size:14px">Filmora + Mineanimator. <a href="https://www.youtube.com/@HydraStudioMC" target="_blank">@HydraStudioMC</a> · <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank">@HyperHardNetwork</a>. Pagos solo como <b>dev único</b>, a convenir.</p></div>
+<div class="card dev"><div class="cbanner"><img src="Imagenes/Hydra/2.png" alt="Discord bots" loading="lazy" onerror="this.closest('.cbanner').remove()"></div><h3>🤖 Discord + bots NodeJS</h3><span class="devbadge">🛠️ Bot en desarrollo</span><p style="color:var(--mut);font-size:14px"><b>HyperHard Bot + Hydra Bot — NodeJS · Básico</b>: más de 90 comandos (70-80 estables) + moderación. Sigo agregando funciones, puede haber cambios o caídas puntuales.</p><a class="btn o" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank" rel="noopener">Invitar bot ↗</a></div>
+<div class="card"><div class="cbanner"><img src="Imagenes/Hydra/download.png" alt="Contenido" loading="lazy" onerror="this.closest('.cbanner').remove()"></div><h3>🎬 Contenido + pago</h3><p style="color:var(--mut);font-size:14px">Optimización y configuración ClientSide · Avanzado — <a href="https://github.com/scainetprr/Hydra-Studio-Opti-Modpacks" target="_blank" rel="noopener">Hydra-Studio-Opti-Modpacks</a></p><p style="color:var(--mut);font-size:14px">Filmora + Mineanimator. <a href="https://www.youtube.com/@HydraStudioMC" target="_blank" rel="noopener">@HydraStudioMC</a> · <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank" rel="noopener">@HyperHardNetwork</a>. Pagos solo como <b>dev único</b>, a convenir.</p></div>
 </div>
 </section>
 
@@ -316,17 +310,17 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="shead"><span class="n">09</span><h2>Mis proyectos y repos</h2></div>
 <p class="sub">Proyectos propios y herramientas que he creado.</p>
 <div class="grid">
-<a class="card" href="https://github.com/scainetprr/Hydra-bot" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/2.png');background-size:cover;background-position:center">
+<a class="card" href="https://github.com/scainetprr/Hydra-bot" target="_blank" rel="noopener" style="text-decoration:none;background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/2.png');background-size:cover;background-position:center">
 <span class="tag hot">NODEJS</span>
 <h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Hydra Bot</h3>
 <p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Bot de Discord con captcha, tickets, moderación y verificación automática. 90+ comandos: moderación, música, entretenimiento, asistencia, recompensas, economía y guías.</p>
 <span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Ver en GitHub ↗</span></a>
-<a class="card" href="https://github.com/scainetprr/Hydra-Studio-Opti-Modpacks" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/download.png');background-size:cover;background-position:center">
+<a class="card" href="https://github.com/scainetprr/Hydra-Studio-Opti-Modpacks" target="_blank" rel="noopener" style="text-decoration:none;background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/download.png');background-size:cover;background-position:center">
 <span class="tag">CONFIG</span>
 <h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Opti-Modpacks</h3>
 <p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Configuración optimizada de ClientSide para rendimiento. Configs de clientes, optimización de gráficos y ajustes para maximum FPS.</p>
 <span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Ver en GitHub ↗</span></a>
-<a class="card" href="https://github.com/scainetprr/Portafolio" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/HyperHard/2.png');background-size:cover;background-position:center">
+<a class="card" href="https://github.com/scainetprr/Portafolio" target="_blank" rel="noopener" style="text-decoration:none;background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/HyperHard/2.png');background-size:cover;background-position:center">
 <span class="tag">HTML/CSS/JS</span>
 <h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Portafolio</h3>
 <p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Este sitio web. HTML/CSS/JS vanilla con diseño dark, efectos hover, galería lightbox, typewriter y zona secreta.</p>
@@ -389,7 +383,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <p style="color:#c0c8dc;font-size:13px;margin-top:8px">Log detallado de violaciones: Speed, Timer con métricas como velocidad, delay, balance, ping, TPS, versión del cliente y ubicación exacta.</p>
 <div style="margin-top:10px"><span class="pill">Speed detection</span><span class="pill">Timer detection</span><span class="pill">20+ entradas</span></div>
 </div>
-<div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/3.png');background-size:cover;background-position:center;padding:20px">
+<div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/2.png');background-size:cover;background-position:center;padding:20px">
 <b style="color:var(--red)">🔧 LuckPerms — config.yml</b>
 <small style="color:var(--mut)">HyperHard Network · ~4 años atrás</small>
 <p style="color:#c0c8dc;font-size:13px;margin-top:8px">Configuración del sistema de permisos: storage H2 local, server global, inheritance depth-first, prefix stacking con highest weight, auto-sync desactivado, messaging auto, Vault integration con display names, y Bukkit child permissions habilitados.</p>
@@ -408,12 +402,12 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <section id="trayectoria2">
 <div class="shead"><span class="n">14</span><h2>Mi enfoque</h2></div>
 <div class="card" style="background-image:linear-gradient(135deg,#11141cb8,#11141cb8),url('Imagenes/Hydra/download.png');background-size:cover;background-position:center"><p style="color:#c6cddd">Busco seguir creciendo dentro de comunidades de Minecraft y Discord, combinando mi experiencia como Staff con mi experiencia como Developer. Me interesa formar parte de equipos donde pueda aportar organización, atención a la comunidad, liderazgo y soluciones prácticas. No me importa empezar desde abajo si el proyecto lo vale — lo importante es aportar, aprender y que el servidor crezca. Mi recorrido ha sido construir, pausar y volver más fuerte: levanté <b>HyperHard Network</b> desde cero y lo sostuve solo durante años, pasé por <b>Orecraft</b> como Helper, fundé mi studio de eventos <b>Hydra</b> y hoy combino dos roles activos — <b>Jr-Admin en Skylith</b> y <b>configurador en BlizardMC</b>. Cada etapa me dejó algo: gestión, paciencia con usuarios, criterio para sancionar y técnica para configurar. Sigo creciendo y aceptando nuevos retos.</p></div>
-<div class="cta" style="margin-top:18px">
+<div class="cta" style="margin-top:18px;background-image:linear-gradient(135deg,rgba(13,18,34,.60),rgba(13,18,34,.82)),url('Imagenes/Banners/SPOILER_attachments_559284.jpg');background-size:cover;background-position:center">
 <div class="kicker">¿TRABAJAMOS JUNTOS?</div>
 <h2>Hablemos sobre tu proyecto.</h2>
 <p>Si quieres contactarme para hablar sobre un proyecto, una oportunidad de Staff o desarrollo, escríbeme por Discord o correo.</p>
 <p style="margin-top:6px;letter-spacing:2px;font-size:12px;color:var(--mut)">DISCORD · <b style="color:#fff">scainetprrmn</b></p>
-<a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank">Discord ↗</a> <a class="btn o" href="mailto:scainetprrmn@gmail.com">Correo ↗</a>
+<a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener">Discord ↗</a> <a class="btn o" href="mailto:scainetprrmn@gmail.com">Correo ↗</a>
 </div>
 </section>
 
@@ -476,10 +470,10 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="shead"><span class="n">09</span><h2>Comunidades</h2></div>
 <p class="sub">Servidores en los que he participado o sigo participando.</p>
 <div class="grid">
-<a class="card" href="https://discord.gg/dkZpFtXXCj" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Hydra/download.png');background-size:cover;background-position:center"><span class="tag hot">DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Hydra Studio</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Mi studio de eventos Minecraft. Founder y dev.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Entrar al servidor ↗</span></a>
-<a class="card" href="https://discord.gg/qyyREajJgC" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Skylith/download.png');background-size:cover;background-position:center"><span class="tag hot">DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Skylith Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">SkyBlock. Trabajo como Jr-Admin actualmente.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Entrar al servidor ↗</span></a>
-<a class="card" href="https://www.youtube.com/@HyperHardNetwork" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/HyperHard/download.png');background-size:cover;background-position:center"><span class="tag">YOUTUBE</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">HyperHard Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Mi network personal. FullPvP, Survival OP, Bedwars.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Ver en YouTube ↗</span></a>
-<a class="card" href="https://maicolfrantech.com/" target="_blank" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Orecraft/orecraft.jpg');background-size:cover;background-position:center"><span class="tag no">SIN DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Orecraft Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Survival Custom. Helper 2023-2024. Discord cerrado.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Web de ref ↗</span></a>
+<a class="card" href="https://discord.gg/dkZpFtXXCj" target="_blank" rel="noopener" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Hydra/download.png');background-size:cover;background-position:center"><span class="tag hot">DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Hydra Studio</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Mi studio de eventos Minecraft. Founder y dev.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Entrar al servidor ↗</span></a>
+<a class="card" href="https://discord.gg/qyyREajJgC" target="_blank" rel="noopener" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Skylith/download.png');background-size:cover;background-position:center"><span class="tag hot">DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Skylith Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">SkyBlock. Trabajo como Jr-Admin actualmente.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Entrar al servidor ↗</span></a>
+<a class="card" href="https://www.youtube.com/@HyperHardNetwork" target="_blank" rel="noopener" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/HyperHard/download.png');background-size:cover;background-position:center"><span class="tag">YOUTUBE</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">HyperHard Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Mi network personal. FullPvP, Survival OP, Bedwars.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Ver en YouTube ↗</span></a>
+<a class="card" href="https://maicolfrantech.com/" target="_blank" rel="noopener" style="text-decoration:none;background-image:linear-gradient(135deg,#11141cb3),url('Imagenes/Orecraft/orecraft.jpg');background-size:cover;background-position:center"><span class="tag no">SIN DISCORD</span><h3 style="text-shadow:0 0 16px #e11d2eaa,0 2px 6px #000">Orecraft Network</h3><p style="color:#c0c8dc;font-size:14px;text-shadow:0 1px 6px #000">Survival Custom. Helper 2023-2024. Discord cerrado.</p><span style="color:var(--blue);font-size:13px;text-shadow:0 0 8px #2b7fff88">Web de ref ↗</span></a>
 </div>
 </section>
 
@@ -504,7 +498,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <tr>
 <td style="width:50%;padding-right:10px">
 <label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu nombre</label>
-<input type="text" name="nombre" required placeholder="Ej: L3xz" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
+<input type="text" name="nombre" required maxlength="30" placeholder="Ej: L3xz" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
 </td>
 <td style="width:50%;padding-left:10px">
 <label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Servidor</label>
@@ -522,7 +516,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <tr id="otroRow" style="display:none">
 <td colspan="2">
 <label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Nombre del servidor</label>
-<input type="text" name="otroServidor" placeholder="Escribe el nombre del servidor" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
+<input type="text" name="otroServidor" maxlength="40" placeholder="Escribe el nombre del servidor" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
 </td>
 </tr>
 <tr>
@@ -535,14 +529,14 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <span onclick="setRating(4)" onmouseover="previewRating(4)" onmouseout="resetRating()" style="font-size:24px;cursor:pointer;color:#f5a623;transition:all .15s">★</span>
 <span onclick="setRating(5)" onmouseover="previewRating(5)" onmouseout="resetRating()" style="font-size:24px;cursor:pointer;color:#f5a623;transition:all .15s">★</span>
 <span id="ratingText" style="color:#f5a623;font-size:14px;margin-left:4px">5/5</span>
-<input type="hidden" name="rating" id="ratingVal" value="5">
+<input type="hidden" name="rating" id="ratingVal" value="5"><input type="text" name="website" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
 </div>
 </td>
 </tr>
 <tr>
 <td colspan="2">
 <label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu reseña</label>
-<textarea name="mensaje" required rows="4" placeholder="¿Qué tal fue tu experiencia trabajando conmigo?" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit"></textarea>
+<textarea name="mensaje" required rows="4" maxlength="500" placeholder="¿Qué tal fue tu experiencia trabajando conmigo?" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit"></textarea>
 </td>
 </tr>
 <tr>
@@ -573,7 +567,7 @@ if(sel!=='Otro')document.querySelector('[name="otroServidor"]').value='';
 }
 setRating(5);
 (function(){
-const BIN_ID='6aab57b4ffd5d1605310628d';
+/* REVIEWS DB: JSONBin.io - rotate keys in dashboard > API Keys if exposed. Reads+writes use limited key below. */const BIN_ID='6aab57b4ffd5d1605310628d';
 const API_KEY='$2a$10$U8gwxRTdz9UFr4HJ40X6feJ2rOksLx.cf/qCTte7wmi6iAeA.4/vK';
 const API_URL='https://api.jsonbin.io/v3/b/'+BIN_ID;
 const EXAMPLE_REVIEW={nombre:'Ejemplo',servidor:'HyperHard',rating:5,mensaje:'Esta es una reseña de ejemplo. Las reseñas reales aparecerán aquí cuando los jugadores envíen las suyas.',example:true};
@@ -597,7 +591,7 @@ const list=await pushReview(review);
 renderReviews(list);
 const stars='⭐'.repeat(rating);
 const txt=stars+' '+review.nombre+' ('+review.servidor+'): '+review.mensaje;
-try{await navigator.clipboard.writeText(txt);document.getElementById('reviewMsg').innerHTML='✅ Reseña publicada para todos. Copiada al portapapeles por si quieres compartirla en <a href="https://discord.com/users/1307246359895740448" target="_blank" style="color:var(--blue);text-decoration:underline">mi Discord</a>.'}catch(ce){document.getElementById('reviewMsg').textContent='✅ Reseña publicada para todos.'}
+try{await navigator.clipboard.writeText(txt);document.getElementById('reviewMsg').innerHTML='✅ Reseña publicada para todos. Copiada al portapapeles por si quieres compartirla en <a href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">mi Discord</a>.'}catch(ce){document.getElementById('reviewMsg').textContent='✅ Reseña publicada para todos.'}
 document.getElementById('reviewMsg').style.color='var(--grn)';
 this.reset();setRating(5);
 }catch(err){
@@ -617,8 +611,8 @@ loadReviews();
 <section id="contacto">
 <div class="shead"><span class="n">10</span><h2>Contacto</h2></div>
 <div class="grid">
-<div class="card"><h3>Discord (principal)</h3><p><b class="copy" id="cpD">scainetprrmn · 1307246359895740448 (copiar)</b></p><a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank">Abrir Discord ↗</a></div>
-<div class="card"><h3>Email / X / CV</h3><p class="copy" id="cpM">scainetprrmn@gmail.com (copiar)</p><p><a href="https://x.com/scainetprrMN" target="_blank">X @scainetprrMN</a> · <a href="cv.html">Descargar CV 📄</a></p></div>
+<div class="card"><h3>Discord (principal)</h3><p><b class="copy" id="cpD">scainetprrmn · 1307246359895740448 (copiar)</b></p><a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener">Abrir Discord ↗</a></div>
+<div class="card"><h3>Email / X / CV</h3><p class="copy" id="cpM">scainetprrmn@gmail.com (copiar)</p><p><a href="https://x.com/scainetprrMN" target="_blank" rel="noopener">X @scainetprrMN</a> · <a href="cv.html">Descargar CV 📄</a></p></div>
 <div class="card"><h3>Referencias</h3><p style="color:var(--mut);font-size:14px">L3xz / lexz24.7 — 1431659598288523375<br>franrol15 — 889912844357886042<br>maicolfrantech — 575484448171229195</p></div>
 </div>
 <div class="card faq" style="margin-top:14px"><h3>FAQ reclutadores</h3>
@@ -642,15 +636,15 @@ loadReviews();
 <div style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:12px 14px"><b>🤖 Hydra Bot — comandos</b><p style="color:#9aa3b5;font-size:14px">90+ comandos (70-80 estables):<br><br><b style="color:#fff">Verificación:</b> <code>/setup-verification</code> (panel), <code>/captcha-test</code> (probar captcha)<br><b style="color:#fff">Moderación:</b> <code>/warn</code>, <code>/mute</code>, <code>/unmute</code>, <code>/ban</code>, <code>/unban</code>, <code>/kick</code> — todo con registro<br><b style="color:#fff">Tickets:</b> soporte con categorías, asignación automática y cierre documentado<br><b style="color:#fff">Eventos:</b> HyperCity con scoreboard, recompensas y registro<br><b style="color:#fff">Utilidad:</b> <code>/userinfo</code>, <code>/serverinfo</code>, <code>/avatar</code>, <code>/ping</code><br><br>Pruébalo en Hydra Studio ↗</p></div>
 <div style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:12px 14px"><b>🗺️ Roadmap personal</b><p style="color:#9aa3b5;font-size:14px"><b style="color:#fff">Ahora:</b> NodeJS Intermedio, Vulcan Avanzado, Inglés B1, Mineanimator<br><b style="color:#fff">6 meses:</b> Economy plugin, plugin propio Spigot, certificación admin<br><b style="color:#fff">Meta:</b> Admin/Head Admin, 3+ servidores con mis configs, servicio de desarrollo</p></div>
 <div style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:12px 14px"><b>🎁 Descuento explorador</b><p style="color:#9aa3b5;font-size:14px"><b style="color:#fff">Oferta especial:</b><br>Diagnóstico GRATIS 30 min + 15% en primera config<br>10% en configs recurrentes mensuales<br><br>Solo dev único, a convenir por alcance.<br>Código <b style="color:#fff">50COL</b> en Discord.<br><b style="color:#fff">Incluye:</b> revisión plugins, análisis TPS, optimización y presupuesto.</p></div>
-<div style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:12px 14px"><b>🎬 Demo privada</b><p style="color:#9aa3b5;font-size:14px">Eventos HyperCity + scoreboards:<br><a href="https://www.youtube.com/@HydraStudioMC" target="_blank">@HydraStudioMC</a> · <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank">@HyperHardNetwork</a><br><br><b style="color:#fff">Con 50COL te paso:</b> referencias, checklist de configs, docs de ejemplo y acceso a bots en desarrollo.</p></div>
+<div style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:12px 14px"><b>🎬 Demo privada</b><p style="color:#9aa3b5;font-size:14px">Eventos HyperCity + scoreboards:<br><a href="https://www.youtube.com/@HydraStudioMC" target="_blank" rel="noopener">@HydraStudioMC</a> · <a href="https://www.youtube.com/@HyperHardNetwork" target="_blank" rel="noopener">@HyperHardNetwork</a><br><br><b style="color:#fff">Con 50COL te paso:</b> referencias, checklist de configs, docs de ejemplo y acceso a bots en desarrollo.</p></div>
 </div>
 <p style="text-align:center;color:#fff;margin-top:8px"><b>— Dylan / scainetprr</b></p>
-<p style="text-align:center;margin-top:14px"><a class="btn p" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank">Invitar a Hydra Bot</a>
+<p style="text-align:center;margin-top:14px"><a class="btn p" href="https://discord.com/oauth2/authorize?client_id=1530017627756298394&permissions=8&integration_type=0&scope=bot" target="_blank" rel="noopener">Invitar a Hydra Bot</a>
 <button class="btn o" onclick="document.getElementById('secret').classList.remove('open')">Continuar explorando</button></p>
 </div></div>
 
 <div class="modal" id="gal"><div class="gbox">
-<img id="galImg" src="" alt="evidencia">
+<img loading="lazy" decoding="async" id="galImg" src="" alt="evidencia">
 <div class="gnav"><button id="galPrev">‹</button><span id="galCount"></span><button id="galNext">›</button><button id="galClose">✕ Cerrar</button></div>
 </div></div>
 
