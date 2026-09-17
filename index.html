@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -573,44 +573,42 @@ if(sel!=='Otro')document.querySelector('[name="otroServidor"]').value='';
 }
 setRating(5);
 (function(){
+const BIN_ID='6aab57b4ffd5d1605310628d';
+const API_KEY='$2a$10$U8gwxRTdz9UFr4HJ40X6feJ2rOksLx.cf/qCTte7wmi6iAeA.4/vK';
+const API_URL='https://api.jsonbin.io/v3/b/'+BIN_ID;
 const EXAMPLE_REVIEW={nombre:'Ejemplo',servidor:'HyperHard',rating:5,mensaje:'Esta es una reseña de ejemplo. Las reseñas reales aparecerán aquí cuando los jugadores envíen las suyas.',example:true};
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
-function getReviews(){try{return JSON.parse(localStorage.getItem('scainetprr_reviews'))||[]}catch(e){return[]}}
-function saveReviews(r){localStorage.setItem('scainetprr_reviews',JSON.stringify(r))}
-function renderReviews(){
-const el=document.getElementById('reviewsList');
-const reviews=getReviews();
-if(!reviews.length){el.innerHTML='<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">'+esc(EXAMPLE_REVIEW.nombre)+'</b><small style="color:var(--mut);margin-left:8px">'+esc(EXAMPLE_REVIEW.servidor)+'</small></div><span style="color:#f5a623;font-size:16px">★★★★★</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5;font-style:italic">'+esc(EXAMPLE_REVIEW.mensaje)+'</p></div>';return}
-const all=[EXAMPLE_REVIEW,...reviews];
-el.innerHTML=all.map(r=>{
-const stars='★'.repeat(r.rating)+'<span style="color:#444">'+'★'.repeat(5-r.rating)+'</span>';
-const date=r.date?'<small style="color:var(--mut);margin-left:8px;font-size:12px">'+esc(r.date)+'</small>':'';
-return '<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">'+esc(r.nombre)+'</b><small style="color:var(--mut);margin-left:8px">'+esc(r.servidor)+'</small>'+date+'</div><span style="color:#f5a623;font-size:16px">'+stars+'</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5">'+esc(r.mensaje)+'</p></div>'
-}).join('');
-}
+async function fetchReviews(){const r=await fetch(API_URL+'/latest',{headers:{'X-Master-Key':API_KEY}});if(!r.ok)throw new Error('read');const d=await r.json();return (d.record&&d.record.reviews)||[]}
+async function pushReview(rev){const list=await fetchReviews();list.push(rev);const r=await fetch(API_URL,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':API_KEY},body:JSON.stringify({reviews:list})});if(!r.ok)throw new Error('write');return list}
+function reviewCard(r){const stars='★'.repeat(r.rating)+'<span style="color:#444">'+'★'.repeat(5-r.rating)+'</span>';const date=r.date?'<small style="color:var(--mut);margin-left:8px;font-size:12px">'+esc(r.date)+'</small>':'';return '<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">'+esc(r.nombre)+'</b><small style="color:var(--mut);margin-left:8px">'+esc(r.servidor)+'</small>'+date+'</div><span style="color:#f5a623;font-size:16px">'+stars+'</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5">'+esc(r.mensaje)+'</p></div>'}
+function renderReviews(reviews){const el=document.getElementById('reviewsList');const all=[EXAMPLE_REVIEW,...reviews];el.innerHTML=all.map(reviewCard).join('')}
+async function loadReviews(){const el=document.getElementById('reviewsList');try{const reviews=await fetchReviews();renderReviews(reviews)}catch(e){el.innerHTML='<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">Ejemplo</b><small style="color:var(--mut);margin-left:8px">HyperHard</small></div><span style="color:#f5a623;font-size:16px">★★★★★</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5;font-style:italic">No se pudieron cargar las reseñas. Revisa tu conexión e intenta de nuevo.</p></div>'}}
 document.getElementById('reviewForm').addEventListener('submit',async function(e){
 e.preventDefault();
 const btn=document.getElementById('submitBtn');
-btn.textContent='Guardando...';btn.disabled=true;
+btn.textContent='Publicando...';btn.disabled=true;
 const fd=new FormData(this);
 let servidor=fd.get('servidor');
 if(servidor==='Otro')servidor=fd.get('otroServidor')||'Otro';
 const rating=parseInt(fd.get('rating'));
-const review={nombre:fd.get('nombre'),servidor:servidor,rating:rating,mensaje:fd.get('mensaje'),date:new Date().toLocaleDateString('es-CO')};
-const reviews=getReviews();
-reviews.push(review);
-saveReviews(reviews);
-renderReviews();
+const review={nombre:String(fd.get('nombre')).trim(),servidor:servidor,rating:rating,mensaje:String(fd.get('mensaje')).trim(),date:new Date().toLocaleDateString('es-CO')};
+try{
+const list=await pushReview(review);
+renderReviews(list);
 const stars='⭐'.repeat(rating);
 const txt=stars+' '+review.nombre+' ('+review.servidor+'): '+review.mensaje;
-try{await navigator.clipboard.writeText(txt);document.getElementById('reviewMsg').innerHTML='✅ Reseña publicada y copiada. Pégala en <a href="https://discord.com/users/1307246359895740448" target="_blank" style="color:var(--blue);text-decoration:underline">mi Discord</a> si quieres.'}catch(er){document.getElementById('reviewMsg').textContent='✅ Reseña publicada. Copia manual: '+txt}
+try{await navigator.clipboard.writeText(txt);document.getElementById('reviewMsg').innerHTML='✅ Reseña publicada para todos. Copiada al portapapeles por si quieres compartirla en <a href="https://discord.com/users/1307246359895740448" target="_blank" style="color:var(--blue);text-decoration:underline">mi Discord</a>.'}catch(ce){document.getElementById('reviewMsg').textContent='✅ Reseña publicada para todos.'}
 document.getElementById('reviewMsg').style.color='var(--grn)';
-document.getElementById('reviewMsg').style.display='block';
 this.reset();setRating(5);
+}catch(err){
+document.getElementById('reviewMsg').textContent='⚠️ No se pudo publicar. Revisa tu conexión e intenta de nuevo.';
+document.getElementById('reviewMsg').style.color='var(--red)';
+}
+document.getElementById('reviewMsg').style.display='block';
 btn.textContent='Publicar reseña';btn.disabled=false;
 setTimeout(()=>{document.getElementById('reviewMsg').style.display='none'},8000);
 });
-renderReviews();
+loadReviews();
 })();
 </script>
 </div>
