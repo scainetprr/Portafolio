@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -571,7 +571,7 @@ setRating(5);
 (function(){
 /* REVIEWS DB: Firebase Firestore (proyecto portafolio-e152c). Para activar borrado admin agrega tu UID en ADMIN_UIDS. */
 const firebaseConfig={apiKey:'AIzaSyB88X1Rx5yqvdEM2jKnDDVBalSzw7zkXuc',authDomain:'portafolio-e152c.firebaseapp.com',projectId:'portafolio-e152c'};
-const ADMIN_UIDS=[];
+const ADMIN_UIDS=['4tBepPtcsDWfYbmo0X8y4V2bdAo2'];
 firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth(), db=firebase.firestore(), reviewsCol=db.collection('reviews');
 const EXAMPLE_REVIEW={nombre:'Ejemplo',servidor:'HyperHard',rating:5,mensaje:'Esta es una reseña de ejemplo. Las reseñas reales aparecerán aquí cuando los jugadores envíen las suyas.',example:true};
