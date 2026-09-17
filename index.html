@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -492,88 +492,44 @@ if(sel!=='Otro')document.querySelector('[name="otroServidor"]').value='';
 }
 setRating(5);
 (function(){
-
-async function loadReviews(){
-try{
-const r=await fetch('reseñas/data.json');
-if(!r.ok)throw new Error();
-const data=await r.json();
-renderReviews(data.reviews||[]);
-}catch(e){document.getElementById('reviewsList').innerHTML='<p style="color:var(--mut)">Aún no hay reseñas.</p>'}
-}
-
-function renderReviews(reviews){
+const EXAMPLE_REVIEW={nombre:'Ejemplo',servidor:'HyperHard',rating:5,mensaje:'Esta es una reseña de ejemplo. Las reseñas reales aparecerán aquí cuando los jugadores envíen las suyas.',example:true};
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function getReviews(){try{return JSON.parse(localStorage.getItem('scainetprr_reviews'))||[]}catch(e){return[]}}
+function saveReviews(r){localStorage.setItem('scainetprr_reviews',JSON.stringify(r))}
+function renderReviews(){
 const el=document.getElementById('reviewsList');
-if(!reviews.length){el.innerHTML='<p style="color:var(--mut);font-size:14px">Aún no hay reseñas. Sé el primero en dejar la tuya.</p>';return}
-el.innerHTML=reviews.map(r=>{
+const reviews=getReviews();
+if(!reviews.length){el.innerHTML='<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">'+esc(EXAMPLE_REVIEW.nombre)+'</b><small style="color:var(--mut);margin-left:8px">'+esc(EXAMPLE_REVIEW.servidor)+'</small></div><span style="color:#f5a623;font-size:16px">★★★★★</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5;font-style:italic">'+esc(EXAMPLE_REVIEW.mensaje)+'</p></div>';return}
+const all=[EXAMPLE_REVIEW,...reviews];
+el.innerHTML=all.map(r=>{
 const stars='★'.repeat(r.rating)+'<span style="color:#444">'+'★'.repeat(5-r.rating)+'</span>';
-return '<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">'+esc(r.nombre)+'</b><small style="color:var(--mut);margin-left:8px">'+esc(r.servidor)+'</small></div><span style="color:#f5a623;font-size:16px">'+stars+'</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5">'+esc(r.mensaje)+'</p></div>'
+const date=r.date?'<small style="color:var(--mut);margin-left:8px;font-size:12px">'+esc(r.date)+'</small>':'';
+return '<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">'+esc(r.nombre)+'</b><small style="color:var(--mut);margin-left:8px">'+esc(r.servidor)+'</small>'+date+'</div><span style="color:#f5a623;font-size:16px">'+stars+'</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5">'+esc(r.mensaje)+'</p></div>'
 }).join('');
 }
-
-function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
-
 document.getElementById('reviewForm').addEventListener('submit',async function(e){
 e.preventDefault();
 const btn=document.getElementById('submitBtn');
-btn.textContent='Copiando...';btn.disabled=true;
-
+btn.textContent='Guardando...';btn.disabled=true;
 const fd=new FormData(this);
+let servidor=fd.get('servidor');
+if(servidor==='Otro')servidor=fd.get('otroServidor')||'Otro';
 const rating=parseInt(fd.get('rating'));
+const review={nombre:fd.get('nombre'),servidor:servidor,rating:rating,mensaje:fd.get('mensaje'),date:new Date().toLocaleDateString('es-CO')};
+const reviews=getReviews();
+reviews.push(review);
+saveReviews(reviews);
+renderReviews();
 const stars='⭐'.repeat(rating);
-const txt=stars+' '+fd.get('nombre')+' ('+fd.get('servidor')+'): '+fd.get('mensaje');
-
-try{
-await navigator.clipboard.writeText(txt);
-document.getElementById('reviewMsg').innerHTML='✅ Reseña copiada. Pégala en <a href="https://discord.com/users/1307246359895740448" target="_blank" style="color:var(--blu);text-decoration:underline">mi Discord</a> para que la publique.';
+const txt=stars+' '+review.nombre+' ('+review.servidor+'): '+review.mensaje;
+try{await navigator.clipboard.writeText(txt);document.getElementById('reviewMsg').innerHTML='✅ Reseña publicada y copiada. Pégala en <a href="https://discord.com/users/1307246359895740448" target="_blank" style="color:var(--blue);text-decoration:underline">mi Discord</a> si quieres.'}catch(er){document.getElementById('reviewMsg').textContent='✅ Reseña publicada. Copia manual: '+txt}
 document.getElementById('reviewMsg').style.color='var(--grn)';
 document.getElementById('reviewMsg').style.display='block';
-this.reset();val.value='5';updateStars();
-}catch(er){
-document.getElementById('reviewMsg').textContent='⚠️ Copia manual: '+txt;
-document.getElementById('reviewMsg').style.color='var(--red)';
-document.getElementById('reviewMsg').style.display='block';
-}
+this.reset();setRating(5);
 btn.textContent='Publicar reseña';btn.disabled=false;
 setTimeout(()=>{document.getElementById('reviewMsg').style.display='none'},8000);
 });
-loadReviews();
-})();
-</script>
-
-<script>
-(function(){
-const stars=document.querySelectorAll('#stars span');
-const val=document.getElementById('ratingVal');
-stars.forEach(s=>{s.addEventListener('click',()=>{val.value=s.dataset.v;updateStars()});s.addEventListener('mouseenter',()=>{highlightStars(s.dataset.v)});s.addEventListener('mouseleave',()=>{highlightStars(val.value)})});
-function highlightStars(n){stars.forEach(x=>x.style.color=x.dataset.v<=n?'#f5a623':'#555')}
-function updateStars(){highlightStars(val.value)}
-updateStars();
-
-document.getElementById('reviewForm').addEventListener('submit',async function(e){
-e.preventDefault();
-const fd=new FormData(this);
-const nombre=fd.get('nombre');const servidor=fd.get('servidor');const rating=fd.get('rating');const mensaje=fd.get('mensaje');
-const txt='⭐'.repeat(parseInt(rating))+` ${nombre} (${servidor}): ${mensaje}`;
-try{await navigator.clipboard.writeText(txt);document.getElementById('reviewMsg').textContent='✅ Reseña copiada. Pégala en Discord: scainetprrmn';document.getElementById('reviewMsg').style.display='block';this.reset();val.value='5';updateStars();setTimeout(()=>{document.getElementById('reviewMsg').style.display='none'},5000)}catch(er){document.getElementById('reviewMsg').textContent='⚠️ Copia manual: '+txt;document.getElementById('reviewMsg').style.display='block'}
-});
-})();
-</script>
-
-<script>
-(function(){
-const stars=document.querySelectorAll('#stars span');
-const val=document.getElementById('ratingVal');
-stars.forEach(s=>{s.addEventListener('click',()=>{val.value=s.dataset.v;stars.forEach(x=>x.style.color=x.dataset.v<=val.value?'#f5a623':'#555')});s.addEventListener('mouseenter',()=>{stars.forEach(x=>x.style.color=x.dataset.v<=s.dataset.v?'#f5a623':'#555')});s.addEventListener('mouseleave',()=>{stars.forEach(x=>x.style.color=x.dataset.v<=val.value?'#f5a623':'#555')})});
-stars.forEach(x=>x.style.color='5');
-
-document.getElementById('reviewForm').addEventListener('submit',async function(e){
-e.preventDefault();
-const fd=new FormData(this);
-const nombre=fd.get('nombre');const servidor=fd.get('servidor');const rating=fd.get('rating');const mensaje=fd.get('mensaje');
-const txt='⭐'.repeat(parseInt(rating))+` ${nombre} (${servidor}): ${mensaje}`;
-try{await navigator.clipboard.writeText(txt);document.getElementById('reviewMsg').textContent='✅ Reseña copiada. Pégala en mi Discord: scainetprrmn';document.getElementById('reviewMsg').style.display='block';this.reset();stars.forEach(x=>x.style.color='#555');val.value='5'}catch(er){document.getElementById('reviewMsg').textContent='⚠️ Copia manual: '+txt;document.getElementById('reviewMsg').style.display='block'}
-});
+renderReviews();
 })();
 </script>
 
