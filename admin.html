@@ -73,7 +73,7 @@ const REPO='scainetprr/Portafolio', FILE='index.html';
 firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth(), db=firebase.firestore();
 function esc(s){const d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML}
-window.fbLogin=function(p){const pr=p==='github'?new firebase.auth.GithubAuthProvider():new firebase.auth.GoogleAuthProvider();auth.signInWithPopup(pr).catch(function(e){const m=document.getElementById('loginMsg');m.textContent='No se pudo iniciar sesión ('+(e.code||'error')+')';m.style.display='block';m.style.color='var(--red)'})};
+window.fbLogin=function(p){const pr=p==='github'?new firebase.auth.GithubAuthProvider():new firebase.auth.GoogleAuthProvider();if(p==='github'){try{pr.addScope('read:user')}catch(se){}}auth.signInWithPopup(pr).catch(function(e){const m=document.getElementById('loginMsg');function say(t,c){m.textContent=t;m.style.display='block';m.style.color=c}if(e.code==='auth/popup-blocked'){say('Ventana bloqueada. Abriendo login aqui mismo...');auth.signInWithRedirect(pr);return}if(e.code==='auth/account-exists-with-different-credential'){say('Ese correo ya usa otro metodo. Entra con el primero que usaste.','var(--red)');return}say('Error: '+(e.code?e.code:'error'),'var(--red)')})};auth.getRedirectResult().catch(function(){})
 window.fbLogout=function(){auth.signOut()};
 auth.onAuthStateChanged(function(u){
 const login=document.getElementById('loginBox'),panel=document.getElementById('panel'),den=document.getElementById('denied');
