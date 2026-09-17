@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin · scainetprr</title>
+<style>
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;line-height:1.6;padding:30px 18px}
+.wrap{max-width:900px;margin:auto}
+h1{font-size:30px;margin-bottom:4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:16px}
+.btn{display:inline-block;padding:10px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff;margin:4px 6px 4px 0}
+.btn.p{background:var(--red);border-color:var(--red)}
+.btn.g{background:#fff;color:#111;border-color:#fff}
+.btn.d{background:transparent;color:#ff6b7a;border-color:#ff6b7a}
+.btn:disabled{opacity:.5;cursor:wait}
+input[type=text],input[type=password],textarea,select{width:100%;padding:10px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-size:14px;outline:none;box-sizing:border-box;font-family:inherit}
+textarea{min-height:90px;resize:vertical}
+label{color:var(--mut);font-size:12px;display:block;margin:12px 0 5px}
+.tabs{margin:18px 0}
+.tabs .btn.on{background:var(--red);border-color:var(--red)}
+.rev{border-left:3px solid var(--red);padding:14px 16px;margin:10px 0;background:#0d1222;border-radius:0 10px 10px 0}
+.msg{font-size:13px;margin-top:10px;display:none}
+small.hint{color:var(--mut);font-size:12px}
+.field{margin-bottom:6px}
+.stars{color:#f5a623}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Panel Admin</h1>
+<p class="sub">Gestiona tu portafolio sin tocar GitHub. Solo visible para tu cuenta.</p>
+<div class="card" id="loginBox">
+<h3 style="margin-bottom:10px">Iniciar sesión</h3>
+<button class="btn g" onclick="fbLogin('google')">Google</button>
+<button class="btn" onclick="fbLogin('github')">GitHub</button>
+<p class="msg" id="loginMsg"></p>
+</div>
+<div id="denied" class="card" style="display:none;border-color:var(--red)">
+<b>Acceso denegado.</b><p style="color:var(--mut);font-size:14px">Esta cuenta no es administradora.</p>
+<button class="btn" onclick="fbLogout()">Salir</button>
+</div>
+<div id="panel" style="display:none">
+<div class="card"><span style="font-size:14px">Conectado como <b id="adminName"></b></span>
+<button class="btn" style="margin-left:10px" onclick="fbLogout()">Salir</button>
+<a class="btn" href="index.html" style="text-decoration:none">Ver sitio</a></div>
+<div class="card"><h3>Token de GitHub</h3>
+<p><small class="hint">Se guarda SOLO en este navegador (localStorage). Necesita permiso Contents: lectura y escritura en el repo. <a href="https://github.com/settings/tokens" target="_blank" rel="noopener" style="color:var(--blue)">Crear token</a></small></p>
+<label>Personal Access Token</label>
+<input type="password" id="patInput" placeholder="github_pat_...">
+<div style="margin-top:10px"><button class="btn p" onclick="savePat()">Guardar token</button><button class="btn d" onclick="forgetPat()">Olvidar</button><span id="patState" style="font-size:13px;color:var(--mut);margin-left:8px"></span></div>
+</div>
+<div class="tabs"><button class="btn on" id="tabBtnR" onclick="showTab('R')">Reseñas</button><button class="btn" id="tabBtnT" onclick="showTab('T')">Textos del sitio</button></div>
+<div class="card" id="tabR"><h3>Reseñas de Firestore</h3><div id="adminReviews"><p style="color:var(--mut)">Cargando...</p></div></div>
+<div class="card" id="tabT" style="display:none"><h3>Textos del sitio</h3>
+<p><small class="hint">Edita y pulsa Guardar: se crea un commit en GitHub (tarda 1-2 min en verse).</small></p>
+<div id="fieldsBox"><p style="color:var(--mut)">Pulsa "Cargar textos" primero.</p></div>
+<div style="margin-top:14px"><button class="btn" onclick="loadTexts()">Cargar textos</button><button class="btn p" id="saveBtn" onclick="saveTexts()">Guardar cambios</button><button class="btn" onclick="backupFile()">Descargar respaldo</button></div>
+<p class="msg" id="saveMsg"></p>
+</div>
+</div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>const firebaseConfig={apiKey:'AIzaSyB88X1Rx5yqvdEM2jKnDDVBalSzw7zkXuc',authDomain:'portafolio-e152c.firebaseapp.com',projectId:'portafolio-e152c'};
+const ADMIN_UIDS=['4tBepPtcsDWfYbmo0X8y4V2bdAo2'];
+const REPO='scainetprr/Portafolio', FILE='index.html';
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth(), db=firebase.firestore();
+function esc(s){const d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML}
+window.fbLogin=function(p){const pr=p==='github'?new firebase.auth.GithubAuthProvider():new firebase.auth.GoogleAuthProvider();auth.signInWithPopup(pr).catch(function(e){const m=document.getElementById('loginMsg');m.textContent='No se pudo iniciar sesión ('+(e.code||'error')+')';m.style.display='block';m.style.color='var(--red)'})};
+window.fbLogout=function(){auth.signOut()};
+auth.onAuthStateChanged(function(u){
+const login=document.getElementById('loginBox'),panel=document.getElementById('panel'),den=document.getElementById('denied');
+if(u&&ADMIN_UIDS.indexOf(u.uid)>=0){login.style.display='none';den.style.display='none';panel.style.display='';document.getElementById('adminName').textContent=u.displayName||u.email||u.uid;paintPat();loadAdminReviews()}
+else if(u){login.style.display='none';panel.style.display='none';den.style.display=''}
+else{login.style.display='';panel.style.display='none';den.style.display='none'}
+});
+function getPat(){return localStorage.getItem('admin_pat')||''}
+function paintPat(){document.getElementById('patInput').value=getPat();document.getElementById('patState').textContent=getPat()?'token guardado':'sin token'}
+window.savePat=function(){const v=document.getElementById('patInput').value.trim();if(v)localStorage.setItem('admin_pat',v);paintPat()};
+window.forgetPat=function(){localStorage.removeItem('admin_pat');paintPat()};
+window.showTab=function(t){document.getElementById('tabR').style.display=t==='R'?'':'none';document.getElementById('tabT').style.display=t==='T'?'':'none';document.getElementById('tabBtnR').classList.toggle('on',t==='R');document.getElementById('tabBtnT').classList.toggle('on',t==='T')};
+async function loadAdminReviews(){const box=document.getElementById('adminReviews');try{const snap=await db.collection('reviews').orderBy('createdAt','desc').limit(100).get();if(snap.empty){box.innerHTML='<p style="color:var(--mut)">Sin reseñas.</p>';return}let h='';snap.forEach(function(doc){const r=doc.data();h+='<div class="rev"><b style="color:#fff">'+esc(r.nombre)+'</b> <small style="color:var(--mut)">'+esc(r.servidor)+' · '+esc(r.date||'')+' · <span class="stars">'+'★'.repeat(r.rating||5)+'</span></small><p style="font-size:14px;color:#c0c8dc;margin:6px 0">'+esc(r.mensaje)+'</p><button class="btn d" onclick="delReview(\''+doc.id+'\')">Eliminar</button></div>'});box.innerHTML=h}catch(e){box.innerHTML='<p style="color:var(--red)">Error cargando reseñas.</p>'}}
+window.delReview=function(id){if(!confirm('¿Eliminar esta reseña?'))return;db.collection('reviews').doc(id).delete().then(loadAdminReviews).catch(function(){alert('No se pudo eliminar')})};const FIELDS=[
+{id:'f_heroKicker',label:'Hero · kicker superior',type:'text'},
+{id:'f_heroName',label:'Hero · nombre grande',type:'text'},
+{id:'f_heroMini',label:'Hero · línea de datos',type:'text'},
+{id:'f_about1',label:'Sobre mí · párrafo 1',type:'area'},
+{id:'f_about2',label:'Sobre mí · párrafo 2',type:'area'},
+{id:'f_about3',label:'Sobre mí · párrafo 3',type:'area'},
+{id:'f_stat1n',label:'Stat 1 · número',type:'text'},
+{id:'f_stat1l',label:'Stat 1 · etiqueta',type:'text'},
+{id:'f_stat2n',label:'Stat 2 · número',type:'text'},
+{id:'f_stat2l',label:'Stat 2 · etiqueta',type:'text'},
+{id:'f_stat3n',label:'Stat 3 · número',type:'text'},
+{id:'f_stat3l',label:'Stat 3 · etiqueta',type:'text'},
+{id:'f_ctaTitle',label:'CTA · título',type:'text'},
+{id:'f_ctaText',label:'CTA · texto',type:'area'},
+{id:'f_ctaNick',label:'CTA · nick Discord',type:'text'},
+{id:'f_discount',label:'Descuento · código (servicios)',type:'text'},
+{id:'f_discount2',label:'Descuento · código (promo)',type:'text'},
+{id:'cpD',label:'Contacto · Discord (texto)',type:'text'},
+{id:'cpM',label:'Contacto · Email (texto)',type:'text'}];
+const H2TITLES=['Sobre mí','Virtudes y cualidades','Mi experiencia Staff','Proyectos y evidencia','Lo que puedo aportar','Servicios y precios','Skills y plugins','Mis proyectos y repos','Plugins que domino','Configs que he realizado','Mi enfoque','Cases Studies','Comunidades','Reseñas','Contacto','Hablemos sobre tu proyecto.'];
+let pageText='', pageSha='';
+function b64decode(u8){let s=u8.replace(/\n/g,'');const bin=atob(s);const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return new TextDecoder('utf-8').decode(bytes)}
+function b64encode(str){const bytes=new TextEncoder().encode(str);let bin='';bytes.forEach(function(b){bin+=String.fromCharCode(b)});return btoa(bin)}
+async function ghGet(pat){const r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{headers:{Authorization:'token '+pat,Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error('GitHub '+r.status);const j=await r.json();return {sha:j.sha,text:b64decode(j.content)}}
+function getById(html,id){const m=html.match(new RegExp('<([a-zA-Z0-9]+)[^>]*\\bid="'+id+'"[^>]*>'));if(!m)return null;const tag=m[1],start=m.index+m[0].length;const re=new RegExp('</?'+tag+'\\b[^>]*>','g');re.lastIndex=start;let depth=1,mt;while((mt=re.exec(html))){if(mt[0][1]==='/')depth--;else if(!/\/>$/.test(mt[0]))depth++;if(depth===0)return mt.input.slice(start,mt.index)}return null}
+function setById(html,id,val){const m=html.match(new RegExp('<([a-zA-Z0-9]+)[^>]*\\bid="'+id+'"[^>]*>'));if(!m)return null;const tag=m[1],start=m.index+m[0].length;const re=new RegExp('</?'+tag+'\\b[^>]*>','g');re.lastIndex=start;let depth=1,mt;while((mt=re.exec(html))){if(mt[0][1]==='/')depth--;else if(!/\/>$/.test(mt[0]))depth++;if(depth===0)return html.slice(0,start)+val+html.slice(mt.index)}return null}
+window.loadTexts=async function(){const pat=getPat();const msg=document.getElementById('saveMsg');if(!pat){msg.textContent='Guarda tu token de GitHub primero.';msg.style.display='block';msg.style.color='var(--red)';return}msg.textContent='Cargando...';msg.style.display='block';msg.style.color='var(--mut)';try{const g=await ghGet(pat);pageText=g.text;pageSha=g.sha;let h='<h4 style="margin:6px 0">Títulos de sección</h4>';H2TITLES.forEach(function(t,i){const cur=g.text.indexOf('<h2>'+t+'</h2>')>=0?t:'';h+='<label>Título · '+esc(t)+'</label><input type="text" data-h2="'+i+'" value="'+esc(cur)+'">'});h+='<h4 style="margin:16px 0 6px">Textos</h4>';FIELDS.forEach(function(f){const cur=getById(g.text,f.id)||'';if(f.type==='area')h+='<label>'+esc(f.label)+'</label><textarea data-fid="'+f.id+'">'+esc(cur)+'</textarea>';else h+='<label>'+esc(f.label)+'</label><input type="text" data-fid="'+f.id+'" value="'+esc(cur)+'">'});document.getElementById('fieldsBox').innerHTML=h;msg.textContent='Textos cargados. Edita y pulsa Guardar.';msg.style.color='var(--grn)'}catch(e){msg.textContent='Error: '+(e.message||e)+'. Revisa el token (permiso Contents).';msg.style.color='var(--red)'}};
+window.saveTexts=async function(){const pat=getPat();const msg=document.getElementById('saveMsg');if(!pat||!pageText){msg.textContent='Carga los textos primero.';msg.style.display='block';msg.style.color='var(--red)';return}if(!confirm('¿Guardar cambios en el sitio?'))return;msg.textContent='Guardando...';msg.style.display='block';msg.style.color='var(--mut)';try{let html=pageText,n=0;document.querySelectorAll('#fieldsBox [data-h2]').forEach(function(inp){const i=parseInt(inp.getAttribute('data-h2'));const oldT=H2TITLES[i],newT=inp.value;if(newT&&newT!==oldT&&html.indexOf('<h2>'+oldT+'</h2>')>=0){html=html.split('<h2>'+oldT+'</h2>').join('<h2>'+newT+'</h2>');H2TITLES[i]=newT;n++}});document.querySelectorAll('#fieldsBox [data-fid]').forEach(function(inp){const id=inp.getAttribute('data-fid');const nv=inp.value;const cur=getById(html,id);if(cur!==null&&cur!==nv){const nh=setById(html,id,nv);if(nh!==null){html=nh;n++}}});if(!n){msg.textContent='Sin cambios.';msg.style.color='var(--mut)';return}const body=JSON.stringify({message:'admin: actualizar textos ('+n+' cambios)',content:b64encode(html),sha:pageSha});const r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{method:'PUT',headers:{Authorization:'token '+pat,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:body});if(!r.ok)throw new Error('GitHub '+r.status);const j=await r.json();pageSha=j.content.sha;pageText=html;msg.innerHTML='✅ Guardado ('+n+' cambios). Se verá en 1-2 min. <a href="https://github.com/'+REPO+'/commit/'+j.commit.sha+'" target="_blank" rel="noopener" style="color:var(--blue)">Ver commit</a>';msg.style.color='var(--grn)'}catch(e){msg.textContent='Error: '+(e.message||e);msg.style.color='var(--red)'}};
+window.backupFile=function(){if(!pageText){alert('Carga los textos primero');return}const b=new Blob([pageText],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='index-respaldo.html';a.click()};
+</script>
+</body>
+</html>
