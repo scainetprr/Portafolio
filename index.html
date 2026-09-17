@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -493,12 +493,13 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 
 <div class="card" style="padding:24px;border:1px solid rgba(255,255,255,.08)">
 <h3 style="color:#fff;margin-bottom:16px;font-size:18px">✍️ Deja tu reseña</h3>
+<div id="authBox" style="margin-bottom:14px;padding:14px 16px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(0,0,0,.35)"><div id="authOut"><p style="color:#c0c8dc;font-size:13px;margin-bottom:10px">Para publicar una reseña debes iniciar sesión:</p><button type="button" onclick="fbLogin('google')" style="padding:10px 18px;margin-right:8px;background:#fff;color:#111;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Google</button><button type="button" onclick="fbLogin('github')" style="padding:10px 18px;background:#24292f;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">GitHub</button></div><div id="authIn" style="display:none"><span style="color:#c0c8dc;font-size:13px">Conectado como <b id="authName" style="color:#fff"></b> <small id="authUid" style="color:var(--mut)"></small></span> <button type="button" onclick="fbLogout()" style="margin-left:10px;padding:6px 14px;background:transparent;color:var(--mut);border:1px solid rgba(255,255,255,.2);border-radius:8px;font-size:12px;cursor:pointer">Salir</button></div></div>
 <form id="reviewForm">
 <table style="width:100%;border-collapse:separate;border-spacing:0 12px">
 <tr>
 <td style="width:50%;padding-right:10px">
 <label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Tu nombre</label>
-<input type="text" name="nombre" required maxlength="30" placeholder="Ej: L3xz" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
+<input type="text" name="nombre" id="nombreInput" required maxlength="30" readonly placeholder="Ej: L3xz" style="width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box">
 </td>
 <td style="width:50%;padding-left:10px">
 <label style="color:var(--mut);font-size:12px;display:block;margin-bottom:6px">Servidor</label>
@@ -547,6 +548,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 </tr>
 </table>
 </form>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
 function setRating(n){
 document.getElementById('ratingVal').value=n;
@@ -567,40 +569,48 @@ if(sel!=='Otro')document.querySelector('[name="otroServidor"]').value='';
 }
 setRating(5);
 (function(){
-/* REVIEWS DB: JSONBin.io - rotate keys in dashboard > API Keys if exposed. Reads+writes use limited key below. */const BIN_ID='6aab57b4ffd5d1605310628d';
-const API_KEY='$2a$10$3GIhCw53N4Ba9bvYBhPNveTOXKm9AEDja03LZShZwyFDFv2JlOqEW';
-const API_URL='https://api.jsonbin.io/v3/b/'+BIN_ID;
+/* REVIEWS DB: Firebase Firestore (proyecto portafolio-e152c). Para activar borrado admin agrega tu UID en ADMIN_UIDS. */
+const firebaseConfig={apiKey:'AIzaSyB88X1Rx5yqvdEM2jKnDDVBalSzw7zkXuc',authDomain:'portafolio-e152c.firebaseapp.com',projectId:'portafolio-e152c'};
+const ADMIN_UIDS=[];
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth(), db=firebase.firestore(), reviewsCol=db.collection('reviews');
 const EXAMPLE_REVIEW={nombre:'Ejemplo',servidor:'HyperHard',rating:5,mensaje:'Esta es una reseña de ejemplo. Las reseñas reales aparecerán aquí cuando los jugadores envíen las suyas.',example:true};
-function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
-async function fetchReviews(){const r=await fetch(API_URL+'/latest',{headers:{'X-Access-Key':API_KEY}});if(!r.ok)throw new Error('read');const d=await r.json();return (d.record&&d.record.reviews)||[]}
-async function pushReview(rev){const list=await fetchReviews();list.push(rev);const r=await fetch(API_URL,{method:'PUT',headers:{'Content-Type':'application/json','X-Access-Key':API_KEY},body:JSON.stringify({reviews:list})});if(!r.ok)throw new Error('write');return list}
-function reviewCard(r){const stars='★'.repeat(r.rating)+'<span style="color:#444">'+'★'.repeat(5-r.rating)+'</span>';const date=r.date?'<small style="color:var(--mut);margin-left:8px;font-size:12px">'+esc(r.date)+'</small>':'';return '<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">'+esc(r.nombre)+'</b><small style="color:var(--mut);margin-left:8px">'+esc(r.servidor)+'</small>'+date+'</div><span style="color:#f5a623;font-size:16px">'+stars+'</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5">'+esc(r.mensaje)+'</p></div>'}
-function renderReviews(reviews){const el=document.getElementById('reviewsList');const all=[EXAMPLE_REVIEW,...reviews];el.innerHTML=all.map(reviewCard).join('')}
-async function loadReviews(){const el=document.getElementById('reviewsList');try{const reviews=await fetchReviews();renderReviews(reviews)}catch(e){el.innerHTML='<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">Ejemplo</b><small style="color:var(--mut);margin-left:8px">HyperHard</small></div><span style="color:#f5a623;font-size:16px">★★★★★</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5;font-style:italic">No se pudieron cargar las reseñas. Revisa tu conexión e intenta de nuevo.</p></div>'}}
+function esc(s){const d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML}
+let IS_ADMIN=false;
+function showMsg(html,color){const m=document.getElementById('reviewMsg');m.innerHTML=html;m.style.color=color||'var(--grn)';m.style.display='block';clearTimeout(m._t);m._t=setTimeout(()=>{m.style.display='none'},8000)}
+function reviewCard(id,r){const stars='★'.repeat(r.rating)+'<span style="color:#444">'+'★'.repeat(5-r.rating)+'</span>';const date=r.date?'<small style="color:var(--mut);margin-left:8px;font-size:12px">'+esc(r.date)+'</small>':'';const via=r.provider?'<small style="color:var(--mut);margin-left:8px;font-size:11px">via '+esc(r.provider)+'</small>':'';const del=(IS_ADMIN&&id)?'<button type="button" onclick="fbDel(\''+id+'\')" style="margin-left:10px;padding:4px 12px;background:transparent;color:#ff6b7a;border:1px solid #ff6b7a;border-radius:6px;font-size:12px;cursor:pointer">Eliminar</button>':'';return '<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">'+esc(r.nombre)+'</b><small style="color:var(--mut);margin-left:8px">'+esc(r.servidor)+'</small>'+date+via+del+'</div><span style="color:#f5a623;font-size:16px">'+stars+'</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5">'+esc(r.mensaje)+'</p></div>'}
+function renderReviews(list){const el=document.getElementById('reviewsList');const all=[EXAMPLE_REVIEW].concat(list);el.innerHTML=all.map(function(x){return reviewCard(x.id,x.r)}).join('')}
+async function loadReviews(){const el=document.getElementById('reviewsList');try{const snap=await reviewsCol.orderBy('createdAt','desc').limit(50).get();const list=[];snap.forEach(function(doc){const d=doc.data();list.push({id:doc.id,r:{nombre:d.nombre,servidor:d.servidor,rating:d.rating,mensaje:d.mensaje,date:d.date,provider:d.provider}})});renderReviews(list)}catch(e){el.innerHTML='<div class="card" style="padding:20px;border-left:3px solid var(--red)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><b style="color:#fff;font-size:15px">Ejemplo</b><small style="color:var(--mut);margin-left:8px">HyperHard</small></div><span style="color:#f5a623;font-size:16px">★★★★★</span></div><p style="color:#c0c8dc;font-size:14px;line-height:1.5;font-style:italic">No se pudieron cargar las reseñas. Revisa tu conexión e intenta de nuevo.</p></div>'}}
+function refreshAuthUI(u){const out=document.getElementById('authOut'),inn=document.getElementById('authIn'),inp=document.getElementById('nombreInput'),btn=document.getElementById('submitBtn');if(u){const nm=u.displayName||(u.email?u.email.split('@')[0]:'Usuario');out.style.display='none';inn.style.display='';document.getElementById('authName').textContent=nm;document.getElementById('authUid').textContent='UID: '+u.uid;inp.value=nm;btn.disabled=false;IS_ADMIN=ADMIN_UIDS.indexOf(u.uid)>=0;loadReviews()}else{out.style.display='';inn.style.display='none';inp.value='';btn.disabled=false;IS_ADMIN=false}}
+auth.onAuthStateChanged(refreshAuthUI);
+window.fbLogin=function(p){const pr=p==='github'?new firebase.auth.GithubAuthProvider():new firebase.auth.GoogleAuthProvider();auth.signInWithPopup(pr).catch(function(e){showMsg('No se pudo iniciar sesión ('+(e.code||'error')+'). Revisa que el proveedor esté activo en Firebase.','var(--red)')})};
+window.fbLogout=function(){auth.signOut()};
+window.fbDel=function(id){if(!IS_ADMIN)return;if(!confirm('¿Eliminar esta reseña?'))return;reviewsCol.doc(id).delete().then(loadReviews).catch(function(){showMsg('No se pudo eliminar.','var(--red)')})};
 document.getElementById('reviewForm').addEventListener('submit',async function(e){
 e.preventDefault();
+const u=auth.currentUser;
+if(!u){showMsg('Debes iniciar sesión con Google o GitHub para publicar.','var(--red)');return}
 const btn=document.getElementById('submitBtn');
 btn.textContent='Publicando...';btn.disabled=true;
 const fd=new FormData(this);
+if(fd.get('website')){return}
 let servidor=fd.get('servidor');
 if(servidor==='Otro')servidor=fd.get('otroServidor')||'Otro';
-const rating=parseInt(fd.get('rating'));
-const review={nombre:String(fd.get('nombre')).trim(),servidor:servidor,rating:rating,mensaje:String(fd.get('mensaje')).trim(),date:new Date().toLocaleDateString('es-CO')};
+const rating=Math.min(5,Math.max(1,parseInt(fd.get('rating'))||5));
+const prov=(u.providerData&&u.providerData[0]&&u.providerData[0].providerId)||'';
+const review={nombre:String(u.displayName||(u.email?u.email.split('@')[0]:'Usuario')).slice(0,30),servidor:String(servidor).slice(0,40),rating:rating,mensaje:String(fd.get('mensaje')).trim().slice(0,500),date:new Date().toLocaleDateString('es-CO'),uid:u.uid,provider:prov.indexOf('github')>=0?'GitHub':'Google',createdAt:firebase.firestore.FieldValue.serverTimestamp()};
 try{
-const list=await pushReview(review);
-renderReviews(list);
+await reviewsCol.add(review);
+loadReviews();
 const stars='⭐'.repeat(rating);
 const txt=stars+' '+review.nombre+' ('+review.servidor+'): '+review.mensaje;
-try{await navigator.clipboard.writeText(txt);document.getElementById('reviewMsg').innerHTML='✅ Reseña publicada para todos. Copiada al portapapeles por si quieres compartirla en <a href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">mi Discord</a>.'}catch(ce){document.getElementById('reviewMsg').textContent='✅ Reseña publicada para todos.'}
-document.getElementById('reviewMsg').style.color='var(--grn)';
+try{await navigator.clipboard.writeText(txt);showMsg('✅ Reseña publicada para todos. Copiada por si quieres compartirla en <a href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">mi Discord</a>.')}catch(ce){showMsg('✅ Reseña publicada para todos.')}
 this.reset();setRating(5);
+const uu=auth.currentUser;if(uu){document.getElementById('nombreInput').value=uu.displayName||(uu.email?uu.email.split('@')[0]:'Usuario')}
 }catch(err){
-document.getElementById('reviewMsg').textContent='⚠️ No se pudo publicar. Revisa tu conexión e intenta de nuevo.';
-document.getElementById('reviewMsg').style.color='var(--red)';
+showMsg('⚠️ No se pudo publicar. Revisa tu conexión e intenta de nuevo.','var(--red)');
 }
-document.getElementById('reviewMsg').style.display='block';
 btn.textContent='Publicar reseña';btn.disabled=false;
-setTimeout(()=>{document.getElementById('reviewMsg').style.display='none'},8000);
 });
 loadReviews();
 })();
