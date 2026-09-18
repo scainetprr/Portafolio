@@ -265,35 +265,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 </div><div class="grid" style="margin-top:14px"><div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/HyperHard/download.png');background-size:cover;background-position:center"><b>Admin</b><p style="color:var(--mut);font-size:14px">Baneos temporales y permanentes, sanciones graves con evidencia y confirmacion documentada antes de cada SS.</p></div><div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/2.png');background-size:cover;background-position:center"><b>Mod</b><p style="color:var(--mut);font-size:14px">Sanciones disciplinarias, faltas de respeto y baneos temporales a hackers, con escala progresiva y registro para apelaciones.</p></div><div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Skylith/download.png');background-size:cover;background-position:center"><b>Helper</b><p style="color:var(--mut);font-size:14px">Resolucion de dudas de mecanicas y asistencia tecnica a jugadores, con trato paciente y respuesta rapida.</p></div><div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/HyperHard/2.png');background-size:cover;background-position:center"><b>Support</b><p style="color:var(--mut);font-size:14px">Atencion rapida en Discord: triaje por urgencia, derivacion correcta y seguimiento hasta el cierre informado.</p></div><div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/download.png');background-size:cover;background-position:center"><b>Founder</b><p style="color:var(--mut);font-size:14px">Creador de multiples servidores; esa experiencia de anos me da criterio de owner en presupuesto, staff y comunidad.</p></div><div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Skylith/6.png');background-size:cover;background-position:center"><b>Community Manager Jr</b><p style="color:var(--mut);font-size:14px">Mantengo comunidades activas con eventos, anuncios y dinamicas de participacion para retener jugadores.</p></div></div></div>
 </div>
 </section>
-<section id="servicios">
-<div class="shead"><span class="n">06</span><h2>Servicios y precios</h2></div>
-<p class="sub">Configuración de servidores Minecraft a precio justo.</p>
-<div class="grid">
-<div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/HyperHard/download.png');background-size:cover;background-position:center">
-<b style="color:var(--red);font-size:18px">⚙️ Configuración de servidores</b>
-<div style="margin:16px 0;display:grid;gap:8px">
-<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>Survival Custom</span><b style="color:var(--grn)">$14.99</b></div>
-<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>Survival OP</span><b style="color:var(--grn)">$22.50</b></div>
-<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>OneBlock / SkyBlock</span><b style="color:var(--grn)">$15.00</b></div>
-</div>
-<p style="color:var(--mut);font-size:13px">Incluye: plugins, rangos, permisos, menus, optimización y testing.</p>
-</div>
-<div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Skylith/6.png');background-size:cover;background-position:center">
-<b style="color:var(--red);font-size:18px">🌐 Networks</b>
-<div style="margin:16px 0;display:grid;gap:8px">
-<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>Lobby + Proxy + 1 modalidad</span><b style="color:var(--grn)">$20.00</b></div>
-<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>Cada modalidad extra</span><b style="color:var(--grn)">$10.00</b></div>
-</div>
-<p style="color:var(--mut);font-size:13px">(Sin importar que tipo de modalidad) · Promoción temporal</p>
-<p style="color:var(--mut);font-size:13px;margin-top:8px">Incluye: lobby, proxy, configuración completa de cada modalidad.</p>
-</div>
-</div>
-<div class="card" style="margin-top:14px;text-align:center;background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/2.png');background-size:cover;background-position:center">
-<p style="color:#c0c8dc;font-size:14px">✦ Diagnóstico GRATIS 30 min · 15% en primera config · 10% en configs recurrentes</p>
-<p style="color:var(--mut);font-size:13px;margin-top:8px">Código <b style="color:#fff" id="f_discount">50COL</b> en Discord</p>
-<a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener">Contactar por Discord ↗</a> <a class="btn o" href="mailto:scainetprrmn@gmail.com">Contactar por correo ↗</a>
-</div>
-</section>
+
 
 
 <section id="skills">
@@ -587,7 +559,7 @@ let servidor=fd.get('servidor');
 if(servidor==='Otro')servidor=fd.get('otroServidor')||'Otro';
 const rating=Math.min(5,Math.max(1,parseInt(fd.get('rating'))||5));
 var sprov='';try{sprov=sessionStorage.getItem('prov')||''}catch(se){}const prov=sprov?sprov:(u.providerData&&u.providerData[0]&&u.providerData[0].providerId)||'';
-const review={nombre:String(u.displayName||(u.email?u.email.split('@')[0]:'Usuario')).slice(0,30),servidor:String(servidor).slice(0,40),rating:rating,mensaje:String(fd.get('mensaje')).trim().slice(0,500),date:new Date().toLocaleDateString('es-CO'),uid:u.uid,provider:prov==='Discord'?'Discord':(prov.indexOf('github')>=0?'GitHub':'Google'),createdAt:firebase.firestore.FieldValue.serverTimestamp()};
+var nm=String(fd.get('nombre')).trim().slice(0,30);if(!nm){showMsg('Escribe el nombre que quieres mostrar.','var(--red)');btn.textContent='Publicar reseña';btn.disabled=false;return}const review={nombre:nm||(u.email?u.email.split('@')[0]:'Usuario')).slice(0,30),servidor:String(servidor).slice(0,40),rating:rating,mensaje:String(fd.get('mensaje')).trim().slice(0,500),date:new Date().toLocaleDateString('es-CO'),uid:u.uid,provider:prov==='Discord'?'Discord':(prov.indexOf('github')>=0?'GitHub':'Google'),createdAt:firebase.firestore.FieldValue.serverTimestamp()};
 try{
 await reviewsCol.add(review);
 loadReviews();
@@ -607,7 +579,35 @@ loadReviews();
 </div>
 </section>
 
-<section id="contacto">
+<section id="servicios">
+<div class="shead"><span class="n">06</span><h2>Servicios y precios</h2></div>
+<p class="sub">Configuración de servidores Minecraft a precio justo.</p>
+<div class="grid">
+<div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/HyperHard/download.png');background-size:cover;background-position:center">
+<b style="color:var(--red);font-size:18px">⚙️ Configuración de servidores</b>
+<div style="margin:16px 0;display:grid;gap:8px">
+<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>Survival Custom</span><b style="color:var(--grn)">$14.99</b></div>
+<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>Survival OP</span><b style="color:var(--grn)">$22.50</b></div>
+<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>OneBlock / SkyBlock</span><b style="color:var(--grn)">$15.00</b></div>
+</div>
+<p style="color:var(--mut);font-size:13px">Incluye: plugins, rangos, permisos, menus, optimización y testing.</p>
+</div>
+<div class="card" style="background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Skylith/6.png');background-size:cover;background-position:center">
+<b style="color:var(--red);font-size:18px">🌐 Networks</b>
+<div style="margin:16px 0;display:grid;gap:8px">
+<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>Lobby + Proxy + 1 modalidad</span><b style="color:var(--grn)">$20.00</b></div>
+<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0"><span>Cada modalidad extra</span><b style="color:var(--grn)">$10.00</b></div>
+</div>
+<p style="color:var(--mut);font-size:13px">(Sin importar que tipo de modalidad) · Promoción temporal</p>
+<p style="color:var(--mut);font-size:13px;margin-top:8px">Incluye: lobby, proxy, configuración completa de cada modalidad.</p>
+</div>
+</div>
+<div class="card" style="margin-top:14px;text-align:center;background-image:linear-gradient(135deg,rgba(17,20,28,.88),rgba(17,20,28,.94)),url('Imagenes/Hydra/2.png');background-size:cover;background-position:center">
+<p style="color:#c0c8dc;font-size:14px">✦ Diagnóstico GRATIS 30 min · 15% en primera config · 10% en configs recurrentes</p>
+<p style="color:var(--mut);font-size:13px;margin-top:8px">Código <b style="color:#fff" id="f_discount">50COL</b> en Discord</p>
+<a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener">Contactar por Discord ↗</a> <a class="btn o" href="mailto:scainetprrmn@gmail.com">Contactar por correo ↗</a>
+</div>
+</section><section id="contacto">
 <div class="shead"><span class="n">10</span><h2>Contacto</h2></div>
 <div class="grid">
 <div class="card"><h3>Discord (principal)</h3><p style="font-size:18px;font-weight:800">@scainetprrmn</p><p style="margin-top:6px"><small class="copy" id="cpD" style="font-family:Consolas,monospace;font-size:13px;color:var(--mut);background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer">ID: 1307246359895740448 (copiar)</small></p><a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener">Abrir Discord ↗</a></div>
