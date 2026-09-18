@@ -27,7 +27,7 @@ select,input[type=text]{width:100%;padding:11px 14px;background:rgba(0,0,0,.4);b
 .chk input{width:18px;height:18px;margin-top:3px;accent-color:var(--red)}
 .mut{color:var(--mut);font-size:13px}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
-</style>
+select{transition:border-color .25s,box-shadow .25s}select:hover{border-color:#3a4560}select:focus{border-color:var(--red);box-shadow:0 0 0 3px #e11d2e33,0 0 18px #e11d2e44;outline:none}select option{background:#131a30;color:#eef1f8;padding:10px}select option:checked{background:#e11d2e;color:#fff}</style>
 </head>
 <body>
 <div class="wrap">
@@ -86,7 +86,7 @@ publi:[["Mute 1 h + borrar","Mute 24 h","Ban 7 días"],["Mute 24 h","Ban 7 días
 evasion:[["Ban 14 días (cuenta + original)","Ban 30 días","Ban permanente + IP"],["Ban 30 días","Ban permanente + IP","Ban permanente + IP"],["Ban permanente + IP","Ban permanente + IP","Ban permanente + IP"]],
 abuso:[["Warn + retirar items","Ban 7 días + wipe","Ban 30 días"],["Ban 7 días + wipe","Ban 30 días","Ban permanente"],["Ban 30 días","Ban permanente","Ban permanente + IP"]]};
 function calc(){var f=document.getElementById('falta').value,g=parseInt(document.getElementById('grav').value),r=parseInt(document.getElementById('rei').value);var s=TABLA[f][g][r];var box=document.getElementById('outCalc');box.style.display='';box.innerHTML='Sanción sugerida:<br><b class="big" style="color:var(--red)">'+s+'</b><br><span class="mut">Registra siempre: jugador, falta, evidencia y staff a cargo.</span>'}
-function genRep(){var u=document.getElementById('rUser').value.trim(),f=document.getElementById('rFalta').value.trim(),e=document.getElementById('rEv').value.trim(),s=document.getElementById('rStaff').value.trim()||'staff';if(!u||!f){alert('Completa jugador y falta');return}var tipo=document.getElementById('rTipo').value;var txt='PLANTILLA DE '+tipo+' | IGN: '+u+' | Razón: '+f+' | Pruebas: '+(e||'pendientes')+' | Staff: '+s;var box=document.getElementById('outRep');box.style.display='';box.textContent=txt;try{navigator.clipboard.writeText(txt)}catch(err){}}
+function genRep(){var u=document.getElementById('rUser').value.trim(),f=document.getElementById('rFalta').value.trim(),e=document.getElementById('rEv').value.trim(),s=document.getElementById('rStaff').value.trim()||'staff';if(!u||!f){alert('Completa jugador y falta');return}var tipo=document.getElementById('rTipo').value;var txt='📋 • PLANTILLA DE '+tipo+'\nIGN: '+u+'\nRazón: '+f+'\nPruebas: '+(e||'pendientes')+'\nStaff: '+s;var box=document.getElementById('outRep');box.style.display='';box.style.whiteSpace='pre-wrap';box.textContent=txt;try{navigator.clipboard.writeText(txt)}catch(err){}}
 document.querySelectorAll('.chk input').forEach(function(c){c.addEventListener('change',function(){var n=document.querySelectorAll('.chk input:checked').length;document.getElementById('ssCount').textContent=n+'/6 pasos'})});
 </script>
 </body>
