@@ -48,7 +48,22 @@ body{background:radial-gradient(900px 400px at 15% 0%,#2b7fff22,transparent 60%)
 <p class="mut">Pregunta lo que sea de Minecraft (en especial tradeos) y Boboldo te responde con IA gratuita.</p>
 <div id="aiOut" style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:14px;min-height:70px;font-size:14px;color:#c0c8dc;margin:10px 0">¿Sobre qué tradeo tienes duda?</div>
 <div style="display:flex;gap:8px"><input type="text" id="aiIn" placeholder="Ej: ¿cómo consigo Mending barato?" maxlength="200" style="flex:1;padding:11px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:14px;outline:none"><button class="btn p" id="bAi" style="padding:11px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--red);background:var(--red);color:#fff">Preguntar</button></div>
-<p class="mut" style="margin-top:6px">IA gratuita (Pollinations). Si falla, respondo con mi guía local.</p>
+<p class="mut" style="margin-top:6px">IA gratuita (Pollinations). Si falla, respondo con mi guía local.</p><div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="btn" id="bHear">🔊 Escuchar</button><button class="btn" id="bHrmm">Traducir al aldeano</button></div>
+<script>
+(function(){
+var lastAi='';
+var _box=document.getElementById('aiOut');
+function pickVoice(){try{var vs=window.speechSynthesis.getVoices();for(var i=0;i<vs.length;i++){if(vs[i].lang&&vs[i].lang.toLowerCase().indexOf('es')===0)return vs[i]}}catch(e){}return null}
+function speak(t,grave){try{var s=window.speechSynthesis;if(!s)return;s.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='es-ES';if(grave){u.pitch=0.2;u.rate=0.75}else{u.rate=1}u.voice=pickVoice();s.speak(u)}catch(e){}}
+function hrmmify(t){var words=t.split(/\s+/);var outs=['hrmm','hrm','hrrmm','mrrh','hmm'];var r=0;return words.map(function(w){if(/^[A-ZÁÉÍÓÚÑ0-9]/.test(w)&&w.length>3&&Math.random()<0.3)return w;r=(r*9301+49297)%233280;var pick=outs[Math.floor(r/233280*outs.length)];return (/[?.!,]$/.test(w))?pick+w.slice(-1):pick}).join(' ')}
+var origAsk=document.getElementById('bAi');
+var mo=new MutationObserver(function(){var t=_box.textContent;if(t&&t.indexOf('Boboldo está pensando')<0&&t.indexOf('¿Sobre qué')<0)lastAi=t});
+mo.observe(_box,{childList:true,characterData:true,subtree:true});
+document.getElementById('bHear').addEventListener('click',function(){var t=lastAi||_box.textContent;speak(t,true)});
+document.getElementById('bHrmm').addEventListener('click',function(){var t=lastAi||_box.textContent;var h=hrmmify(t);_box.innerHTML='<b>Hrmm:</b> '+h.replace(/</g,'&lt;');speak(h,true)});
+})();
+</script>
+
 </div>
 <script>
 var AI_SYS='Eres Boboldo, un aldeano de Minecraft experto en tradeos (Java 1.20+). Respondes en español, corto (máximo 60 palabras), con precios en esmeraldas cuando aplique. Si preguntan algo no relacionado a Minecraft, diles amablemente que solo sabes de tradeos y supervivencia.';
