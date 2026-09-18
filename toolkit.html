@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Staff Toolkit · scainetprr</title>
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+.wrap{max-width:760px;margin:auto}
+a{color:var(--blue)}
+.back{font-size:14px}
+h1{font-size:32px;margin:12px 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px}
+h3{margin-bottom:12px}
+label{color:var(--mut);font-size:12px;display:block;margin:10px 0 5px}
+select,input[type=text]{width:100%;padding:11px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box}
+.btn{padding:12px 22px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff;margin-top:12px}
+.btn.p{background:var(--red);border-color:var(--red)}
+.res{margin-top:14px;padding:16px;border-radius:10px;background:#0a0e1c;border:1px solid var(--line);font-size:15px}
+.res b.big{font-size:22px}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:8px 0;font-size:14px;color:#c0c8dc}
+.chk input{width:18px;height:18px;margin-top:3px;accent-color:var(--red)}
+.mut{color:var(--mut);font-size:13px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Volver al portafolio</a>
+<h1>Staff Toolkit</h1>
+<p class="sub">Calculadora de sanciones, generador de reportes y checklist de SS. Criterio estándar Survival OP / FullPvP.</p>
+<div class="card"><h3>Calculadora de sanciones</h3>
+<label>Falta</label>
+<select id="falta">
+<option value="hacks">Hacks / clientes ilegales</option>
+<option value="insultos">Insultos / toxicidad</option>
+<option value="spam">Spam / flood</option>
+<option value="grief">Grief / robo</option>
+<option value="publi">Publicidad de otros servers</option>
+<option value="evasion">Evasión de sanción (alt/cuenta nueva)</option>
+<option value="abuso">Abuso de bugs / dupes</option>
+</select>
+<label>Gravedad</label>
+<select id="grav"><option value="0">Leve</option><option value="1">Media</option><option value="2">Grave</option></select>
+<label>Reincidencia</label>
+<select id="rei"><option value="0">Primera vez</option><option value="1">Segunda vez</option><option value="2">Tercera o más</option></select>
+<button class="btn p" onclick="calc()">Calcular sanción</button>
+<div class="res" id="outCalc" style="display:none"></div>
+<p class="mut" style="margin-top:8px">Guía orientativa. El criterio final siempre lo pone el staff a cargo con evidencia.</p>
+</div>
+<div class="card"><h3>Generador de reporte (plantilla staff)</h3>
+<label>Tipo de plantilla</label>
+<select id="rTipo"><option value="MUTE">MUTE</option><option value="BAN">BAN</option><option value="KICK">KICK</option><option value="WARN">WARN</option></select>
+<label>IGN (nick exacto del jugador)</label><input type="text" id="rUser" placeholder="Nick exacto">
+<label>Razón</label><input type="text" id="rFalta" placeholder="Ej: insultos reiterados en chat">
+<label>Pruebas (claras y relacionadas con el motivo)</label><input type="text" id="rEv" placeholder="Ej: captura 21:04, video 0:32">
+<label>Tu nick (staff)</label><input type="text" id="rStaff" placeholder="Ej: scainetprr">
+<button class="btn p" onclick="genRep()">Generar y copiar</button>
+<div class="res" id="outRep" style="display:none"></div>
+<p class="mut" style="margin-top:8px">Recuerda: completa todos los apartados. El uso incorrecto o incompleto de la plantilla puede provocar que el reporte no sea tomado en cuenta.</p>
+</div>
+
+<div class="card"><h3>Checklist de SS (screenshare)</h3>
+<div class="chk"><input type="checkbox" id="c1"><label for="c1" style="margin:0">Congelar al jugador (/freeze) e informar el motivo con calma</label></div>
+<div class="chk"><input type="checkbox" id="c2"><label for="c2" style="margin:0">Pedir AnyDesk/Discord y apagar el cliente antes de revisar</label></div>
+<div class="chk"><input type="checkbox" id="c3"><label for="c3" style="margin:0">Revisar procesos, papelera, .minecraft/mods y accesos recientes</label></div>
+<div class="chk"><input type="checkbox" id="c4"><label for="c4" style="margin:0">Buscar strings de clientes (ghost clients, autoclick, macros)</label></div>
+<div class="chk"><input type="checkbox" id="c5"><label for="c5" style="margin:0">Documentar hallazgos con capturas antes de sancionar o liberar</label></div>
+<div class="chk"><input type="checkbox" id="c6"><label for="c6" style="margin:0">Si se desconecta = evasión: ban + registro de evidencia</label></div>
+<p class="mut" id="ssCount" style="margin-top:10px">0/6 pasos</p>
+</div>
+<footer>scainetprr · Staff Toolkit</footer>
+</div>
+<script>
+var TABLA={
+hacks:[["Kick + advertencia","Ban 7 días","Ban permanente"],["Ban 7 días","Ban 30 días","Ban permanente"],["Ban 30 días","Ban permanente","Ban permanente + IP"]],
+insultos:[["Mute 30 min","Mute 2 h","Mute 12 h"],["Mute 2 h","Mute 12 h","Mute 3 días"],["Mute 12 h","Mute 3 días","Mute 7 días"]],
+spam:[["Mute 15 min","Mute 1 h","Mute 6 h"],["Mute 1 h","Mute 6 h","Mute 24 h"],["Mute 6 h","Mute 24 h","Mute 3 días"]],
+grief:[["Devolución + warn","Ban 3 días + rollback","Ban 14 días"],["Ban 3 días + rollback","Ban 14 días","Ban 30 días"],["Ban 14 días","Ban 30 días","Ban permanente"]],
+publi:[["Mute 1 h + borrar","Mute 24 h","Ban 7 días"],["Mute 24 h","Ban 7 días","Ban 30 días"],["Ban 7 días","Ban 30 días","Ban permanente"]],
+evasion:[["Ban 14 días (cuenta + original)","Ban 30 días","Ban permanente + IP"],["Ban 30 días","Ban permanente + IP","Ban permanente + IP"],["Ban permanente + IP","Ban permanente + IP","Ban permanente + IP"]],
+abuso:[["Warn + retirar items","Ban 7 días + wipe","Ban 30 días"],["Ban 7 días + wipe","Ban 30 días","Ban permanente"],["Ban 30 días","Ban permanente","Ban permanente + IP"]]};
+function calc(){var f=document.getElementById('falta').value,g=parseInt(document.getElementById('grav').value),r=parseInt(document.getElementById('rei').value);var s=TABLA[f][g][r];var box=document.getElementById('outCalc');box.style.display='';box.innerHTML='Sanción sugerida:<br><b class="big" style="color:var(--red)">'+s+'</b><br><span class="mut">Registra siempre: jugador, falta, evidencia y staff a cargo.</span>'}
+function genRep(){var u=document.getElementById('rUser').value.trim(),f=document.getElementById('rFalta').value.trim(),e=document.getElementById('rEv').value.trim(),s=document.getElementById('rStaff').value.trim()||'staff';if(!u||!f){alert('Completa jugador y falta');return}var tipo=document.getElementById('rTipo').value;var txt='PLANTILLA DE '+tipo+' | IGN: '+u+' | Razón: '+f+' | Pruebas: '+(e||'pendientes')+' | Staff: '+s;var box=document.getElementById('outRep');box.style.display='';box.textContent=txt;try{navigator.clipboard.writeText(txt)}catch(err){}}
+document.querySelectorAll('.chk input').forEach(function(c){c.addEventListener('change',function(){var n=document.querySelectorAll('.chk input:checked').length;document.getElementById('ssCount').textContent=n+'/6 pasos'})});
+</script>
+</body>
+</html>
