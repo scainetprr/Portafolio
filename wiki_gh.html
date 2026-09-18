@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Wiki de Comandos · scainetprr</title>
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+.wrap{max-width:820px;margin:auto}
+a{color:var(--blue)}
+.back{font-size:14px}
+h1{font-size:32px;margin:12px 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+input[type=text]{width:100%;padding:13px 18px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:12px;color:#fff;font-size:16px;outline:none;margin-bottom:12px}
+.tags{margin-bottom:16px}
+.tags button{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 16px;margin:4px;cursor:pointer;font-size:13px}
+.tags button.on{background:var(--red);border-color:var(--red)}
+.cmd{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px}
+.cmd code{font-family:Consolas,monospace;font-size:15px;color:#fff;background:#0a0e1c;padding:3px 10px;border-radius:6px;cursor:pointer}
+.cmd .pl{font-size:11px;letter-spacing:1px;color:var(--red);font-weight:700}
+.cmd p{color:#c0c8dc;font-size:14px;margin:8px 0 4px}
+.cmd .pm{font-family:Consolas,monospace;font-size:12px;color:var(--mut)}
+.mut{color:var(--mut);font-size:13px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+body{background:radial-gradient(900px 400px at 15% 0%,#2b7fff22,transparent 60%),radial-gradient(900px 400px at 85% 0%,#e11d2e22,transparent 60%),var(--bg)}.card{transition:transform .3s,box-shadow .3s,border-color .3s}.card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}h1{text-shadow:0 0 30px #e11d2e44}.rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}.rv.vis{opacity:1;transform:none}#stars{position:fixed;inset:0;z-index:0;pointer-events:none}.wrap{position:relative;z-index:1}.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:0;opacity:.32;pointer-events:none}.o1{width:480px;height:480px;background:#e11d2e;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}.o2{width:420px;height:420px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 18s ease-in-out infinite alternate-reverse}@keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}.shead h2{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 18px #e11d2e44)}.card,.vcard,.exp,.statBig,.proj{box-shadow:0 12px 34px #00000088,inset 0 1px 0 #ffffff1f;border-color:#33406b}.wrap>h1{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px #e11d2e55)}.shead{border-bottom:1px solid #2b3a66}</style>
+</head>
+<body><canvas id="stars"></canvas><div class="orb o1"></div><div class="orb o2"></div>
+<script>(function(){var cv=document.getElementById('stars');if(!cv)return;var cx=cv.getContext('2d'),P=[];function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.4+.12,c:['#ffffff','#e11d2e','#2b7fff'][i%3]});(function anim(){cx.clearRect(0,0,cv.width,cv.height);for(var k=0;k<P.length;k++){var p=P[k];p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.65;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}cx.globalAlpha=1;requestAnimationFrame(anim)})();})();</script>
+
+<div class="wrap">
+<a class="back" href="index.html">← Volver al portafolio</a>
+<h1>Wiki de Comandos</h1>
+<p class="sub">Buscador de comandos Minecraft y Discord con permisos y ejemplos. Clic en un comando para copiarlo.</p>
+<input type="text" id="q" placeholder="Buscar comando, permiso o plugin... (ej: mute, lp, co)" oninput="draw()">
+<div class="tags" id="tags"></div>
+<div id="list"></div>
+<div class="card" style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:22px 0 10px"><h3 style="font-size:19px;margin-bottom:4px">Constructor de rangos LuckPerms</h3>
+<p class="mut">Define rangos con herencia y prefijos. Genera el script listo para pegar en consola.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px">
+<div><label class="mut" style="font-size:12px">Rango</label><input type="text" id="rkName" placeholder="ej: mod" style="width:100%;padding:10px 12px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-size:14px;outline:none"></div>
+<div><label class="mut" style="font-size:12px">Prefijo</label><input type="text" id="rkPrefix" placeholder="ej: &c[Mod]" style="width:100%;padding:10px 12px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-size:14px;outline:none"></div>
+<div><label class="mut" style="font-size:12px">Hereda de</label><input type="text" id="rkParent" placeholder="ej: helper" style="width:100%;padding:10px 12px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-size:14px;outline:none"></div>
+</div>
+<button class="btn p" style="padding:10px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--red);background:var(--red);color:#fff;margin-top:10px" onclick="addRank()">+ Agregar rango</button>
+<button class="btn" style="padding:10px 20px;border-radius:10px;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff;margin-top:10px" onclick="resetRanks()">Restablecer ejemplo</button>
+<div id="rankRows" style="margin-top:10px"></div>
+<h4 style="margin:14px 0 6px">Script generado</h4>
+<pre id="scriptOut" style="background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:12px;font-family:Consolas,monospace;font-size:13px;color:#c0c8dc;white-space:pre-wrap;min-height:60px"></pre>
+<button class="btn" style="padding:10px 20px;border-radius:10px;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff;margin-top:10px" onclick="copyScript()">Copiar script</button>
+<button class="btn" style="padding:10px 20px;border-radius:10px;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff;margin-top:10px" onclick="dlScript()">Descargar .txt</button>
+</div>
+<div class="card" style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:10px"><h3 style="font-size:19px;margin-bottom:8px">Tutoriales rápidos</h3>
+<details style="background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0"><summary style="cursor:pointer;font-weight:700">LuckPerms en 3 pasos</summary><p class="mut" style="margin-top:6px">1) Instala LuckPerms y reinicia.<br>2) Crea grupos: <code>/lp creategroup mod</code>.<br>3) Permisos: <code>/lp group mod permission set essentials.kick true</code>.<br>4) Asigna: <code>/lp user &lt;nick&gt; parent set mod</code>.</p></details>
+<details style="background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0"><summary style="cursor:pointer;font-weight:700">EssentialsX esencial</summary><p class="mut" style="margin-top:6px">1) Spawn con <code>/setspawn</code>.<br>2) Activa homes y tpa en config.yml.<br>3) Define kits iniciales para nuevos.<br>4) Revisa motd.txt del mensaje de entrada.</p></details>
+<details style="background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0"><summary style="cursor:pointer;font-weight:700">Tu primer bot de Discord</summary><p class="mut" style="margin-top:6px">1) Crea la app en discord.com/developers.<br>2) Activa los Privileged Intents necesarios.<br>3) Invítalo con scope bot + applications.commands.<br>4) Empieza con un <code>/ping</code> y un <code>/warn</code>.</p></details>
+<details style="background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0"><summary style="cursor:pointer;font-weight:700">Protege con WorldGuard</summary><p class="mut" style="margin-top:6px">1) Selecciona con <code>//wand</code>.<br>2) Crea la región: <code>/rg define spawn</code>.<br>3) Bloquea PvP y TNT: <code>/rg flag spawn pvp deny</code>.<br>4) Asigna dueños: <code>/rg addowner spawn &lt;nick&gt;</code>.</p></details><details style="background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0"><summary style="cursor:pointer;font-weight:700">TAB: tablist profesional</summary><p class="mut" style="margin-top:6px">1) Define grupos por rango con peso (weight) para el orden.<br>2) Activa header/footer con placeholders: <code>%player%, %online%, %tps%</code>.<br>3) Usa <code>/tab reload</code> para aplicar sin reiniciar.<br>4) Sincroniza prefijos con LuckPerms para un solo sistema de rangos.</p></details>
+<details style="background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0"><summary style="cursor:pointer;font-weight:700">Vulcan AntiCheat: base segura</summary><p class="mut" style="margin-top:6px">1) Revisa <code>config.yml</code>: alertas con hover-info y severidad por niveles.<br>2) Activa <code>ghost blocks fix</code> y logging a archivo.<br>3) Conecta punishments: Timer (Type A/D) con broadcast y Discord webhooks.<br>4) Vigila <code>violations.txt</code> y <code>stats.yml</code> antes de banear.</p></details>
+<details style="background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0"><summary style="cursor:pointer;font-weight:700">Geyser: Java + Bedrock juntos</summary><p class="mut" style="margin-top:6px">1) Instala Geyser + Floodgate en el backend o proxy.<br>2) Con Floodgate los Bedrock entran sin cuenta Java (prefijo .).<br>3) Ajusta <code>bedrock port 19132</code> y motd separada.<br>4) Prueba menús y formularios: algunos caracteres Java no existen en Bedrock.</p></details>
+<details style="background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0"><summary style="cursor:pointer;font-weight:700">Vault + economía sana</summary><p class="mut" style="margin-top:6px">1) Vault es el puente: sin economía (Essentials/CMI) no hace nada.<br>2) Define fuentes (trabajos, tiendas, eventos) y sumideros (impuestos, reparaciones).<br>3) Evita regalar dinero inicial alto: infla los precios en días.<br>4) Audita con <code>/eco</code> y logs antes de cada wipe.</p></details>
+<details style="background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0"><summary style="cursor:pointer;font-weight:700">Chunky + CoreProtect: rendimiento y rollback</summary><p class="mut" style="margin-top:6px">1) Pre-genera el mundo: <code>/chunky world mundo</code> y <code>/chunky start</code>.<br>2) Nunca abras terreno nuevo en hora pico.<br>3) CoreProtect: <code>/co inspect</code> para investigar grief.<br>4) Rollback con radio y tiempo: <code>/co rollback u:nick t:7d r:20</code>.</p></details>
+</div><footer>scainetprr · Wiki de Comandos</footer>
+</div>
+<script>
+var DB=[
+{p:'LuckPerms',c:'/lp user <jugador> permission set <permiso>',pm:'luckperms.*',d:'Dar un permiso directo a un jugador.'},
+{p:'LuckPerms',c:'/lp user <jugador> parent set <grupo>',pm:'luckperms.*',d:'Cambiar el grupo/rango principal de un jugador.'},
+{p:'LuckPerms',c:'/lp group <grupo> permission set <permiso> true',pm:'luckperms.*',d:'Dar permiso a todo un grupo.'},
+{p:'LuckPerms',c:'/lp user <jugador> permission settemp <permiso> <tiempo>',pm:'luckperms.*',d:'Permiso temporal (ej: 7d, 24h). Ideal para rangos de evento.'},
+{p:'LuckPerms',c:'/lp editor',pm:'luckperms.*',d:'Abre el editor web para gestionar rangos y permisos visualmente.'},
+{p:'Essentials',c:'/mute <jugador> [tiempo] [motivo]',pm:'essentials.mute',d:'Mutear chat. Sin tiempo = permanente.'},
+{p:'Essentials',c:'/tempban <jugador> <tiempo> [motivo]',pm:'essentials.tempban',d:'Baneo temporal. Formato: 7d, 12h, 30m.'},
+{p:'Essentials',c:'/ban <jugador> [motivo]',pm:'essentials.ban',d:'Baneo permanente. Documentar siempre la evidencia.'},
+{p:'Essentials',c:'/kick <jugador> [motivo]',pm:'essentials.kick',d:'Expulsar sin banear. Útil para cortar conductas en caliente.'},
+{p:'Essentials',c:'/eco give <jugador> <monto>',pm:'essentials.eco',d:'Dar dinero de la economía. Solo economía, sin items.'},
+{p:'Essentials',c:'/invsee <jugador>',pm:'essentials.invsee',d:'Ver inventario en vivo. Clave en revisiones por hacks.'},
+{p:'Essentials',c:'/socialspy',pm:'essentials.socialspy',d:'Ver mensajes privados. Solo con autorización del owner.'},
+{p:'CoreProtect',c:'/co inspect',pm:'coreprotect.inspect',d:'Activa el inspector: clic en bloques para ver quién los tocó.'},
+{p:'CoreProtect',c:'/co lookup u:<jugador> t:<tiempo> r:<radio>',pm:'coreprotect.lookup',d:'Buscar acciones. Ej: t:7d r:20.'},
+{p:'CoreProtect',c:'/co rollback u:<jugador> t:<tiempo> r:<radio>',pm:'coreprotect.rollback',d:'Revertir grief. Vista previa con #preview primero.'},
+{p:'Vulcan',c:'/vulcan violations <jugador>',pm:'vulcan.violations',d:'Ver nivel de violaciones (VL) por check.'},
+{p:'Vulcan',c:'/vulcan logs',pm:'vulcan.logs',d:'Ver logs recientes del anticheat con detalle por jugador.'},
+{p:'Vulcan',c:'/vulcan punish <jugador>',pm:'vulcan.punish',d:'Aplicar castigo configurado según el check disparado.'},
+{p:'TAB',c:'/tab groups',pm:'tab.admin',d:'Ver grupos del tablist y su orden.'},
+{p:'TAB',c:'/tab reload',pm:'tab.reload',d:'Recargar configuración del tab sin reiniciar.'},
+{p:'Discord',c:'/timeout <usuario> <minutos> [motivo]',pm:'Moderar miembros',d:'Aislar usuario del chat de voz y texto temporalmente.'},
+{p:'Discord',c:'/ban <usuario> [motivo] [borrar_msgs]',pm:'Banear miembros',d:'Banear + opción de borrar mensajes (0-7 días).'},
+{p:'Hydra Bot',c='/ticket setup',pm:'Admin',d:'Crear panel de tickets con categorías y roles de soporte.'},
+{p:'Hydra Bot',c:'/sorteo <premio> <ganadores> <duración>',pm:'Gestionar eventos',d:'Iniciar sorteo automático con anuncio y cierre.'}];
+var F='all';
+function draw(){
+var q=document.getElementById('q').value.toLowerCase();
+var box=document.getElementById('list');var n=0;var h='';
+DB.forEach(function(e){
+if(F!=='all'&&e.p!==F)return;
+if(q&&(e.c+' '+e.pm+' '+e.d+' '+e.p).toLowerCase().indexOf(q)<0)return;
+n++;
+h+='<div class="cmd"><span class="pl">'+e.p.toUpperCase()+'</span><br><code onclick="copyCmd(this)" title="Clic para copiar">'+e.c.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</code><p>'+e.d+'</p><span class="pm">Permiso: '+e.pm+'</span></div>'});
+box.innerHTML=n?h:'<p class="mut">Sin resultados. Prueba con otra palabra.</p>';
+document.getElementById('count').textContent=n+' comandos';
+}
+function copyCmd(el){try{navigator.clipboard.writeText(el.textContent);var o=el.textContent;el.textContent='¡Copiado!';setTimeout(function(){el.textContent=o},900)}catch(e){}}
+(function(){var ps={};DB.forEach(function(e){ps[e.p]=1});var h='<button class="on" onclick="setF(this,\'all\')">Todos</button>';Object.keys(ps).forEach(function(p){h+='<button onclick="setF(this,\''+p+'\')">'+p+'</button>'});document.getElementById('tags').innerHTML=h+' <span class="mut" id="count"></span>'})();
+function setF(b,f){F=f;document.querySelectorAll('#tags button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');draw()}
+draw();
+var RANKS=[];
+try{RANKS=JSON.parse(localStorage.getItem('rk_scainet')||'[]')}catch(e){RANKS=[]}
+function saveRanks(){try{localStorage.setItem('rk_scainet',JSON.stringify(RANKS))}catch(e){}}
+function escH(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML}
+function renderRanks(){var box=document.getElementById('rankRows');if(!RANKS.length){box.innerHTML='<p class="mut">Sin rangos. Agrega el primero o restablece el ejemplo.</p>'}else{var h='';RANKS.forEach(function(r,i){h+='<div style="display:flex;gap:8px;align-items:center;background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:6px 0;font-size:14px"><b style="color:#fff">'+escH(r.n)+'</b><span class="mut">'+escH(r.p)+' hereda: '+escH(r.pa||'default')+'</span><button class="btn" style="margin:0 0 0 auto;padding:4px 12px;font-size:12px" data-del="'+i+'">Quitar</button></div>'});box.innerHTML=h;var ds=box.querySelectorAll('[data-del]');for(var k=0;k<ds.length;k++)(function(el){el.addEventListener('click',function(){RANKS.splice(parseInt(el.getAttribute('data-del')),1);saveRanks();renderRanks();genScript()})})(ds[k])}genScript()}
+function addRank(){var n=document.getElementById('rkName').value.trim().toLowerCase().replace(/[^a-z0-9_]/g,'');var p=document.getElementById('rkPrefix').value.trim();var pa=document.getElementById('rkParent').value.trim().toLowerCase().replace(/[^a-z0-9_]/g,'')||'default';if(!n){alert('Escribe el nombre del rango');return}RANKS.push({n:n,p:p,pa:pa});document.getElementById('rkName').value='';document.getElementById('rkPrefix').value='';document.getElementById('rkParent').value='';saveRanks();renderRanks()}
+function resetRanks(){RANKS=[{n:'helper',p:'&7[Helper]',pa:'default'},{n:'mod',p:'&c[Mod]',pa:'helper'},{n:'admin',p:'&4[Admin]',pa:'mod'}];saveRanks();renderRanks()}
+function genScript(){var L=[];RANKS.forEach(function(r){L.push('/lp creategroup '+r.n);if(r.p)L.push('/lp group '+r.n+' meta setprefix 100 "'+r.p+'"');if(r.pa&&r.pa!=='default')L.push('/lp group '+r.n+' parent set '+r.pa)});document.getElementById('scriptOut').textContent=L.join('\n')||'Agrega rangos para generar el script.'}
+function copyScript(){var t=document.getElementById('scriptOut').textContent;try{navigator.clipboard.writeText(t)}catch(e){}}
+function dlScript(){var t=document.getElementById('scriptOut').textContent;var b=new Blob([t],{type:'text/plain'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='rangos-luckperms.txt';a.click()}
+renderRanks();</script>
+<script>(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.1});var cs=document.querySelectorAll('.card');for(var i=0;i<cs.length;i++){cs[i].classList.add('rv');cs[i].style.transitionDelay=(i%3)*.07+'s';io.observe(cs[i])}})();
+</script></body>
+</html>
