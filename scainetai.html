@@ -10,7 +10,7 @@
 :root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:radial-gradient(800px 380px at 50% 0%,#e11d2e20,transparent 60%),var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
-.wrap{max-width:700px;margin:auto}
+.wrap{max-width:700px;margin:auto;background:rgba(15,20,35,.55);border-radius:15px;border:1px solid rgba(255,255,255,.08);padding:22px;margin-bottom:18px}
 a{color:var(--blue)}
 .back{font-size:14px}
 h1{font-size:32px;margin:12px 0 4px;text-shadow:0 0 30px #e11d2e44}
@@ -20,8 +20,8 @@ h1{font-size:32px;margin:12px 0 4px;text-shadow:0 0 30px #e11d2e44}
 .bar button.on{background:var(--red);border-color:var(--red)}
 .bar select{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 12px;font-size:12px;outline:none}
 .bar select option{background:#131a30}
-.chat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;height:400px;overflow-y:auto;margin-bottom:12px}
-.msg{margin:10px 0;max-width:88%;padding:10px 14px;border-radius:12px;font-size:14px}
+.chat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;height:400px;overflow-y:auto;margin-bottom:12pxbackdrop-filter:blur(16px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.msg{margin:10px 0;max-width:88%;padding:10px 14px;border-radius:12px;font-size:14pxbackdrop-filter:blur(8px)}
 .me{margin-left:auto;background:#1c2440}
 .ai{background:#0a0e1c;border:1px solid var(--line)}
 .ai b{color:#fff}
