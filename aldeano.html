@@ -7,104 +7,170 @@
 <title>Aldeano IA · scainetprr</title>
 <link rel="icon" type="image/png" href="Imagenes/favicon.png">
 <style>
-:root{--bg:#060810;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--emr:#10b981}
+:root{--bg:#060810;--card:rgba(15,20,35,.65);--line:rgba(139,92,246,.18);--red:#e11d2e;--blue:#5865F2;--w:#f0f2ff;--mut:#8b94ad;--grn:#3ddc84;--emr:#10b981;--purple:#8b5cf6}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#060810;color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6;overflow-x:hidden}
-.wrap{max-width:700px;margin:auto;position:relative;z-index:1}
-a{color:var(--blue)}
-.back{font-size:14px}
-.hero{text-align:center;padding:18px 0 6px}
-.hero .face{font-size:64px;filter:drop-shadow(0 0 22px #10b98188);animation:float 4s ease-in-out infinite;display:inline-block}
+body{background:#060810;color:var(--w);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
+.bg-grid{position:fixed;inset:0;z-index:-3;opacity:.06;background-image:linear-gradient(rgba(16,185,129,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,.2) 1px,transparent 1px);background-size:48px 48px}
+.glow{position:fixed;border-radius:50%;filter:blur(120px);z-index:-2;pointer-events:none;opacity:.12}
+.glow.g1{width:400px;height:400px;top:-140px;right:-8%;background:#10b981;animation:drift 12s ease-in-out infinite alternate}
+.glow.g2{width:350px;height:350px;bottom:-140px;left:-8%;background:#5865F2;animation:drift 15s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(-50px,40px) scale(1.1)}}
+canvas#stars{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5}
+header{max-width:780px;margin:auto;padding:22px 24px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:50;background:rgba(6,8,16,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+.brand{font:700 17px 'Segoe UI',system-ui;color:#fff;text-decoration:none}
+.back{color:var(--purple);text-decoration:none;font-size:13px;border:1px solid var(--line);padding:8px 14px;border-radius:8px;transition:all .2s}
+.back:hover{border-color:var(--purple);background:rgba(139,92,246,.1)}
+main{max-width:780px;margin:auto;padding:24px}
+.hero-t{text-align:center;padding:20px 0 8px}
+.hero-t .face{font-size:64px;filter:drop-shadow(0 0 22px #10b98188);animation:float 4s ease-in-out infinite;display:inline-block}
 @keyframes float{50%{transform:translateY(-8px)}}
-h1{font-size:32px;margin:8px 0 4px}
-.sub{color:var(--mut);font-size:14px;margin-bottom:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px}
-.chat{background:#0a0e1c;border:1px solid var(--line);border-radius:12px;padding:16px;height:340px;overflow-y:auto}
-.msg{margin:10px 0;max-width:88%;padding:10px 14px;border-radius:12px;font-size:14px}
-.me{margin-left:auto;background:#1c2440}
-.ai{background:#0d1a14;border:1px solid #10b98144}
-.ai b{color:#a7f3d0}
-.quick{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-.quick button{background:#0d1a14;color:#d1fae5;border:1px solid #10b98155;border-radius:99px;padding:8px 16px;cursor:pointer;font-size:13px}
-.row{display:flex;gap:8px;margin-top:10px}
-input[type=text]{flex:1;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:15px;outline:none;min-width:0}
-.btn{padding:12px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--emr);background:var(--emr);color:#04120c;white-space:nowrap}
-.btn.o{background:#1c2440;border:1px solid var(--line);color:#fff}
-.tools{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
-.tools button{background:transparent;color:var(--mut);border:1px solid var(--line);border-radius:8px;font-size:12px;padding:6px 12px;cursor:pointer}
+.hero-t h1{font:700 clamp(28px,4vw,42px) 'Segoe UI',system-ui;margin:10px 0;background:linear-gradient(90deg,#fff 30%,#6ee7b7);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{color:var(--emr);font-size:10px;font-family:'Press Start 2P',monospace;letter-spacing:2px}
+.lead{color:var(--mut);max-width:560px;margin:0 auto;font-size:14px}
+.glass{background:var(--card);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.07);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.card{padding:24px;margin-bottom:16px}
+h3{font:600 17px 'Segoe UI',system-ui;margin:0 0 4px}
+.muted{color:var(--mut);font-size:13px}
+.chat-box{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;height:380px;overflow-y:auto;scroll-behavior:smooth}
+.chat-box::-webkit-scrollbar{width:6px}
+.chat-box::-webkit-scrollbar-track{background:transparent}
+.chat-box::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+.msg{margin:10px 0;max-width:88%;padding:12px 16px;border-radius:14px;font-size:14px;line-height:1.5}
+.me{margin-left:auto;background:rgba(88,101,242,.2);border:1px solid rgba(88,101,242,.3)}
+.ai{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}
+.ai b{color:#6ee7b7}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.quick button{background:rgba(16,185,129,.08);color:#6ee7b7;border:1px solid rgba(16,185,129,.2);border-radius:99px;padding:8px 16px;cursor:pointer;font-size:13px;transition:all .2s}
+.quick button:hover{background:rgba(16,185,129,.15);border-color:var(--emr)}
+.row{display:flex;gap:8px;margin-top:12px}
+input[type=text]{flex:1;padding:13px 18px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:12px;color:#fff;font-size:15px;outline:none;min-width:0;transition:border-color .2s}
+input[type=text]:focus{border-color:var(--emr)}
+.btn{padding:13px 22px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;border:none;color:#fff;transition:all .2s}
+.btn.p{background:linear-gradient(135deg,var(--emr),#059669);border:2px solid rgba(20,20,20,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.btn.p:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.btn.o{background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.btn.o:hover{border-color:var(--emr);background:rgba(16,185,129,.1)}
+.tools{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.tools button{background:rgba(255,255,255,.03);color:var(--mut);border:1px solid rgba(255,255,255,.08);border-radius:8px;font-size:12px;padding:7px 14px;cursor:pointer;transition:all .2s}
+.tools button:hover{border-color:var(--emr);color:var(--emr)}
+.key-input{margin-top:10px}
+.key-input label{display:block;color:var(--mut);font-size:12px;margin-bottom:4px}
+.key-input input{width:100%;padding:10px 14px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#fff;font-size:13px;outline:none;margin-bottom:8px}
+.key-input input:focus{border-color:var(--emr)}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{color:var(--mut);font-size:11px;text-align:left;padding:7px;border-bottom:1px solid var(--line)}
-td{padding:8px 7px;border-bottom:1px solid #1a2138;color:#c0c8dc}
+th{color:var(--mut);font-size:11px;text-align:left;padding:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+td{padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.05);color:#c0c8dc}
 td b{color:#fff}
 .good{color:var(--grn);font-weight:700}
 details{margin-top:6px}
-summary{cursor:pointer;font-weight:700;font-size:15px}
-.mut{color:var(--mut);font-size:12px;margin-top:8px}
-footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
-.shead h2{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 18px #e11d2e44)}.card,.vcard,.exp,.statBig,.proj{box-shadow:0 12px 34px #00000088,inset 0 1px 0 #ffffff1f;border-color:#33406b}.wrap>h1{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px #e11d2e55)}.shead{border-bottom:1px solid #2b3a66}</style>
-#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
-.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:0;opacity:.12;pointer-events:none}
-.o1{width:350px;height:350px;background:#10b981;top:-160px;right:-120px;animation:drift 12s ease-in-out infinite alternate}
-.o2{width:320px;height:320px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 15s ease-in-out infinite alternate-reverse}
-@keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}
+summary{cursor:pointer;font-weight:700;font-size:15px;padding:10px 0}
+footer{text-align:center;padding:30px 20px;color:var(--mut);font-size:12px;border-top:1px solid rgba(255,255,255,.06);margin-top:30px}
+@media(max-width:600px){main{padding:16px 12px}.chat-box{height:300px}}
+@media(prefers-reduced-motion:reduce){.glow{animation:none!important}.face{animation:none!important}}
 </style>
 </head>
 <body>
+<div class="bg-grid"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
 <canvas id="stars"></canvas>
-<div class="orb o1"></div>
-<div class="orb o2"></div>
 <script>
 (function(){
-var cv=document.getElementById('stars');
-if(!cv)return;
+var cv=document.getElementById('stars');if(!cv)return;
 var cx=cv.getContext('2d'),P=[];
 function rs(){cv.width=innerWidth;cv.height=innerHeight}
-rs();
-addEventListener('resize',rs);
-for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.4+.12,c:['#ffffff','#10b981','#2b7fff'][i%3]});
+rs();addEventListener('resize',rs);
+for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.4+.12,c:['#ffffff','#10b981','#5865F2'][i%3]});
 (function anim(){
 cx.clearRect(0,0,cv.width,cv.height);
-for(var k=0;k<P.length;k++){
-var p=P[k];p.y-=p.s;
-if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}
-cx.globalAlpha=.65;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill();
-}
+for(var k=0;k<P.length;k++){var p=P[k];p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.65;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}
 cx.globalAlpha=1;requestAnimationFrame(anim);
 })();
 })();
 </script>
-<div class="wrap">
-<a class="back" href="index.html">Volver al portafolio</a>
-<div class="hero">
-<span class="face">🧑‍🌾</span>
-<h1>Boboldo · IA de Minecraft</h1>
-<p class="sub">Pregúntame lo que sea de Minecraft: tradeos, encantamientos, granjas, bosses y más.</p>
-</div>
-<div class="card">
-<div class="chat" id="chat"></div>
-<div class="quick" id="quick"></div>
-<div class="row"><input type="text" id="qin" placeholder="Ej: ¿cómo consigo Netherite rápido?" maxlength="300"><button class="btn" id="bSend">Enviar</button></div>
-<div class="tools"><button id="bVoice">🔊 Voz aldeano: OFF</button><button id="bHrmm">Traducir último al aldeano</button><button id="bClear">Limpiar 🧹</button></div>
-<p class="mut">IA gratuita (Groq si pones tu key abajo, si no Pollinations) + guía local de respaldo.</p>
-<label class="mut">Key Groq (opcional):</label>
-<input type="password" id="groqKey" placeholder="gsk_...">
-<label class="mut">Key Gemini (opcional, gratis en aistudio.google.com):</label>
-<input type="password" id="geminiKey" placeholder="AIza...">
-</div>
-<div class="card"><details><summary>📊 Tabla rápida de tradeos top</summary><table><thead><tr><th>Profesión</th><th>Das</th><th>Recibes</th><th>Nota</th></tr></thead><tbody>
-<tr><td><b>Librero</b></td><td>Papel, libros</td><td>Mending, Filo V, Fortuna III</td><td class="good">Prioridad 1</td></tr>
-<tr><td><b>Armero</b></td><td>Carbón, hierro</td><td>Armadura diamante</td><td class="good">Full barato</td></tr>
-<tr><td><b>Herrero</b></td><td>Carbón, hierro</td><td>Hachas, picos, espadas</td><td>Herramientas top</td></tr>
-<tr><td><b>Cartógrafo</b></td><td>Papel, vidrio</td><td>Mapas mansión/monumento</td><td>Exploración</td></tr>
-<tr><td><b>Granjero</b></td><td>Trigo, papa, zanahoria</td><td>Esmeraldas + comida</td><td>Motor esmeraldas</td></tr>
-<tr><td><b>Flechero</b></td><td>Palos, hilo</td><td>Arcos, flechas, esmeraldas</td><td>Palos = esmeraldas</td></tr>
-<tr><td><b>Clérigo</b></td><td>Carne podrida, oro</td><td>Ender pearls, redstone</td><td>Perlas fáciles</td></tr>
-</tbody></table></details></div>
-<footer>scainetprr · Boboldo IA</footer>
-</div>
+<header>
+  <a class="back" href="index.html">← Portafolio</a>
+  <a class="brand" href="#">🧑‍🌾 Boboldo IA</a>
+</header>
+<main>
+  <div class="hero-t">
+    <span class="face">🧑‍🌾</span>
+    <p class="eyebrow">ASISTENTE MINECRAFT</p>
+    <h1>Boboldo &middot; IA de Minecraft</h1>
+    <p class="lead">Preguntame lo que sea de Minecraft: tradeos, encantamientos, granjas, bosses y mas.</p>
+  </div>
+  <div class="card glass">
+    <div class="chat-box" id="chat"></div>
+    <div class="quick" id="quick"></div>
+    <div class="row">
+      <input type="text" id="qin" placeholder="Ej: como consigo Netherite rapido?" maxlength="300">
+      <button class="btn p" id="bSend">Enviar</button>
+    </div>
+    <div class="tools">
+      <button id="bVoice">🔊 Voz: OFF</button>
+      <button id="bHrmm">Traducir al aldeano</button>
+      <button id="bClear">Limpiar</button>
+    </div>
+    <div class="key-input">
+      <label>Key Groq (opcional):</label>
+      <input type="password" id="groqKey" placeholder="gsk_...">
+      <label>Key Gemini (opcional, gratis en aistudio.google.com):</label>
+      <input type="password" id="geminiKey" placeholder="AIza...">
+    </div>
+  </div>
+  <div class="card glass">
+    <details>
+      <summary>📊 Tabla rapida de tradeos top</summary>
+      <table>
+        <thead><tr><th>Profesion</th><th>Das</th><th>Recibes</th><th>Nota</th></tr></thead>
+        <tbody>
+          <tr><td><b>Librero</b></td><td>Papel, libros</td><td>Mending, Filo V, Fortuna III</td><td class="good">Prioridad 1</td></tr>
+          <tr><td><b>Armero</b></td><td>Carbon, hierro</td><td>Armadura diamante</td><td class="good">Full barato</td></tr>
+          <tr><td><b>Herrero</b></td><td>Carbon, hierro</td><td>Hachas, picos, espadas</td><td>Herramientas top</td></tr>
+          <tr><td><b>Cartografo</b></td><td>Papel, vidrio</td><td>Mapasansion/monumento</td><td>Exploracion</td></tr>
+          <tr><td><b>Granjero</b></td><td>Trigo, papa, zanahoria</td><td>Esmeraldas + comida</td><td>Motor esmeraldas</td></tr>
+          <tr><td><b>Flechero</b></td><td>Palos, hilo</td><td>Arcos, flechas, esmeraldas</td><td>Palos = esmeraldas</td></tr>
+          <tr><td><b>Clérigo</b></td><td>Carne podrida, oro</td><td>Ender pearls, redstone</td><td>Perlas faciles</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </div>
+</main>
+<footer>scainetprr &middot; Boboldo IA</footer>
 <script>
-var AI_SYS='Eres Boboldo, un aldeano granjero de Minecraft con 20 años de oficio. Eres un EXPERTO ENCICLOPÉDICO en todo Minecraft Java 1.20+: tradeos y profesiones, encantamientos, granjas (hierro, oro, enderman, trigo), pociones, Nether, End, bosses (Ender Dragon, Wither, Warden), redstone básica y supervivencia. Respondes en español, máximo 70 palabras, con datos concretos (precios en esmeraldas, niveles, pasos). Tono bonachón y aldeano: alguna vez sueltas un "hrmm". Si preguntan algo ajeno a Minecraft, redirige con humor a tu puesto.';
-var FALLBACK=[['mending','Mending lo vende el librero: sube un aldeano con atril, revisa su primera oferta y si no es Mending rompe el atril y repite. Hrmm.'],['esmeralda','Para esmeraldas: granjero (trigo/papa), flechero (palos) o librero (papel). El flechero con palos es lo más fácil.'],['netherite','Netherite: mina escombros ancestrales en Y=15 del Nether (camas o TNT), funde a fragmentos y combina 4 fragmentos + 4 lingotes + mesa de herrería. Hrmm.'],['nether','Para llegar al Nether: construye un portal de obsidiana (10 bloques, esquina vacía), llámalo con mechero. En el Nether cuidado con ghasts y lava. Y=15 para escombros.'],['warden','Al Warden no se le pelea: sigilo, lana para no hacer ruido y huir. Si peleas, arco con Poder V desde lejos.'],['dragon','Ender Dragon: rompe los cristales del End con camas o flechas, luego camas en la cabeza cuando baja. Lleva calabaza tallada contra endermans.'],['wither','Wither: invócalo bajo el portal del End (atraviesa el techo) o en cueva profunda con golems. Protección anti-explosiones ayuda.'],['granja','¿Qué granja? Hierro (aldeanos+zombi), oro (techo del Nether), enderman (128 bloques de la isla) o trigo (aldeanos granjeros). Dime cuál y te detallo, hrmm.'],['pocion','Pociones base: verruga + agua. Fuerza (polvo blaze), curación (melón reluciente), caída lenta (membrana). Alambique + polvo blaze para empezar.'],['encant','Para encantar top: librero hasta Mending/Filo V/Fortuna III, mesa nivel 30 con librerías, yunque para combinar. Repara con Mending, hrmm.'],['hierro','Granja de hierro: 2 aldeanos + zombi en habitación de 3x3 con cama y composter. Los aldeanos generan golems que caen en lava. Produce ~40 hierro/hora.'],['oro','Oro en el Nether: zona superior (Y>128), aldeanos piglin farming o granja de zombified piglins con oso. 256+ lingotes/hora.'],['diamante','Diamantes: mina en Y=-59 con Fortune III. Usa beacon con Haste II para minar rápido. Strip mining cada 2 bloques es lo más eficiente.'],['redstone','Redstone básica: polvo + antorcha = circuito. Repetidor extiende señal 15 bloques. Comparador lee contenedores. Pistón empuja bloques. Observador detecta cambios.'],['aldeano','Aldeanos: profession por workstation (atril=librero, mesa=cartógrafo, etc). Nivel sube al comerciar. Romero hace zombie cure para descuentos.'],['bedrock','Bedrock es la versión de Minecraft para consolas/móvil. GeyserMC permite jugar desde Java. Sin mods nativos, pero addon packs disponibles.'],['campamento','Si te matan y pierdes todo: ve donde moriste rápido. Si no puedes, usa /give para recuperar items en survival hacks o empieza de nuevo con lo básico.'],['enderman','Endermans: no los mires a los ojos (Shift funciona). Se teleportan, rompen bloques. Se farmean con Endermites en caja + trampilla.'],['brujula','La brujula apunta al spawn point. Para el End: busca el stronghold con ojos de Ender (se usan 12 approx).'],['pico','Mejor pico: Netherite + Efficiency V + Fortune III + Mending + Unbreaking III. Mina escombros en 0.2s.'],['espada','Mejor espada: Netherite + Sharpness V + Fire Aspect II + Looting III + Mending + Sweeping Edge III.'],['arco','Mejor arco: Power V + Flame + Infinity + Mending. Un tiro, un kill.'],['armadura','Armadura top: Netherite Protection IV + Unbreaking III + Mending. Helmet, chest, legs, boots completos.'],['pueblo','Pueblo: casas con mesas de trabajo, iglesia, herrería. Siempre tiene aldeanos. Buen lugar para empezar con tradeos.'],['escondite','Para base segura: cueva con puerta de acero, mina a Y=-59, ilumina todo. Usa lava para defensa y cofres escondidos.'],['farm','Farm = granja automática. La más importante es hierro (Gollum farm). Luego oro, trigo, caña. Todas usan aldeanos o mob spawning.'],['mob','Mobs hostiles: Creeper (explosivo), Skeleton (arco), Zombie (lento), Spider (trepa), Enderman (teleporta), Warden (sonar letal).'],['bruja','Brujas lanzan pociones: daño, veneno, lentitud. Dropean redstone, glowstone, sticks. Se farmean en spawner de bruja.'],['trampa','Trampas útiles: puerta de acero + presión para mobs, lava bucket, TNT con redstone, fall trap para Warden.'],['comida','Mejores comidas: steak (8 puntos), golden carrot (6+ night vision), bread (5). Coce en furnace o smoker para más eficiencia.'],['loteria','Si no sé algo específico: pregunta con más detalle. Soy experto en Minecraft pero no omnisciente. Puedo ayudar con estrategias, builds y configs. Hrmm.']];
+var AI_SYS='Eres Boboldo, un aldeano granjero de Minecraft con 20 anios de oficio. Eres un EXPERTO ENCICLOPEDICO en todo Minecraft Java 1.20+: tradeos y profesiones, encantamientos, granjas (hierro, oro, enderman, trigo), pociones, Nether, End, bosses (Ender Dragon, Wither, Warden), redstone basica y supervivencia. Respondes en espanol, maximo 70 palabras, con datos concretos (precios en esmeraldas, niveles, pasos). Tono bonachon y aldeano: alguna vez sueltas un "hrmm". Si preguntan algo ajeno a Minecraft, redirige con humor a tu puesto.';
+var FALLBACK=[
+['mending','Mending lo vende el librero: sube un aldeano con atril, revisa su primera oferta y si no es Mending rompe el atril y repite. Hrmm.'],
+['esmeralda','Para esmeraldas: granjero (trigo/papa), flechero (palos) o librero (papel). El flechero con palos es lo mas facil.'],
+['netherite','Netherite: mina escombros ancestrales en Y=15 del Nether (camas o TNT), funde a fragmentos y combina 4 fragmentos + 4 lingotes + mesa de herreria. Hrmm.'],
+['nether','Para llegar al Nether: construye un portal de obsidiana (10 bloques, esquina vacia), llamalo con mechero. En el Nether cuidado con ghasts y lava. Y=15 para escombros.'],
+['warden','Al Warden no se le pelea: sigilo, lana para no hacer ruido y huir. Si peleas, arco con Poder V desde lejos.'],
+['dragon','Ender Dragon: rompe los cristales del End con camas o flechas, luego camas en la cabeza cuando baja. Lleva calabaza tallada contra endermans.'],
+['wither','Wither: invocalo bajo el portal del End (atraviesa el techo) o en cueva profunda con golems. Proteccion anti-explosiones ayuda.'],
+['granja','¿Que granja? Hierro (aldeanos+zombi), oro (techo del Nether), enderman (128 bloques de la isla) o trigo (aldeanos granjeros). Dime cual y te detallo, hrmm.'],
+['pocion','Pociones base: verruga + agua. Fuerza (polvo blaze), curacion (melon reluciente), caida lenta (membrana). Alambique + polvo blaze para empezar.'],
+['encant','Para encantar top: librero hasta Mending/Filo V/Fortuna III, mesa nivel 30 con librerias, yunque para combinar. Repara con Mending, hrmm.'],
+['hierro','Granja de hierro: 2 aldeanos + zombi en habitacion de 3x3 con cama y composter. Los aldeanos generan golems que caen en lava. Produce ~40 hierro/hora.'],
+['oro','Oro en el Nether: zona superior (Y>128), aldeanos piglin farming o granja de zombified piglins con oso. 256+ lingotes/hora.'],
+['diamante','Diamantes: mina en Y=-59 con Fortune III. Usa beacon con Haste II para minar rapido. Strip mining cada 2 bloques es lo mas eficiente.'],
+['redstone','Redstone basica: repetidor = delay + diodo, comparador = lee containers, piston sticky mueve bloques. Circuito simple: palanca -> torch -> piston.'],
+['potion','Pociones: alambique + verruga = base. Fuerza (polvo blaze), curacion (melon), velocidad (azucar). Duration 8:00 min con redstone.'],
+['ender','Ender pearls: compra al cleric por 5 esmeraldas. Teletransporte: lanza y se va. Cuidado con el dano de caida.'],
+['base','Base segura: 1er noche cueva, dia 2 madera + piedra, dia 3 granja basica. Siempre lleva escudo y antorchas.'],
+['sofa','Cama: 3 lana + 3 tablas de madera. En el Nether/End explota. Para dormir necesitas 2+ jugadores en servers.'],
+['beacon','Beacon: 1 Nether Star (Wither) + 3 obsidiana + 5 cristales. Base de hierro/diamante para efectos. Haste II + Speed son los mejores.'],
+['brewing','Brewing stand: 1 blaze rod + 3 piedra. Ingredientes: verruga (toxicidad), blaze (fuerza), melon (curacion), sugar (velocidad).'],
+['trade','Tradeo optimo: sube aldeano nivel 1-5, busca descuentos, bloquea con atril cuando aparezca Mending. Max 2 trades por ciclo.'],
+['loot','Loot de cofres: End City tiene Elytra + dragon head. Mansion tiene totem. Monumento tiene esponjas y oro.'],
+['farm','Farm automatica: trigo con aldeanos granjeros + hopper, oro con zombified piglins en Nether roof, hierro con iron farm vanilla.'],
+['red','Redstone: torch = power source, repeater = delay/diode, comparator = container reader. Circuitos basicos: T-flip flop, clock, decoder.'],
+['boss','Boss fights: Dragon (cristales primero), Wither (bajo End roof), Warden (huir). Warden tiene 500 HP, te escucha.'],
+['respawn','Respawn anchor: 3 crying obsidian + glowstone. Solo funciona en Nether. 4 usos por carga de glowstone.'],
+['elytra','Elytra: End City ships. Rocket boosting: firework + elytra vuelo. Duracion: se repara con Mending en grindstone.'],
+['anvil','Yunque: 31 bloques de hierro. Combina encantamientos, repara con Mending, renombra. Max cost 39 levels.'],
+['totem','Totem of undying: dropea Evoker en Mansion. Guarda en mano offhand. revive 1 vez con efectos de regen + resistencia.'],
+['conduit','Conduit: 1 nautilus shell + 1 heart of the sea. Power underwater breathing + haste. Rango: 16 bloques por shell de prismarine.']
+];
 function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML}
 function bubble(who,html){var c=document.getElementById('chat');var d=document.createElement('div');d.className='msg '+who;d.innerHTML=html;c.appendChild(d);c.scrollTop=99999;return d}
 function groqKey(){try{return localStorage.getItem('groq_key')||''}catch(e){return ''}}
@@ -112,23 +178,23 @@ function geminiKey(){try{return localStorage.getItem('gemini_key')||''}catch(e){
 async function askGroq(sys,q){var K=groqKey();if(!K)return null;try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+K},signal:ctl.signal,body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:sys},{role:'user',content:q}],temperature:0.7,max_tokens:350})});clearTimeout(to);if(!r.ok)return null;var j=await r.json();var c=j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;var t=(c||'').trim().slice(0,800);return t||null}catch(e){return null}}
 async function askGemini(sys,q){var K=geminiKey();if(!K)return null;try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+K,{method:'POST',headers:{'Content-Type':'application/json'},signal:ctl.signal,body:JSON.stringify({contents:[{parts:[{text:sys+'\n\nUsuario: '+q}]}],generationConfig:{temperature:0.7,maxOutputTokens:350}})});clearTimeout(to);if(!r.ok)return null;var j=await r.json();var t=j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts&&j.candidates[0].content.parts[0]&&j.candidates[0].content.parts[0].text;var s=(t||'').trim().slice(0,800);return s||null}catch(e){return null}}
 async function askPoll(sys,q){var url='https://text.pollinations.ai/'+encodeURIComponent(sys+' '+q);var models=['openai','mistral','openai-mini'];for(var i=0;i<models.length;i++){try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},20000);var r=await fetch(url+'?model='+models[i]+'&seed='+Math.floor(Math.random()*9999),{signal:ctl.signal});clearTimeout(to);if(!r.ok)continue;var t=await r.text();t=t.trim().slice(0,800);if(t&&t.length>10)return t}catch(e){}await new Promise(function(r){setTimeout(r,1000)})}return null}
-function aiLocal(q){q=q.toLowerCase();for(var i=0;i<FALLBACK.length;i++){if(q.indexOf(FALLBACK[i][0])>=0)return FALLBACK[i][1]}if(q.match(/\d+\s*[\+\-\*\/]\s*\d+/)){var r=eval(q.replace(/[^0-9\+\-\*\/\.\(\)]/g,''));return 'Hrmm, eso es '+r+'. No pareces muy listo, forastero. Pregúntame de Minecraft.'}if(q.match(/cuanto|cuánto|que es|qué es|como se|hola|hello|buenas/))return '¡Hrmm! Aquí tienes un aldeano experto en Minecraft. Pregúntame sobre tradeos, encantamientos, granjas, pociones, bosses o cualquier cosa del juego. Si no sé algo, te redirijo con gusto.';return 'No tengo esa información exacta, forastero. Prueba preguntando sobre: Mending, esmeraldas, Netherite, Warden, dragón, Wither, granjas, pociones, encantamientos, aldeanos, redstone, diamantes o bases seguras. Hrmm!'}
+function aiLocal(q){q=q.toLowerCase();for(var i=0;i<FALLBACK.length;i++){if(q.indexOf(FALLBACK[i][0])>=0)return FALLBACK[i][1]}if(q.match(/\d+\s*[\+\-\*\/]\s*\d+/)){var r=eval(q.replace(/[^0-9\+\-\*\/\.\(\)]/g,''));return 'Hrmm, eso es '+r+'. No pareces muy listo, forastero. Preguntame de Minecraft.'}if(q.match(/cuanto|cuánto|que es|qué es|como se|hola|hello|buenas/))return 'Hrmm! Aqui tienes un aldeano experto en Minecraft. Preguntame sobre tradeos, encantamientos, granjas, pociones, bosses o cualquier cosa del juego. Si no se algo, te redirijo con gusto.';return 'No tengo esa informacion exacta, forastero. Prueba preguntando sobre: Mending, esmeraldas, Netherite, Warden, dragon, Wither, granjas, pociones, encantamientos, aldeanos, redstone, diamantes o bases seguras. Hrmm!'}
 var VOICE=false,LAST='';
 function speak(t){try{if(!VOICE)return;var s=window.speechSynthesis;if(!s)return;s.cancel();var u=new SpeechSynthesisUtterance(t.replace(/<[^>]+>/g,'').slice(0,300));u.lang='es-ES';u.pitch=0.2;u.rate=0.8;s.speak(u)}catch(e){}}
 function hrmmify(t){var words=t.split(/\s+/);var outs=['hrmm','hrm','hrrmm','mrrh','hmm'];var r=7;return words.map(function(w){if(/^[A-ZÁÉÍÓÚÑ0-9]/.test(w)&&w.length>3&&Math.random()<0.25)return w;r=(r*9301+49297)%233280;var pick=outs[Math.floor(r/233280*outs.length)];return (/[?.!,]$/.test(w))?pick+w.slice(-1):pick}).join(' ')}
 function send(){var inp=document.getElementById('qin');var q=inp.value.trim();if(!q)return;inp.value='';bubble('me',esc(q));var b=bubble('ai','<span style="color:var(--mut)">Boboldo piensa...</span>');(async function(){var a=await askGroq(AI_SYS,q);if(!a)a=await askGemini(AI_SYS,q);if(!a)a=await askPoll(AI_SYS,q);if(!a)a=aiLocal(q);b.innerHTML=a;LAST=a;document.getElementById('chat').scrollTop=99999;speak(a)})()}
 document.getElementById('bSend').addEventListener('click',send);
 document.getElementById('qin').addEventListener('keydown',function(e){if(e.key==='Enter')send()});
-var QUICK=['Mending barato','Netherite rápido','Cómo mato al Warden','Granja de hierro','Pociones básicas'];
+var QUICK=['Mending barato','Netherite rapido','Como mato al Warden','Granja de hierro','Pociones basicas'];
 (function(){var q=document.getElementById('quick');QUICK.forEach(function(t){var b=document.createElement('button');b.textContent=t;b.addEventListener('click',function(){document.getElementById('qin').value=t;send()});q.appendChild(b)})})();
-document.getElementById('bVoice').addEventListener('click',function(){VOICE=!VOICE;this.textContent=VOICE?'🔊 Voz aldeano: ON':'🔊 Voz aldeano: OFF';if(!VOICE){try{window.speechSynthesis.cancel()}catch(e){}}});
+document.getElementById('bVoice').addEventListener('click',function(){VOICE=!VOICE;this.textContent=VOICE?'🔊 Voz: ON':'🔊 Voz: OFF';if(!VOICE){try{window.speechSynthesis.cancel()}catch(e){}}});
 document.getElementById('bHrmm').addEventListener('click',function(){if(!LAST)return;var h=hrmmify(LAST);bubble('ai','<b>Hrmm:</b> '+esc(h));speak(h)});
-document.getElementById('bClear').addEventListener('click',function(){document.getElementById('chat').innerHTML='';bubble('ai','¡Hrmm! Bienvenido a mi puesto, forastero. Pregúntame lo que sea de Minecraft. 💚')});
+document.getElementById('bClear').addEventListener('click',function(){document.getElementById('chat').innerHTML='';bubble('ai','Hrmm! Bienvenido a mi puesto, forastero. Preguntame lo que sea de Minecraft.')});
 document.getElementById('groqKey').value=groqKey();
 document.getElementById('groqKey').addEventListener('change',function(e){try{localStorage.setItem('groq_key',e.target.value.trim())}catch(x){}});
 document.getElementById('geminiKey').value=geminiKey();
 document.getElementById('geminiKey').addEventListener('change',function(e){try{localStorage.setItem('gemini_key',e.target.value.trim())}catch(x){}});
-bubble('ai','¡Hrmm! Bienvenido a mi puesto, forastero. Pregúntame lo que sea de Minecraft. 💚');
+bubble('ai','Hrmm! Bienvenido a mi puesto, forastero. Preguntame lo que sea de Minecraft.');
 </script>
 </body>
 </html>
