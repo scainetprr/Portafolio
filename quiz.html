@@ -10,75 +10,104 @@
 :root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--gld:#f5a623}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
-.wrap{max-width:640px;margin:auto}
+.wrap{max-width:680px;margin:auto}
 a{color:var(--blue)}
 .back{font-size:14px}
 h1{font-size:32px;margin:12px 0 4px}
 .sub{color:var(--mut);font-size:14px;margin-bottom:20px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;margin-bottom:14px;text-align:center}
-.hud{display:flex;justify-content:space-between;font-size:14px;color:var(--mut);margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:14px}
+.rankgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
+.rank{border:1px solid var(--line);background:#161d33;border-radius:12px;padding:16px 10px;cursor:pointer;text-align:center;transition:transform .2s,border-color .2s}
+.rank:hover{transform:translateY(-3px);border-color:var(--red)}
+.rank .e{font-size:30px}
+.rank b{display:block;margin-top:6px}
+.rank small{color:var(--mut);font-size:11px}
+.hud{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);margin-bottom:10px}
 .hud b{color:#fff}
-.tbar{height:8px;background:#0a0e1c;border-radius:99px;overflow:hidden;margin-bottom:18px}
+.tbar{height:8px;background:#0a0e1c;border-radius:99px;overflow:hidden;margin-bottom:16px}
 .tbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gld),var(--red));width:100%}
-.q{font-size:19px;font-weight:700;margin-bottom:16px}
+.q{font-size:19px;font-weight:700;margin-bottom:14px}
 .opt{display:block;width:100%;text-align:left;padding:12px 16px;margin:8px 0;border-radius:10px;border:1px solid var(--line);background:#161d33;color:#fff;font-size:15px;cursor:pointer}
 .opt:hover:not(:disabled){border-color:var(--blue)}
-.opt.ok{border-color:var(--grn);background:#0d2417}
-.opt.bad{border-color:var(--red);background:#2a0f14}
-.opt:disabled{cursor:default;opacity:.9}
-.why{font-size:13px;color:var(--mut);margin-top:10px;display:none}
-.btn{padding:13px 30px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;border:none;background:var(--red);color:#fff;margin-top:14px}
-.rank{font-size:44px;margin:8px 0}
+.opt.lock{border-color:var(--blue);background:#14203a}
+.opt:disabled{cursor:default}
+.btn{padding:12px 26px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;border:none;background:var(--red);color:#fff;margin:8px 6px 0 0}
+.btn.o{background:#1c2440;border:1px solid var(--line)}
+.hist{font-size:13px;color:#c0c8dc;margin:6px 0}
+.case{background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:10px;font-size:15px}
+.model{display:none;margin-top:10px;padding:12px;border-left:3px solid var(--grn);background:#0d2417;border-radius:0 8px 8px 0;font-size:14px}
+.rev{border-bottom:1px solid #1a2138;padding:10px 0;font-size:14px}
+.rev .ok{color:var(--grn)}
+.rev .no{color:#ff6b7a}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
 </style>
 </head>
 <body>
 <div class="wrap">
-<a class="back" href="index.html">← Volver al portafolio</a>
+<a class="back" href="index.html">Volver al portafolio</a>
 <h1>Quiz Staff</h1>
-<p class="sub">Trivia de normativa y criterio staff. 15 segundos por pregunta. Racha = puntos extra.</p>
+<p class="sub">Elige tu rango. Responde sin ver la correcta: el análisis sale al final. Tu registro se guarda en este navegador.</p>
 <div class="card" id="box"></div>
+<div class="card"><h3>Tu registro</h3><p class="mut" style="font-size:13px;color:var(--mut)">Guardado en este navegador: puntajes y preguntas falladas.</p><div id="hist"></div><button class="btn o" id="bClear">Limpiar registro</button></div>
+<div class="card"><h3>Generador de casos</h3><p class="mut" style="font-size:13px;color:var(--mut)">Situaciones tipo "¿Qué harías si...?". Piensa tu respuesta y revela el modelo.</p><div style="margin:10px 0"><button class="btn o" data-cat="all">Aleatorio</button><button class="btn o" data-cat="normativa">Normativa</button><button class="btn o" data-cat="comandos">Comandos</button><button class="btn o" data-cat="criterio">Criterio</button></div><button class="btn" id="bCase">Generar caso</button><div id="caseOut"></div></div>
 <footer>scainetprr · Quiz Staff</footer>
 </div>
 <script>
-var QS=[
-{q:'Un jugador insulta por primera vez (leve). ¿Sanción correcta?',o:['Ban 7 días','Mute 30 min','Kick permanente','Nada, es leve'],a:1,w:'Insulto leve primera vez: mute corto para cortar la conducta sin excederse.'},
-{q:'Sospechas KillAura pero sin pruebas. ¿Qué haces?',o:['Ban directo por seguridad','SS (screenshare) con protocolo','Mute preventivo 24h','Lo ignoras hasta tener video'],a:1,w:'Sin evidencia no se banea: se congela y se hace SS siguiendo el protocolo.'},
-{q:'El jugador se desconecta en pleno SS. ¿Qué significa?',o:['Nada, tenía lag','Evasión: ban + registro','Se le perdona','Se repite mañana'],a:1,w:'Desconexión en SS = evasión de revisión. Ban y registro de evidencia.'},
-{q:'Grief con rollback posible y primera vez. ¿Sanción?',o:['Ban permanente','Devolución + warn','Mute 12 h','Kick'],a:1,w:'Si hay rollback y es primera vez, se repara el daño + advertencia formal.'},
-{q:'Publicidad de otro servidor en el chat. ¿Primera medida?',o:['Ban permanente','Mute 1 h + borrar mensaje','Ignorar','Darle VIP para que se quede'],a:1,w:'Publicidad: mute + borrar el mensaje. El ban llega con reincidencia.'},
-{q:'¿Para qué sirve /co inspect de CoreProtect?',o:['Ver inventarios','Ver quién tocó cada bloque','Banear hackers','Crear crates'],a:1,w:'El inspector muestra el historial de cada bloque: quién lo puso o rompió.'},
-{q:'Dos staff discrepan sobre una sanción. ¿Qué se hace?',o:['El de mayor rango decide sin hablar','Se revisa evidencia y se aplica el protocolo','Se banea al jugador por las dudas','Se vota en el chat público'],a:1,w:'El criterio se basa en evidencia y protocolo, no en rango ni opiniones.'},
-{q:'Usuario pide items por ser amigo del staff. ¿Respuesta?',o:['Darle un kit pequeño','Negar: cero tratos, todo documentado','Darle si nadie ve','Preguntar al owner por DM'],a:1,w:'Cero tolerancia a tratos: todo por conducto normal y documentado.'},
-{q:'Ticket de bug que duplica items. ¿Prioridad?',o:['Baja, es solo visual','Alta: riesgo económico del servidor','Media, se revisa el finde','Se cierra sin responder'],a:1,w:'Dupe = riesgo directo a la economía. Alta prioridad y fix inmediato.'},
-{q:'¿Qué dato NO debe faltar en un reporte?',o:['El color favorito del acusado','Evidencia verificable','La hora exacta del lobby','El ping del staff'],a:1,w:'Sin evidencia verificable el reporte no procede. Todo lo demás es contexto.'}];
-var i=0,pts=0,racha=0,best=0,timer=null,T=15;
-try{best=parseInt(localStorage.getItem('quiz_best')||'0')}catch(e){}
-function start(){i=0;pts=0;racha=0;ask()}
-function ask(){
-if(i>=QS.length){end();return}
-var q=QS[i];T=15;
-var box=document.getElementById('box');
-box.innerHTML='<div class="hud"><span>Pregunta <b>'+(i+1)+'/'+QS.length+'</b></span><span>Racha <b>'+racha+'x</b></span><span>Puntos <b>'+pts+'</b></span></div><div class="tbar"><i id="tb"></i></div><p class="q">'+q.q+'</p><div id="opts"></div><p class="why" id="why">'+q.w+'</p>';
-var od=document.getElementById('opts');
-q.o.forEach(function(t,k){var b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=function(){ans(k)};od.appendChild(b)});
-clearInterval(timer);timer=setInterval(function(){T--;var tb=document.getElementById('tb');if(tb)tb.style.width=(100*T/15)+'%';if(T<=0){ans(-1)}},1000);
-}
-function ans(k){
-clearInterval(timer);
-var q=QS[i];var btns=document.querySelectorAll('#opts .opt');
-btns.forEach(function(b,idx){b.disabled=true;if(idx===q.a)b.classList.add('ok');else if(idx===k)b.classList.add('bad')});
-document.getElementById('why').style.display='block';
-if(k===q.a){racha++;pts+=100+Math.min(racha,5)*20}else{racha=0}
-setTimeout(function(){i++;ask()},2200);
-}
-function rank(p){if(p>=1200)return['👑','Leyenda del Staff'];if(p>=900)return['💎','Admin Elite'];if(p>=600)return['⚔️','Moderador Pro'];if(p>=300)return['🛡️','Helper Firme'];return['🌱','Aprendiz']}
-function end(){
-if(pts>best){best=pts;try{localStorage.setItem('quiz_best',best)}catch(e){}}
-var r=rank(pts);
-document.getElementById('box').innerHTML='<div class="rank">'+r[0]+'</div><h2>'+r[1]+'</h2><p style="font-size:22px;margin:10px 0">Puntos: <b>'+pts+'</b></p><p class="mut" style="color:var(--mut);font-size:13px">Récord: '+best+'</p><button class="btn" onclick="start()">Jugar de nuevo</button>';
-}
-document.getElementById('box').innerHTML='<p style="font-size:18px">¿Listo para probar tu criterio?</p><p class="mut" style="color:var(--mut);font-size:13px;margin:8px 0">10 preguntas · 15 s cada una · rachas dan bonus</p><button class="btn" onclick="start()">Empezar quiz</button>';
+var BANK={
+helper:[
+{q:'Un nuevo entra y pregunta por tercera vez dónde reclamar kit. ¿Qué haces?',o:['Lo ignoras, ya se dijo','Le explicas de nuevo con calma y lo guías','Mute por spam','Lo expulsas del Discord'],a:1,w:'Helper = paciencia infinita con novatos. Guiar, no castigar.'},
+{q:'Ves a dos usuarios discutiendo fuerte en chat general. Primer paso:',o:['Ban a los dos','Separar: pedir calma y llevar a ticket/privado','Unirte al debate','Borrar el chat entero'],a:1,w:'Desescalar en público y mover el conflicto a privado/ticket.'},
+{q:'Te piden un rango por ser amigo del staff. Respondes:',o:['Se lo das si nadie ve','Lo niegas y explicas el proceso normal','Le das VIP temporal','Ignoras el mensaje'],a:1,w:'Cero tratos: todo por conducto normal y documentado.'},
+{q:'Un jugador reporta "hack" sin pruebas. ¿Qué haces?',o:['Baneas preventivo','Pides evidencia y observas in-game','Le dices que miente','Cierras el ticket'],a:1,w:'Todo reporte necesita evidencia verificable antes de sancionar.'},
+{q:'¿Qué dato NUNCA falta en un reporte válido?',o:['El color favorito','Evidencia (video, logs, testigos)','La skin del acusado','Tu opinión personal'],a:1,w:'Sin evidencia verificable el reporte no procede.'},
+{q:'Spam leve por primera vez. Sanción:',o:['Ban 7 días','Mute 15 min + aviso','Kick permanente','Nada'],a:1,w:'Spam leve: mute corto para cortar la conducta.'}],
+mod:[
+{q:'Insultos reiterados con 1 mute previo. ¿Sanción?',o:['Perdón y aviso','Mute 2 h y registro','Ban permanente','Kick'],a:1,w:'Reincidencia escala: segundo mute más largo y documentado.'},
+{q:'Sospecha de KillAura sin pruebas. ¿Correcto?',o:['Ban directo','Congelar + SS con protocolo','Mute 24 h','Esperar video de otro'],a:1,w:'Sin evidencia: SS con protocolo, nunca ban directo.'},
+{q:'Grief con rollback posible, primera vez:',o:['Ban permanente','Devolución + warn formal','Mute 12 h','Nada, se arregla solo'],a:1,w:'Si hay rollback y es primera vez: reparar + advertencia.'},
+{q:'Publicidad de otro server por primera vez:',o:['Ban directo','Mute 1 h + borrar mensaje','Darle rango','Ignorar'],a:1,w:'Publicidad inicial: mute + borrar. El ban llega con reincidencia.'},
+{q:'Jugador evade mute con alt. ¿Medida?',o:['Perdonar el alt','Ban 14 días a ambas + registro','Solo mutear el alt','Avisar y ya'],a:1,w:'Evasión escala fuerte: ban a original y alt con registro.'},
+{q:'Bug de duplicación reportado. ¿Prioridad?',o:['Baja','Alta: riesgo económico','Media','Cerrar ticket'],a:1,w:'Dupe = economía en riesgo. Prioridad alta y fix inmediato.'}],
+admin:[
+{q:'Dos mods discrepan de una sanción. ¿Qué manda?',o:['El de mayor rango','La evidencia y el protocolo','Votación pública','Ban por las dudas'],a:1,w:'El criterio lo dictan evidencia y protocolo, no el rango.'},
+{q:'El dueño pide ban sin evidencia a un rival. ¿Haces?',o:['Obedeces sin preguntar','Exiges evidencia y protocolo igual para todos','Lo baneas y borras logs','Renuncias en el acto'],a:1,w:'Ni el dueño está sobre el protocolo y la evidencia.'},
+{q:'Staff abusa de /eco give. ¿Procedimiento?',o:['Cubrirlo, es compañero','Retirar permiso, revertir y reportar al owner','Darle más para que calle','Ignorarlo'],a:1,w:'Abuso interno: retirar acceso, revertir daño y escalar.'},
+{q:'Falla masiva: 30 tickets en 1 hora. ¿Primero?',o:['Responder en orden de llegada','Priorizar hacks/dupes, delegar lo leve','Cerrar todos y reabrir','Esperar que pase'],a:1,w:'Triaje: lo crítico primero, delega lo leve al equipo.'},
+{q:'Nueva modalidad abre en 3 días sin tests. ¿Tu rol?',o:['Nada, es del dev','Checklist: permisos, economía, anticheat, backups','Abrir igual y fix en vivo','Pedir OP para probar'],a:1,w:'El admin valida todo antes de abrir: checklist completo.'},
+{q:'Apelación con video nuevo que contradice el ban. ¿Qué?',o:['Mantener por autoridad','Revisar evidencia y rectificar si procede','Banear al apelante','Ignorar apelaciones'],a:1,w:'Apelar es un derecho: se revisa y se rectifica si hay error.'}],
+dev:[
+{q:'/lp user no aplica un permiso de grupo. ¿Revisas?',o:['Herencia y contextos del usuario','El color del prefix','El MOTD','La RAM'],a:0,w:'El 90% de fallos LP son herencia, pesos o contextos.'},
+{q:'TPS en 14 con 40 jugadores. Primer sospechoso:',o:['El chat','Entidades/mobs y chunks sin pre-generar','El tab','Los nicks largos'],a:1,w:'Entidades + chunks nuevos matan el TPS. Timings + Chunky.'},
+{q:'Vulcan patea inocentes (falsos positivos). ¿Ajuste?',o:['Desactivar todo','Bajar sensibilidad del check y monitorear VL','Banear a los quejosos','Subir al máximo'],a:1,w:'Se calibra el check ruidoso y se observa el VL, no se apaga todo.'},
+{q:'Bedrock no ve formularios del menú. ¿Causa?',o:['No tienen permiso','Caracteres/componentes no soportados en Bedrock','Lag','Falta RAM'],a:1,w:'Geyser traduce, pero no todo existe en Bedrock: simplificar menús.'},
+{q:'Backup antes de actualizar plugins. ¿Qué incluyes?',o:['Solo el jar','Mundo + plugins + configs + base LuckPerms','Solo configs','Nada, confías'],a:1,w:'Backup completo: mundo, plugins, configs y permisos.'},
+{q:'Comando custom con cooldown global en vez de por jugador. ¿Fallo?',o:['El alias','Variable global en vez de mapa por UUID','El prefix','El MOTD'],a:1,w:'Los cooldowns van por jugador (mapa UUID), nunca globales.'}]};
+var CASES=[
+{c:'normativa',t:'Un VIP insulta a un nuevo y exige que lo baneen a él por "faltar el respeto al rango". ¿Qué harías?',m:'El rango no da impunidad: mute al VIP según reincidencia y disculpa guiada al nuevo. Criterio igual para todos.'},
+{c:'normativa',t:'Encuentras a tu amigo usando KillAura en una cuenta alt. ¿Qué harías?',m:'Amistad fuera del rol: SS/ban según protocolo igual que a cualquiera + registro. Encubrir te cuesta el rango.'},
+{c:'normativa',t:'Un jugador te ofrece dinero real por items. ¿Qué harías?',m:'Rechazar, advertir y registrar. El comercio real rompe la economía y suele ser estafa.'},
+{c:'comandos',t:'Necesitas ver si un mod abusó de /eco give ayer. ¿Qué harías?',m:'CoreProtect lookup + revisión de logs de Essentials; si hay abuso, revertir con /eco take y escalar al owner.'},
+{c:'comandos',t:'Un grief de hace 5 días en zona reclamada. ¿Qué harías?',m:'/co lookup u:nick t:5d r:30, confirmar autor, /co rollback y sancionar según reincidencia.'},
+{c:'comandos',t:'Quieres dar Kit Evento solo por 48h a 20 ganadores. ¿Qué harías?',m:'LuckPerms: settemp con grupo temporal o permiso temporal, y parent remove al vencer. Automatizar, no a mano.'},
+{c:'criterio',t:'Tres reportes contra el mismo jugador, cero evidencia en los tres. ¿Qué harías?',m:'Sin evidencia no hay sanción: observar in-game, pedir pruebas concretas y dejar constancia.'},
+{c:'criterio',t:'Hack evidente en video pero el jugador es donador top. ¿Qué harías?',m:'Donar no compra impunidad: ban según tabla + evidencia guardada. Igualdad ante la norma.'},
+{c:'criterio',t:'Caída del servidor en pleno evento con 80 online. ¿Qué harías?',m:'Comunicar por Discord, reinicio controlado, compensar evento y post-mortem con timings.'}];
+var RANKS=[{id:'helper',e:'🌱',n:'Helper',d:'6 preguntas base'},{id:'mod',e:'🛡️',n:'Moderador',d:'6 preguntas criterio'},{id:'admin',e:'⚔️',n:'Admin',d:'6 preguntas gestión'},{id:'dev',e:'⚙️',n:'Developer',d:'6 preguntas técnicas'}];
+var qi=0,pts=0,racha=0,RANK='helper',timer=null,T=15,ANS=[];
+function hist(){try{return JSON.parse(localStorage.getItem('quiz_hist')||'[]')}catch(e){return[]}}
+function histSave(e){try{var h=hist();h.unshift(e);localStorage.setItem('quiz_hist',JSON.stringify(h.slice(0,20)))}catch(e){}}
+function rankName(id){for(var i=0;i<RANKS.length;i++)if(RANKS[i].id===id)return RANKS[i].n;return id}
+function home(){var h='<p style="font-size:18px">Elige tu rango:</p><div class="rankgrid">';RANKS.forEach(function(r){h+='<div class="rank" data-r="'+r.id+'"><div class="e">'+r.e+'</div><b>'+r.n+'</b><small>'+r.d+'</small></div>'});h+='</div>';document.getElementById('box').innerHTML=h;var ds=document.querySelectorAll('#box .rank');for(var i=0;i<ds.length;i++)(function(el){el.addEventListener('click',function(){start(el.getAttribute('data-r'))})})(ds[i]);drawHist()}
+function start(r){RANK=r;qi=0;pts=0;racha=0;ANS=[];ask()}
+function ask(){var Q=BANK[RANK];if(qi>=Q.length){end();return}var q=Q[qi];T=15;var box=document.getElementById('box');box.innerHTML='<div class="hud"><span>'+rankName(RANK)+' · <b>'+(qi+1)+'/'+Q.length+'</b></span><span>Racha <b>'+racha+'x</b></span><span>Puntos <b>'+pts+'</b></span></div><div class="tbar"><i id="tb"></i></div><p class="q">'+q.q+'</p><div id="opts"></div><p class="mut" style="font-size:12px;color:var(--mut);margin-top:8px">La correcta se revela al final.</p>';var od=document.getElementById('opts');q.o.forEach(function(t,k){var b=document.createElement('button');b.className='opt';b.textContent=t;b.setAttribute('data-k',k);b.addEventListener('click',function(){ans(k)});od.appendChild(b)});clearInterval(timer);timer=setInterval(function(){T--;var tb=document.getElementById('tb');if(tb)tb.style.width=(100*T/15)+'%';if(T<=0){ans(-1)}},1000)}
+function ans(k){clearInterval(timer);var q=BANK[RANK][qi];var ok=(k===q.a);ANS.push({q:q.q,mine:k,ok:ok,exp:q.w});if(ok){racha++;pts+=100+Math.min(racha,5)*20}else{racha=0}var btns=document.querySelectorAll('#opts .opt');for(var i=0;i<btns.length;i++){btns[i].disabled=true;if(parseInt(btns[i].getAttribute('data-k'))===k)btns[i].classList.add('lock')}setTimeout(function(){qi++;ask()},900)}
+function end(){var tot=BANK[RANK].length,good=0;ANS.forEach(function(a){if(a.ok)good++});histSave({r:RANK,p:pts,g:good,t:tot,d:new Date().toLocaleString('es-CO'),ans:ANS.map(function(a){return{q:a.q,mine:a.mine,ok:a.ok,exp:a.exp}})});var h='<h2>Resultado: '+good+'/'+tot+' · '+pts+' pts</h2><p class="mut" style="font-size:13px;color:var(--mut)">Rango: '+rankName(RANK)+'</p><div style="text-align:left;margin-top:12px">';ANS.forEach(function(a,i){h+='<div class="rev"><b class="'+(a.ok?'ok':'no')+'">'+(a.ok?'✔':'✘')+' P'+(i+1)+'</b> '+a.q+'<br><span class="mut">Modelo: '+a.exp+'</span></div>'});h+='</div><button class="btn" id="bAgain">Jugar de nuevo</button> <button class="btn o" id="bHome">Cambiar rango</button>';document.getElementById('box').innerHTML=h;document.getElementById('bAgain').addEventListener('click',function(){start(RANK)});document.getElementById('bHome').addEventListener('click',home);drawHist()}
+function drawHist(){var h=hist();var box=document.getElementById('hist');if(!h.length){box.innerHTML='<p class="mut">Sin intentos aún.</p>';return}var s='';h.slice(0,8).forEach(function(e){s+='<div class="hist"><b>'+e.p+' pts</b> · '+e.g+'/'+e.t+' · '+rankName(e.r)+' · <span class="mut">'+e.d+'</span></div>'});box.innerHTML=s}
+document.getElementById('bClear').addEventListener('click',function(){try{localStorage.removeItem('quiz_hist')}catch(e){}drawHist()});
+function newCase(cat){var pool=CASES.filter(function(c){return cat==='all'||c.c===cat});var c=pool[Math.floor(Math.random()*pool.length)];document.getElementById('caseOut').innerHTML='<div class="case"><b>Caso ('+c.c+'):</b> '+c.t+'<br><button class="btn o" id="bModel">Ver respuesta modelo</button><div class="model" id="mModel">'+c.m+'</div></div>';document.getElementById('bModel').addEventListener('click',function(){document.getElementById('mModel').style.display='block'})}
+document.getElementById('bCase').addEventListener('click',function(){newCase('all')});
+var cbs=document.querySelectorAll('[data-cat]');for(var i=0;i<cbs.length;i++)(function(el){el.addEventListener('click',function(){newCase(el.getAttribute('data-cat'))})})(cbs[i]);
+home();
 </script>
 </body>
 </html>
