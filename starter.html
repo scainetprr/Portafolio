@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Starter Pack · scainetprr</title>
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.7}
+.wrap{max-width:760px;margin:auto}
+a{color:var(--blue)}
+.back{font-size:14px}
+h1{font-size:32px;margin:12px 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:8px 0;font-size:14px;color:#c0c8dc}
+.chk input{width:18px;height:18px;margin-top:4px;accent-color:var(--red)}
+ol.steps{margin:8px 0 8px 20px;color:#c0c8dc;font-size:15px}
+ol.steps li{margin:6px 0}
+code{font-family:Consolas,monospace;background:#0a0e1c;padding:2px 8px;border-radius:6px;font-size:13px}
+pre{background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:14px;font-family:Consolas,monospace;font-size:13px;color:#c0c8dc;white-space:pre-wrap}
+.btn{padding:10px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff;margin-top:10px}
+.btn.p{background:var(--red);border-color:var(--red)}
+.mut{color:var(--mut);font-size:13px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">Volver al portafolio</a>
+<h1>Starter Pack</h1>
+<p class="sub">Kit inicial, firma personal y tu primera granja paso a paso.</p>
+<div class="card"><h3>Kit inicial del novato</h3><p class="mut">Marca lo que ya tengas. Progreso guardado en tu navegador.</p><div id="kit"></div><p class="mut" id="kitN" style="margin-top:8px"></p></div>
+<div class="card"><h3>Tu firma personal</h3><p class="mut">Plantilla para presentarte en cualquier servidor:</p><pre id="firma">Hola, soy [TuNick] | Juego en [Java/Bedrock] | Me gusta [PvP/Construir/Eventos] | Discord: [tu user] | Respeto las reglas y ayudo a nuevos.</pre><button class="btn" data-copy="firma">Copiar firma</button></div>
+<div class="card"><h3>Tu primera granja: hierro en 7 pasos</h3><ol class="steps"><li>Consigue 3 aldeanos y 1 zombi (jaula con nombre).</li><li>Construye plataforma de spawn 16x16 a 100 bloques de altura.</li><li>Coloca camas y mesas de trabajo vinculadas.</li><li>El zombi asusta: los aldeanos invocan golems.</li><li>Canaliza la caída con agua hacia tu punto de matanza.</li><li>Recoge con tolvas a cofres dobles.</li><li>Duerme lejos para mantener el área cargada. <code>/gamerule</code> nada que tocar.</li></ol><p class="mut">Produce ~400 lingotes/hora en vanilla. Sin mods.</p></div>
+<footer>scainetprr · Starter Pack</footer>
+</div>
+<script>
+var KIT=['Espada de hierro','Pico de hierro','Armadura completa de hierro','Escudo','Cama + respawn puesto','Comida x64 (pan/zanahorias)','Antorchas x64','Barco + montura','Mesa de crafteo + horno','Ender chest (cuando puedas)'];
+(function(){var box=document.getElementById('kit');var saved={};try{saved=JSON.parse(localStorage.getItem('kit_scainet')||'{}')}catch(e){}KIT.forEach(function(k,i){var l=document.createElement('label');l.className='chk';var c=document.createElement('input');c.type='checkbox';c.checked=!!saved[i];c.addEventListener('change',function(){saved[i]=c.checked;try{localStorage.setItem('kit_scainet',JSON.stringify(saved))}catch(e){}count()});l.appendChild(c);var s=document.createElement('span');s.textContent=k;l.appendChild(s);box.appendChild(l)});window.count=function(){var n=document.querySelectorAll('#kit input:checked').length;document.getElementById('kitN').textContent=n+'/'+KIT.length+' listo'};count()})();
+document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var t=document.getElementById(b.getAttribute('data-copy')).textContent;try{navigator.clipboard.writeText(t);b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar firma'},1200)}catch(e){}})});
+</script>
+</body>
+</html>
