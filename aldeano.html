@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Aldeano de Tradeos · scainetprr</title>
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--gld:#f5a623}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+.wrap{max-width:760px;margin:auto}
+a{color:var(--blue)}
+.back{font-size:14px}
+h1{font-size:32px;margin:12px 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{color:var(--mut);font-size:12px;text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+td{padding:9px 8px;border-bottom:1px solid #1a2138;color:#c0c8dc}
+td b{color:#fff}
+.good{color:var(--grn);font-weight:700}
+.trade{background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:16px;text-align:center}
+.big{font-size:30px}
+.btn{padding:11px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff;margin:6px 4px}
+.btn.p{background:var(--red);border-color:var(--red)}
+.btn.g{background:var(--grn);border-color:var(--grn);color:#06130c}
+.mut{color:var(--mut);font-size:13px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">Volver al portafolio</a>
+<h1>Aldeano de Tradeos</h1>
+<p class="sub">Mejores tradeos por profesión + minijuego de regateo con Boboldo.</p>
+<div class="card"><h3>Tabla de tradeos top</h3><table><thead><tr><th>Profesión</th><th>Compras (tú das)</th><th>Vendes (recibes)</th><th>Nota</th></tr></thead><tbody>
+<tr><td><b>Librero</b></td><td>Papel, libros</td><td>Mending, Filo V, Fortuna III</td><td class="good">Prioridad 1</td></tr>
+<tr><td><b>Armero</b></td><td>Carbón, hierro</td><td>Armadura diamante</td><td class="good">Full diamante barato</td></tr>
+<tr><td><b>Herrero</b></td><td>Carbón, hierro</td><td>Hachas, picos, espadas</td><td>Herramientas top</td></tr>
+<tr><td><b>Cartógrafo</b></td><td>Papel, vidrio</td><td>Mapas de mansión/monumento</td><td>Exploración</td></tr>
+<tr><td><b>Granjero</b></td><td>Trigo, papa, zanahoria</td><td>Esmeraldas + comida</td><td>Motor de esmeraldas</td></tr>
+<tr><td><b>Flechero</b></td><td>Palos, hilo</td><td>Arcos, flechas, esmeraldas</td><td>Palos = esmeraldas</td></tr>
+<tr><td><b>Clérigo</b></td><td>Carne podrida, oro</td><td>Ender pearls, redstone</td><td>Perlas fáciles</td></tr>
+</tbody></table><p class="mut" style="margin-top:8px">Cura al aldeano zombificado para descuentos permanentes (hasta -100%).</p></div>
+<div class="card" style="text-align:center"><h3>Regatea con Boboldo</h3><p class="mut">5 rondas. Acepta, rechaza o contraoferta. Tu reputación sube o baja.</p>
+<div class="trade"><div class="big" id="bFace">🧑‍🌾</div><p id="bSay" style="font-size:16px;min-height:48px">Hola, forastero. ¿Tradeamos?</p><p class="mut" id="bScore">Reputación: 0 · Ronda 0/5</p></div>
+<div style="margin-top:10px"><button class="btn g" id="bGo">Empezar</button><button class="btn" id="bOk" style="display:none">Aceptar</button><button class="btn p" id="bNo" style="display:none">Rechazar</button><button class="btn" id="bLow" style="display:none">Pedir rebaja</button></div>
+</div>
+<footer>scainetprr · Aldeano de Tradeos</footer>
+</div>
+<script>
+var ITEMS=[['Mending I','32 esmeraldas'],['Filo V','28 esmeraldas'],['Pechera diamante','18 esmeraldas'],['Ender pearls x4','1 esmeralda'],['Mapa mansión','14 esmeraldas + brújula']];
+var R=0,REP=0,PRICE=0,ITEM='';
+function say(t){document.getElementById('bSay').textContent=t}
+function hud(){document.getElementById('bScore').textContent='Reputación: '+REP+' · Ronda '+R+'/5'}
+function showBtns(v){var ids=['bOk','bNo','bLow'];for(var i=0;i<ids.length;i++)document.getElementById(ids[i]).style.display=v?'':'none';document.getElementById('bGo').style.display=v?'none':''}
+function round(){if(R>=5){say(REP>=2?'Buen comerciante. Boboldo te respeta.':'Boboldo no volverá a tradear contigo...');showBtns(false);document.getElementById('bGo').style.display='';document.getElementById('bGo').textContent='Jugar de nuevo';R=0;REP=0;return}R++;var p=ITEMS[Math.floor(Math.random()*ITEMS.length)];ITEM=p[0];PRICE=parseInt(p[1]);say('Te doy '+ITEM+' por '+PRICE+' esmeraldas. ¿Trato?');hud();showBtns(true)}
+document.getElementById('bGo').addEventListener('click',function(){R=0;REP=0;round()});
+document.getElementById('bOk').addEventListener('click',function(){REP++;say('Trato hecho. '+ITEM+' por '+PRICE+' esmeraldas.');hud();showBtns(false);setTimeout(round,1400)});
+document.getElementById('bNo').addEventListener('click',function(){REP--;say('Hmph. Pierdes una oferta única.');hud();showBtns(false);setTimeout(round,1400)});
+document.getElementById('bLow').addEventListener('click',function(){if(Math.random()<0.45){REP++;var np=Math.max(1,PRICE-4);say('...está bien. '+ITEM+' por '+np+' esmeraldas. ¿Aceptas?');PRICE=np;hud()}else{REP--;say('¿Rebaja? ¡Me ofendes! La oferta sube a '+(PRICE+4)+'.');PRICE+=4;hud()}});
+hud();
+</script>
+</body>
+</html>
