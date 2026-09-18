@@ -7,18 +7,20 @@
 <title>Guía de Encantamientos · scainetprr</title>
 <link rel="icon" type="image/png" href="Imagenes/favicon.png">
 <style>
-body{background:radial-gradient(ellipse at 50% 0%,rgba(139,92,246,.06),transparent 55%),var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6;overflow-x:hidden}
 :root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--gld:#f5a623}
 *{box-sizing:border-box;margin:0;padding:0}
-
-.wrap{max-width:860px;margin:auto}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6;overflow-x:hidden}
+.wrap{max-width:860px;margin:auto;position:relative;z-index:1}
 a{color:var(--blue)}
 .back{font-size:14px}
 h1{font-size:32px;margin:12px 0 4px}
 .sub{color:var(--mut);font-size:14px;margin-bottom:20px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px;transition:transform .3s,box-shadow .3s,border-color .3s}
+.card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}
 input[type=text]{width:100%;padding:13px 18px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:12px;color:#fff;font-size:16px;outline:none;margin-bottom:12px}
-.tags button{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 16px;margin:4px;cursor:pointer;font-size:13px}
+.tags{margin-bottom:14px}
+.tags button{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 16px;margin:4px;cursor:pointer;font-size:13px;transition:all .2s}
+.tags button:hover{border-color:var(--red)}
 .tags button.on{background:var(--red);border-color:var(--red)}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th{color:var(--mut);font-size:12px;text-align:left;padding:8px;border-bottom:1px solid var(--line)}
@@ -26,74 +28,179 @@ td{padding:9px 8px;border-bottom:1px solid #1a2138;color:#c0c8dc}
 td b{color:#fff}
 .mx{color:var(--gld);font-weight:800}
 .bad{color:#ff6b7a;font-size:12px}
-.setbtn{padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:#1c2440;color:#fff;font-size:13px;font-weight:700;cursor:pointer;margin:4px}
+.setbtn{padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:#1c2440;color:#fff;font-size:13px;font-weight:700;cursor:pointer;margin:4px;transition:all .2s}
+.setbtn:hover{border-color:var(--red)}
 .setbtn.on{background:var(--red);border-color:var(--red)}
-#setOut{background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:12px;font-size:14px}
+#setOut{background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:12px;font-size:14px;min-height:40px}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
-.card{transition:transform .3s,box-shadow .3s,border-color .3s}.card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}h1{text-shadow:0 0 30px #e11d2e44}.rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}.rv.vis{opacity:1;transform:none}#stars{position:fixed;inset:0;z-index:0;pointer-events:none}.wrap{position:relative;z-index:1}.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:0;opacity:.32;pointer-events:none}.o1{width:480px;height:480px;background:#e11d2e;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}.o2{width:420px;height:420px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 18s ease-in-out infinite alternate-reverse}@keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}.shead h2{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 18px #e11d2e44)}.card,.vcard,.exp,.statBig,.proj{box-shadow:0 12px 34px #00000088,inset 0 1px 0 #ffffff1f;border-color:#33406b}.wrap>h1{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px #e11d2e55)}.shead{border-bottom:1px solid #2b3a66}</style>
+h1{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px #e11d2e55)}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:0;opacity:.2;pointer-events:none}
+.o1{width:480px;height:480px;background:#e11d2e;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}
+.o2{width:420px;height:420px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}
+@media(max-width:700px){.wrap{padding:0 12px}table{font-size:12px}td,th{padding:6px 4px}}
+</style>
 </head>
-<body><canvas id="stars"></canvas><div class="orb o1"></div><div class="orb o2"></div>
-<script>(function(){var cv=document.getElementById('stars');if(!cv)return;var cx=cv.getContext('2d'),P=[];function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.4+.12,c:['#ffffff','#e11d2e','#2b7fff'][i%3]});(function anim(){cx.clearRect(0,0,cv.width,cv.height);for(var k=0;k<P.length;k++){var p=P[k];p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.65;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}cx.globalAlpha=1;requestAnimationFrame(anim)})();})();</script>
-
+<body>
+<canvas id="stars"></canvas>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<script>
+(function(){
+var cv=document.getElementById('stars');
+if(!cv)return;
+var cx=cv.getContext('2d'),P=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}
+rs();
+addEventListener('resize',rs);
+for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.4+.12,c:['#ffffff','#e11d2e','#2b7fff'][i%3]});
+(function anim(){
+cx.clearRect(0,0,cv.width,cv.height);
+for(var k=0;k<P.length;k++){
+var p=P[k];
+p.y-=p.s;
+if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}
+cx.globalAlpha=.65;
+cx.fillStyle=p.c;
+cx.beginPath();
+cx.arc(p.x,p.y,p.r,0,7);
+cx.fill();
+}
+cx.globalAlpha=1;
+requestAnimationFrame(anim);
+})();
+})();
+</script>
 <div class="wrap">
-<a class="back" href="index.html">← Volver al portafolio</a>
-<h1>Guía de Encantamientos</h1>
-<p class="sub">Niveles máximos, incompatibilidades y armador de sets perfectos (Java 1.20+).</p>
+<a class="back" href="index.html">&larr; Volver al portafolio</a>
+<h1>Guia de Encantamientos</h1>
+<p class="sub">Niveles maximos, incompatibilidades y armador de sets perfectos (Java 1.20+).</p>
 <input type="text" id="q" placeholder="Buscar encantamiento... (ej: filo, prot, infinidad)" oninput="draw()">
 <div class="tags" id="tags"></div>
-<div class="card" style="padding:8px 10px"><table><thead><tr><th>Encanto</th><th>Máx</th><th>Para</th><th>Choca con</th></tr></thead><tbody id="rows"></tbody></table></div>
-<div class="card"><h3>Armador de set perfecto</h3>
-<p class="mut" style="font-size:13px;color:var(--mut)">Elige pieza y te digo los encantamientos ideales.</p>
-<div id="pieces"><button class="setbtn on" onclick="setPiece(this,'casco')">Casco</button><button class="setbtn" onclick="setPiece(this,'pechera')">Pechera</button><button class="setbtn" onclick="setPiece(this,'pantalones')">Pantalones</button><button class="setbtn" onclick="setPiece(this,'botas')">Botas</button><button class="setbtn" onclick="setPiece(this,'espada')">Espada</button><button class="setbtn" onclick="setPiece(this,'pico')">Pico</button><button class="setbtn" onclick="setPiece(this,'arco')">Arco</button></div>
+<div class="card" style="padding:8px 10px">
+<table><thead><tr><th>Encanto</th><th>Max</th><th>Para</th><th>Choca con</th></tr></thead><tbody id="rows"></tbody></table>
+</div>
+<div class="card">
+<h3 style="margin-bottom:8px">Armador de set perfecto</h3>
+<p style="font-size:13px;color:var(--mut);margin-bottom:12px">Elige pieza y te digo los encantamientos ideales.</p>
+<div id="pieces">
+<button class="setbtn on" data-p="casco">Casco</button>
+<button class="setbtn" data-p="pechera">Pechera</button>
+<button class="setbtn" data-p="pantalones">Pantalones</button>
+<button class="setbtn" data-p="botas">Botas</button>
+<button class="setbtn" data-p="espada">Espada</button>
+<button class="setbtn" data-p="pico">Pico</button>
+<button class="setbtn" data-p="arco">Arco</button>
+</div>
 <div id="setOut"></div>
 </div>
-<footer>scainetprr · Guía de Encantamientos</footer>
+<footer>scainetprr &middot; Guia de Encantamientos</footer>
 </div>
 <script>
 var EN=[
-{n:'Protección',m:4,para:'Armadura',choca:'Prot. contra fuego/explosiones/proyectiles',d:'Defensa general. No se combina con las otras protecciones.'},
-{n:'Protección contra fuego',m:4,para:'Armadura',choca:'Protección y otras protecciones',d:'Ideal Nether + Blaze.'},
-{n:'Protección contra explosiones',m:4,para:'Armadura',choca:'Protección y otras protecciones',d:'Anti-creeper y camas del End.'},
-{n:'Caída de pluma',m:4,para:'Botas',choca:'—',d:'Obligatorio en botas. Salva de alturas y ender pearls.'},
-{n:'Respiración',m:3,para:'Casco',choca:'—',d:'Más aire bajo el agua + visión.'},
-{n:'Afinidad acuática',m:1,para:'Casco',choca:'—',d:'Minar rápido bajo el agua.'},
-{n:'Espinas',m:3,para:'Armadura',choca:'—',d:'Devuelve daño pero gasta durabilidad.'},
-{n:'Agilidad acuática',m:3,para:'Botas',choca:'Lealtad gélida',d:'Caminar rápido en agua.'},
-{n:'Lealtad gélida',m:2,para:'Botas',choca:'Agilidad acuática',d:'Congela el agua al caminar.'},
-{n:'Velocidad del alma',m:3,para:'Botas',choca:'—',d:'Corre en arena de almas del Nether.'},
-{n:'Sigilo veloz',m:3,para:'Pantalones',choca:'—',d:'Moverse agachado más rápido.'},
-{n:'Filo',m:5,para:'Espada',choca:'Castigo, Perdición artrópodos',d:'Daño general. El estándar PvP/PvE.'},
-{n:'Castigo',m:5,para:'Espada',choca:'Filo, Perdición',d:'Daño extra a no-muertos (zombis, esqueletos, wither).'},
-{n:'Perdición de artrópodos',m:5,para:'Espada',choca:'Filo, Castigo',d:'Contra arañas, abejas y endermites.'},
-{n:'Empuje',m:2,para:'Espada',choca:'—',d:'Knockback. Molesto en PvP, útil vs mobs.'},
-{n:'Aspecto ígneo',m:2,para:'Espada',choca:'—',d:'Prende fuego al golpear.'},
-{n:'Botín',m:3,para:'Espada',choca:'Toque sedoso',d:'Más drops. Farm esencial.'},
-{n:'Barrido',m:3,para:'Espada',choca:'—',d:'Solo Java: daño en área del barrido.'},
-{n:'Eficiencia',m:5,para:'Herramientas',choca:'—',d:'Velocidad de minado. Pico pala hacha.'},
-{n:'Toque sedoso',m:1,para:'Herramientas',choca:'Fortuna',d:'Recoge el bloque tal cual (diamante, hielo, panales).'},
+{n:'Proteccion',m:4,para:'Armadura',choca:'Prot. contra fuego/explosiones/proyectiles',d:'Defensa general.'},
+{n:'Prot. contra fuego',m:4,para:'Armadura',choca:'Proteccion y otras protecciones',d:'Ideal Nether + Blaze.'},
+{n:'Prot. contra explosiones',m:4,para:'Armadura',choca:'Proteccion y otras protecciones',d:'Anti-creeper y camas del End.'},
+{n:'Caida de pluma',m:4,para:'Botas',choca:'--',d:'Obligatorio en botas. Salva de alturas.'},
+{n:'Respiracion',m:3,para:'Casco',choca:'--',d:'Mas aire bajo el agua.'},
+{n:'Afinidad acuatica',m:1,para:'Casco',choca:'--',d:'Minar rapido bajo el agua.'},
+{n:'Espinas',m:3,para:'Armadura',choca:'--',d:'Devuelve dano pero gasta durabilidad.'},
+{n:'Agilidad acuatica',m:3,para:'Botas',choca:'Lealtad gelida',d:'Caminar rapido en agua.'},
+{n:'Lealtad gelida',m:2,para:'Botas',choca:'Agilidad acuatica',d:'Congela el agua al caminar.'},
+{n:'Velocidad del alma',m:3,para:'Botas',choca:'--',d:'Corre en arena de almas del Nether.'},
+{n:'Sigilo veloz',m:3,para:'Pantalones',choca:'--',d:'Moverse agachado mas rapido.'},
+{n:'Filo',m:5,para:'Espada',choca:'Castigo, Perdicion arthropodos',d:'Dano general. PvP/PvE.'},
+{n:'Castigo',m:5,para:'Espada',choca:'Filo, Perdicion',d:'Dano extra a no-muertos.'},
+{n:'Perdicion de arthropodos',m:5,para:'Espada',choca:'Filo, Castigo',d:'Contra aranas, abejas y endermites.'},
+{n:'Empuje',m:2,para:'Espada',choca:'--',d:'Knockback. Util vs mobs.'},
+{n:'Aspecto igneo',m:2,para:'Espada',choca:'--',d:'Prende fuego al golpear.'},
+{n:'Botin',m:3,para:'Espada',choca:'Toque sedoso',d:'Mas drops. Farm esencial.'},
+{n:'Barrido',m:3,para:'Espada',choca:'--',d:'DanArea del barrido (solo Java).'},
+{n:'Eficiencia',m:5,para:'Herramientas',choca:'--',d:'Velocidad de minado.'},
+{n:'Toque sedoso',m:1,para:'Herramientas',choca:'Fortuna',d:'Recoge el bloque tal cual.'},
 {n:'Fortuna',m:3,para:'Pico/pala/hacha',choca:'Toque sedoso',d:'Multiplica drops de minerales.'},
-{n:'Irrompibilidad',m:3,para:'Todo',choca:'—',d:'Durabilidad. Va en TODO el set.'},
-{n:'Reparación (Mending)',m:1,para:'Todo',choca:'Infinidad (arco)',d:'Repara con XP. Prioridad máxima.'},
-{n:'Poder',m:5,para:'Arco',choca:'—',d:'Daño base del arco.'},
-{n:'Puñetazo',m:2,para:'Arco',choca:'—',d:'Knockback de flechas.'},
-{n:'Llama',m:1,para:'Arco',choca:'—',d:'Flechas incendiarias.'},
-{n:'Infinidad',m:1,para:'Arco',choca:'Reparación',d:'Flechas infinitas (1 en inventario). O Infinidad o Mending.'},
-{n:'Suerte marina',m:3,para:'Caña',choca:'—',d:'Mejor pesca.'},
-{n:'Lealtad',m:3,para:'Tridente',choca:'Canalización',d:'El tridente vuelve a tu mano.'},
-{n:'Empalamiento',m:5,para:'Tridente',choca:'—',d:'Daño extra acuático.'},
-{n:'Corriente',m:3,para:'Tridente',choca:'Lealtad, Canalización',d:'Te lanza con el tridente en agua/lluvia.'},
-{n:'Canalización',m:1,para:'Tridente',choca:'Corriente',d:'Rayos en tormenta.'},
-{n:'Multidisparo',m:1,para:'Ballesta',choca:'Perforación',d:'3 flechas por tiro.'},
-{n:'Perforación',m:4,para:'Ballesta',choca:'Multidisparo',d:'Atraviesa enemigos.'},
-{n:'Carga rápida',m:3,para:'Ballesta',choca:'—',d:'Recarga veloz.'}];
-var SETS={casco:['Protección 4','Respiración 3','Afinidad acuática 1','Irrompibilidad 3','Reparación 1'],pechera:['Protección 4','Irrompibilidad 3','Reparación 1','Espinas 3 (opcional)'],pantalones:['Protección 4 (o anti-explosiones)','Sigilo veloz 3','Irrompibilidad 3','Reparación 1'],botas:['Protección 4','Caída de pluma 4','Agilidad acuática 3','Irrompibilidad 3','Reparación 1','Velocidad del alma 3 (Nether)'],espada:['Filo 5','Botín 3','Aspecto ígneo 2','Barrido 3','Irrompibilidad 3','Reparación 1'],pico:['Eficiencia 5','Fortuna 3 (minar) o Toque sedoso (construir)','Irrompibilidad 3','Reparación 1'],arco:['Poder 5','Puñetazo 2','Llama 1','Infinidad 1 o Reparación 1','Irrompibilidad 3']};
+{n:'Irrompibilidad',m:3,para:'Todo',choca:'--',d:'Durabilidad. Va en TODO el set.'},
+{n:'Reparacion (Mending)',m:1,para:'Todo',choca:'Infinidad (arco)',d:'Repara con XP. Prioridad maxima.'},
+{n:'Poder',m:5,para:'Arco',choca:'--',d:'Dano base del arco.'},
+{n:'Punetazo',m:2,para:'Arco',choca:'--',d:'Knockback de flechas.'},
+{n:'Llama',m:1,para:'Arco',choca:'--',d:'Flechas incendiarias.'},
+{n:'Infinidad',m:1,para:'Arco',choca:'Reparacion',d:'Flechas infinitas. O Infinidad o Mending.'},
+{n:'Suerte marina',m:3,para:'Cania',choca:'--',d:'Mejor pesca.'},
+{n:'Lealtad',m:3,para:'Tridente',choca:'Canalizacion',d:'El tridente vuelve a tu mano.'},
+{n:'Empalamiento',m:5,para:'Tridente',choca:'--',d:'Dano extra acuatico.'},
+{n:'Corriente',m:3,para:'Tridente',choca:'Lealtad, Canalizacion',d:'Te lanza con el tridente.'},
+{n:'Canalizacion',m:1,para:'Tridente',choca:'Corriente',d:'Rayos en tormenta.'},
+{n:'Multidisparo',m:1,para:'Ballesta',choca:'Perforacion',d:'3 flechas por tiro.'},
+{n:'Perforacion',m:4,para:'Ballesta',choca:'Multidisparo',d:'Atraviesa enemigos.'},
+{n:'Carga rapida',m:3,para:'Ballesta',choca:'--',d:'Recarga veloz.'}
+];
+var SETS={
+casco:['Proteccion 4','Respiracion 3','Afinidad acuatica 1','Irrompibilidad 3','Reparacion 1'],
+pechera:['Proteccion 4','Irrompibilidad 3','Reparacion 1','Espinas 3 (opcional)'],
+pantalones:['Proteccion 4 (o anti-explosiones)','Sigilo veloz 3','Irrompibilidad 3','Reparacion 1'],
+botas:['Proteccion 4','Caida de pluma 4','Agilidad acuatica 3','Irrompibilidad 3','Reparacion 1','Velocidad del alma 3'],
+espada:['Filo 5','Botin 3','Aspecto igneo 2','Barrido 3','Irrompibilidad 3','Reparacion 1'],
+pico:['Eficiencia 5','Fortuna 3 o Toque sedoso','Irrompibilidad 3','Reparacion 1'],
+arco:['Poder 5','Punetazo 2','Llama 1','Infinidad 1 o Reparacion 1','Irrompibilidad 3']
+};
 var F='all';
-function draw(){var q=document.getElementById('q').value.toLowerCase();var h='',n=0;EN.forEach(function(e){if(F!=='all'&&e.para!==F&&e.para.indexOf(F)<0)return;if(q&&(e.n+' '+e.d+' '+e.para).toLowerCase().indexOf(q)<0)return;n++;h+='<tr><td><b>'+e.n+'</b><br><span class="mut" style="font-size:12px">'+e.d+'</span></td><td class="mx">'+e.m+'</td><td>'+e.para+'</td><td>'+(e.choca==='—'?'—':'<span class="bad">'+e.choca+'</span>')+'</td></tr>'});document.getElementById('rows').innerHTML=h||'<tr><td colspan="4" class="mut">Sin resultados.</td></tr>'}
-(function(){var ps={};EN.forEach(function(e){ps[e.para.split('/')[0].split(' ')[0]}=1});var h='<button class="on" onclick="setF(this,\'all\')">Todos</button>';Object.keys(ps).forEach(function(p){h+='<button onclick="setF(this,\''+p+'\')">'+p+'</button>'});document.getElementById('tags').innerHTML=h})();
-function setF(b,f){F=f;var bs=document.querySelectorAll('#tags button');for(var i=0;i<bs.length;i++)bs[i].classList.remove('on');b.classList.add('on');draw()}
-function setPiece(b,p){var bs=document.querySelectorAll('#pieces button');for(var i=0;i<bs.length;i++)bs[i].classList.remove('on');b.classList.add('on');document.getElementById('setOut').innerHTML='<b style="color:#fff">Set '+p+':</b><br>'+SETS[p].map(function(x){return '✔ '+x}).join('<br>')}
-draw();setPiece(document.querySelector('#pieces button'),'casco');
+function draw(){
+var q=document.getElementById('q').value.toLowerCase();
+var h='';
+var n=0;
+for(var i=0;i<EN.length;i++){
+var e=EN[i];
+if(F!=='all'&&e.para!==F&&e.para.indexOf(F)<0)continue;
+if(q&&(e.n+' '+e.d+' '+e.para).toLowerCase().indexOf(q)<0)continue;
+n++;
+h+='<tr><td><b>'+e.n+'</b><br><span style="font-size:12px;color:var(--mut)">'+e.d+'</span></td>';
+h+='<td class="mx">'+e.m+'</td><td>'+e.para+'</td>';
+h+='<td>'+(e.choca==='--'?'--':'<span class="bad">'+e.choca+'</span>')+'</td></tr>';
+}
+document.getElementById('rows').innerHTML=h||'<tr><td colspan="4" style="color:var(--mut)">Sin resultados.</td></tr>';
+}
+function buildTags(){
+var ps={};
+for(var i=0;i<EN.length;i++){
+var p=EN[i].para.split('/')[0].split(' ')[0];
+ps[p]=1;
+}
+var h='<button class="on" data-f="all">Todos</button>';
+var keys=Object.keys(ps);
+for(var i=0;i<keys.length;i++){
+h+='<button data-f="'+keys[i]+'">'+keys[i]+'</button>';
+}
+document.getElementById('tags').innerHTML=h;
+var btns=document.querySelectorAll('#tags button');
+for(var i=0;i<btns.length;i++){
+btns[i].addEventListener('click',function(){
+F=this.getAttribute('data-f');
+var all=document.querySelectorAll('#tags button');
+for(var j=0;j<all.length;j++)all[j].classList.remove('on');
+this.classList.add('on');
+draw();
+});
+}
+}
+function setPiece(piece){
+var bs=document.querySelectorAll('#pieces button');
+for(var i=0;i<bs.length;i++)bs[i].classList.remove('on');
+var btn=document.querySelector('[data-p="'+piece+'"]');
+if(btn)btn.classList.add('on');
+var out=document.getElementById('setOut');
+if(SETS[piece]){
+out.innerHTML='<b style="color:#fff">Set '+piece+':</b><br>'+SETS[piece].map(function(x){return '  '+x}).join('<br>');
+}else{
+out.innerHTML='<span style="color:var(--mut)">Sin datos para esta pieza.</span>';
+}
+}
+buildTags();
+draw();
+setPiece('casco');
+document.querySelectorAll('#pieces button').forEach(function(btn){
+btn.addEventListener('click',function(){setPiece(this.getAttribute('data-p'))});
+});
 </script>
-<script>(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.1});var cs=document.querySelectorAll('.card');for(var i=0;i<cs.length;i++){cs[i].classList.add('rv');cs[i].style.transitionDelay=(i%3)*.07+'s';io.observe(cs[i])}})();
-</script></body>
+</body>
 </html>
