@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Radio Gamer · scainetprr</title>
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+.wrap{max-width:680px;margin:auto}
+a{color:var(--blue)}
+.back{font-size:14px}
+h1{font-size:32px;margin:12px 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px;text-align:center}
+#viz{width:100%;height:110px;background:#0a0e1c;border-radius:10px;display:block}
+.track{font-size:18px;font-weight:800;margin:12px 0 2px}
+.artist{color:var(--mut);font-size:13px}
+.ctrl{display:flex;gap:10px;justify-content:center;margin:14px 0;flex-wrap:wrap}
+.btn{padding:11px 22px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff}
+.btn.p{background:var(--red);border-color:var(--red)}
+input[type=range]{width:160px;accent-color:var(--red)}
+input[type=text]{width:100%;padding:11px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box;margin-top:8px}
+.pl{text-align:left;margin-top:10px}
+.trk{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:8px;cursor:pointer;font-size:14px}
+.trk:hover{background:#1c2440}
+.trk.on{background:#1c2440;border:1px solid var(--red)}
+.mut{color:var(--mut);font-size:13px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">Volver al portafolio</a>
+<h1>Radio Gamer</h1>
+<p class="sub">Ambiente generado en vivo + tus MP3. Las canciones oficiales se eligen después.</p>
+<div class="card">
+<canvas id="viz" width="600" height="110"></canvas>
+<div class="track" id="tName">Ambiente IA · Lo-fi generativo</div>
+<div class="artist" id="tArt">pulsa reproducir</div>
+<div class="ctrl">
+<button class="btn" id="bPrev">|◀</button>
+<button class="btn p" id="bPlay">▶ Reproducir</button>
+<button class="btn" id="bNext">▶|</button>
+</div>
+<div class="ctrl"><span class="mut">Vol</span><input type="range" id="vol" min="0" max="100" value="70"></div>
+</div>
+<div class="card" style="text-align:left"><h3>Lista</h3><div class="pl" id="plist"></div>
+<label class="mut">Agregar MP3 por URL directa:</label>
+<input type="text" id="urlIn" placeholder="https://.../cancion.mp3">
+<button class="btn" id="bAdd">Agregar a la lista</button>
+<label class="mut" style="display:block;margin-top:10px">O reproduce un archivo local:</label>
+<input type="file" id="fileIn" accept="audio/*">
+</div>
+<footer>scainetprr · Radio Gamer</footer>
+</div>
+<script>
+var AC=null,AN=null,GAIN=null,OSC=[],GEN_ON=false,AUD=null,SRCN=null;
+var PLAYLIST=[{n:'Ambiente IA · Lo-fi generativo',a:'generado en vivo',gen:true}];
+var IDX=0,PLAYING=false;
+function ctx(){if(!AC){var C=window.AudioContext||window.webkitAudioContext;AC=new C();GAIN=AC.createGain();GAIN.gain.value=0.7;AN=AC.createAnalyser();AN.fftSize=64;GAIN.connect(AN);AN.connect(AC.destination)}if(AC.state==='suspended')AC.resume();return AC}
+function stopGen(){GEN_ON=false;OSC.forEach(function(o){try{o.stop()}catch(e){}});OSC=[]}
+var CHORDS=[[110,130.8,164.8,220],[98,123.5,146.8,196],[87.3,110,130.8,174.6],[130.8,164.8,196,246.9]];
+var CI=0;
+function genLoop(){if(!GEN_ON)return;var ac=ctx();var t=ac.currentTime;CHORDS[CI%CHORDS.length].forEach(function(f,i){var o=ac.createOscillator(),g=ac.createGain();o.type=i<2?'sine':'triangle';o.frequency.value=f;g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.08,t+1.2);g.gain.exponentialRampToValueAtTime(0.0001,t+3.8);o.connect(g);g.connect(GAIN);o.start(t);o.stop(t+4);OSC.push(o)});CI++;setTimeout(genLoop,3200)}
+function drawList(){var h='';PLAYLIST.forEach(function(t,i){h+='<div class="trk'+(i===IDX&&PLAYING?' on':'')+'" data-i="'+i+'"><span>'+(i+1)+'. '+t.n+'</span><span class="mut">'+(t.gen?'IA':(t.file?'local':'url'))+'</span></div>'});document.getElementById('plist').innerHTML=h;var ds=document.querySelectorAll('#plist .trk');for(var k=0;k<ds.length;k++)(function(el){el.addEventListener('click',function(){playIdx(parseInt(el.getAttribute('data-i')))})})(ds[k])}
+function setMeta(){document.getElementById('tName').textContent=PLAYLIST[IDX].n;document.getElementById('tArt').textContent=PLAYLIST[IDX].gen?'generado en vivo':(PLAYLIST[IDX].file?'archivo local':'stream URL')}
+function stopAud(){if(AUD){AUD.pause();AUD=null}if(SRCN){try{SRCN.disconnect()}catch(e){}SRCN=null}}
+function playIdx(i){IDX=(i+PLAYLIST.length)%PLAYLIST.length;stopAud();stopGen();var t=PLAYLIST[IDX];if(t.gen){ctx();GEN_ON=true;genLoop();PLAYING=true}else{ctx();AUD=new Audio(t.url);AUD.crossOrigin='anonymous';try{SRCN=AC.createMediaElementSource(AUD);SRCN.connect(GAIN)}catch(e){}AUD.play();PLAYING=true}setMeta();drawList();document.getElementById('bPlay').textContent='⏸ Pausar'}
+function toggle(){if(PLAYING){stopAud();stopGen();PLAYING=false;document.getElementById('bPlay').textContent='▶ Reproducir';drawList()}else{playIdx(IDX)}}
+document.getElementById('bPlay').addEventListener('click',toggle);
+document.getElementById('bPrev').addEventListener('click',function(){playIdx(IDX-1)});
+document.getElementById('bNext').addEventListener('click',function(){playIdx(IDX+1)});
+document.getElementById('vol').addEventListener('input',function(e){if(GAIN)GAIN.gain.value=e.target.value/100});
+document.getElementById('bAdd').addEventListener('click',function(){var u=document.getElementById('urlIn').value.trim();if(!u)return;PLAYLIST.push({n:u.split('/').pop().slice(0,40),a:'stream URL',url:u});document.getElementById('urlIn').value='';drawList()});
+document.getElementById('fileIn').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;PLAYLIST.push({n:f.name.slice(0,40),a:'archivo local',url:URL.createObjectURL(f),file:true});drawList()});
+var CV=document.getElementById('viz').getContext('2d');
+(function viz(){requestAnimationFrame(viz);CV.clearRect(0,0,600,110);if(!AN||!PLAYING){CV.fillStyle='#26304d';CV.font='12px Segoe UI';CV.fillText('visualizador en pausa',230,60);return}var d=new Uint8Array(AN.frequencyBinCount);AN.getByteFrequencyData(d);var bw=600/d.length;for(var i=0;i<d.length;i++){var h=d[i]/255*100;var g=CV.createLinearGradient(0,110-h,0,110);g.addColorStop(0,'#e11d2e');g.addColorStop(1,'#2b7fff');CV.fillStyle=g;CV.fillRect(i*bw+1,110-h,bw-2,h)}})();
+drawList();setMeta();
+</script>
+</body>
+</html>
