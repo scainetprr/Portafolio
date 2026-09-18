@@ -7,34 +7,67 @@
 <title>Crónicas del Staff · scainetprr</title>
 <link rel="icon" type="image/png" href="Imagenes/favicon.png">
 <style>
-:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--gld:#f5a623}
+:root{--bg:#070912;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--gld:#f5a623}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.7}
-.wrap{max-width:720px;margin:auto}
+body{background:radial-gradient(1000px 500px at 80% -5%,#e11d2e22,transparent 60%),radial-gradient(900px 500px at 10% 10%,#2b7fff1c,transparent 60%),var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;line-height:1.7;overflow-x:hidden}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--red),var(--gld));z-index:60;box-shadow:0 0 12px #e11d2eaa}
+.wrap{max-width:740px;margin:auto;padding:30px 20px 60px;position:relative;z-index:1}
 a{color:var(--blue)}
 .back{font-size:14px}
-h1{font-size:32px;margin:12px 0 4px}
-.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
-.chap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;margin-bottom:16px;position:relative;overflow:hidden}
-.chap::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--red),var(--blue))}
+.hero{text-align:center;padding:40px 0 10px}
+.hero .k{font-family:Consolas,monospace;letter-spacing:5px;font-size:12px;color:var(--red);font-weight:700}
+h1{font-size:44px;margin:10px 0;text-shadow:0 0 40px #e11d2e66}
+.sub{color:var(--mut);font-size:15px}
+#sndBtn{position:fixed;bottom:22px;right:22px;z-index:60;padding:12px 20px;border-radius:99px;border:1px solid var(--red);background:#0a0e1add;color:#fff;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 0 24px #e11d2e55}
+.tline{position:relative;margin-top:30px;padding-left:34px}
+.tline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--red),var(--gld),var(--blue))}
+.chap{background:rgba(19,26,48,.88);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:28px;margin-bottom:22px;position:relative;opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease,border-color .3s,box-shadow .3s}
+.chap.vis{opacity:1;transform:none}
+.chap:hover{border-color:var(--red);box-shadow:0 14px 44px #e11d2e33}
+.chap::before{content:"";position:absolute;left:-30px;top:30px;width:14px;height:14px;border-radius:50%;background:var(--red);box-shadow:0 0 16px var(--red)}
 .cap{font-family:Consolas,monospace;font-size:12px;letter-spacing:3px;color:var(--red);font-weight:700}
-.chap h2{font-size:24px;margin:6px 0}
+.chap h2{font-size:26px;margin:8px 0}
 .chap p{color:#c0c8dc;font-size:15px;margin:8px 0}
+.pills{margin:10px 0}
+.pill{display:inline-block;font-size:12px;background:#1c2440;border:1px solid var(--line);border-radius:99px;padding:3px 12px;margin:3px;color:#dbe2f2}
 .chap .moral{margin-top:12px;padding:12px 16px;background:#0a0e1c;border-left:3px solid var(--gld);border-radius:0 8px 8px 0;font-style:italic;color:#e8dcc0;font-size:14px}
-footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+.epi{text-align:center;padding:30px 0 10px;color:var(--mut);font-size:14px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:20px}
 </style>
 </head>
 <body>
+<canvas id="stars"></canvas>
+<div id="prog"></div>
+<button id="sndBtn">🎵 Sonido épico: OFF</button>
 <div class="wrap">
 <a class="back" href="index.html">Volver al portafolio</a>
+<div class="hero">
+<div class="k">UNA HISTORIA REAL · 2022 — 2026</div>
 <h1>Crónicas del Staff</h1>
-<p class="sub">Mi historia: de levantar HyperHard solo a Jr-Admin en Skylith. 5 capítulos.</p>
-<div class="chap"><div class="cap">CAPÍTULO 1 · 2022 - 2026</div><h2>HyperHard: nacer solo</h2><p>Levanté mi network desde cero: FullPvP, Survival OP, OneBlock, Bedwars y minijuegos. Programaba, configuraba, construía y reclutaba. Todo yo. Años sosteniendo un servidor con recursos limitados me enseñaron lo que ningún tutorial enseña: lo que necesita un owner, porque yo fui el owner.</p><p>El proyecto pausó por fondos y actividad, pero sigo siendo el dueño.</p><div class="moral">Moraleja: quien construye desde cero aprende a valorar cada bloque.</div></div>
-<div class="chap"><div class="cap">CAPÍTULO 2 · 2023 - 2024</div><h2>Orecraft: la paciencia</h2><p>Como Helper en Survival Custom mi trabajo era la convivencia: tickets, dudas y mediar conflictos. Sin construcciones épicas ni rangos altos. Solo personas.</p><div class="moral">Moraleja: la moderación real se hace escuchando, no baneando.</div></div>
-<div class="chap"><div class="cap">CAPÍTULO 3 · 2025 - 2026</div><h2>Hydra: el estudio</h2><p>Fundé mi studio de eventos: mapas, organización, bot propio de recompensas y videos. Mi proyecto personal más reciente, donde junto moderación, desarrollo y contenido.</p><div class="moral">Moraleja: los eventos mantienen viva a una comunidad.</div></div>
-<div class="chap"><div class="cap">CAPÍTULO 4 · 2026</div><h2>BlizardMC: el técnico</h2><p>Configurador y dev en FullPvP: fix de bugs, plugins y optimización bajo la confianza de un dueño. Aquí demuestro que también resuelvo lo invisible.</p><div class="moral">Moraleja: un buen dev hace que nada se note.</div></div>
-<div class="chap"><div class="cap">CAPÍTULO 5 · 2026 - ACTUAL</div><h2>Skylith: el presente</h2><p>Jr-Admin en SkyBlock: tickets, sanciones, vigilancia y formación de nuevos staff. Comunidad pequeña, sana y en crecimiento. Aquí estoy cómodo y activo.</p><div class="moral">Moraleja: el mejor rol es donde aportas y creces a la vez.</div></div>
+<p class="sub">De levantar HyperHard solo a Jr-Admin en Skylith. 5 capítulos. Activa el sonido épico.</p>
+</div>
+<div class="tline">
+<div class="chap"><div class="cap">CAPÍTULO 1 · 2022 — 2026</div><h2>HyperHard: nacer solo</h2><p>Levanté mi network desde cero: FullPvP, Survival OP, OneBlock OP, Bedwars y minijuegos. Programaba, configuraba plugins, construía las modalidades, diseñaba rangos y reclutaba staff. Años sosteniendo un servidor completo con recursos limitados me enseñaron lo que ningún tutorial enseña: lo que necesita un owner, porque yo fui el owner.</p><p>Presupuestos ajustados, staff que falla y una comunidad que mantener viva. El proyecto pausó por fondos y actividad, pero sigo siendo el dueño y no lo descarto.</p><div class="pills"><span class="pill">👥 200+ jugadores</span><span class="pill">🎮 5 modalidades</span><span class="pill">💬 Discord 300+</span><span class="pill">⚡ TPS 19-20</span></div><div class="moral">Moraleja: quien construye desde cero aprende a valorar cada bloque.</div></div>
+<div class="chap"><div class="cap">CAPÍTULO 2 · 2023 — 2024</div><h2>Orecraft: la paciencia</h2><p>Como Helper en Survival Custom mi trabajo era la convivencia: tickets, dudas de mecánicas y mediar conflictos entre usuarios. Sin construcciones épicas ni rangos altos. Solo personas, todos los días.</p><p>Ahí desarrollé lo que ningún plugin da: criterio para tratar situaciones diversas y calma bajo presión.</p><div class="pills"><span class="pill">👥 100+ jugadores</span><span class="pill">📋 Tickets y convivencia</span></div><div class="moral">Moraleja: la moderación real se hace escuchando, no baneando.</div></div>
+<div class="chap"><div class="cap">CAPÍTULO 3 · 2025 — 2026</div><h2>Hydra: el estudio</h2><p>Fundé mi studio de eventos de Minecraft: diseño los mapas, organizo los eventos, programo el bot que gestiona recompensas y coordino a los participantes. Tres eventos completos documentados en video.</p><p>Mi proyecto personal más reciente, donde junto moderación, desarrollo y contenido en un solo lugar.</p><div class="pills"><span class="pill">🎮 3 eventos en video</span><span class="pill">🤖 Bot multifunción</span><span class="pill">📹 YouTube</span></div><div class="moral">Moraleja: los eventos mantienen viva a una comunidad.</div></div>
+<div class="chap"><div class="cap">CAPÍTULO 4 · 2026</div><h2>BlizardMC: el técnico</h2><p>Configurador y developer en FullPvP: fix de bugs evidentes, configuración de plugins y optimización del rendimiento. Trabajo bajo la confianza directa de uno de los dueños.</p><p>Aquí demuestro lo invisible: que nada se rompa, que nada lagee, que todo funcione.</p><div class="pills"><span class="pill">🔧 Fix de bugs</span><span class="pill">⚡ Optimización</span></div><div class="moral">Moraleja: un buen dev hace que nada se note.</div></div>
+<div class="chap"><div class="cap">CAPÍTULO 5 · 2026 — ACTUAL</div><h2>Skylith: el presente</h2><p>Jr-Admin en SkyBlock (SKYLITH.LIVE): revisión de tickets, vigilancia in-game contra hacks y toxicidad, sanciones con criterio y formación de nuevos staff con inducción completa y acompañamiento en turno real.</p><p>Comunidad pequeña, sana y en crecimiento. Aquí estoy cómodo y activo.</p><div class="pills"><span class="pill">👥 10+ activos</span><span class="pill">📋 ~2 tickets/día</span><span class="pill">💬 Discord 100+</span></div><div class="moral">Moraleja: el mejor rol es donde aportas y creces a la vez.</div></div>
+</div>
+<p class="epi">Continuará… — ¿Trabajamos juntos en el próximo capítulo? <a href="index.html#contacto">Contáctame</a></p>
 <footer>scainetprr · Crónicas del Staff</footer>
 </div>
+<script>
+var cv=document.getElementById('stars'),cx=cv.getContext('2d'),P=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
+for(var i=0;i<110;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.8+.4,s:Math.random()*.5+.15,c:['#ffffff','#e11d2e','#f5a623','#2b7fff'][i%4]});
+(function anim(){cx.clearRect(0,0,cv.width,cv.height);for(var k=0;k<P.length;k++){var p=P[k];p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.7;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}cx.globalAlpha=1;requestAnimationFrame(anim)})();
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.chap').forEach(function(el,i){el.style.transitionDelay=(i%3)*.1+'s';io.observe(el)});
+addEventListener('scroll',function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;document.getElementById('prog').style.width=p+'%'});
+var AC=null,SONANDO=false,TIMERS=[];
+function drone(){var ac=AC;[[55,'sawtooth',.05],[55.5,'sawtooth',.05],[110,'sine',.06],[220,'sine',.025]].forEach(function(v){var o=ac.createOscillator(),g=ac.createGain(),f=ac.createBiquadFilter();o.type=v[1];o.frequency.value=v[0];f.type='lowpass';f.frequency.value=300;g.gain.value=v[2];o.connect(f);f.connect(g);g.connect(ac.destination);o.start()});(function hit(){if(!SONANDO)return;var t=ac.currentTime;var o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(70,t);o.frequency.exponentialRampToValueAtTime(38,t+.5);g.gain.setValueAtTime(.22,t);g.gain.exponentialRampToValueAtTime(.0001,t+.9);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+1);TIMERS.push(setTimeout(hit,2400))})()}
+document.getElementById('sndBtn').addEventListener('click',function(){var b=this;if(!SONANDO){var C=window.AudioContext||window.webkitAudioContext;AC=new C();if(AC.state==='suspended')AC.resume();SONANDO=true;drone();b.textContent='🎵 Sonido épico: ON'}else{SONANDO=false;TIMERS.forEach(clearTimeout);TIMERS=[];try{AC.close()}catch(e){}AC=null;b.textContent='🎵 Sonido épico: OFF'}});
+</script>
 </body>
 </html>
