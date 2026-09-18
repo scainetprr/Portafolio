@@ -9,7 +9,7 @@
 <style>
 :root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--emr:#10b981}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:radial-gradient(800px 380px at 50% 0%,#10b98122,transparent 60%),var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6;overflow-x:hidden}
 .wrap{max-width:700px;margin:auto;position:relative;z-index:1}
 a{color:var(--blue)}
 .back{font-size:14px}
@@ -42,8 +42,37 @@ summary{cursor:pointer;font-weight:700;font-size:15px}
 .mut{color:var(--mut);font-size:12px;margin-top:8px}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
 .shead h2{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 18px #e11d2e44)}.card,.vcard,.exp,.statBig,.proj{box-shadow:0 12px 34px #00000088,inset 0 1px 0 #ffffff1f;border-color:#33406b}.wrap>h1{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px #e11d2e55)}.shead{border-bottom:1px solid #2b3a66}</style>
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:0;opacity:.08;pointer-events:none}
+.o1{width:350px;height:350px;background:#10b981;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}
+.o2{width:320px;height:320px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}
+</style>
 </head>
 <body>
+<canvas id="stars"></canvas>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<script>
+(function(){
+var cv=document.getElementById('stars');
+if(!cv)return;
+var cx=cv.getContext('2d'),P=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}
+rs();
+addEventListener('resize',rs);
+for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.4+.12,c:['#ffffff','#10b981','#2b7fff'][i%3]});
+(function anim(){
+cx.clearRect(0,0,cv.width,cv.height);
+for(var k=0;k<P.length;k++){
+var p=P[k];p.y-=p.s;
+if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}
+cx.globalAlpha=.65;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill();
+}
+cx.globalAlpha=1;requestAnimationFrame(anim);
+})();
+})();
+</script>
 <div class="wrap">
 <a class="back" href="index.html">Volver al portafolio</a>
 <div class="hero">
