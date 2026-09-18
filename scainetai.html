@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>scainetAI · scainetprr</title>
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+.wrap{max-width:680px;margin:auto}
+a{color:var(--blue)}
+.back{font-size:14px}
+h1{font-size:32px;margin:12px 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+.chat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;height:380px;overflow-y:auto;margin-bottom:12px}
+.msg{margin:10px 0;max-width:85%;padding:10px 14px;border-radius:12px;font-size:14px}
+.me{margin-left:auto;background:#1c2440}
+.ai{background:#0a0e1c;border:1px solid var(--line)}
+.ai b{color:#fff}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.quick button{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 16px;cursor:pointer;font-size:13px}
+.row{display:flex;gap:8px}
+input[type=text]{flex:1;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:15px;outline:none}
+.btn{padding:12px 22px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:none;background:var(--red);color:#fff}
+.mut{color:var(--mut);font-size:12px;margin-top:8px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">Volver al portafolio</a>
+<h1>scainetAI</h1>
+<p class="sub">Respondo como lo haría scainetprr: servicios, precios, experiencia y contacto.</p>
+<div class="chat" id="chat"></div>
+<div class="quick" id="quick"></div>
+<div class="row"><input type="text" id="qin" placeholder="Pregúntame algo..." maxlength="200"><button class="btn" onclick="send()">Enviar</button></div>
+<p class="mut">Bot de respuestas automáticas con datos reales del portafolio. Para trato directo: Discord scainetprrmn.</p>
+<footer>scainetprr · scainetAI</footer>
+</div>
+<script>
+var RULES=[
+{k:['precio','cuesta','costo','cobras','pagar','cuanto'],t:'Configuro servidores desde <b>$14.99</b> (Survival Custom) y <b>$22.50</b> (OP). Networks desde <b>$20</b>. Diagnóstico GRATIS 30 min y código <b>50COL</b> en Discord. ¿Hablamos por Discord?'},
+{k:['experiencia','tiempo','años','trayectoria'],t:'Llevo <b>9 años creando</b> servidores y <b>5 como staff</b>: HyperHard (founder), Orecraft (helper), Hydra (founder), BlizardMC (dev) y Skylith (Jr-Admin actual).'},
+{k:['contacto','discord','hablar','contratar','correo','email'],t:'Escríbeme por Discord <b>scainetprrmn</b> o al correo <b>scainetprrmn@gmail.com</b>. Respondo en menos de 24h.'},
+{k:['skylith','actual','trabajas','donde'],t:'Actualmente soy <b>Jr-Admin en Skylith Network</b> (SkyBlock, SKYLITH.LIVE) y <b>configurador en BlizardMC</b> (FullPvP).'},
+{k:['plugin','luckperms','configurar','anticheat','vulcan'],t:'Domino <b>LuckPerms, Essentials, CoreProtect, Vulcan, MythicMobs, TAB</b> y más de 20 plugins. Mira mi Wiki de Comandos y mis configs en el portafolio.'},
+{k:['staff','moderar','helper','admin','rango','prueba'],t:'Acepto periodo de prueba y empezar desde abajo si el proyecto lo vale. Cero corrupción, imparcialidad total y protocolo de sanciones con evidencia.'},
+{k:['bot','discord bot','hydra bot','programar'],t:'Programo bots en NodeJS: <b>HyperHard Bot y Hydra Bot</b> con más de 90 comandos (tickets, sorteos, moderación).'},
+{k:['hola','buenas','hey','que tal'],t:'¡Hola! Soy scainetAI. Pregúntame por precios, experiencia, contacto o plugins.'},
+{k:['gracias'],t:'¡De nada! Si necesitas algo serio, búscame en Discord: scainetprrmn.'}];
+var QUICK=['Precios','Experiencia','Contacto','Aceptas staff?','Qué plugins dominas?'];
+function bubble(who,html){var c=document.getElementById('chat');var d=document.createElement('div');d.className='msg '+who;d.innerHTML=html;c.appendChild(d);c.scrollTop=c.scrollHeight;return d}
+function answer(q){q=q.toLowerCase();for(var i=0;i<RULES.length;i++){var r=RULES[i];for(var j=0;j<r.k.length;j++){if(q.indexOf(r.k[j])>=0)return r.t}}return 'Buena pregunta. De eso hablamos mejor directo: escríbeme por Discord <b>scainetprrmn</b> y lo vemos.'}
+function send(){var inp=document.getElementById('qin');var q=inp.value.trim();if(!q)return;inp.value='';bubble('me',q.replace(/</g,'&lt;'));var b=bubble('ai','<span style="color:var(--mut)">escribiendo...</span>');setTimeout(function(){b.innerHTML=answer(q);document.getElementById('chat').scrollTop=99999},600)}
+document.getElementById('qin').addEventListener('keydown',function(e){if(e.key==='Enter')send()});
+(function(){var q=document.getElementById('quick');QUICK.forEach(function(t){var b=document.createElement('button');b.textContent=t;b.addEventListener('click',function(){document.getElementById('qin').value=t;send()});q.appendChild(b)});bubble('ai','Hola, soy <b>scainetAI</b>. Pregúntame lo que quieras sobre scainetprr.')})();
+</script>
+</body>
+</html>
