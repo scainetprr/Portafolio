@@ -36,17 +36,7 @@ body{background:radial-gradient(900px 400px at 15% 0%,#2b7fff22,transparent 60%)
 <div class="wrap">
 <a class="back" href="index.html">Volver al portafolio</a>
 <h1>Aldeano de Tradeos</h1>
-<p class="sub">Mejores tradeos por profesión + minijuego de regateo con Boboldo.</p>
-<div class="card"><h3>Tabla de tradeos top</h3><table><thead><tr><th>Profesión</th><th>Compras (tú das)</th><th>Vendes (recibes)</th><th>Nota</th></tr></thead><tbody>
-<tr><td><b>Librero</b></td><td>Papel, libros</td><td>Mending, Filo V, Fortuna III</td><td class="good">Prioridad 1</td></tr>
-<tr><td><b>Armero</b></td><td>Carbón, hierro</td><td>Armadura diamante</td><td class="good">Full diamante barato</td></tr>
-<tr><td><b>Herrero</b></td><td>Carbón, hierro</td><td>Hachas, picos, espadas</td><td>Herramientas top</td></tr>
-<tr><td><b>Cartógrafo</b></td><td>Papel, vidrio</td><td>Mapas de mansión/monumento</td><td>Exploración</td></tr>
-<tr><td><b>Granjero</b></td><td>Trigo, papa, zanahoria</td><td>Esmeraldas + comida</td><td>Motor de esmeraldas</td></tr>
-<tr><td><b>Flechero</b></td><td>Palos, hilo</td><td>Arcos, flechas, esmeraldas</td><td>Palos = esmeraldas</td></tr>
-<tr><td><b>Clérigo</b></td><td>Carne podrida, oro</td><td>Ender pearls, redstone</td><td>Perlas fáciles</td></tr>
-</tbody></table><p class="mut" style="margin-top:8px">Cura al aldeano zombificado para descuentos permanentes (hasta -100%).</p></div>
-<div class="card"><h3>Pregunta al aldeano IA</h3>
+<p class="sub">IA especializada en Minecraft y tradeos, tabla de tradeos y regateo con Boboldo.</p><div class="card"><h3>Pregunta al aldeano IA</h3>
 <p class="mut">Pregunta lo que sea de Minecraft (en especial tradeos) y Boboldo te responde con IA gratuita.</p>
 <div id="aiOut" style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:14px;min-height:70px;font-size:14px;color:#c0c8dc;margin:10px 0">¿Sobre qué tradeo tienes duda?</div>
 <div style="display:flex;gap:8px"><input type="text" id="aiIn" placeholder="Ej: ¿cómo consigo Mending barato?" maxlength="200" style="flex:1;padding:11px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:14px;outline:none"><input type="password" id="groqKey" placeholder="Key Groq (opcional, solo tu navegador)" style="width:100%;padding:10px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:13px;outline:none;margin-top:8px"><button class="btn p" id="bAi" style="padding:11px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--red);background:var(--red);color:#fff">Preguntar</button></div>
@@ -77,6 +67,16 @@ async function askAI(q){var g0=await askGroq(AI_SYS,q);if(g0)return g0;var url='
 document.getElementById('groqKey').value=groqKey();document.getElementById('groqKey').addEventListener('change',function(e){try{localStorage.setItem('groq_key',e.target.value.trim())}catch(x){}});document.getElementById('bAi').addEventListener('click',async function(){var inp=document.getElementById('aiIn');var q=inp.value.trim();if(!q)return;inp.value='';var box=document.getElementById('aiOut');box.textContent='Boboldo está pensando...';var a=await askAI(q);box.textContent=a||aiLocal(q)});
 document.getElementById('aiIn').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('bAi').click()});
 </script>
+
+<div class="card"><h3>Tabla de tradeos top</h3><table><thead><tr><th>Profesión</th><th>Compras (tú das)</th><th>Vendes (recibes)</th><th>Nota</th></tr></thead><tbody>
+<tr><td><b>Librero</b></td><td>Papel, libros</td><td>Mending, Filo V, Fortuna III</td><td class="good">Prioridad 1</td></tr>
+<tr><td><b>Armero</b></td><td>Carbón, hierro</td><td>Armadura diamante</td><td class="good">Full diamante barato</td></tr>
+<tr><td><b>Herrero</b></td><td>Carbón, hierro</td><td>Hachas, picos, espadas</td><td>Herramientas top</td></tr>
+<tr><td><b>Cartógrafo</b></td><td>Papel, vidrio</td><td>Mapas de mansión/monumento</td><td>Exploración</td></tr>
+<tr><td><b>Granjero</b></td><td>Trigo, papa, zanahoria</td><td>Esmeraldas + comida</td><td>Motor de esmeraldas</td></tr>
+<tr><td><b>Flechero</b></td><td>Palos, hilo</td><td>Arcos, flechas, esmeraldas</td><td>Palos = esmeraldas</td></tr>
+<tr><td><b>Clérigo</b></td><td>Carne podrida, oro</td><td>Ender pearls, redstone</td><td>Perlas fáciles</td></tr>
+</tbody></table><p class="mut" style="margin-top:8px">Cura al aldeano zombificado para descuentos permanentes (hasta -100%).</p></div>
 <div class="card" style="text-align:center"><h3>Regatea con Boboldo</h3><p class="mut">5 rondas. Acepta, rechaza o contraoferta. Tu reputación sube o baja.</p>
 <div class="trade"><div class="big" id="bFace">🧑‍🌾</div><p id="bSay" style="font-size:16px;min-height:48px">Hola, forastero. ¿Tradeamos?</p><p class="mut" id="bScore">Reputación: 0 · Ronda 0/5</p></div>
 <div style="margin-top:10px"><button class="btn g" id="bGo">Empezar</button><button class="btn" id="bOk" style="display:none">Aceptar</button><button class="btn p" id="bNo" style="display:none">Rechazar</button><button class="btn" id="bLow" style="display:none">Pedir rebaja</button></div>
