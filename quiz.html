@@ -40,7 +40,7 @@ h1{font-size:32px;margin:12px 0 4px}
 .rev .ok{color:var(--grn)}
 .rev .no{color:#ff6b7a}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
-</style>
+body{background:radial-gradient(900px 400px at 15% 0%,#2b7fff22,transparent 60%),radial-gradient(900px 400px at 85% 0%,#e11d2e22,transparent 60%),var(--bg)}.card{transition:transform .3s,box-shadow .3s,border-color .3s}.card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}h1{text-shadow:0 0 30px #e11d2e44}.rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}.rv.vis{opacity:1;transform:none}</style>
 </head>
 <body>
 <div class="wrap">
@@ -109,5 +109,6 @@ document.getElementById('bCase').addEventListener('click',function(){newCase('al
 var cbs=document.querySelectorAll('[data-cat]');for(var i=0;i<cbs.length;i++)(function(el){el.addEventListener('click',function(){newCase(el.getAttribute('data-cat'))})})(cbs[i]);
 home();
 </script>
-</body>
+<script>(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.1});var cs=document.querySelectorAll('.card');for(var i=0;i<cs.length;i++){cs[i].classList.add('rv');cs[i].style.transitionDelay=(i%3)*.07+'s';io.observe(cs[i])}})();
+</script></body>
 </html>
