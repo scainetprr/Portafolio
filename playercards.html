@@ -36,7 +36,7 @@ input[type=text]{width:100%;padding:11px 14px;background:rgba(0,0,0,.4);border:1
 .dabout{font-size:12px;color:#dbdee1;margin-top:8px}
 .mut{color:var(--mut);font-size:13px}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
-</style>
+body{background:radial-gradient(900px 400px at 15% 0%,#2b7fff22,transparent 60%),radial-gradient(900px 400px at 85% 0%,#e11d2e22,transparent 60%),var(--bg)}.card{transition:transform .3s,box-shadow .3s,border-color .3s}.card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}h1{text-shadow:0 0 30px #e11d2e44}.rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}.rv.vis{opacity:1;transform:none}</style>
 </head>
 <body>
 <div class="wrap">
@@ -67,5 +67,6 @@ function drawMC(){var u=document.getElementById('mc').value.trim()||'scainetprr'
 function drawD(){var n=document.getElementById('dName').value||'Usuario';var t=document.getElementById('dTag').value||'';var r=document.getElementById('dRole').value||'';var c=document.getElementById('dColor').value||'#e11d2e';var a=document.getElementById('dAbout').value||'';document.getElementById('dNameV').textContent=n;document.getElementById('dTagV').textContent=t;document.getElementById('dAv').textContent=n.charAt(0).toUpperCase();var rv=document.getElementById('dRoleV');rv.textContent=r;rv.style.background=c+'33';rv.style.color=c;rv.style.display=r?'':'none';document.getElementById('dAboutV').textContent=a;document.getElementById('dBanner').style.background='linear-gradient(135deg,'+c+',#2b7fff)'}
 drawMC();drawD();
 </script>
-</body>
+<script>(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.1});var cs=document.querySelectorAll('.card');for(var i=0;i<cs.length;i++){cs[i].classList.add('rv');cs[i].style.transitionDelay=(i%3)*.07+'s';io.observe(cs[i])}})();
+</script></body>
 </html>
