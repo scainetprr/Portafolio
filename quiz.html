@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Quiz Staff · scainetprr</title>
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--gld:#f5a623}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+.wrap{max-width:640px;margin:auto}
+a{color:var(--blue)}
+.back{font-size:14px}
+h1{font-size:32px;margin:12px 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;margin-bottom:14px;text-align:center}
+.hud{display:flex;justify-content:space-between;font-size:14px;color:var(--mut);margin-bottom:12px}
+.hud b{color:#fff}
+.tbar{height:8px;background:#0a0e1c;border-radius:99px;overflow:hidden;margin-bottom:18px}
+.tbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gld),var(--red));width:100%}
+.q{font-size:19px;font-weight:700;margin-bottom:16px}
+.opt{display:block;width:100%;text-align:left;padding:12px 16px;margin:8px 0;border-radius:10px;border:1px solid var(--line);background:#161d33;color:#fff;font-size:15px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt.ok{border-color:var(--grn);background:#0d2417}
+.opt.bad{border-color:var(--red);background:#2a0f14}
+.opt:disabled{cursor:default;opacity:.9}
+.why{font-size:13px;color:var(--mut);margin-top:10px;display:none}
+.btn{padding:13px 30px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;border:none;background:var(--red);color:#fff;margin-top:14px}
+.rank{font-size:44px;margin:8px 0}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Volver al portafolio</a>
+<h1>Quiz Staff</h1>
+<p class="sub">Trivia de normativa y criterio staff. 15 segundos por pregunta. Racha = puntos extra.</p>
+<div class="card" id="box"></div>
+<footer>scainetprr · Quiz Staff</footer>
+</div>
+<script>
+var QS=[
+{q:'Un jugador insulta por primera vez (leve). ¿Sanción correcta?',o:['Ban 7 días','Mute 30 min','Kick permanente','Nada, es leve'],a:1,w:'Insulto leve primera vez: mute corto para cortar la conducta sin excederse.'},
+{q:'Sospechas KillAura pero sin pruebas. ¿Qué haces?',o:['Ban directo por seguridad','SS (screenshare) con protocolo','Mute preventivo 24h','Lo ignoras hasta tener video'],a:1,w:'Sin evidencia no se banea: se congela y se hace SS siguiendo el protocolo.'},
+{q:'El jugador se desconecta en pleno SS. ¿Qué significa?',o:['Nada, tenía lag','Evasión: ban + registro','Se le perdona','Se repite mañana'],a:1,w:'Desconexión en SS = evasión de revisión. Ban y registro de evidencia.'},
+{q:'Grief con rollback posible y primera vez. ¿Sanción?',o:['Ban permanente','Devolución + warn','Mute 12 h','Kick'],a:1,w:'Si hay rollback y es primera vez, se repara el daño + advertencia formal.'},
+{q:'Publicidad de otro servidor en el chat. ¿Primera medida?',o:['Ban permanente','Mute 1 h + borrar mensaje','Ignorar','Darle VIP para que se quede'],a:1,w:'Publicidad: mute + borrar el mensaje. El ban llega con reincidencia.'},
+{q:'¿Para qué sirve /co inspect de CoreProtect?',o:['Ver inventarios','Ver quién tocó cada bloque','Banear hackers','Crear crates'],a:1,w:'El inspector muestra el historial de cada bloque: quién lo puso o rompió.'},
+{q:'Dos staff discrepan sobre una sanción. ¿Qué se hace?',o:['El de mayor rango decide sin hablar','Se revisa evidencia y se aplica el protocolo','Se banea al jugador por las dudas','Se vota en el chat público'],a:1,w:'El criterio se basa en evidencia y protocolo, no en rango ni opiniones.'},
+{q:'Usuario pide items por ser amigo del staff. ¿Respuesta?',o:['Darle un kit pequeño','Negar: cero tratos, todo documentado','Darle si nadie ve','Preguntar al owner por DM'],a:1,w:'Cero tolerancia a tratos: todo por conducto normal y documentado.'},
+{q:'Ticket de bug que duplica items. ¿Prioridad?',o:['Baja, es solo visual','Alta: riesgo económico del servidor','Media, se revisa el finde','Se cierra sin responder'],a:1,w:'Dupe = riesgo directo a la economía. Alta prioridad y fix inmediato.'},
+{q:'¿Qué dato NO debe faltar en un reporte?',o:['El color favorito del acusado','Evidencia verificable','La hora exacta del lobby','El ping del staff'],a:1,w:'Sin evidencia verificable el reporte no procede. Todo lo demás es contexto.'}];
+var i=0,pts=0,racha=0,best=0,timer=null,T=15;
+try{best=parseInt(localStorage.getItem('quiz_best')||'0')}catch(e){}
+function start(){i=0;pts=0;racha=0;ask()}
+function ask(){
+if(i>=QS.length){end();return}
+var q=QS[i];T=15;
+var box=document.getElementById('box');
+box.innerHTML='<div class="hud"><span>Pregunta <b>'+(i+1)+'/'+QS.length+'</b></span><span>Racha <b>'+racha+'x</b></span><span>Puntos <b>'+pts+'</b></span></div><div class="tbar"><i id="tb"></i></div><p class="q">'+q.q+'</p><div id="opts"></div><p class="why" id="why">'+q.w+'</p>';
+var od=document.getElementById('opts');
+q.o.forEach(function(t,k){var b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=function(){ans(k)};od.appendChild(b)});
+clearInterval(timer);timer=setInterval(function(){T--;var tb=document.getElementById('tb');if(tb)tb.style.width=(100*T/15)+'%';if(T<=0){ans(-1)}},1000);
+}
+function ans(k){
+clearInterval(timer);
+var q=QS[i];var btns=document.querySelectorAll('#opts .opt');
+btns.forEach(function(b,idx){b.disabled=true;if(idx===q.a)b.classList.add('ok');else if(idx===k)b.classList.add('bad')});
+document.getElementById('why').style.display='block';
+if(k===q.a){racha++;pts+=100+Math.min(racha,5)*20}else{racha=0}
+setTimeout(function(){i++;ask()},2200);
+}
+function rank(p){if(p>=1200)return['👑','Leyenda del Staff'];if(p>=900)return['💎','Admin Elite'];if(p>=600)return['⚔️','Moderador Pro'];if(p>=300)return['🛡️','Helper Firme'];return['🌱','Aprendiz']}
+function end(){
+if(pts>best){best=pts;try{localStorage.setItem('quiz_best',best)}catch(e){}}
+var r=rank(pts);
+document.getElementById('box').innerHTML='<div class="rank">'+r[0]+'</div><h2>'+r[1]+'</h2><p style="font-size:22px;margin:10px 0">Puntos: <b>'+pts+'</b></p><p class="mut" style="color:var(--mut);font-size:13px">Récord: '+best+'</p><button class="btn" onclick="start()">Jugar de nuevo</button>';
+}
+document.getElementById('box').innerHTML='<p style="font-size:18px">¿Listo para probar tu criterio?</p><p class="mut" style="color:var(--mut);font-size:13px;margin:8px 0">10 preguntas · 15 s cada una · rachas dan bonus</p><button class="btn" onclick="start()">Empezar quiz</button>';
+</script>
+</body>
+</html>
