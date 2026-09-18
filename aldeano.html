@@ -57,8 +57,10 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
 <div class="row"><input type="text" id="qin" placeholder="Ej: ¿cómo consigo Netherite rápido?" maxlength="300"><button class="btn" id="bSend">Enviar</button></div>
 <div class="tools"><button id="bVoice">🔊 Voz aldeano: OFF</button><button id="bHrmm">Traducir último al aldeano</button><button id="bClear">Limpiar 🧹</button></div>
 <p class="mut">IA gratuita (Groq si pones tu key abajo, si no Pollinations) + guía local de respaldo.</p>
-<label class="mut">Key Groq (opcional, solo tu navegador):</label>
+<label class="mut">Key Groq (opcional):</label>
 <input type="password" id="groqKey" placeholder="gsk_...">
+<label class="mut">Key Gemini (opcional, gratis en aistudio.google.com):</label>
+<input type="password" id="geminiKey" placeholder="AIza...">
 </div>
 <div class="card"><details><summary>📊 Tabla rápida de tradeos top</summary><table><thead><tr><th>Profesión</th><th>Das</th><th>Recibes</th><th>Nota</th></tr></thead><tbody>
 <tr><td><b>Librero</b></td><td>Papel, libros</td><td>Mending, Filo V, Fortuna III</td><td class="good">Prioridad 1</td></tr>
@@ -77,13 +79,15 @@ var FALLBACK=[['mending','Mending lo vende el librero: sube un aldeano con atril
 function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML}
 function bubble(who,html){var c=document.getElementById('chat');var d=document.createElement('div');d.className='msg '+who;d.innerHTML=html;c.appendChild(d);c.scrollTop=99999;return d}
 function groqKey(){try{return localStorage.getItem('groq_key')||''}catch(e){return ''}}
+function geminiKey(){try{return localStorage.getItem('gemini_key')||''}catch(e){return ''}}
 async function askGroq(sys,q){var K=groqKey();if(!K)return null;try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+K},signal:ctl.signal,body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:sys},{role:'user',content:q}],temperature:0.7,max_tokens:350})});clearTimeout(to);if(!r.ok)return null;var j=await r.json();var c=j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;var t=(c||'').trim().slice(0,800);return t||null}catch(e){return null}}
+async function askGemini(sys,q){var K=geminiKey();if(!K)return null;try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+K,{method:'POST',headers:{'Content-Type':'application/json'},signal:ctl.signal,body:JSON.stringify({contents:[{parts:[{text:sys+'\n\nUsuario: '+q}]}],generationConfig:{temperature:0.7,maxOutputTokens:350}})});clearTimeout(to);if(!r.ok)return null;var j=await r.json();var t=j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts&&j.candidates[0].content.parts[0]&&j.candidates[0].content.parts[0].text;var s=(t||'').trim().slice(0,800);return s||null}catch(e){return null}}
 async function askPoll(sys,q){var url='https://text.pollinations.ai/'+encodeURIComponent(sys+' '+q);var models=['openai','mistral','openai-mini'];for(var i=0;i<models.length;i++){try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},20000);var r=await fetch(url+'?model='+models[i]+'&seed='+Math.floor(Math.random()*9999),{signal:ctl.signal});clearTimeout(to);if(!r.ok)continue;var t=await r.text();t=t.trim().slice(0,800);if(t&&t.length>10)return t}catch(e){}await new Promise(function(r){setTimeout(r,1000)})}return null}
 function aiLocal(q){q=q.toLowerCase();for(var i=0;i<FALLBACK.length;i++){if(q.indexOf(FALLBACK[i][0])>=0)return FALLBACK[i][1]}if(q.match(/\d+\s*[\+\-\*\/]\s*\d+/)){var r=eval(q.replace(/[^0-9\+\-\*\/\.\(\)]/g,''));return 'Hrmm, eso es '+r+'. No pareces muy listo, forastero. Pregúntame de Minecraft.'}if(q.match(/cuanto|cuánto|que es|qué es|como se|hola|hello|buenas/))return '¡Hrmm! Aquí tienes un aldeano experto en Minecraft. Pregúntame sobre tradeos, encantamientos, granjas, pociones, bosses o cualquier cosa del juego. Si no sé algo, te redirijo con gusto.';return 'No tengo esa información exacta, forastero. Prueba preguntando sobre: Mending, esmeraldas, Netherite, Warden, dragón, Wither, granjas, pociones, encantamientos, aldeanos, redstone, diamantes o bases seguras. Hrmm!'}
 var VOICE=false,LAST='';
 function speak(t){try{if(!VOICE)return;var s=window.speechSynthesis;if(!s)return;s.cancel();var u=new SpeechSynthesisUtterance(t.replace(/<[^>]+>/g,'').slice(0,300));u.lang='es-ES';u.pitch=0.2;u.rate=0.8;s.speak(u)}catch(e){}}
 function hrmmify(t){var words=t.split(/\s+/);var outs=['hrmm','hrm','hrrmm','mrrh','hmm'];var r=7;return words.map(function(w){if(/^[A-ZÁÉÍÓÚÑ0-9]/.test(w)&&w.length>3&&Math.random()<0.25)return w;r=(r*9301+49297)%233280;var pick=outs[Math.floor(r/233280*outs.length)];return (/[?.!,]$/.test(w))?pick+w.slice(-1):pick}).join(' ')}
-function send(){var inp=document.getElementById('qin');var q=inp.value.trim();if(!q)return;inp.value='';bubble('me',esc(q));var b=bubble('ai','<span style="color:var(--mut)">Boboldo piensa...</span>');(async function(){var a=await askGroq(AI_SYS,q);if(!a)a=await askPoll(AI_SYS,q);if(!a)a=aiLocal(q);b.innerHTML=a;LAST=a;document.getElementById('chat').scrollTop=99999;speak(a)})()}
+function send(){var inp=document.getElementById('qin');var q=inp.value.trim();if(!q)return;inp.value='';bubble('me',esc(q));var b=bubble('ai','<span style="color:var(--mut)">Boboldo piensa...</span>');(async function(){var a=await askGroq(AI_SYS,q);if(!a)a=await askGemini(AI_SYS,q);if(!a)a=await askPoll(AI_SYS,q);if(!a)a=aiLocal(q);b.innerHTML=a;LAST=a;document.getElementById('chat').scrollTop=99999;speak(a)})()}
 document.getElementById('bSend').addEventListener('click',send);
 document.getElementById('qin').addEventListener('keydown',function(e){if(e.key==='Enter')send()});
 var QUICK=['Mending barato','Netherite rápido','Cómo mato al Warden','Granja de hierro','Pociones básicas'];
@@ -93,6 +97,8 @@ document.getElementById('bHrmm').addEventListener('click',function(){if(!LAST)re
 document.getElementById('bClear').addEventListener('click',function(){document.getElementById('chat').innerHTML='';bubble('ai','¡Hrmm! Bienvenido a mi puesto, forastero. Pregúntame lo que sea de Minecraft. 💚')});
 document.getElementById('groqKey').value=groqKey();
 document.getElementById('groqKey').addEventListener('change',function(e){try{localStorage.setItem('groq_key',e.target.value.trim())}catch(x){}});
+document.getElementById('geminiKey').value=geminiKey();
+document.getElementById('geminiKey').addEventListener('change',function(e){try{localStorage.setItem('gemini_key',e.target.value.trim())}catch(x){}});
 bubble('ai','¡Hrmm! Bienvenido a mi puesto, forastero. Pregúntame lo que sea de Minecraft. 💚');
 </script>
 </body>
