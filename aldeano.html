@@ -4,98 +4,96 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>Aldeano de Tradeos · scainetprr</title>
+<title>Aldeano IA · scainetprr</title>
 <link rel="icon" type="image/png" href="Imagenes/favicon.png">
 <style>
-:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--gld:#f5a623}
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--emr:#10b981}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
-.wrap{max-width:760px;margin:auto}
+body{background:radial-gradient(800px 380px at 50% 0%,#10b98122,transparent 60%),var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+.wrap{max-width:700px;margin:auto;position:relative;z-index:1}
 a{color:var(--blue)}
 .back{font-size:14px}
-h1{font-size:32px;margin:12px 0 4px}
-.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+.hero{text-align:center;padding:18px 0 6px}
+.hero .face{font-size:64px;filter:drop-shadow(0 0 22px #10b98188);animation:float 4s ease-in-out infinite;display:inline-block}
+@keyframes float{50%{transform:translateY(-8px)}}
+h1{font-size:32px;margin:8px 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:18px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th{color:var(--mut);font-size:12px;text-align:left;padding:8px;border-bottom:1px solid var(--line)}
-td{padding:9px 8px;border-bottom:1px solid #1a2138;color:#c0c8dc}
+.chat{background:#0a0e1c;border:1px solid var(--line);border-radius:12px;padding:16px;height:340px;overflow-y:auto}
+.msg{margin:10px 0;max-width:88%;padding:10px 14px;border-radius:12px;font-size:14px}
+.me{margin-left:auto;background:#1c2440}
+.ai{background:#0d1a14;border:1px solid #10b98144}
+.ai b{color:#a7f3d0}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.quick button{background:#0d1a14;color:#d1fae5;border:1px solid #10b98155;border-radius:99px;padding:8px 16px;cursor:pointer;font-size:13px}
+.row{display:flex;gap:8px;margin-top:10px}
+input[type=text]{flex:1;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:15px;outline:none;min-width:0}
+.btn{padding:12px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--emr);background:var(--emr);color:#04120c;white-space:nowrap}
+.btn.o{background:#1c2440;border:1px solid var(--line);color:#fff}
+.tools{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.tools button{background:transparent;color:var(--mut);border:1px solid var(--line);border-radius:8px;font-size:12px;padding:6px 12px;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{color:var(--mut);font-size:11px;text-align:left;padding:7px;border-bottom:1px solid var(--line)}
+td{padding:8px 7px;border-bottom:1px solid #1a2138;color:#c0c8dc}
 td b{color:#fff}
 .good{color:var(--grn);font-weight:700}
-.trade{background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:16px;text-align:center}
-.big{font-size:30px}
-.btn{padding:11px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff;margin:6px 4px}
-.btn.p{background:var(--red);border-color:var(--red)}
-.btn.g{background:var(--grn);border-color:var(--grn);color:#06130c}
-.mut{color:var(--mut);font-size:13px}
+details{margin-top:6px}
+summary{cursor:pointer;font-weight:700;font-size:15px}
+.mut{color:var(--mut);font-size:12px;margin-top:8px}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
-body{background:radial-gradient(900px 400px at 15% 0%,#2b7fff22,transparent 60%),radial-gradient(900px 400px at 85% 0%,#e11d2e22,transparent 60%),var(--bg)}.card{transition:transform .3s,box-shadow .3s,border-color .3s}.card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}h1{text-shadow:0 0 30px #e11d2e44}.rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}.rv.vis{opacity:1;transform:none}#stars{position:fixed;inset:0;z-index:0;pointer-events:none}.wrap{position:relative;z-index:1}.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:0;opacity:.32;pointer-events:none}.o1{width:480px;height:480px;background:#e11d2e;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}.o2{width:420px;height:420px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 18s ease-in-out infinite alternate-reverse}@keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}</style>
+</style>
 </head>
-<body><canvas id="stars"></canvas><div class="orb o1"></div><div class="orb o2"></div>
-<script>(function(){var cv=document.getElementById('stars');if(!cv)return;var cx=cv.getContext('2d'),P=[];function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.4+.12,c:['#ffffff','#e11d2e','#2b7fff'][i%3]});(function anim(){cx.clearRect(0,0,cv.width,cv.height);for(var k=0;k<P.length;k++){var p=P[k];p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.65;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}cx.globalAlpha=1;requestAnimationFrame(anim)})();})();
-
+<body>
 <div class="wrap">
 <a class="back" href="index.html">Volver al portafolio</a>
-<h1>Aldeano de Tradeos</h1>
-<p class="sub">IA especializada en Minecraft y tradeos, tabla de tradeos y regateo con Boboldo.</p><div class="card"><h3>Pregunta al aldeano IA</h3>
-<p class="mut">Pregunta lo que sea de Minecraft (en especial tradeos) y Boboldo te responde con IA gratuita.</p>
-<div id="aiOut" style="background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:14px;min-height:70px;font-size:14px;color:#c0c8dc;margin:10px 0">¿Sobre qué tradeo tienes duda?</div>
-<div style="display:flex;gap:8px"><input type="text" id="aiIn" placeholder="Ej: ¿cómo consigo Mending barato?" maxlength="200" style="flex:1;padding:11px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:14px;outline:none"><input type="password" id="groqKey" placeholder="Key Groq (opcional, solo tu navegador)" style="width:100%;padding:10px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:13px;outline:none;margin-top:8px"><button class="btn p" id="bAi" style="padding:11px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--red);background:var(--red);color:#fff">Preguntar</button></div>
-<p class="mut" style="margin-top:6px">IA gratuita (Pollinations). Si falla, respondo con mi guía local.</p><div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="btn" id="bHear">🔊 Escuchar</button><button class="btn" id="bHrmm">Traducir al aldeano</button></div>
-<script>
-(function(){
-var lastAi='';
-var _box=document.getElementById('aiOut');
-function pickVoice(){try{var vs=window.speechSynthesis.getVoices();for(var i=0;i<vs.length;i++){if(vs[i].lang&&vs[i].lang.toLowerCase().indexOf('es')===0)return vs[i]}}catch(e){}return null}
-function speak(t,grave){try{var s=window.speechSynthesis;if(!s)return;s.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='es-ES';if(grave){u.pitch=0.2;u.rate=0.75}else{u.rate=1}u.voice=pickVoice();s.speak(u)}catch(e){}}
-function hrmmify(t){var words=t.split(/\s+/);var outs=['hrmm','hrm','hrrmm','mrrh','hmm'];var r=0;return words.map(function(w){if(/^[A-ZÁÉÍÓÚÑ0-9]/.test(w)&&w.length>3&&Math.random()<0.3)return w;r=(r*9301+49297)%233280;var pick=outs[Math.floor(r/233280*outs.length)];return (/[?.!,]$/.test(w))?pick+w.slice(-1):pick}).join(' ')}
-var origAsk=document.getElementById('bAi');
-var mo=new MutationObserver(function(){var t=_box.textContent;if(t&&t.indexOf('Boboldo está pensando')<0&&t.indexOf('¿Sobre qué')<0)lastAi=t});
-mo.observe(_box,{childList:true,characterData:true,subtree:true});
-document.getElementById('bHear').addEventListener('click',function(){var t=lastAi||_box.textContent;speak(t,true)});
-document.getElementById('bHrmm').addEventListener('click',function(){var t=lastAi||_box.textContent;var h=hrmmify(t);_box.innerHTML='<b>Hrmm:</b> '+h.replace(/</g,'&lt;');speak(h,true)});
-})();
-</script>
-
+<div class="hero">
+<span class="face">🧑‍🌾</span>
+<h1>Boboldo · IA de Minecraft</h1>
+<p class="sub">Pregúntame lo que sea de Minecraft: tradeos, encantamientos, granjas, bosses y más.</p>
 </div>
-<script>
-var AI_SYS='Eres Boboldo, un aldeano de Minecraft experto en tradeos (Java 1.20+). Respondes en español, corto (máximo 60 palabras), con precios en esmeraldas cuando aplique. Si preguntan algo no relacionado a Minecraft, diles amablemente que solo sabes de tradeos y supervivencia.';
-var AI_FALLBACK=[['mending', 'Mending lo vende el librero: sube un aldeano desempleado con atril, revisa su primera oferta y si no es Mending rompe el atril y repite. Precio base ~10-38 esmeraldas. Cura un zombi-aldeano para descuentos.'],['esmeralda', 'Para esmeraldas rápido: granjero (trigo/papa), flechero (palos) o librero (papel). El flechero con palos es el más fácil al inicio.'],['descuento', 'Convierte al aldeano en zombi y cúralo con manzana dorada + poción de debilidad. Repite 2-3 veces para descuentos de hasta -100%.'],['zombi', 'Atrapa un zombi, deja que convierta a tu aldeano, luego cúralo con manzana dorada y poción de debilidad. El aldeano curado da descuentos permanentes.'],['librero', 'El librero (atríl) vende libros encantados: Mending, Filo V, Fortuna III, Protección IV. Resetea rompiendo el atril hasta que salga lo que buscas.']];
-function aiLocal(q){q=q.toLowerCase();for(var i=0;i<AI_FALLBACK.length;i++){if(q.indexOf(AI_FALLBACK[i][0])>=0)return AI_FALLBACK[i][1]}return 'Buena pregunta. De tradeos sé mucho: pregúntame por Mending, esmeraldas, descuentos, zombis o libreros.'}
-function groqKey(){try{return localStorage.getItem('groq_key')||''}catch(e){return ''}}
-async function askGroq(sys,q){if(!groqKey())return null;try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+groqKey()},signal:ctl.signal,body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:sys},{role:'user',content:q}],temperature:0.7,max_tokens:300})});clearTimeout(to);if(!r.ok)return null;var j=await r.json();var c=j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;var t=(c||'').trim().slice(0,900);return t||null}catch(e){return null}}
-async function askAI(q){var g0=await askGroq(AI_SYS,q);if(g0)return g0;var url='https://text.pollinations.ai/'+encodeURIComponent(q)+'?model=openai&system='+encodeURIComponent(AI_SYS);var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);try{var r=await fetch(url,{signal:ctl.signal});clearTimeout(to);if(!r.ok)throw 0;var t=await r.text();return t.trim().slice(0,600)}catch(e){clearTimeout(to);return null}}
-document.getElementById('groqKey').value=groqKey();document.getElementById('groqKey').addEventListener('change',function(e){try{localStorage.setItem('groq_key',e.target.value.trim())}catch(x){}});document.getElementById('bAi').addEventListener('click',async function(){var inp=document.getElementById('aiIn');var q=inp.value.trim();if(!q)return;inp.value='';var box=document.getElementById('aiOut');box.textContent='Boboldo está pensando...';var a=await askAI(q);box.textContent=a||aiLocal(q)});
-document.getElementById('aiIn').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('bAi').click()});
-</script>
-
-<div class="card"><h3>Tabla de tradeos top</h3><table><thead><tr><th>Profesión</th><th>Compras (tú das)</th><th>Vendes (recibes)</th><th>Nota</th></tr></thead><tbody>
+<div class="card">
+<div class="chat" id="chat"></div>
+<div class="quick" id="quick"></div>
+<div class="row"><input type="text" id="qin" placeholder="Ej: ¿cómo consigo Netherite rápido?" maxlength="300"><button class="btn" id="bSend">Enviar</button></div>
+<div class="tools"><button id="bVoice">🔊 Voz aldeano: OFF</button><button id="bHrmm">Traducir último al aldeano</button><button id="bClear">Limpiar 🧹</button></div>
+<p class="mut">IA gratuita (Groq si pones tu key abajo, si no Pollinations) + guía local de respaldo.</p>
+<label class="mut">Key Groq (opcional, solo tu navegador):</label>
+<input type="password" id="groqKey" placeholder="gsk_...">
+</div>
+<div class="card"><details><summary>📊 Tabla rápida de tradeos top</summary><table><thead><tr><th>Profesión</th><th>Das</th><th>Recibes</th><th>Nota</th></tr></thead><tbody>
 <tr><td><b>Librero</b></td><td>Papel, libros</td><td>Mending, Filo V, Fortuna III</td><td class="good">Prioridad 1</td></tr>
-<tr><td><b>Armero</b></td><td>Carbón, hierro</td><td>Armadura diamante</td><td class="good">Full diamante barato</td></tr>
+<tr><td><b>Armero</b></td><td>Carbón, hierro</td><td>Armadura diamante</td><td class="good">Full barato</td></tr>
 <tr><td><b>Herrero</b></td><td>Carbón, hierro</td><td>Hachas, picos, espadas</td><td>Herramientas top</td></tr>
-<tr><td><b>Cartógrafo</b></td><td>Papel, vidrio</td><td>Mapas de mansión/monumento</td><td>Exploración</td></tr>
-<tr><td><b>Granjero</b></td><td>Trigo, papa, zanahoria</td><td>Esmeraldas + comida</td><td>Motor de esmeraldas</td></tr>
+<tr><td><b>Cartógrafo</b></td><td>Papel, vidrio</td><td>Mapas mansión/monumento</td><td>Exploración</td></tr>
+<tr><td><b>Granjero</b></td><td>Trigo, papa, zanahoria</td><td>Esmeraldas + comida</td><td>Motor esmeraldas</td></tr>
 <tr><td><b>Flechero</b></td><td>Palos, hilo</td><td>Arcos, flechas, esmeraldas</td><td>Palos = esmeraldas</td></tr>
 <tr><td><b>Clérigo</b></td><td>Carne podrida, oro</td><td>Ender pearls, redstone</td><td>Perlas fáciles</td></tr>
-</tbody></table><p class="mut" style="margin-top:8px">Cura al aldeano zombificado para descuentos permanentes (hasta -100%).</p></div>
-<div class="card" style="text-align:center"><h3>Regatea con Boboldo</h3><p class="mut">5 rondas. Acepta, rechaza o contraoferta. Tu reputación sube o baja.</p>
-<div class="trade"><div class="big" id="bFace">🧑‍🌾</div><p id="bSay" style="font-size:16px;min-height:48px">Hola, forastero. ¿Tradeamos?</p><p class="mut" id="bScore">Reputación: 0 · Ronda 0/5</p></div>
-<div style="margin-top:10px"><button class="btn g" id="bGo">Empezar</button><button class="btn" id="bOk" style="display:none">Aceptar</button><button class="btn p" id="bNo" style="display:none">Rechazar</button><button class="btn" id="bLow" style="display:none">Pedir rebaja</button></div>
-</div>
-<footer>scainetprr · Aldeano de Tradeos</footer>
+</tbody></table></details></div>
+<footer>scainetprr · Boboldo IA</footer>
 </div>
 <script>
-var ITEMS=[['Mending I','32 esmeraldas'],['Filo V','28 esmeraldas'],['Pechera diamante','18 esmeraldas'],['Ender pearls x4','1 esmeralda'],['Mapa mansión','14 esmeraldas + brújula']];
-var R=0,REP=0,PRICE=0,ITEM='';
-function say(t){document.getElementById('bSay').textContent=t}
-function hud(){document.getElementById('bScore').textContent='Reputación: '+REP+' · Ronda '+R+'/5'}
-function showBtns(v){var ids=['bOk','bNo','bLow'];for(var i=0;i<ids.length;i++)document.getElementById(ids[i]).style.display=v?'':'none';document.getElementById('bGo').style.display=v?'none':''}
-function round(){if(R>=5){say(REP>=2?'Buen comerciante. Boboldo te respeta.':'Boboldo no volverá a tradear contigo...');showBtns(false);document.getElementById('bGo').style.display='';document.getElementById('bGo').textContent='Jugar de nuevo';R=0;REP=0;return}R++;var p=ITEMS[Math.floor(Math.random()*ITEMS.length)];ITEM=p[0];PRICE=parseInt(p[1]);say('Te doy '+ITEM+' por '+PRICE+' esmeraldas. ¿Trato?');hud();showBtns(true)}
-document.getElementById('bGo').addEventListener('click',function(){R=0;REP=0;round()});
-document.getElementById('bOk').addEventListener('click',function(){REP++;say('Trato hecho. '+ITEM+' por '+PRICE+' esmeraldas.');hud();showBtns(false);setTimeout(round,1400)});
-document.getElementById('bNo').addEventListener('click',function(){REP--;say('Hmph. Pierdes una oferta única.');hud();showBtns(false);setTimeout(round,1400)});
-document.getElementById('bLow').addEventListener('click',function(){if(Math.random()<0.45){REP++;var np=Math.max(1,PRICE-4);say('...está bien. '+ITEM+' por '+np+' esmeraldas. ¿Aceptas?');PRICE=np;hud()}else{REP--;say('¿Rebaja? ¡Me ofendes! La oferta sube a '+(PRICE+4)+'.');PRICE+=4;hud()}});
-hud();
+var AI_SYS='Eres Boboldo, un aldeano granjero de Minecraft con 20 años de oficio. Eres un EXPERTO ENCICLOPÉDICO en todo Minecraft Java 1.20+: tradeos y profesiones, encantamientos, granjas (hierro, oro, enderman, trigo), pociones, Nether, End, bosses (Ender Dragon, Wither, Warden), redstone básica y supervivencia. Respondes en español, máximo 70 palabras, con datos concretos (precios en esmeraldas, niveles, pasos). Tono bonachón y aldeano: alguna vez sueltas un "hrmm". Si preguntan algo ajeno a Minecraft, redirige con humor a tu puesto.';
+var FALLBACK=[['mending','Mending lo vende el librero: sube un aldeano con atril, revisa su primera oferta y si no es Mending rompe el atril y repite. Hrmm.'],['esmeralda','Para esmeraldas: granjero (trigo/papa), flechero (palos) o librero (papel). El flechero con palos es lo más fácil.'],['netherite','Netherite: mina escombros ancestrales en Y=15 del Nether (camas o TNT), funde a fragmentos y combina 4 fragmentos + 4 lingotes + mesa de herrería. Hrmm.'],['warden','Al Warden no se le pelea: sigilo, lana para no hacer ruido y huir. Si peleas, arco con Poder V desde lejos.'],['dragon','Ender Dragon: rompe los cristales del End con camas o flechas, luego camas en la cabeza cuando baja. Lleva calabaza tallada contra endermans.'],['wither','Wither: invócalo bajo el portal del End (atraviesa el techo) o en cueva profunda con golems. Protección anti-explosiones ayuda.'],['granja','¿Qué granja? Hierro (aldeanos+zombi), oro (techo del Nether), enderman (128 bloques de la isla) o trigo (aldeanos granjeros). Dime cuál y te detallo, hrmm.'],['pocion','Pociones base: verruga + agua. Fuerza (polvo blaze), curación (melón reluciente), caída lenta (membrana). Alambique + polvo blaze para empezar.'],['encant','Para encantar top: librero hasta Mending/Filo V/Fortuna III, mesa nivel 30 con librerías, yunque para combinar. Repara con Mending, hrmm.']];
+function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML}
+function bubble(who,html){var c=document.getElementById('chat');var d=document.createElement('div');d.className='msg '+who;d.innerHTML=html;c.appendChild(d);c.scrollTop=99999;return d}
+function groqKey(){try{return localStorage.getItem('groq_key')||''}catch(e){return ''}}
+async function askGroq(sys,q){var K=groqKey();if(!K)return null;try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+K},signal:ctl.signal,body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:sys},{role:'user',content:q}],temperature:0.7,max_tokens:350})});clearTimeout(to);if(!r.ok)return null;var j=await r.json();var c=j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;var t=(c||'').trim().slice(0,800);return t||null}catch(e){return null}}
+async function askPoll(sys,q){var models=['openai','mistral','claude'];for(var i=0;i<models.length;i++){try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://text.pollinations.ai/'+encodeURIComponent(q)+'?model='+models[i]+'&system='+encodeURIComponent(sys),{signal:ctl.signal});clearTimeout(to);if(!r.ok)continue;var t=await r.text();t=t.trim().slice(0,800);if(t)return t}catch(e){}}return null}
+function aiLocal(q){q=q.toLowerCase();for(var i=0;i<FALLBACK.length;i++){if(q.indexOf(FALLBACK[i][0])>=0)return FALLBACK[i][1]}return 'Hrmm, de eso sé poco. Pregúntame por Mending, esmeraldas, Netherite, Warden, dragón, pociones, encantamientos o granjas.'}
+var VOICE=false,LAST='';
+function speak(t){try{if(!VOICE)return;var s=window.speechSynthesis;if(!s)return;s.cancel();var u=new SpeechSynthesisUtterance(t.replace(/<[^>]+>/g,'').slice(0,300));u.lang='es-ES';u.pitch=0.2;u.rate=0.8;s.speak(u)}catch(e){}}
+function hrmmify(t){var words=t.split(/\s+/);var outs=['hrmm','hrm','hrrmm','mrrh','hmm'];var r=7;return words.map(function(w){if(/^[A-ZÁÉÍÓÚÑ0-9]/.test(w)&&w.length>3&&Math.random()<0.25)return w;r=(r*9301+49297)%233280;var pick=outs[Math.floor(r/233280*outs.length)];return (/[?.!,]$/.test(w))?pick+w.slice(-1):pick}).join(' ')}
+function send(){var inp=document.getElementById('qin');var q=inp.value.trim();if(!q)return;inp.value='';bubble('me',esc(q));var b=bubble('ai','<span style="color:var(--mut)">Boboldo piensa...</span>');(async function(){var a=await askGroq(AI_SYS,q);if(!a)a=await askPoll(AI_SYS,q);if(!a)a=aiLocal(q);b.innerHTML=a;LAST=a;document.getElementById('chat').scrollTop=99999;speak(a)})()}
+document.getElementById('bSend').addEventListener('click',send);
+document.getElementById('qin').addEventListener('keydown',function(e){if(e.key==='Enter')send()});
+var QUICK=['Mending barato','Netherite rápido','Cómo mato al Warden','Granja de hierro','Pociones básicas'];
+(function(){var q=document.getElementById('quick');QUICK.forEach(function(t){var b=document.createElement('button');b.textContent=t;b.addEventListener('click',function(){document.getElementById('qin').value=t;send()});q.appendChild(b)})})();
+document.getElementById('bVoice').addEventListener('click',function(){VOICE=!VOICE;this.textContent=VOICE?'🔊 Voz aldeano: ON':'🔊 Voz aldeano: OFF';if(!VOICE){try{window.speechSynthesis.cancel()}catch(e){}}});
+document.getElementById('bHrmm').addEventListener('click',function(){if(!LAST)return;var h=hrmmify(LAST);bubble('ai','<b>Hrmm:</b> '+esc(h));speak(h)});
+document.getElementById('bClear').addEventListener('click',function(){document.getElementById('chat').innerHTML='';bubble('ai','¡Hrmm! Bienvenido a mi puesto, forastero. Pregúntame lo que sea de Minecraft. 💚')});
+document.getElementById('groqKey').value=groqKey();
+document.getElementById('groqKey').addEventListener('change',function(e){try{localStorage.setItem('groq_key',e.target.value.trim())}catch(x){}});
+bubble('ai','¡Hrmm! Bienvenido a mi puesto, forastero. Pregúntame lo que sea de Minecraft. 💚');
 </script>
-<script>(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.1});var cs=document.querySelectorAll('.card');for(var i=0;i<cs.length;i++){cs[i].classList.add('rv');cs[i].style.transitionDelay=(i%3)*.07+'s';io.observe(cs[i])}})();
-</script></body>
+</body>
 </html>
