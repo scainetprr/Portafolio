@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Starter Pack · scainetprr</title>
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+.wrap{max-width:860px;margin:auto}
+a{color:var(--blue)}
+.back{font-size:14px}
+h1{font-size:32px;margin:12px 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px}
+.tags button{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 16px;margin:4px;cursor:pointer;font-size:13px}
+.tags button.on{background:var(--grn);border-color:var(--grn);color:#06130c}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px;margin-top:12px;max-height:340px;overflow-y:auto}
+.it{border:1px solid var(--line);background:#0d1428;border-radius:10px;padding:10px 8px;cursor:pointer;text-align:center;font-size:12px}
+.it.sel{border-color:var(--grn);box-shadow:0 0 14px #3ddc8455}
+.it b{display:block;font-size:12px}
+.it small{color:var(--mut);font-size:10px;font-family:Consolas,monospace;word-break:break-all}
+input[type=text]{width:100%;padding:11px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box;margin-top:6px}
+select{width:100%;padding:11px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:14px;outline:none;margin-top:6px}
+select option{background:#131a30}
+.btn{padding:10px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff;margin:8px 6px 0 0}
+.btn.g{background:var(--grn);border-color:var(--grn);color:#06130c}
+pre{background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:14px;font-family:Consolas,monospace;font-size:12px;color:#c0c8dc;white-space:pre-wrap;margin-top:10px;max-height:220px;overflow-y:auto}
+.sig{border:2px solid var(--grn);border-radius:10px;padding:18px;text-align:center;margin-top:10px;background:#0a0e1c}
+.sig b{font-size:22px;letter-spacing:1px}
+.farmtabs button{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 16px;margin:4px;cursor:pointer;font-size:13px}
+.farmtabs button.on{background:var(--grn);border-color:var(--grn);color:#06130c}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:8px 0;font-size:14px;color:#c0c8dc}
+.chk input{width:18px;height:18px;margin-top:3px;accent-color:var(--grn)}
+label{color:var(--mut);font-size:12px;display:block;margin:10px 0 2px}
+.mut{color:var(--mut);font-size:13px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+body{background:radial-gradient(900px 400px at 15% 0%,#2b7fff22,transparent 60%),radial-gradient(900px 400px at 85% 0%,#e11d2e22,transparent 60%),var(--bg)}.card{transition:transform .3s,box-shadow .3s,border-color .3s}.card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}h1{text-shadow:0 0 30px #e11d2e44}.rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}.rv.vis{opacity:1;transform:none}#stars{position:fixed;inset:0;z-index:0;pointer-events:none}.wrap{position:relative;z-index:1}.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:0;opacity:.32;pointer-events:none}.o1{width:480px;height:480px;background:#e11d2e;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}.o2{width:420px;height:420px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 18s ease-in-out infinite alternate-reverse}@keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}.shead h2{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 18px #e11d2e44)}.card,.vcard,.exp,.statBig,.proj{box-shadow:0 12px 34px #00000088,inset 0 1px 0 #ffffff1f;border-color:#33406b}.wrap>h1{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px #e11d2e55)}.shead{border-bottom:1px solid #2b3a66}</style>
+</head>
+<body><canvas id="stars"></canvas><div class="orb o1"></div><div class="orb o2"></div>
+<script>(function(){var cv=document.getElementById('stars');if(!cv)return;var cx=cv.getContext('2d'),P=[];function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.4+.12,c:['#ffffff','#e11d2e','#2b7fff'][i%3]});(function anim(){cx.clearRect(0,0,cv.width,cv.height);for(var k=0;k<P.length;k++){var p=P[k];p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.65;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}cx.globalAlpha=1;requestAnimationFrame(anim)})();})();</script>
+
+<div class="wrap">
+<a class="back" href="index.html">Volver al portafolio</a>
+<h1>Starter Pack</h1>
+<p class="sub">Arma tu kit inicial, genera los comandos, crea tu firma y monta tu primera granja.</p>
+<div class="card"><h3>1 · Arma tu kit</h3>
+<input type="text" id="fq" placeholder="Buscar item...">
+<div class="tags" id="ftags"></div>
+<div class="items" id="grid"></div>
+<pre id="kitOut">Toca items para agregarlos...</pre>
+<button class="btn g" id="bCopyKit">Copiar comandos</button><button class="btn" id="bClearKit">Vaciar</button>
+</div>
+<div class="card"><h3>2 · Tu firma de novato</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 12px">
+<div><label>Nick</label><input type="text" id="sNick" placeholder="Tu nick"></div>
+<div><label>Rango</label><input type="text" id="sRank" placeholder="Miembro"></div>
+<div><label>Servidor</label><input type="text" id="sSrv" placeholder="Mi servidor favorito"></div>
+<div><label>Frase</label><input type="text" id="sTxt" placeholder="Empezando la aventura"></div>
+</div>
+<label>Color</label>
+<select id="sColor"><option value="#3ddc84">Verde</option><option value="#e11d2e">Rojo</option><option value="#2b7fff">Azul</option><option value="#f5a623">Dorado</option><option value="#a855f7">Morado</option></select>
+<div class="sig" id="sigPrev"><b id="sigN">TUNICK</b><div class="mut" id="sigR">Miembro · Mi servidor</div><div style="font-style:italic;font-size:13px" id="sigT">Empezando la aventura</div></div>
+<button class="btn g" id="bSig">Copiar texto</button>
+<button class="btn" id="bRename">Comandos rename</button>
+<pre id="sigOut" style="display:none"></pre>
+</div>
+<div class="card"><h3>3 · Tu primera granja</h3>
+<p class="mut">Elige según tu etapa. Marca los pasos al completarlos.</p>
+<div class="farmtabs" id="ftabs"></div>
+<div id="farmBody"></div>
+</div>
+<footer>scainetprr · Starter Pack</footer>
+</div>
+<script>
+var ITEMS=[
+['Espada hierro','minecraft:iron_sword','inicial'],['Escudo','minecraft:shield','inicial'],['Arco','minecraft:bow','inicial'],['Flechas x64','minecraft:arrow','inicial'],['Casco hierro','minecraft:iron_helmet','inicial'],['Pechera hierro','minecraft:iron_chestplate','inicial'],['Pantalones hierro','minecraft:iron_leggings','inicial'],['Botas hierro','minecraft:iron_boots','inicial'],
+['Espada diamante','minecraft:diamond_sword','diamante'],['Pico diamante','minecraft:diamond_pickaxe','diamante'],['Hacha diamante','minecraft:diamond_axe','diamante'],['Casco diam.','minecraft:diamond_helmet','diamante'],['Pechera diam.','minecraft:diamond_chestplate','diamante'],['Pantalones diam.','minecraft:diamond_leggings','diamante'],['Botas diam.','minecraft:diamond_boots','diamante'],
+['Espada netherite','minecraft:netherite_sword','netherite'],['Pico netherite','minecraft:netherite_pickaxe','netherite'],['Hacha netherite','minecraft:netherite_axe','netherite'],['Casco netherite','minecraft:netherite_helmet','netherite'],['Pechera netherite','minecraft:netherite_chestplate','netherite'],['Pantalones netherite','minecraft:netherite_leggings','netherite'],['Botas netherite','minecraft:netherite_boots','netherite'],
+['Totem','minecraft:totem_of_undying','netherite'],['Elitros','minecraft:elytra','netherite'],['Shulker','minecraft:shulker_box','netherite'],
+['Madera x64','minecraft:oak_planks','inicial'],['Piedra x64','minecraft:cobblestone','inicial'],['Tierra x64','minecraft:dirt','inicial'],['Cristal x32','minecraft:glass','inicial'],['Escaleras x32','minecraft:ladder','inicial'],['Mesa','minecraft:crafting_table','inicial'],['Horno','minecraft:furnace','inicial'],['Agua cubo','minecraft:water_bucket','inicial'],['Cama','minecraft:red_bed','inicial'],['Perlas x16','minecraft:ender_pearl','diamante'],
+['Comida x64','minecraft:cooked_beef','inicial'],['Zanahoria dorada x32','minecraft:golden_carrot','diamante'],['Manzana dorada','minecraft:golden_apple','inicial'],['Caña de pescar','minecraft:fishing_rod','inicial'],['Tijeras','minecraft:shears','inicial'],['Pan x32','minecraft:bread','inicial'],['Manzanas x16','minecraft:apple','inicial']];
+var SEL=[],FT='all';
+function drawItems(){var q=document.getElementById('fq').value.toLowerCase();var g=document.getElementById('grid');g.innerHTML='';ITEMS.forEach(function(it,i){if(FT!=='all'&&it[2]!==FT)return;if(q&&it[0].toLowerCase().indexOf(q)<0&&it[1].indexOf(q)<0)return;var d=document.createElement('div');d.className='it'+(SEL.indexOf(i)>=0?' sel':'');d.innerHTML='<b>'+it[0]+'</b><small>'+it[1]+'</small>';d.addEventListener('click',function(){var k=SEL.indexOf(i);if(k>=0)SEL.splice(k,1);else SEL.push(i);drawItems();drawKit()});g.appendChild(d)})}
+function drawKit(){var o=document.getElementById('kitOut');if(!SEL.length){o.textContent='Toca items para agregarlos...';return}o.textContent=SEL.map(function(i){return '/give @p '+ITEMS[i][1]+' 1'}).join('\n')}
+document.getElementById('bCopyKit').addEventListener('click',function(){var t=document.getElementById('kitOut').textContent;try{navigator.clipboard.writeText(t);this.textContent='Copiado';var b=this;setTimeout(function(){b.textContent='Copiar comandos'},1200)}catch(e){}});
+document.getElementById('bClearKit').addEventListener('click',function(){SEL=[];drawItems();drawKit()});
+(function(){var ts=['all','inicial','diamante','netherite'],ns={all:'Todo',inicial:'Inicial',diamante:'Diamante',netherite:'Netherite'};var h='';ts.forEach(function(t){h+='<button data-t="'+t+'" class="'+(t==='all'?'on':'')+'">'+ns[t]+'</button>'});document.getElementById('ftags').innerHTML=h;var bs=document.querySelectorAll('#ftags button');for(var i=0;i<bs.length;i++)(function(el){el.addEventListener('click',function(){FT=el.getAttribute('data-t');for(var k=0;k<bs.length;k++)bs[k].classList.remove('on');el.classList.add('on');drawItems()})})(bs[i])})();
+drawItems();drawKit();
+function sigPaint(){var n=document.getElementById('sNick').value||'TUNICK',r=document.getElementById('sRank').value||'Miembro',s=document.getElementById('sSrv').value||'Mi servidor',t=document.getElementById('sTxt').value||'Empezando la aventura',c=document.getElementById('sColor').value;document.getElementById('sigN').textContent=n;document.getElementById('sigN').style.color=c;document.getElementById('sigR').textContent=r+' · '+s;document.getElementById('sigT').textContent='«'+t+'»'}
+var sigIds=['sNick','sRank','sSrv','sTxt','sColor'];for(var si=0;si<sigIds.length;si++)document.getElementById(sigIds[si]).addEventListener('input',sigPaint);sigPaint();
+document.getElementById('bSig').addEventListener('click',function(){var t=document.getElementById('sigN').textContent+' | '+document.getElementById('sigR').textContent+' | '+document.getElementById('sigT').textContent;try{navigator.clipboard.writeText(t);this.textContent='Copiado';var b=this;setTimeout(function(){b.textContent='Copiar texto'},1200)}catch(e){}});
+document.getElementById('bRename').addEventListener('click',function(){var n=document.getElementById('sNick').value||'TUNICK';var o=document.getElementById('sigOut');o.style.display='';o.textContent='/give @p iron_sword{display:{Name:\'{"text":"Espada de '+n+'"}\'}} 1';});
+var FARMS={trigo:{n:'Trigo y pan',etapa:'Día 1 · Fácil',mat:'Azada, semillas, agua y tierra',steps:['Aplana tierra cerca del agua','Ara con la azada','Planta semillas','Espera y cosecha con clic','Hornea el trigo en pan']},hierro:{n:'Hierro (aldeanos)',etapa:'Día 3+ · Media',mat:'3 aldeanos, 1 zombi, camas, tolvas',steps:['Encierra aldeanos con camas y mesas','Coloca el zombi con nombre a la vista','Sube la plataforma a +100 bloques','Canaliza la caída con agua','Recoge con tolvas a cofres']},oro:{n:'Oro y XP (Nether)',etapa:'Nether · Media',mat:'Obsidiana, trampillas, looting',steps:['Portal arriba del techo del Nether','Plataformas de spawn de piglins','Trampillas para guiar la caida','Zona de matanza con looting 3','Recoge oro + XP']},enderman:{n:'Enderman',etapa:'End · Avanzada',mat:'Hojas, endermite, tolvas',steps:['Plataforma lejos de la isla (128 bloques)','Endermite con nombre como cebo','Techo bajo para que no se teleporten','Caída de 43 bloques','Recoge perlas + XP masivo']}};
+var FF='trigo';
+function farmKeys(){return Object.keys(FARMS)}
+function drawFarms(){var h='';farmKeys().forEach(function(k){h+='<button data-f="'+k+'" class="'+(k===FF?'on':'')+'">'+FARMS[k].n+'</button>'});document.getElementById('ftabs').innerHTML=h;var bs=document.querySelectorAll('#ftabs button');for(var i=0;i<bs.length;i++)(function(el){el.addEventListener('click',function(){FF=el.getAttribute('data-f');drawFarms();paintFarm()})})(bs[i])}
+function paintFarm(){var f=FARMS[FF],saved={};try{saved=JSON.parse(localStorage.getItem('farm_'+FF)||'{}')}catch(e){}var h='<b>'+f.n+'</b><p class="mut">Etapa: '+f.etapa+'<br>Materiales: '+f.mat+'</p>';f.steps.forEach(function(s,i){h+='<label class="chk"><input type="checkbox" data-s="'+i+'"'+(saved[i]?' checked':'')+'><span>'+s+'</span></label>'});h+='<p class="mut" id="farmN"></p>';document.getElementById('farmBody').innerHTML=h;function cnt(){var n=document.querySelectorAll('#farmBody input:checked').length;document.getElementById('farmN').textContent=n+'/'+f.steps.length+' pasos'}var cs=document.querySelectorAll('#farmBody input');for(var i=0;i<cs.length;i++)(function(el){el.addEventListener('change',function(){saved[el.getAttribute('data-s')]=el.checked;try{localStorage.setItem('farm_'+FF,JSON.stringify(saved))}catch(e){}cnt()})})(cs[i]);cnt()}
+drawFarms();paintFarm();
+</script>
+<script>(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.1});var cs=document.querySelectorAll('.card');for(var i=0;i<cs.length;i++){cs[i].classList.add('rv');cs[i].style.transitionDelay=(i%3)*.07+'s';io.observe(cs[i])}})();
+</script></body>
+</html>
