@@ -9,24 +9,41 @@
 <style>
 :root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
-.wrap{max-width:760px;margin:auto}
+body{background:radial-gradient(900px 400px at 15% 0%,#2b7fff22,transparent 60%),radial-gradient(900px 400px at 85% 0%,#e11d2e22,transparent 60%),var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+.wrap{max-width:820px;margin:auto}
 a{color:var(--blue)}
 .back{font-size:14px}
 h1{font-size:32px;margin:12px 0 4px}
 .sub{color:var(--mut);font-size:14px;margin-bottom:20px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px}
-.ipbox{display:flex;gap:10px;align-items:center;background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:8px 0;font-family:Consolas,monospace}
-.ipbox b{flex:1}
-.btn{padding:10px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.live{border:1px solid var(--line);border-radius:12px;padding:16px;background:#0d1428}
+.live h4{font-size:15px;margin-bottom:6px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px}
+.on2{background:var(--grn);box-shadow:0 0 10px var(--grn)}
+.off2{background:var(--mut)}
+label{color:var(--mut);font-size:12px;display:block;margin:10px 0 5px}
+input[type=text]{width:100%;padding:11px 14px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:14px;outline:none;box-sizing:border-box}
+.btn{padding:11px 20px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#1c2440;color:#fff;margin-top:10px}
 .btn.p{background:var(--red);border-color:var(--red)}
 .btn.g{background:var(--grn);border-color:var(--grn);color:#06130c}
-.rule{display:flex;gap:10px;margin:8px 0;font-size:14px;color:#c0c8dc}
-.rule b{color:#fff}
-input[type=text]{width:100%;padding:12px 16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-size:15px;outline:none;box-sizing:border-box}
-#pkOut{text-align:center;padding:14px}
-#pkOut img{image-rendering:pixelated;border-radius:8px}
+ol.guide{margin:8px 0 8px 20px;color:#c0c8dc;font-size:14px}
+ol.guide li{margin:5px 0}
+ol.guide code{font-family:Consolas,monospace;background:#0a0e1c;padding:2px 8px;border-radius:6px;font-size:12px}
+.chat{background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:14px;height:220px;overflow-y:auto;margin:10px 0}
+.msg{margin:8px 0;max-width:90%;padding:8px 12px;border-radius:10px;font-size:14px}
+.me{margin-left:auto;background:#1c2440}
+.ai{background:#131a30;border:1px solid var(--line)}
+.qrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.qrow button{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 14px;cursor:pointer;font-size:12px}
+.pk{display:flex;gap:14px;align-items:center;margin-top:10px}
+.pk img{image-rendering:pixelated;border-radius:8px}
 .mut{color:var(--mut);font-size:13px}
+.proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:8px}
+.proj a{display:block;text-align:center;padding:12px 8px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:700;background:#161d33}
+.proj a:hover{border-color:var(--red)}
+.proj small{display:block;color:var(--mut);font-weight:400;font-size:11px}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
 </style>
 </head>
@@ -34,31 +51,56 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
 <div class="wrap">
 <a class="back" href="index.html">Volver al portafolio</a>
 <h1>Centro de comunidad</h1>
-<p class="sub">Discords, IPs y reglas de convivencia de mis comunidades.</p>
-<div class="card"><h3>Servidores Minecraft</h3>
-<div class="ipbox"><b>SKYLITH.LIVE</b><span class="mut">SkyBlock · activo</span><button class="btn" data-copy="SKYLITH.LIVE">Copiar IP</button></div>
-<div class="ipbox"><b>mc.hyperhard.space</b><span class="mut">Network · en pausa</span><button class="btn" data-copy="mc.hyperhard.space">Copiar IP</button></div>
-</div>
-<div class="card"><h3>Discords</h3>
-<p><a class="btn p" style="display:inline-block;text-decoration:none" href="https://discord.gg/qyyREajJgC" target="_blank" rel="noopener">Skylith Network</a>
-<a class="btn" style="display:inline-block;text-decoration:none" href="https://discord.gg/dkZpFtXXCj" target="_blank" rel="noopener">Hydra Studio</a></p>
-</div>
-<div class="card"><h3>Reglas de convivencia</h3>
-<div class="rule"><b>1.</b><span>Respeto para todos: cero insultos, cero toxicidad.</span></div>
-<div class="rule"><b>2.</b><span>Prohibido hacks, macros y abuso de bugs (repórtalos).</span></div>
-<div class="rule"><b>3.</b><span>Sin publicidad de otros servidores.</span></div>
-<div class="rule"><b>4.</b><span>Usa los tickets para reportes y apelaciones.</span></div>
-<div class="rule"><b>5.</b><span>Las decisiones del staff se respetan y se apelan por ticket.</span></div>
-</div>
-<div class="card"><h3>Buscar jugador</h3>
-<input type="text" id="pk" placeholder="Nick de Minecraft..." oninput="drawPk()">
-<div id="pkOut"><span class="mut">Escribe un nick para ver su avatar.</span></div>
-</div>
-<footer>scainetprr · Comunidad</footer>
+<p class="sub">Une tu Discord con tu Minecraft: estado en vivo, guías, asistente y buscador.</p>
+<div class="card"><h3>Mi comunidad en vivo</h3><div class="grid2">
+<div class="live" id="liveD"><h4>💬 Discord</h4><p class="mut">Sin conectar.</p></div>
+<div class="live" id="liveM"><h3 style="font-size:15px">⛏️ Minecraft</h3><p class="mut">Sin conectar.</p></div>
+</div><button class="btn" id="bRefresh">Actualizar 🔄</button></div>
+<div class="card"><h3>1 · Conecta tu Discord</h3>
+<label>ID del servidor</label><input type="text" id="dId" placeholder="Ej: 123456789012345678">
+<label>Link de invitación</label><input type="text" id="dInv" placeholder="Ej: https://discord.gg/abc123">
+<button class="btn p" id="bDiscord">Verificar y guardar ✅</button>
+<ol class="guide"><li>En Discord: <b>Ajustes del servidor → Widget</b>.</li><li>Activa el widget y elige un canal de invitación.</li><li>Copia el <b>Server ID</b> (clic derecho al nombre → Copiar ID, con modo desarrollador).</li></ol></div>
+<div class="card"><h3>2 · Conecta tu Minecraft</h3>
+<label>IP del servidor</label><input type="text" id="mIp" placeholder="Ej: SKYLITH.LIVE">
+<button class="btn p" id="bMc">Probar y guardar ✅</button>
+<p class="mut">Java y Bedrock (marca Bedrock si aplica): <input type="checkbox" id="mBed" style="width:auto"> Bedrock</p></div>
+<div class="card"><h3>3 · Asistente de conexión</h3>
+<div class="chat" id="aChat"></div>
+<div class="qrow"><button data-aq="widget">Activar widget</button><button data-aq="ip">Encontrar mi IP</button><button data-aq="revisar">Revisar mi configuración</button></div>
+<div style="display:flex;gap:8px"><input type="text" id="aIn" placeholder="Pregunta algo..." maxlength="200"><button class="btn p" id="bAsk">Enviar</button></div></div>
+<div class="card"><h3>4 · Buscador de jugadores</h3>
+<input type="text" id="pNick" placeholder="Nick de Minecraft...">
+<button class="btn p" id="bPk">Buscar</button>
+<div class="pk" id="pkOut"></div></div>
+<div class="card"><h3>Mis proyectos</h3><div class="proj">
+<a href="status.html">📡 Status<small>monitor</small></a><a href="toolkit.html">⚖️ Toolkit<small>staff</small></a><a href="wiki.html">📖 Wiki<small>comandos</small></a><a href="quiz.html">❓ Quiz<small>staff</small></a><a href="guia.html">🔮 Guía<small>encantos</small></a><a href="radio.html">📻 Radio<small>gamer</small></a><a href="starter.html">🎒 Starter<small>pack</small></a><a href="aldeano.html">🌾 Aldeano<small>tradeos</small></a><a href="scainetai.html">🤖 scainetAI<small>asistente</small></a><a href="playercards.html">🎴 Cards<small>skins</small></a><a href="cronicas.html">🎬 Crónicas<small>serie</small></a>
+</div></div>
+<footer>scainetprr · Comunidad · Datos: Discord Widget + mcsrvstat + Mojang</footer>
 </div>
 <script>
-document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-copy');try{navigator.clipboard.writeText(t);b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar IP'},1200)}catch(e){prompt('Copia la IP:',t)}})});
-function drawPk(){var u=document.getElementById('pk').value.trim();var box=document.getElementById('pkOut');if(!u){box.innerHTML='<span class="mut">Escribe un nick para ver su avatar.</span>';return}box.innerHTML='<img src="https://minotar.net/helm/'+encodeURIComponent(u)+'/80.png" width="80" height="80" alt="avatar" onerror="this.outerHTML='+'<span class=mut>Nick no encontrado</span>'+'"><p style="margin-top:8px"><b>'+u.replace(/</g,'&lt;')+'</b></p>'}
+function store(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||'null');localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}}
+function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML}
+async function discordWidget(id){var r=await fetch('https://discord.com/api/guilds/'+encodeURIComponent(id)+'/widget.json');if(!r.ok)throw new Error('widget');return r.json()}
+async function mcStatus(ip,bed){var base=bed?'https://api.mcsrvstat.us/bedrock/3/':'https://api.mcsrvstat.us/3/';var r=await fetch(base+encodeURIComponent(ip));return r.json()}
+async function inviteGuild(code){var r=await fetch('https://discord.com/api/v10/invites/'+encodeURIComponent(code)+'?with_counts=true');if(!r.ok)throw 0;return r.json()}
+async function refreshLive(){
+var d=store('com_discord'),m=store('com_mc');
+var ld=document.getElementById('liveD'),lm=document.getElementById('liveM');
+if(d&&d.id){try{var w=await discordWidget(d.id);ld.innerHTML='<h4>💬 '+esc(w.name||'Discord')+'</h4><p><span class="dot on2"></span><b>'+w.presence_count+'</b> en línea</p><p class="mut">Canal: '+esc(d.inv||'')+'</p>'}catch(e){ld.innerHTML='<h4>💬 Discord</h4><p><span class="dot off2"></span><span class="mut">Widget desactivado en el servidor. Actívalo en Ajustes → Widget.</span></p>'}}else{ld.innerHTML='<h4>💬 Discord</h4><p class="mut">Sin conectar.</p>'}
+if(m&&m.ip){try{var s=await mcStatus(m.ip,m.bed);if(s.online){lm.innerHTML='<h4>⛏️ '+esc(m.ip)+'</h4><p><span class="dot on2"></span><b>'+s.players.online+'/'+s.players.max+'</b> · '+esc(s.version||'')+'</p>'}else{lm.innerHTML='<h4>⛏️ '+esc(m.ip)+'</h4><p><span class="dot off2"></span>Offline</p>'}}catch(e){lm.innerHTML='<h4>⛏️ Minecraft</h4><p class="mut">Sin respuesta.</p>'}}else{lm.innerHTML='<h4>⛏️ Minecraft</h4><p class="mut">Sin conectar.</p>'}
+}
+document.getElementById('bRefresh').addEventListener('click',refreshLive);
+document.getElementById('bDiscord').addEventListener('click',async function(){var id=document.getElementById('dId').value.trim(),inv=document.getElementById('dInv').value.trim();if(!id){alert('Pega el Server ID');return}try{await discordWidget(id);store('com_discord',{id:id,inv:inv});refreshLive();alert('Discord verificado y guardado')}catch(e){alert('No responde: activa el Widget del servidor primero')}});
+document.getElementById('bMc').addEventListener('click',async function(){var ip=document.getElementById('mIp').value.trim();if(!ip)return;var bed=document.getElementById('mBed').checked;try{var s=await mcStatus(ip,bed);if(!s.online){alert('El servidor no responde')}else{store('com_mc',{ip:ip,bed:bed});refreshLive();alert('Minecraft guardado: '+s.players.online+' online')}}catch(e){alert('Error consultando')}});
+function abubble(who,h){var c=document.getElementById('aChat');var d=document.createElement('div');d.className='msg '+who;d.innerHTML=h;c.appendChild(d);c.scrollTop=99999}
+function aask(q){abubble('me',esc(q));var a=q.toLowerCase(),r='Puedo guiarte con el <b>widget</b>, tu <b>IP</b> o <b>revisar</b> tu configuración. Usa los botones.';if(a.indexOf('widget')>=0)r='Activa el widget en <b>Ajustes del servidor → Widget</b>, elige canal de invitación y pega el Server ID arriba.';else if(a.indexOf('ip')>=0)r='Tu IP es la que pones en el launcher. Si usas puerto no estándar, escríbela como <b>ip:puerto</b>. Para Bedrock marca la casilla.';else if(a.indexOf('revis')>=0)r='Pulsa <b>Actualizar</b> arriba: si Discord dice widget desactivado o Minecraft dice offline, revisa esos pasos.';setTimeout(function(){abubble('ai',r)},400)}
+document.getElementById('bAsk').addEventListener('click',function(){var i=document.getElementById('aIn');if(i.value.trim()){aask(i.value.trim());i.value=''}});
+document.getElementById('aIn').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('bAsk').click()});
+var qs=document.querySelectorAll('[data-aq]');for(var i=0;i<qs.length;i++)(function(el){el.addEventListener('click',function(){aask(el.textContent)})})(qs[i]);
+abubble('ai','¡Hola! Soy tu asistente. Puedo guiarte para activar el widget, conseguir IDs e IPs, o revisar si todo responde.');
+document.getElementById('bPk').addEventListener('click',async function(){var u=document.getElementById('pNick').value.trim();var box=document.getElementById('pkOut');if(!u)return;box.innerHTML='<span class="mut">Buscando...</span>';try{var r=await fetch('https://api.mojang.com/users/profiles/minecraft/'+encodeURIComponent(u));if(!r.ok)throw 0;var j=await r.json();var h=await (await fetch('https://api.mojang.com/user/profiles/'+j.id+'/names')).json();var names=h.map(function(x){return x.name}).join(', ');box.innerHTML='<img src="https://minotar.net/helm/'+j.id+'/80.png" width="80" height="80" alt="skin"><div><b>'+esc(j.name)+'</b><br><span class="mut" style="font-size:11px">UUID: '+j.id+'</span><br><span class="mut" style="font-size:12px">Historial: '+esc(names)+'</span></div>'}catch(e){box.innerHTML='<span class="mut">Jugador no encontrado (solo Java premium).</span>'}});
+(function(){var d=store('com_discord');if(d){if(d.id)document.getElementById('dId').value=d.id;if(d.inv)document.getElementById('dInv').value=d.inv}var m=store('com_mc');if(m){if(m.ip)document.getElementById('mIp').value=m.ip;document.getElementById('mBed').checked=!!m.bed}refreshLive()})();
 </script>
 </body>
 </html>
