@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Guía de Encantamientos · scainetprr</title>
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#0a0e1a;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--gld:#f5a623}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
+.wrap{max-width:860px;margin:auto}
+a{color:var(--blue)}
+.back{font-size:14px}
+h1{font-size:32px;margin:12px 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px}
+input[type=text]{width:100%;padding:13px 18px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:12px;color:#fff;font-size:16px;outline:none;margin-bottom:12px}
+.tags button{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 16px;margin:4px;cursor:pointer;font-size:13px}
+.tags button.on{background:var(--red);border-color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{color:var(--mut);font-size:12px;text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+td{padding:9px 8px;border-bottom:1px solid #1a2138;color:#c0c8dc}
+td b{color:#fff}
+.mx{color:var(--gld);font-weight:800}
+.bad{color:#ff6b7a;font-size:12px}
+.setbtn{padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:#1c2440;color:#fff;font-size:13px;font-weight:700;cursor:pointer;margin:4px}
+.setbtn.on{background:var(--red);border-color:var(--red)}
+#setOut{background:#0a0e1c;border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:12px;font-size:14px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Volver al portafolio</a>
+<h1>Guía de Encantamientos</h1>
+<p class="sub">Niveles máximos, incompatibilidades y armador de sets perfectos (Java 1.20+).</p>
+<input type="text" id="q" placeholder="Buscar encantamiento... (ej: filo, prot, infinidad)" oninput="draw()">
+<div class="tags" id="tags"></div>
+<div class="card" style="padding:8px 10px"><table><thead><tr><th>Encanto</th><th>Máx</th><th>Para</th><th>Choca con</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="card"><h3>Armador de set perfecto</h3>
+<p class="mut" style="font-size:13px;color:var(--mut)">Elige pieza y te digo los encantamientos ideales.</p>
+<div id="pieces"><button class="setbtn on" onclick="setPiece(this,'casco')">Casco</button><button class="setbtn" onclick="setPiece(this,'pechera')">Pechera</button><button class="setbtn" onclick="setPiece(this,'pantalones')">Pantalones</button><button class="setbtn" onclick="setPiece(this,'botas')">Botas</button><button class="setbtn" onclick="setPiece(this,'espada')">Espada</button><button class="setbtn" onclick="setPiece(this,'pico')">Pico</button><button class="setbtn" onclick="setPiece(this,'arco')">Arco</button></div>
+<div id="setOut"></div>
+</div>
+<footer>scainetprr · Guía de Encantamientos</footer>
+</div>
+<script>
+var EN=[
+{n:'Protección',m:4,para:'Armadura',choca:'Prot. contra fuego/explosiones/proyectiles',d:'Defensa general. No se combina con las otras protecciones.'},
+{n:'Protección contra fuego',m:4,para:'Armadura',choca:'Protección y otras protecciones',d:'Ideal Nether + Blaze.'},
+{n:'Protección contra explosiones',m:4,para:'Armadura',choca:'Protección y otras protecciones',d:'Anti-creeper y camas del End.'},
+{n:'Caída de pluma',m:4,para:'Botas',choca:'—',d:'Obligatorio en botas. Salva de alturas y ender pearls.'},
+{n:'Respiración',m:3,para:'Casco',choca:'—',d:'Más aire bajo el agua + visión.'},
+{n:'Afinidad acuática',m:1,para:'Casco',choca:'—',d:'Minar rápido bajo el agua.'},
+{n:'Espinas',m:3,para:'Armadura',choca:'—',d:'Devuelve daño pero gasta durabilidad.'},
+{n:'Agilidad acuática',m:3,para:'Botas',choca:'Lealtad gélida',d:'Caminar rápido en agua.'},
+{n:'Lealtad gélida',m:2,para:'Botas',choca:'Agilidad acuática',d:'Congela el agua al caminar.'},
+{n:'Velocidad del alma',m:3,para:'Botas',choca:'—',d:'Corre en arena de almas del Nether.'},
+{n:'Sigilo veloz',m:3,para:'Pantalones',choca:'—',d:'Moverse agachado más rápido.'},
+{n:'Filo',m:5,para:'Espada',choca:'Castigo, Perdición artrópodos',d:'Daño general. El estándar PvP/PvE.'},
+{n:'Castigo',m:5,para:'Espada',choca:'Filo, Perdición',d:'Daño extra a no-muertos (zombis, esqueletos, wither).'},
+{n:'Perdición de artrópodos',m:5,para:'Espada',choca:'Filo, Castigo',d:'Contra arañas, abejas y endermites.'},
+{n:'Empuje',m:2,para:'Espada',choca:'—',d:'Knockback. Molesto en PvP, útil vs mobs.'},
+{n:'Aspecto ígneo',m:2,para:'Espada',choca:'—',d:'Prende fuego al golpear.'},
+{n:'Botín',m:3,para:'Espada',choca:'Toque sedoso',d:'Más drops. Farm esencial.'},
+{n:'Barrido',m:3,para:'Espada',choca:'—',d:'Solo Java: daño en área del barrido.'},
+{n:'Eficiencia',m:5,para:'Herramientas',choca:'—',d:'Velocidad de minado. Pico pala hacha.'},
+{n:'Toque sedoso',m:1,para:'Herramientas',choca:'Fortuna',d:'Recoge el bloque tal cual (diamante, hielo, panales).'},
+{n:'Fortuna',m:3,para:'Pico/pala/hacha',choca:'Toque sedoso',d:'Multiplica drops de minerales.'},
+{n:'Irrompibilidad',m:3,para:'Todo',choca:'—',d:'Durabilidad. Va en TODO el set.'},
+{n:'Reparación (Mending)',m:1,para:'Todo',choca:'Infinidad (arco)',d:'Repara con XP. Prioridad máxima.'},
+{n:'Poder',m:5,para:'Arco',choca:'—',d:'Daño base del arco.'},
+{n:'Puñetazo',m:2,para:'Arco',choca:'—',d:'Knockback de flechas.'},
+{n:'Llama',m:1,para:'Arco',choca:'—',d:'Flechas incendiarias.'},
+{n:'Infinidad',m:1,para:'Arco',choca:'Reparación',d:'Flechas infinitas (1 en inventario). O Infinidad o Mending.'},
+{n:'Suerte marina',m:3,para:'Caña',choca:'—',d:'Mejor pesca.'},
+{n:'Lealtad',m:3,para:'Tridente',choca:'Canalización',d:'El tridente vuelve a tu mano.'},
+{n:'Empalamiento',m:5,para:'Tridente',choca:'—',d:'Daño extra acuático.'},
+{n:'Corriente',m:3,para:'Tridente',choca:'Lealtad, Canalización',d:'Te lanza con el tridente en agua/lluvia.'},
+{n:'Canalización',m:1,para:'Tridente',choca:'Corriente',d:'Rayos en tormenta.'},
+{n:'Multidisparo',m:1,para:'Ballesta',choca:'Perforación',d:'3 flechas por tiro.'},
+{n:'Perforación',m:4,para:'Ballesta',choca:'Multidisparo',d:'Atraviesa enemigos.'},
+{n:'Carga rápida',m:3,para:'Ballesta',choca:'—',d:'Recarga veloz.'}];
+var SETS={casco:['Protección 4','Respiración 3','Afinidad acuática 1','Irrompibilidad 3','Reparación 1'],pechera:['Protección 4','Irrompibilidad 3','Reparación 1','Espinas 3 (opcional)'],pantalones:['Protección 4 (o anti-explosiones)','Sigilo veloz 3','Irrompibilidad 3','Reparación 1'],botas:['Protección 4','Caída de pluma 4','Agilidad acuática 3','Irrompibilidad 3','Reparación 1','Velocidad del alma 3 (Nether)'],espada:['Filo 5','Botín 3','Aspecto ígneo 2','Barrido 3','Irrompibilidad 3','Reparación 1'],pico:['Eficiencia 5','Fortuna 3 (minar) o Toque sedoso (construir)','Irrompibilidad 3','Reparación 1'],arco:['Poder 5','Puñetazo 2','Llama 1','Infinidad 1 o Reparación 1','Irrompibilidad 3']};
+var F='all';
+function draw(){var q=document.getElementById('q').value.toLowerCase();var h='',n=0;EN.forEach(function(e){if(F!=='all'&&e.para!==F&&e.para.indexOf(F)<0)return;if(q&&(e.n+' '+e.d+' '+e.para).toLowerCase().indexOf(q)<0)return;n++;h+='<tr><td><b>'+e.n+'</b><br><span class="mut" style="font-size:12px">'+e.d+'</span></td><td class="mx">'+e.m+'</td><td>'+e.para+'</td><td>'+(e.choca==='—'?'—':'<span class="bad">'+e.choca+'</span>')+'</td></tr>'});document.getElementById('rows').innerHTML=h||'<tr><td colspan="4" class="mut">Sin resultados.</td></tr>'}
+(function(){var ps={};EN.forEach(function(e){ps[e.para.split('/')[0].split(' ')[0]}=1});var h='<button class="on" onclick="setF(this,'+"'all'"+')">Todos</button>';Object.keys(ps).forEach(function(p){h+='<button onclick="setF(this,'+"'"+p+"'"+')">'+p+'</button>'});document.getElementById('tags').innerHTML=h})();
+function setF(b,f){F=f;var bs=document.querySelectorAll('#tags button');for(var i=0;i<bs.length;i++)bs[i].classList.remove('on');b.classList.add('on');draw()}
+function setPiece(b,p){var bs=document.querySelectorAll('#pieces button');for(var i=0;i<bs.length;i++)bs[i].classList.remove('on');b.classList.add('on');document.getElementById('setOut').innerHTML='<b style="color:#fff">Set '+p+':</b><br>'+SETS[p].map(function(x){return '✔ '+x}).join('<br>')}
+draw();setPiece(document.querySelector('#pieces button'),'casco');
+</script>
+</body>
+</html>
