@@ -27,7 +27,7 @@ input[type=text]{flex:1;padding:12px 16px;background:rgba(0,0,0,.4);border:1px s
 .btn{padding:12px 22px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:none;background:var(--red);color:#fff}
 .mut{color:var(--mut);font-size:12px;margin-top:8px}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
-</style>
+body{background:radial-gradient(900px 400px at 15% 0%,#2b7fff22,transparent 60%),radial-gradient(900px 400px at 85% 0%,#e11d2e22,transparent 60%),var(--bg)}.card{transition:transform .3s,box-shadow .3s,border-color .3s}.card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}h1{text-shadow:0 0 30px #e11d2e44}.rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}.rv.vis{opacity:1;transform:none}</style>
 </head>
 <body>
 <div class="wrap">
@@ -61,5 +61,6 @@ function send(){var inp=document.getElementById('qin');var q=inp.value.trim();if
 document.getElementById('qin').addEventListener('keydown',function(e){if(e.key==='Enter')send()});
 (function(){var q=document.getElementById('quick');QUICK.forEach(function(t){var b=document.createElement('button');b.textContent=t;b.addEventListener('click',function(){document.getElementById('qin').value=t;send()});q.appendChild(b)});bubble('ai','Hola, soy <b>scainetAI</b>. Pregúntame lo que quieras sobre scainetprr.')})();
 </script>
-</body>
+<script>(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.1});var cs=document.querySelectorAll('.card');for(var i=0;i<cs.length;i++){cs[i].classList.add('rv');cs[i].style.transitionDelay=(i%3)*.07+'s';io.observe(cs[i])}})();
+</script></body>
 </html>
