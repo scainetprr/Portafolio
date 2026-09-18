@@ -45,7 +45,7 @@ ol.guide code{font-family:Consolas,monospace;background:#0a0e1c;padding:2px 8px;
 .proj a:hover{border-color:var(--red)}
 .proj small{display:block;color:var(--mut);font-weight:400;font-size:11px}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
-</style>
+body{background:radial-gradient(900px 400px at 15% 0%,#2b7fff22,transparent 60%),radial-gradient(900px 400px at 85% 0%,#e11d2e22,transparent 60%),var(--bg)}.card{transition:transform .3s,box-shadow .3s,border-color .3s}.card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}h1{text-shadow:0 0 30px #e11d2e44}.rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}.rv.vis{opacity:1;transform:none}</style>
 </head>
 <body>
 <div class="wrap">
@@ -102,5 +102,6 @@ abubble('ai','¡Hola! Soy tu asistente. Puedo guiarte para activar el widget, co
 document.getElementById('bPk').addEventListener('click',async function(){var u=document.getElementById('pNick').value.trim();var box=document.getElementById('pkOut');if(!u)return;box.innerHTML='<span class="mut">Buscando...</span>';try{var r=await fetch('https://api.mojang.com/users/profiles/minecraft/'+encodeURIComponent(u));if(!r.ok)throw 0;var j=await r.json();var h=await (await fetch('https://api.mojang.com/user/profiles/'+j.id+'/names')).json();var names=h.map(function(x){return x.name}).join(', ');box.innerHTML='<img src="https://minotar.net/helm/'+j.id+'/80.png" width="80" height="80" alt="skin"><div><b>'+esc(j.name)+'</b><br><span class="mut" style="font-size:11px">UUID: '+j.id+'</span><br><span class="mut" style="font-size:12px">Historial: '+esc(names)+'</span></div>'}catch(e){box.innerHTML='<span class="mut">Jugador no encontrado (solo Java premium).</span>'}});
 (function(){var d=store('com_discord');if(d){if(d.id)document.getElementById('dId').value=d.id;if(d.inv)document.getElementById('dInv').value=d.inv}var m=store('com_mc');if(m){if(m.ip)document.getElementById('mIp').value=m.ip;document.getElementById('mBed').checked=!!m.bed}refreshLive()})();
 </script>
-</body>
+<script>(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.1});var cs=document.querySelectorAll('.card');for(var i=0;i<cs.length;i++){cs[i].classList.add('rv');cs[i].style.transitionDelay=(i%3)*.07+'s';io.observe(cs[i])}})();
+</script></body>
 </html>
