@@ -24,7 +24,7 @@ h1{font-size:76px;line-height:1;margin:14px 0;font-weight:800;letter-spacing:-2p
 .btn.p{background:var(--red);border-color:var(--red);color:#fff}.btn.o{background:transparent;color:#fff}.btn:hover{filter:brightness(1.15)}
 .mini{margin-top:16px;color:var(--mut);font-size:13px}
 .acard{background:linear-gradient(180deg,#182036,#10172a);border:1px solid var(--line);border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 0 80px #e11d2e22;animation:float 5s ease-in-out infinite}
-.acard img{width:150px;height:150px;object-fit:cover;border-radius:14px;background:#000;border:2px solid var(--line)}
+.acard .arWrap{width:168px;height:168px;margin:0 auto;border-radius:50%;padding:4px;background:conic-gradient(from 210deg,#2b7fff,#a855f7,#e11d2e,#2b7fff);box-shadow:0 0 28px #a855f766,0 0 70px #2b7fff33;animation:ringPulse 3s ease-in-out infinite}.acard .arWrap img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;background:radial-gradient(circle at 50% 35%,#1b2340,#0a0e1a 78%)}@keyframes ringPulse{50%{box-shadow:0 0 44px #a855f799,0 0 90px #2b7fff55}}
 .acard .nick{font-size:12px;letter-spacing:2px;color:var(--mut);margin-top:16px}
 .acard h3{font-size:24px}.acard p{color:var(--mut);font-size:14px}
 .dot{color:var(--grn);font-size:13px;border-top:1px solid var(--line);margin-top:14px;padding-top:12px}
@@ -169,7 +169,7 @@ nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
 <div class="term"><span class="g">scainetprr@hyperhard</span>:~ $ help — about · skills · timeline · bots · contact</div>
 </div>
 <div class="acard">
-<img fetchpriority="high" decoding="async" src="Imagenes/avatar.png" alt="scainetprr" onerror="this.style.display='none'">
+<div class="arWrap"><img fetchpriority="high" decoding="async" src="Imagenes/favicon.png" alt="scainetprr" onerror="this.style.display='none'">
 <div class="nick">NICK</div><h3>scainetprr</h3><p>Minecraft / Discord</p>
 <div class="dot">● Disponible para nuevos proyectos · Respondo en &lt;24h</div>
 </div>
@@ -610,7 +610,7 @@ loadReviews();
 <section id="contacto">
 <div class="shead"><span class="n">10</span><h2>Contacto</h2></div>
 <div class="grid">
-<div class="card"><h3>Discord (principal)</h3><p><b class="copy" id="cpD">scainetprrmn · 1307246359895740448 (copiar)</b></p><a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener">Abrir Discord ↗</a></div>
+<div class="card"><h3>Discord (principal)</h3><p style="font-size:18px;font-weight:800">@scainetprrmn</p><p style="margin-top:6px"><small class="copy" id="cpD" style="font-family:Consolas,monospace;font-size:13px;color:var(--mut);background:#0a0e1c;border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer">ID: 1307246359895740448 (copiar)</small></p><a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener">Abrir Discord ↗</a></div>
 <div class="card"><h3>Email / X / CV</h3><p class="copy" id="cpM">scainetprrmn@gmail.com (copiar)</p><p><a href="https://x.com/scainetprrMN" target="_blank" rel="noopener">X @scainetprrMN</a> · <a href="cv.html">Descargar CV 📄</a></p></div>
 <div class="card"><h3>Referencias</h3><p style="color:var(--mut);font-size:14px">L3xz / lexz24.7 — 1431659598288523375<br>franrol15 — 889912844357886042<br>maicolfrantech — 575484448171229195</p></div>
 </div>
