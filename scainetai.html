@@ -36,9 +36,11 @@ input[type=text]{flex:1;padding:12px 16px;background:rgba(0,0,0,.4);border:1px s
 .tools button{background:transparent;color:var(--mut);border:1px solid var(--line);border-radius:8px;font-size:12px;padding:6px 12px;cursor:pointer}
 .mut{color:var(--mut);font-size:12px;margin-top:8px}
 footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
-</style>
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}.wrap{position:relative;z-index:1}.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:0;opacity:.32;pointer-events:none}.o1{width:480px;height:480px;background:#e11d2e;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}.o2{width:420px;height:420px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 18s ease-in-out infinite alternate-reverse}@keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}</style>
 </head>
-<body>
+<body><canvas id="stars"></canvas><div class="orb o1"></div><div class="orb o2"></div>
+<script>(function(){var cv=document.getElementById('stars');if(!cv)return;var cx=cv.getContext('2d'),P=[];function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.4+.12,c:['#ffffff','#e11d2e','#2b7fff'][i%3]});(function anim(){cx.clearRect(0,0,cv.width,cv.height);for(var k=0;k<P.length;k++){var p=P[k];p.y-=p.s;if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}cx.globalAlpha=.65;cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}cx.globalAlpha=1;requestAnimationFrame(anim)})();})();
+
 <div class="wrap">
 <a class="back" href="index.html">Volver al portafolio</a>
 <h1>scainetAI</h1>
@@ -47,7 +49,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
 <button class="on" data-role="asistente">🎤 Asistente</button>
 <button data-role="staff">🛡️ Staff</button>
 <button data-role="dev">💻 Dev</button>
-<select id="modelSel" title="Modelo IA">
+<input type="password" id="groqKey" placeholder="Key Groq (opcional)" title="Se guarda solo en tu navegador" style="background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 12px;font-size:12px;width:170px"><select id="modelSel" title="Modelo IA">
 <option value="auto">Modelo: auto</option>
 <option value="openai">Rápido</option>
 <option value="claude">Análisis</option>
@@ -71,7 +73,9 @@ function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s)
 function bubble(who,html){var c=document.getElementById('chat');var d=document.createElement('div');d.className='msg '+who;d.innerHTML=html;c.appendChild(d);c.scrollTop=99999;return d}
 function speak(t){try{if(!VOICE)return;var s=window.speechSynthesis;if(!s)return;s.cancel();var u=new SpeechSynthesisUtterance(t.replace(/<[^>]+>/g,'').slice(0,300));u.lang='es-ES';u.rate=1;s.speak(u)}catch(e){}}
 function localAnswer(q){q=q.toLowerCase();for(var i=0;i<FALLBACK.length;i++){if(q.indexOf(FALLBACK[i][0])>=0)return FALLBACK[i][1]}return 'Buena pregunta. De eso hablamos mejor directo: escríbeme por Discord <b>scainetprrmn</b>.'}
-async function askAI(q){var models=MODEL==='auto'?['openai','mistral','claude']:[MODEL,'openai'];var sys=SYS_BASE+(SYS_ROLE[ROLE]||'');for(var i=0;i<models.length;i++){try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://text.pollinations.ai/'+encodeURIComponent(q)+'?model='+models[i]+'&system='+encodeURIComponent(sys),{signal:ctl.signal});clearTimeout(to);if(!r.ok)continue;var t=await r.text();t=t.trim().slice(0,900);if(t)return t}catch(e){}}return null}
+function groqKey(){try{return localStorage.getItem('groq_key')||''}catch(e){return ''}}
+async function askGroq(sys,q){if(!groqKey())return null;try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+groqKey()},signal:ctl.signal,body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:sys},{role:'user',content:q}],temperature:0.7,max_tokens:300})});clearTimeout(to);if(!r.ok)return null;var j=await r.json();var c=j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;var t=(c||'').trim().slice(0,900);return t||null}catch(e){return null}}
+async function askAI(q){var models=MODEL==='auto'?['openai','mistral','claude']:[MODEL,'openai'];var g0=await askGroq(SYS_BASE+(SYS_ROLE[ROLE]||''),q);if(g0)return g0;var sys=SYS_BASE+(SYS_ROLE[ROLE]||'');for(var i=0;i<models.length;i++){try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://text.pollinations.ai/'+encodeURIComponent(q)+'?model='+models[i]+'&system='+encodeURIComponent(sys),{signal:ctl.signal});clearTimeout(to);if(!r.ok)continue;var t=await r.text();t=t.trim().slice(0,900);if(t)return t}catch(e){}}return null}
 function imgURL(p,model){return 'https://image.pollinations.ai/prompt/'+encodeURIComponent(p)+'?width=512&height=512&nologo=true&seed='+Math.floor(Math.random()*999999)+(model?'&model='+model:'')}
 async function wiki(q){try{var r=await fetch('https://es.wikipedia.org/api/rest_v1/page/summary/'+encodeURIComponent(q));if(!r.ok)return null;var j=await r.json();if(!j.extract)return null;return '<b>'+esc(j.title)+'</b><br>'+esc(j.extract.slice(0,400))}catch(e){return null}}
 var IMGSTYLE='Pixel-art Minecraft';
@@ -89,7 +93,7 @@ document.getElementById('qin').addEventListener('keydown',function(e){if(e.key==
 var QUICK=['Precios','Experiencia','Contacto','Aceptas staff?','Qué plugins dominas?'];
 (function(){var q=document.getElementById('quick');QUICK.forEach(function(t){var b=document.createElement('button');b.textContent=t;b.addEventListener('click',function(){document.getElementById('qin').value=t;send()});q.appendChild(b)})})();
 var rl=document.querySelectorAll('#roles button');for(var i=0;i<rl.length;i++)(function(el){el.addEventListener('click',function(){for(var k=0;k<rl.length;k++)rl[k].classList.remove('on');el.classList.add('on');ROLE=el.getAttribute('data-role')})})(rl[i]);
-document.getElementById('modelSel').addEventListener('change',function(e){MODEL=e.target.value});
+document.getElementById('groqKey').value=groqKey();document.getElementById('groqKey').addEventListener('change',function(e){try{localStorage.setItem('groq_key',e.target.value.trim())}catch(x){}});document.getElementById('modelSel').addEventListener('change',function(e){MODEL=e.target.value});
 document.getElementById('voiceBtn').addEventListener('click',function(){VOICE=!VOICE;this.textContent=VOICE?'🔊 Voz: ON':'🔊 Voz: OFF';if(!VOICE){try{window.speechSynthesis.cancel()}catch(e){}}});
 var micBtn=document.getElementById('bMic');var Rec=window.SpeechRecognition||window.webkitSpeechRecognition;if(!Rec){micBtn.style.display='none'}else{micBtn.addEventListener('click',function(){var r=new Rec();r.lang='es-ES';r.onresult=function(e){document.getElementById('qin').value=e.results[0][0].transcript};try{r.start()}catch(e){}})}
 document.getElementById('bClear').addEventListener('click',function(){document.getElementById('chat').innerHTML='';bubble('ai','Hola, soy <b>scainetAI</b>. Pregúntame lo que quieras sobre scainetprr.')});
