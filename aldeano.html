@@ -111,11 +111,26 @@ cx.globalAlpha=1;requestAnimationFrame(anim);
       <button id="bHrmm">Traducir al aldeano</button>
       <button id="bClear">Limpiar</button>
     </div>
-    <div class="key-input">
-      <label>Key Groq (opcional):</label>
-      <input type="password" id="groqKey" placeholder="gsk_...">
-      <label>Key Gemini (opcional, gratis en aistudio.google.com):</label>
-      <input type="password" id="geminiKey" placeholder="AIza...">
+    <div id="keySetup" style="margin-top:12px;padding:14px;background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.2);border-radius:12px">
+      <p style="font-weight:700;margin-bottom:8px;color:#fff">🔑 Configura tu IA (gratis):</p>
+      <p class="muted" style="margin-bottom:10px">Sin key funciona basico. Con key = IA real:</p>
+      <div style="display:grid;gap:8px">
+        <div>
+          <label style="color:#a78bfa;font-size:12px;font-weight:600">Google Gemini (RECOMENDADO - 15 gratis/min)</label>
+          <div style="display:flex;gap:6px;margin-top:4px">
+            <input type="password" id="geminiKey" placeholder="AIza..." style="flex:1;padding:8px 12px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:13px">
+            <a href="https://aistudio.google.com/apikey" target="_blank" style="padding:8px 12px;background:#5865F2;border-radius:8px;color:#fff;text-decoration:none;font-size:11px;white-space:nowrap">Obtener</a>
+          </div>
+        </div>
+        <div>
+          <label style="color:#34d399;font-size:12px;font-weight:600">Groq (30 gratis/min - mas rapido)</label>
+          <div style="display:flex;gap:6px;margin-top:4px">
+            <input type="password" id="groqKey" placeholder="gsk_..." style="flex:1;padding:8px 12px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:13px">
+            <a href="https://console.groq.com/keys" target="_blank" style="padding:8px 12px;background:#10b981;border-radius:8px;color:#fff;text-decoration:none;font-size:11px;white-space:nowrap">Obtener</a>
+          </div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:8px;font-size:11px">Tus keys se guardan en tu navegador. Nunca se envian a otro lugar.</p>
     </div>
   </div>
   <div class="card glass">
@@ -194,7 +209,12 @@ document.getElementById('groqKey').value=groqKey();
 document.getElementById('groqKey').addEventListener('change',function(e){try{localStorage.setItem('groq_key',e.target.value.trim())}catch(x){}});
 document.getElementById('geminiKey').value=geminiKey();
 document.getElementById('geminiKey').addEventListener('change',function(e){try{localStorage.setItem('gemini_key',e.target.value.trim())}catch(x){}});
-bubble('ai','Hrmm! Bienvenido a mi puesto, forastero. Preguntame lo que sea de Minecraft.');
+var hasKey = !!(groqKey() || geminiKey());
+if (!hasKey) {
+  bubble('ai','Hrmm! Bienvenido, forastero. Para que funcione con IA real, necesitas poner tu <b>key de Google Gemini</b> (gratis). Es rapido: 1) Abre <a href="https://aistudio.google.com/apikey" target="_blank" style="color:#a78bfa">aistudio.google.com/apikey</a>, 2) Click "Create API Key", 3) Copia y pega aqui abajo. Sin key solo funciono con respuestas basicas predefinidas.');
+} else {
+  bubble('ai','Hrmm! Bienvenido de vuelta, forastero. Tengo IA activa. Preguntame lo que sea de Minecraft!');
+}
 </script>
 </body>
 </html>
