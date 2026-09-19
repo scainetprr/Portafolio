@@ -7,11 +7,11 @@
 <title>Aldeano IA · scainetprr</title>
 <link rel="icon" type="image/png" href="Imagenes/favicon.png">
 <style>
-:root{--bg:#060810;--card:rgba(15,20,35,.65);--line:rgba(139,92,246,.18);--red:#e11d2e;--blue:#5865F2;--w:#f0f2ff;--mut:#8b94ad;--grn:#3ddc84;--emr:#10b981;--purple:#8b5cf6}
+:root{--bg:#040610;--card:rgba(15,20,35,.65);--line:rgba(139,92,246,.18);--red:#e11d2e;--blue:#5865F2;--w:#f0f2ff;--mut:#8b94ad;--grn:#3ddc84;--emr:#10b981;--purple:#8b5cf6}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#060810;color:var(--w);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
+body{background:#040610;color:var(--w);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
 .bg-grid{position:fixed;inset:0;z-index:-3;opacity:.06;background-image:linear-gradient(rgba(16,185,129,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,.2) 1px,transparent 1px);background-size:48px 48px}
-.glow{position:fixed;border-radius:50%;filter:blur(120px);z-index:-2;pointer-events:none;opacity:.12}
+.glow{position:fixed;border-radius:50%;filter:blur(120px);z-index:-2;pointer-events:none;opacity:.06}
 .glow.g1{width:400px;height:400px;top:-140px;right:-8%;background:#10b981;animation:drift 12s ease-in-out infinite alternate}
 .glow.g2{width:350px;height:350px;bottom:-140px;left:-8%;background:#5865F2;animation:drift 15s ease-in-out infinite alternate-reverse}
 @keyframes drift{to{transform:translate(-50px,40px) scale(1.1)}}
@@ -95,9 +95,9 @@ cx.globalAlpha=1;requestAnimationFrame(anim);
 <main>
   <div class="hero-t">
     <span class="face">🧑‍🌾</span>
-    <p class="eyebrow">ASISTENTE MINECRAFT</p>
-    <h1>Boboldo &middot; IA de Minecraft</h1>
-    <p class="lead">Preguntame lo que sea de Minecraft: tradeos, encantamientos, granjas, bosses y mas.</p>
+    <p class="eyebrow">ASISTENTE IA</p>
+    <h1>Boboldo &middot; Asistente IA</h1>
+    <p class="lead">Preguntame lo que quieras: ciencia, tecnologia, historia, programacion, videojuegos, cualquier cosa.</p>
   </div>
   <div class="card glass">
     <div class="chat-box" id="chat"></div>
@@ -133,7 +133,7 @@ cx.globalAlpha=1;requestAnimationFrame(anim);
 </main>
 <footer>scainetprr &middot; Boboldo IA</footer>
 <script>
-var AI_SYS='Eres Boboldo, un aldeano granjero de Minecraft con 20 anios de oficio. Eres un EXPERTO ENCICLOPEDICO en todo Minecraft Java 1.20+: tradeos y profesiones, encantamientos, granjas (hierro, oro, enderman, trigo), pociones, Nether, End, bosses (Ender Dragon, Wither, Warden), redstone basica y supervivencia. Respondes en espanol, maximo 70 palabras, con datos concretos (precios en esmeraldas, niveles, pasos). Tono bonachon y aldeano: alguna vez sueltas un "hrmm". Si preguntan algo ajeno a Minecraft, redirige con humor a tu puesto.';
+var AI_SYS='Eres Boboldo, un asistente IA de la web scainetprr.github.io. Respondes CUALQUIER pregunta sobre CUALQUIER tema: ciencia, tecnologia, historia, matematicas, programacion, videojuegos, cultura general, consejos, etc. Respondes en espanol, claro y conciso. Si no sabes algo, di honestamente que no lo sabes. Tono amigable y natural.';
 var FALLBACK=[
 ['mending','Mending lo vende el librero: sube un aldeano con atril, revisa su primera oferta y si no es Mending rompe el atril y repite. Hrmm.'],
 ['esmeralda','Para esmeraldas: granjero (trigo/papa), flechero (palos) o librero (papel). El flechero con palos es lo mas facil.'],
@@ -190,7 +190,7 @@ document.getElementById('bClear').addEventListener('click',function(){document.g
 
 
 // Keys are hardcoded
-bubble('ai','Hrmm! Bienvenido, forastero. Preguntame lo que sea de Minecraft: tradeos, encantamientos, granjas, mobs, bosses, comandos, mods, redstone, biomas, recetas. Tengo IA activa!');
+bubble('ai','Hola! Soy Boboldo, tu asistente IA. Preguntame lo que quieras: ciencia, tecnologia, historia, programacion, videojuegos, cualquier cosa. Tengo IA activa!');
 </script>
 </body>
 </html>
