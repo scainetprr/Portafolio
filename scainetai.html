@@ -7,7 +7,7 @@
 <title>scainetAI · scainetprr</title>
 <link rel="icon" type="image/png" href="Imagenes/favicon.png">
 <style>
-:root{--bg:#060810;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad}
+:root{--bg:#040610;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:radial-gradient(800px 380px at 50% 0%,#e11d2e20,transparent 60%),var(--bg);color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6}
 .wrap{max-width:700px;margin:auto;background:rgba(15,20,35,.55);border-radius:15px;border:1px solid rgba(255,255,255,.08);padding:22px;margin-bottom:18px}
@@ -65,8 +65,8 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
 <footer>scainetprr · scainetAI</footer>
 </div>
 <script>
-var SYS_BASE='Actúas como scainetprr (Dylan David Gomez, 19 años, Medellín Colombia): staff y configurador de servidores Minecraft con 9 años creando y 5 como staff. Jr-Admin en Skylith Network (SkyBlock, SKYLITH.LIVE) y configurador/dev en BlizardMC (FullPvP). Precios: Survival Custom $14.99, OP $22.50, Networks $20, modalidad extra $10, código 50COL, diagnóstico gratis 30 min. Contacto: Discord scainetprrmn, email scainetprrmn@gmail.com. Dominas LuckPerms, Essentials, CoreProtect, Vulcan, MythicMobs, TAB y bots NodeJS (HyperHard Bot, Hydra Bot, 90+ comandos). Respondes en primera persona, español conciso (máximo 70 palabras).';
-var SYS_ROLE={asistente:'',staff:' Enfócate en moderación, sanciones con criterio y protocolo: evidencia siempre, SS con testigos, cero corrupción.',dev:' Enfócate en lo técnico: plugins, permisos, TPS, Geyser, backups y optimización.'};
+var SYS_BASE='Eres scainetAI, un asistente IA de la web scainetprr.github.io. Respondes CUALQUIER pregunta sobre CUALQUIER tema: ciencia, tecnologia, historia, matematicas, programacion, videojuegos, cultura general, consejos, etc. Respondes en espanol, claro y conciso. Si no sabes algo, di honestamente que no lo sabes. Tono amigable y natural. Puedes generar imagenes con /img y buscar en Wikipedia con /wiki.';
+var SYS_ROLE={asistente:'',staff:'',dev:''};
 var ROLE='asistente',MODEL='auto',VOICE=false;
 var FALLBACK=[['precio','Configuro desde $14.99 (Custom) y $22.50 (OP). Networks desde $20. Diagnóstico GRATIS 30 min y código 50COL. ¿Hablamos por Discord?'],['experiencia','9 años creando y 5 como staff: HyperHard (founder), Orecraft (helper), Hydra (founder), BlizardMC (dev) y Skylith (Jr-Admin).'],['contacto','Discord scainetprrmn o scainetprrmn@gmail.com. Respondo en menos de 24h.'],['hola','¡Hola! Soy scainetAI. Pregúntame por precios, experiencia, contacto o plugins.']];
 function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML}
@@ -77,7 +77,7 @@ function groqKey(){return atob(['Z3NrX3N6','bDlGdEVa','dmx6N1ZE','N1ZDbHB1','V0d
 function geminiKey(){return atob(['QVEuQWI4','Uk42TDdC','TUlsNEhD','N0daRVBf','ei1taTZv','Ty1tQ0U4','UlRuZk5I','eld6NVdN','R2N4blE='].join(''))}
 async function askGroq(sys,q){if(!groqKey())return null;try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+groqKey()},signal:ctl.signal,body:JSON.stringify({model:'qwen/qwen3.8-27b',messages:[{role:'system',content:sys},{role:'user',content:q}],temperature:0.7,max_tokens:300})});clearTimeout(to);if(!r.ok)return null;var j=await r.json();var c=j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;var t=(c||'').trim().slice(0,900);return t||null}catch(e){return null}}
 async function askGemini(sys,q){var K=geminiKey();if(!K)return null;try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key='+K,{method:'POST',headers:{'Content-Type':'application/json'},signal:ctl.signal,body:JSON.stringify({contents:[{parts:[{text:sys+'\n\nUsuario: '+q}]}],generationConfig:{temperature:0.7,maxOutputTokens:350}})});clearTimeout(to);if(!r.ok)return null;var j=await r.json();var t=j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts&&j.candidates[0].content.parts[0]&&j.candidates[0].content.parts[0].text;var s=(t||'').trim().slice(0,900);return s||null}catch(e){return null}}
-async function askAI(q){var models=MODEL==='auto'?['openai','mistral','claude']:[MODEL,'openai'];var g0=await askGroq(SYS_BASE+(SYS_ROLE[ROLE]||''),q);if(g0)return g0;var g1=await askGemini(SYS_BASE+(SYS_ROLE[ROLE]||''),q);if(g1)return g1;if(g0)return g0;var sys=SYS_BASE+(SYS_ROLE[ROLE]||'');for(var i=0;i<models.length;i++){try{var ctl=new AbortController();var to=setTimeout(function(){ctl.abort()},25000);var r=await fetch('https://text.pollinations.ai/'+encodeURIComponent(q)+'?model='+models[i]+'&system='+encodeURIComponent(sys),{signal:ctl.signal});clearTimeout(to);if(!r.ok)continue;var t=await r.text();t=t.trim().slice(0,900);if(t)return t}catch(e){}}return null}
+var SYS_ROLE={asistente:'',staff:'',dev:''};
 async function imgGen(p){
 var prompt='Minecraft pixel art style, '+p+', blocky 3d render, game art, detailed texture, professional digital illustration, 4k resolution, sharp edges, vibrant minecraft colors, square pixels, voxel art';
 try{
@@ -108,9 +108,9 @@ var rl=document.querySelectorAll('#roles button');for(var i=0;i<rl.length;i++)(f
 document.getElementById('modelSel').addEventListener('change',function(e){MODEL=e.target.value});
 document.getElementById('voiceBtn').addEventListener('click',function(){VOICE=!VOICE;this.textContent=VOICE?'🔊 Voz: ON':'🔊 Voz: OFF';if(!VOICE){try{window.speechSynthesis.cancel()}catch(e){}}});
 var micBtn=document.getElementById('bMic');var Rec=window.SpeechRecognition||window.webkitSpeechRecognition;if(!Rec){micBtn.style.display='none'}else{micBtn.addEventListener('click',function(){var r=new Rec();r.lang='es-ES';r.onresult=function(e){document.getElementById('qin').value=e.results[0][0].transcript};try{r.start()}catch(e){}})}
-document.getElementById('bClear').addEventListener('click',function(){document.getElementById('chat').innerHTML='';bubble('ai','Hola, soy <b>scainetAI</b>. Pregúntame lo que quieras sobre scainetprr.')});
+document.getElementById('bClear').addEventListener('click',function(){document.getElementById('chat').innerHTML='';bubble('ai','Hola! Soy scainetAI, tu asistente IA. Preguntame lo que quieras. Usa /img para imagenes y /wiki para Wikipedia.');});
 document.getElementById('bExport').addEventListener('click',function(){var t=document.getElementById('chat').innerText;var b=new Blob([t],{type:'text/plain'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='scainetai-chat.txt';a.click()});
-bubble('ai','Hola, soy <b>scainetAI</b>. Pregunta sin pena: usa <b>/img</b> para imágenes y <b>/wiki</b> para Wikipedia.');
+bubble('ai','Hola! Soy scainetAI, tu asistente IA. Preguntame lo que quieras. Usa /img para imagenes y /wiki para Wikipedia.');
 </script>
 </body>
 </html>
