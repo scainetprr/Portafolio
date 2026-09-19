@@ -138,6 +138,8 @@ footer{padding:34px 0;color:var(--mut);font-size:13px;text-align:center;border-t
 @keyframes float{50%{transform:translateY(-10px)}}
 .rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
 .rv.vis{opacity:1;transform:none}
+/* fix: el reveal (.rv.vis) mataba el hover lift — esta regla lo restaura arriba y abajo */
+.card.rv.vis:hover,.statBig.rv.vis:hover,.vcard.rv.vis:hover,.exp.rv.vis:hover,.proj.rv.vis:hover,.about.rv.vis:hover{transform:translateY(-8px) scale(1.03);border-color:var(--red);box-shadow:0 14px 44px #e11d2e66,0 0 0 1px #e11d2e44}
 .btn.p{animation:glow 2.6s ease-in-out infinite}
 /* scroll to active nav */
 nav a.nl.act{color:#fff;border-bottom:2px solid var(--red)}
