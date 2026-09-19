@@ -7,15 +7,15 @@
 <title>Guía de Encantamientos · scainetprr</title>
 <link rel="icon" type="image/png" href="Imagenes/favicon.png">
 <style>
-:root{--bg:#060810;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--gld:#f5a623}
+:root{--bg:#040610;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--gld:#f5a623}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#060810;color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6;overflow-x:hidden}
+body{background:#040610;color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6;overflow-x:hidden}
 .wrap{max-width:860px;margin:auto;position:relative;z-index:1}
 a{color:var(--blue)}
 .back{font-size:14px}
 h1{font-size:32px;margin:12px 0 4px}
 .sub{color:var(--mut);font-size:14px;margin-bottom:20px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px;transition:transform .3s,box-shadow .3s,border-color .3s}
+.card{background:rgba(15,20,35,.65);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.07);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.4);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:14px;transition:transform .3s,box-shadow .3s,border-color .3s}
 .card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}
 input[type=text]{width:100%;padding:13px 18px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:12px;color:#fff;font-size:16px;outline:none;margin-bottom:12px}
 .tags{margin-bottom:14px}
@@ -40,9 +40,16 @@ h1{background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-backgro
 .o2{width:420px;height:420px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 15s ease-in-out infinite alternate-reverse}
 @keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}
 @media(max-width:700px){.wrap{padding:0 12px}table{font-size:12px}td,th{padding:6px 4px}}
-</style>
+.bg-grid{position:fixed;inset:0;z-index:-3;opacity:.05;background-image:linear-gradient(rgba(139,92,246,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.15) 1px,transparent 1px);background-size:48px 48px}
+.glow{position:fixed;border-radius:50%;filter:blur(120px);z-index:-2;pointer-events:none;opacity:.06}
+.glow.g1{width:400px;height:400px;top:-140px;right:-8%;background:#e11d2e;animation:drift 12s ease-in-out infinite alternate}
+.glow.g2{width:350px;height:350px;bottom:-140px;left:-8%;background:#5865F2;animation:drift 15s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(-50px,40px) scale(1.1)}}</style>
 </head>
 <body>
+<div class="bg-grid"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
 <canvas id="stars"></canvas>
 <div class="orb o1"></div>
 <div class="orb o2"></div>
