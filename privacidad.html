@@ -8,7 +8,7 @@
 <title>Política de Privacidad · Hydra Bot</title>
 <link rel="icon" type="image/png" href="Imagenes/favicon.png">
 <style>
-:root{--bg:#040610;--card:rgba(15,20,35,.65);--line:rgba(139,92,246,.18);--red:#e11d2e;--blue:#5865F2;--w:#f0f2ff;--mut:#8b94ad;--purple:#8b5cf6}
+:root{--bg:#040610;--card:rgba(15,20,35,.65);--line:rgba(139,92,246,.18);--red:#e11d2e;--blue:#5865F2;--w:#f0f2ff;--mut:#8b94ad;--purple:#8b5cf6;--grn:#3ddc84}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#040610;color:var(--w);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.7;overflow-x:hidden}
 .bg-grid{position:fixed;inset:0;z-index:-3;opacity:.05;background-image:linear-gradient(rgba(139,92,246,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.15) 1px,transparent 1px);background-size:48px 48px}
@@ -26,13 +26,17 @@ main{max-width:780px;margin:auto;padding:24px}
 .lead{color:var(--mut);font-size:14px}
 .glass{background:var(--card);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.07);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.4)}
 .card{padding:26px;margin-bottom:16px}
-h2{font-size:18px;margin:20px 0 8px;color:#fff}
+h2{font-size:18px;margin:22px 0 8px;color:#fff}
 h2:first-child{margin-top:0}
 p,li{font-size:14.5px;color:#c9d1e6}
-ul{padding-left:20px;margin:8px 0}
+ul,ol{padding-left:20px;margin:8px 0}
 li{margin:5px 0}
 a{color:#a78bfa}
 .updated{display:inline-block;font-size:12px;color:var(--mut);border:1px solid var(--line);border-radius:99px;padding:5px 14px;margin-top:10px}
+.summary{border-left:3px solid var(--grn);background:rgba(61,220,132,.06);border-radius:0 10px 10px 0;padding:14px 16px;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0}
+th{color:var(--mut);font-size:11px;text-align:left;padding:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+td{padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.05);color:#c9d1e6;vertical-align:top}
 footer{text-align:center;padding:30px 20px;color:var(--mut);font-size:12px;border-top:1px solid rgba(255,255,255,.06);margin-top:30px}
 @media(max-width:600px){main{padding:16px 12px}.card{padding:20px}}
 </style>
@@ -53,28 +57,58 @@ footer{text-align:center;padding:30px 20px;color:var(--mut);font-size:12px;borde
 <span class="updated">Última actualización: 23 de septiembre de 2026</span>
 </div>
 <div class="card glass">
-<h2>1. Datos que recogemos</h2>
-<ul>
-<li>Identificadores de Discord: ID de usuario, de servidor y de canal, necesarios para ejecutar comandos.</li>
-<li>Contenido de los comandos usados con el bot y su configuración por servidor (prefijos, roles, canales).</li>
-<li>Registros de moderación: sanciones aplicadas, motivos y responsables, para auditoría del servidor.</li>
-</ul>
+<div class="summary">
+<p><b>Resumen en lenguaje sencillo:</b> Hydra solo guarda lo necesario para funcionar (quién usó qué comando, sanciones, configuración de tu servidor). No lee tus mensajes privados, no vende tus datos y puedes pedir que los borremos cuando quieras escribiendo a Discord <b>scainetprrmn</b> o a <b>scainetprrmn@gmail.com</b>.</p>
+</div>
+<h2>1. Qué datos guarda cada función</h2>
+<table>
+<thead><tr><th>Función</th><th>Datos guardados</th></tr></thead>
+<tbody>
+<tr><td><b>Moderación</b></td><td>ID del sancionado, motivo, moderador responsable, fecha y tipo de sanción.</td></tr>
+<tr><td><b>Tickets</b></td><td>Transcripción del ticket (mensajes del canal del ticket), participantes y fecha de cierre.</td></tr>
+<tr><td><b>Sugerencias</b></td><td>Autor, texto de la sugerencia y votos recibidos.</td></tr>
+<tr><td><b>Encuestas</b></td><td>Pregunta, opciones y votos anónimos agregados.</td></tr>
+<tr><td><b>Confesiones</b></td><td>Solo el texto publicado. La identidad del autor se protege y no se muestra públicamente; solo se conserva de forma privada para casos de abuso grave.</td></tr>
+<tr><td><b>Invitaciones</b></td><td>Quién invitó a quién y contadores por usuario, para recompensas del servidor.</td></tr>
+<tr><td><b>Niveles y estadísticas</b></td><td>XP, nivel y actividad agregada por usuario dentro del servidor.</td></tr>
+<tr><td><b>Configuración del servidor</b></td><td>Prefijos, roles, canales y ajustes elegidos por los administradores.</td></tr>
+<tr><td><b>Estado de Spotify</b></td><td>Solo se lee lo que Discord muestra públicamente (canción actual) cuando una función del servidor lo requiere; no se almacena tu historial musical.</td></tr>
+</tbody>
+</table>
 <h2>2. Datos que NO recogemos</h2>
 <ul>
 <li>No leemos mensajes privados (DM) salvo que uses un comando del bot ahí.</li>
-<li>No recogemos contraseñas, tokens ni datos de pago.</li>
+<li>No recogemos contraseñas, tokens, ni datos de pago.</li>
 <li>No vendemos ni cedemos tus datos a terceros con fines publicitarios.</li>
 </ul>
-<h2>3. Finalidad</h2>
-<p>Los datos se usan exclusivamente para que el bot funcione: ejecutar comandos, aplicar moderación y guardar la configuración de cada servidor.</p>
-<h2>4. Conservación y eliminación</h2>
-<p>Los datos se conservan mientras el bot esté en tu servidor. Al expulsar al bot, puedes pedir la eliminación total escribiendo a Discord <b>scainetprrmn</b> o a <b>scainetprrmn@gmail.com</b>.</p>
-<h2>5. Tus derechos</h2>
-<p>Puedes solicitar acceso, corrección o eliminación de tus datos en cualquier momento por los medios de contacto anteriores.</p>
-<h2>6. Menores</h2>
-<p>El bot está sujeto a las reglas de edad de Discord (13 años o la edad mínima de tu país). No está dirigido a menores de esa edad.</p>
-<h2>7. Cambios</h2>
-<p>Esta política puede actualizarse. La versión vigente será siempre la publicada en esta página. Ver también las <a href="terminos.html">Condiciones del Servicio</a>.</p>
+<h2>3. Base jurídica</h2>
+<p>Tratamos tus datos porque <b>aceptas usar el bot</b> (consentimiento) al invitarlo a tu servidor o usar sus comandos, y porque son necesarios para prestar el servicio solicitado (ejecutar comandos, moderar y configurar el servidor). Puedes retirar ese consentimiento expulsando al bot y pidiendo el borrado.</p>
+<h2>4. Dónde se almacenan y por cuánto tiempo</h2>
+<p>Los datos se guardan en la base de datos privada del bot (alojamiento seguro con acceso restringido al desarrollador). Se conservan mientras el bot permanezca en tu servidor, y como máximo <b>90 días</b> después de su expulsión, salvo que pidas el borrado antes o la ley exija otro plazo. Las transcripciones de tickets se guardan hasta que el staff las elimine o se cierre el servidor.</p>
+<h2>5. Derechos ARCO: cómo ejercerlos</h2>
+<p>Tienes derecho a <b>Acceso, Rectificación, Cancelación y Oposición</b> sobre tus datos. Pasos concretos:</p>
+<ol>
+<li>Escríbenos a Discord <b>scainetprrmn</b> o a <b>scainetprrmn@gmail.com</b> indicando tu nombre de usuario y el servidor.</li>
+<li>Di qué quieres: ver tus datos, corregirlos, borrarlos u oponerte a su uso.</li>
+<li>Respondemos en un máximo de <b>15 días</b> y aplicamos tu solicitud salvo obligación legal en contra.</li>
+</ol>
+<h2>6. Seguridad aplicada</h2>
+<ul>
+<li>Acceso a la base de datos restringido solo al desarrollador.</li>
+<li>Conexiones cifradas (HTTPS) entre Discord, el bot y el almacenamiento.</li>
+<li>El token del bot nunca se publica ni se comparte.</li>
+<li>Copias de seguridad periódicas para evitar pérdidas accidentales.</li>
+</ul>
+<h2>7. Menores</h2>
+<p>El bot sigue las reglas de edad de Discord (13 años o la edad mínima de tu país). No está dirigido a menores de esa edad.</p>
+<h2>8. Cambios e historial de versiones</h2>
+<ul>
+<li><b>v1.1 — 23 de septiembre de 2026:</b> ampliación completa (detalle por función, base jurídica, ARCO, seguridad e historial).</li>
+<li><b>v1.0 — 23 de septiembre de 2026:</b> versión inicial.</li>
+</ul>
+<p>La versión vigente será siempre la publicada en esta página. Ver también las <a href="terminos.html">Condiciones del Servicio</a>.</p>
+<h2>9. Contacto</h2>
+<p>Discord: <b>scainetprrmn</b> · Correo: <b>scainetprrmn@gmail.com</b></p>
 </div>
 </main>
 <footer>scainetprr · Hydra Bot · <a href="terminos.html">Condiciones del Servicio</a></footer>
