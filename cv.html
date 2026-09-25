@@ -1,17 +1,126 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>CV — Dylan David Gomez (scainetprr)</title>
-<style>body{font-family:Segoe UI,Arial;max-width:800px;margin:30px auto;padding:0 20px;color:#111}h1{margin:0}h2{border-bottom:2px solid #e11d2e;margin-top:22px}@media print{.noprint{display:none}}</style></head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>CV — Dylan David Gomez (scainetprr)</title>
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#040610;--card:rgba(15,20,35,.65);--line:rgba(139,92,246,.18);--red:#e11d2e;--w:#f0f2ff;--mut:#8b94ad;--grn:#3ddc84;--purple:#8b5cf6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#040610;color:var(--w);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.65;overflow-x:hidden}
+.bg-grid{position:fixed;inset:0;z-index:-3;opacity:.05;background-image:linear-gradient(rgba(139,92,246,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.15) 1px,transparent 1px);background-size:48px 48px}
+.glow{position:fixed;border-radius:50%;filter:blur(120px);z-index:-2;pointer-events:none;opacity:.08}
+.glow.g1{width:400px;height:400px;top:-140px;right:-8%;background:#e11d2e;animation:drift 12s ease-in-out infinite alternate}
+.glow.g2{width:350px;height:350px;bottom:-140px;left:-8%;background:#5865F2;animation:drift 15s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(-50px,40px) scale(1.1)}}
+header{max-width:820px;margin:auto;padding:22px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;background:rgba(4,6,16,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+.back{color:var(--purple);text-decoration:none;font-size:13px;border:1px solid var(--line);padding:8px 14px;border-radius:8px}
+.pbtn{margin-left:auto;background:var(--red);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-weight:700;font-size:13px;cursor:pointer}
+main{max-width:820px;margin:auto;padding:24px}
+.hero{background:linear-gradient(135deg,rgba(225,29,46,.14),rgba(88,101,242,.12)),var(--card);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:32px 28px;margin-bottom:16px;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.hero h1{font-size:clamp(26px,4vw,38px);background:linear-gradient(90deg,#fff 30%,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .role{color:#c9d1e6;font-size:15px;margin-top:6px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pill{font-size:12px;font-weight:700;border:1px solid var(--line);border-radius:99px;padding:5px 14px;color:#dfe4f5;background:rgba(255,255,255,.03)}
+.pill.hot{border-color:var(--red);color:#ffb3bb;background:rgba(225,29,46,.1)}
+.glass{background:var(--card);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.07);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.card{padding:24px 26px;margin-bottom:16px}
+.card h2{font-size:17px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card h2::before{content:"";width:4px;height:18px;border-radius:2px;background:linear-gradient(180deg,var(--red),var(--purple))}
+p,li{font-size:14px;color:#c9d1e6}
+ul{padding-left:20px}li{margin:7px 0}
+li b,li strong{color:#fff}
+.job{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.tag{font-size:11px;font-weight:700;color:var(--grn);border:1px solid rgba(61,220,132,.35);background:rgba(61,220,132,.08);border-radius:99px;padding:2px 10px;white-space:nowrap}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.price{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);padding:9px 0;font-size:14px}
+.price b{color:var(--grn)}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:14px}
+.contact div{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 14px;font-size:13px}
+.contact small{display:block;color:var(--mut);font-size:11px}
+footer{text-align:center;padding:26px;color:var(--mut);font-size:12px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}main{padding:16px 12px}.hero{padding:24px 20px}}
+@media print{
+.bg-grid,.glow,header,.noprint,footer{display:none!important}
+body{background:#fff;color:#111}
+.hero,.glass,.card{background:none;border:none;box-shadow:none;backdrop-filter:none;padding:0;margin-bottom:14px}
+.hero h1{color:#111;-webkit-text-fill-color:#111;background:none}
+.hero .role,.card p,.card li{color:#222}
+.pill{border:1px solid #999;color:#111;background:none}
+.tag{border:1px solid #111;color:#111;background:none}
+.contact div{border:1px solid #ccc;background:none}
+.card h2{color:#111}
+a{color:#111;text-decoration:none}
+main{max-width:100%;padding:0}
+}
+</style>
+</head>
 <body>
-<p class="noprint"><a href="index.html">← Volver</a> <button onclick="window.print()">Imprimir / Guardar PDF</button></p>
+<div class="bg-grid"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+<header class="noprint">
+<a class="back" href="index.html">← Portafolio</a>
+<button class="pbtn" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+</header>
+<main>
+<div class="hero">
 <h1>Dylan David Gomez — scainetprr</h1>
-<p>Staff & Configurador Minecraft · Medellín, Colombia GMT-5 · 19 años<br>Discord: scainetprrmn (1307246359895740448) · Email: scainetprrmn@gmail.com · X: @scainetprrMN</p>
-<p><b>Perfil:</b> 9 años creando servidores, 5 años como staff. Survival OP/Custom. Admin Skylith, Dev BlizardMC, Founder HyperHard + Hydra Studio.</p>
+<p class="role">Staff &amp; Configurador Minecraft · Medellín, Colombia GMT-5 · 19 años</p>
+<div class="pills">
+<span class="pill hot">Admin · Skylith Network</span>
+<span class="pill">Dev · BlizardMC</span>
+<span class="pill">Founder · HyperHard</span>
+<span class="pill">Founder · Hydra Studio</span>
+</div>
+<div class="contact">
+<div><small>Discord</small><b>scainetprrmn</b> · 1307246359895740448</div>
+<div><small>Email</small><b>scainetprrmn@gmail.com</b></div>
+<div><small>X</small><b>@scainetprrMN</b></div>
+</div>
+</div>
+<div class="card glass">
+<h2>Perfil</h2>
+<p>9 años creando servidores, 5 años como staff. Survival OP/Custom. Admin en Skylith, Dev en BlizardMC, Founder de HyperHard + Hydra Studio. Especialista en LuckPerms, moderación con criterio y configuración completa de modalidades.</p>
+</div>
+<div class="card glass">
 <h2>Experiencia</h2>
-<ul><li><b>HyperHard Network — Founder (2022-2026):</b> FullPvP, Survival OP, OneBlock OP, Bedwars. Config, builds, staff.</li>
-<li><b>Hydra Studio — Founder (2025-2026):</b> Eventos Minecraft + bot NodeJS 90+ comandos.</li>
-<li><b>Orecraft — Helper (2023-2024):</b> Survival Custom, tickets. Ref maicolfrantech.</li>
-<li><b>BlizardMC — Config/Dev (2026):</b> FullPvP, fix bugs y optimización. Ref franrol15.</li>
-<li><b>Skylith — Admin (2026-actual):</b> OneBlock, inducción staff, tickets, sanciones. Ref L3xz.</li></ul>
-<h2>Skills</h2><p>LuckPerms, Essentials, CoreProtect, Vulcan, MythicMobs, Tebex, Geyser, BattlePass, proxies, Discord + bots NodeJS, Filmora, Mineanimator.</p>
-<h2>Logros</h2><p>3k-7k tickets/reportes, 3 eventos, inducción a nuevos staff.</p>
-<h2>Disponibilidad</h2><p>Lun-Dom 1-2h AM + 2-3h PM/Noche COL. Micro: sí. ES (EN básico). Dev único: pago a convenir.</p>
-</body></html>
+<ul>
+<li><div class="job"><b>HyperHard Network — Founder (2022-2026)</b><span class="tag">FullPvP · OP</span></div>FullPvP, Survival OP, OneBlock OP, Bedwars. Config, builds y staff.</li>
+<li><div class="job"><b>Hydra Studio — Founder (2025-2026)</b><span class="tag">Eventos + Bot</span></div>Eventos Minecraft + bot NodeJS de 90+ comandos.</li>
+<li><div class="job"><b>Orecraft — Helper (2023-2024)</b><span class="tag">Survival Custom</span></div>Tickets y soporte. Ref: maicolfrantech.</li>
+<li><div class="job"><b>BlizardMC — Config/Dev (2026)</b><span class="tag">FullPvP</span></div>Fix de bugs y optimización. Ref: franrol15.</li>
+<li><div class="job"><b>Skylith — Admin (2026-actual)</b><span class="tag">SkyBlock</span></div>OneBlock, inducción de staff, tickets y sanciones. Ref: L3xz.</li>
+</ul>
+</div>
+<div class="grid2">
+<div class="card glass">
+<h2>Skills</h2>
+<div class="pills">
+<span class="pill">LuckPerms</span><span class="pill">Essentials</span><span class="pill">CoreProtect</span><span class="pill">Vulcan</span><span class="pill">MythicMobs</span><span class="pill">Tebex</span><span class="pill">Geyser</span><span class="pill">BattlePass</span><span class="pill">Proxies</span><span class="pill">Bots NodeJS</span><span class="pill">Filmora</span><span class="pill">Mineanimator</span>
+</div>
+</div>
+<div class="card glass">
+<h2>Logros</h2>
+<ul>
+<li><b>3k-7k</b> tickets y reportes gestionados</li>
+<li><b>3</b> eventos organizados</li>
+<li>Inducción a nuevos staff</li>
+</ul>
+</div>
+</div>
+<div class="card glass">
+<h2>Servicios</h2>
+<div class="price"><span>Una modalidad (la que quieras)</span><b>$20 en adelante</b></div>
+<div class="price"><span>Network completa (Lobby + Proxy + modalidades)</span><b>$30 en adelante</b></div>
+</div>
+<div class="card glass">
+<h2>Disponibilidad</h2>
+<p>Lun-Dom 1-2h AM + 2-3h PM/Noche COL · Micro: sí · ES nativo (EN básico) · Dev único: pago a convenir.</p>
+</div>
+</main>
+<footer class="noprint">scainetprr · CV · <a href="index.html" style="color:#a78bfa">Volver al portafolio</a></footer>
+</body>
+</html>
