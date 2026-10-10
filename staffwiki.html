@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff Wiki · Rangos y funciones · scainetprr</title>
+<meta name="description" content="Qué hace cada rango del staff de Minecraft: función, puede, no puede, herramientas y requisitos de ascenso. Basado en Hypixel y servidores grandes.">
+<link rel="icon" type="image/png" href="Imagenes/favicon.png">
+<style>
+:root{--bg:#040610;--card:#131a30;--line:#26304d;--red:#e11d2e;--blue:#2b7fff;--w:#eef1f8;--mut:#8b94ad;--grn:#3ddc84;--gld:#f5a623;--pur:#a855f7;--tl:#14b8a6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#040610;color:var(--w);font-family:Segoe UI,system-ui,Arial,sans-serif;padding:26px 18px;line-height:1.6;overflow-x:hidden}
+.wrap{max-width:940px;margin:auto;position:relative;z-index:1}
+a{color:var(--blue)}
+.back{font-size:14px}
+h1{font-size:32px;margin:12px 0 4px;background:linear-gradient(90deg,#ffffff,#ffc9d1 70%,#e11d2e);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px #e11d2e55)}
+.sub{color:var(--mut);font-size:14px;margin-bottom:18px}
+input[type=text]{width:100%;padding:13px 18px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);border-radius:12px;color:#fff;font-size:16px;outline:none;margin-bottom:12px}
+input[type=text]:focus{border-color:var(--red);box-shadow:0 0 0 3px #e11d2e33}
+.tags{margin-bottom:16px}
+.tags button{background:#161d33;color:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 16px;margin:4px;cursor:pointer;font-size:13px;transition:all .2s}
+.tags button:hover{border-color:var(--red)}
+.tags button.on{background:var(--red);border-color:var(--red)}
+.ladder{background:rgba(15,20,35,.65);backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px;font-size:13px}
+.ladder b{color:#fff}
+.ladder .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.ladder .step{padding:5px 11px;border-radius:99px;border:1px solid var(--line);background:#0e1426;font-size:12px;white-space:nowrap}
+.ladder .ar{color:var(--mut);font-size:12px}
+.ladder .side{margin-top:10px;color:var(--mut);font-size:12px}
+.ladder .side .step{opacity:.9}
+.rcard{background:rgba(15,20,35,.65);backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:14px;transition:transform .3s,box-shadow .3s,border-color .3s}
+.rcard:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 30px #e11d2e33}
+.rhead{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.ric{font-size:38px;filter:drop-shadow(0 0 14px rgba(47,126,255,.5));animation:tfloat 3.6s ease-in-out infinite}
+@keyframes tfloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-8px) rotate(4deg)}}
+.rhead h3{font-size:19px;line-height:1.25}
+.chip{display:inline-block;font-size:10px;letter-spacing:1px;padding:3px 9px;border-radius:99px;border:1px solid currentColor;vertical-align:middle;margin-left:8px;font-weight:700}
+.lvl{margin-left:auto;font-size:11px;color:var(--mut);border:1px dashed var(--line);border-radius:8px;padding:4px 9px;white-space:nowrap}
+.alias{font-size:12px;color:var(--mut)}
+.func{font-size:14px;color:#c0c8dc;margin:6px 0 12px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box{border-radius:10px;padding:12px 14px;font-size:13px;border:1px solid}
+.box.ok{background:rgba(61,220,132,.06);border-color:rgba(61,220,132,.3)}
+.box.no{background:rgba(255,107,122,.06);border-color:rgba(255,107,122,.3)}
+.box b{display:block;font-size:12px;letter-spacing:1px;margin-bottom:6px}
+.box.ok b{color:var(--grn)}
+.box.no b{color:#ff6b7a}
+.box ul{list-style:none}
+.box li{padding:3px 0 3px 20px;position:relative;color:#c0c8dc}
+.box li::before{position:absolute;left:0;top:3px}
+.box.ok li::before{content:"✓";color:var(--grn);font-weight:700}
+.box.no li::before{content:"✗";color:#ff6b7a;font-weight:700}
+.tools{margin-top:11px;font-size:13px;color:var(--mut)}
+.tools b{color:#fff}
+.tools code{display:inline-block;background:#0a0e1c;border:1px solid var(--line);border-radius:6px;padding:2px 8px;margin:3px 4px 0 0;font-size:12px;color:#9fd0ff}
+.up{margin-top:10px;font-size:13px;background:#0a0e1c;border:1px solid var(--line);border-left:3px solid var(--gld);border-radius:8px;padding:9px 12px;color:#c0c8dc}
+.up b{color:var(--gld)}
+.src{font-size:12px;color:var(--mut);text-align:center;margin-top:18px}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:24px}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:0;opacity:.2;pointer-events:none}
+.o1{width:480px;height:480px;background:#e11d2e;top:-160px;right:-120px;animation:drift 12s ease-in-out infinite alternate}
+.o2{width:420px;height:420px;background:#2b7fff;bottom:-160px;left:-120px;animation:drift 15s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(-70px,60px) scale(1.15)}}
+.bg-grid{position:fixed;inset:0;z-index:-3;opacity:.05;background-image:linear-gradient(rgba(139,92,246,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.15) 1px,transparent 1px);background-size:48px 48px}
+.glow{position:fixed;border-radius:50%;filter:blur(120px);z-index:-2;pointer-events:none;opacity:.06}
+.glow.g1{width:400px;height:400px;top:-140px;right:-8%;background:#e11d2e;animation:drift 12s ease-in-out infinite alternate}
+.glow.g2{width:350px;height:350px;bottom:-140px;left:-8%;background:#5865F2;animation:drift 15s ease-in-out infinite alternate-reverse}
+@media(max-width:700px){.duo{grid-template-columns:1fr}.lvl{display:none}.rhead h3{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+<canvas id="stars"></canvas>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<script>
+(function(){
+var cv=document.getElementById('stars');
+if(!cv)return;
+var cx=cv.getContext('2d'),P=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}
+rs();
+addEventListener('resize',rs);
+for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,s:Math.random()*.55+.18,c:['#ffffff','#e11d2e','#2b7fff'][i%3]});
+(function anim(){
+cx.clearRect(0,0,cv.width,cv.height);
+for(var k=0;k<P.length;k++){
+var p=P[k];
+p.y-=p.s;
+if(p.y<0){p.y=cv.height;p.x=Math.random()*cv.width}
+cx.globalAlpha=.65;
+cx.fillStyle=p.c;
+cx.beginPath();
+cx.arc(p.x,p.y,p.r,0,7);
+cx.fill();
+}
+cx.globalAlpha=1;
+requestAnimationFrame(anim);
+})();
+})();
+</script>
+<div class="wrap">
+<a class="back" href="index.html">&larr; Volver al portafolio</a>
+<h1>Staff Wiki</h1>
+<p class="sub">Qué hace cada rango del staff: función, permisos, límites y ascenso. Basado en Hypixel, Lunaris, SuperCraft, CiudadFutura, Mithrandir y guías de administración de MC.</p>
+<input type="text" id="q" placeholder="Buscar rango o función... (ej: ban, tickets, logs)" oninput="draw()">
+<div class="tags" id="tags"></div>
+<div class="ladder">
+<b>Escala estándar (la usan la mayoría de servidores):</b>
+<div class="row">
+<span class="step" style="border-color:#f5a623;color:#f5a623">Trial / Semi-Mod</span><span class="ar">&rarr;</span>
+<span class="step" style="border-color:#2b7fff;color:#2b7fff">Helper</span><span class="ar">&rarr;</span>
+<span class="step" style="border-color:#3ddc84;color:#3ddc84">Moderador</span><span class="ar">&rarr;</span>
+<span class="step" style="border-color:#a855f7;color:#a855f7">Sr. Moderador</span><span class="ar">&rarr;</span>
+<span class="step" style="border-color:#e11d2e;color:#e11d2e">Administrador</span><span class="ar">&rarr;</span>
+<span class="step" style="border-color:#ff4d6d;color:#ff4d6d">Head Admin</span><span class="ar">&rarr;</span>
+<span class="step" style="border-color:#f5a623;color:#f5a623">Manager</span><span class="ar">&rarr;</span>
+<span class="step" style="border-color:#fff;color:#fff">Owner</span>
+</div>
+<div class="side">Ramas paralelas: <span class="step" style="border-color:#14b8a6;color:#14b8a6">Soporte (Trial &rarr; Support &rarr; Support Manager)</span> <span class="step" style="border-color:#64748b;color:#94a3b8">Developer / SysAdmin</span></div>
+</div>
+<div id="list"></div>
+<p class="src">Fuentes: Hypixel (Helper/Mod/Admin/Owner), Lunaris (Semi-Mod), SuperCraft, CiudadFutura (SuperModerador), Mithrandir (Moderador Decano/Etéreo), Metin2 ES (Trial Support), 40servidoresMC &middot; Oct 2026</p>
+<footer>scainetprr &middot; Staff Wiki</footer>
+</div>
+<script>
+var RANKS=[
+{ico:'🟡',n:'Trial / Semi-Mod',tag:'TMOD',c:'#f5a623',rama:'Moderación',lvl:'Nivel 1 · en pruebas',
+alias:'Trial Mod · Moderador en pruebas · Semi-Mod · Jr-Mod',
+f:'Fase de prueba (1-4 semanas) antes de ser Mod. Tiene funciones de moderación pero con límites claros y supervisión constante: cada sanción fuerte debe pasar por un Mod o Admin.',
+puede:['Advertencias leves (/warn)','Muteos cortos (10-30 min)','Ayudar dudas de jugadores','Reportar casos al Mod con evidencia','Revisar clips y reportes'],
+no:['Banear permanentemente (/ban)','Sancionar sin revisar evidencia','Sancionar a otros staff','Revisar appeals (apelaciones)','Usar comandos destructivos (/sudo, /delete)'],
+h:['/warn','/mute 10m','/co lookup (CoreProtect)','/report'],
+u:'Aplicación abierta + entrevista + revisión de cuenta (SS). Para ascender: 2-4 semanas sin errores y buena evaluación del supervisor.'},
+{ico:'🟦',n:'Helper / Ayudante',tag:'HELPER',c:'#2b7fff',rama:'Moderación',lvl:'Nivel 2',
+alias:'Ayudante · Help · Soporte in-game',
+f:'Primera línea de contacto con la comunidad. Su trabajo es que el jugador resuelva su duda rápido y detectar problemas para escalarlos al Mod. En Hypixel es el puesto de entrada (16 años mínimo).',
+puede:['Resolver dudas de juego y normas','Muteos leves por insultos/spam','Usar staff chat y reportar casos','Guiar a novatos y hacer tutorial','Mensaje directo a cualquier jugador'],
+no:['Banear jugadores','Revisar appeals o reportes complejos','Configurar el servidor','Aplicar sanciones permanentes','Tomar decisiones sobre casos grises'],
+h:['/mute','/msg','/tpa (para ayudar)','/hat (opcional)','Staff chat'],
+u:'Se entra por aplicación (actividad, madurez, conocimiento del servidor). Ascenso a Mod: 2-6 meses + evaluación de comandos, hacks y situaciones.'},
+{ico:'🟢',n:'Moderador',tag:'MOD',c:'#3ddc84',rama:'Moderación',lvl:'Nivel 3',
+alias:'Mod · Moderador · Game Master (GM)',
+f:'Hace cumplir la normativa: sanciona, revisa reportes y apelaciones, patrulla con vanish y caza hackers. Es el rango que más contacto directo con sanciones tiene (Hypixel: el último rango de voluntarios).',
+puede:['/ban, /kick, /mute, /tempban','/vanish para patrullar','/tp a jugadores para investigar','Revisar reportes y appeals','CoreProtect para probar griefs','Castigar hacks (Vulcan/Watchdog)'],
+no:['Instalar o configurar plugins','Crear eventos o cambiar gamemodes','Contratar o despedir staff','Modificar economía masivamente','Cambiar reglas del servidor'],
+h:['/ban','/tempban','/vanish','/co lookup','/seen','Vulcan: /vulcan profile','/report (revisar)'],
+u:'Ascenso desde Helper: tiempo en el cargo + evaluación de conocimientos (comandos, hacks, protocolo) + madurez bajo presión. Algunos servidores votan el ascenso en reunión de staff.'},
+{ico:'🟣',n:'Sr. Moderador / Super Moderador',tag:'SR-MOD',c:'#a855f7',rama:'Moderación',lvl:'Nivel 4',
+alias:'Sr Mod · Super Moderador · Moderador Decano · Head Mod',
+f:'Supervisa a los Moderadores: entrena a los nuevos, resuelve los casos difíciles y da la última palabra antes de escalar a Admin. En servidores grandes suele llevar appeals y control de calidad.',
+puede:['Todo lo del Mod con más antigüedad','Sanciones temporales más largas','Supervisar y entrenar Mods','Resolver casos grises y appeals pendientes','Entrevistar candidatos a staff','Auditar sanciones de otros mods'],
+no:['Contratar o despedir (es de Admin)','Cambiar reglas o eventos','Configurar plugins del servidor','Acceso total a consola'],
+h:['/tempban 30d','Appeals en panel','/vulcan checks','Grabaciones de entrenamiento','Reportes de actividad'],
+u:'Antigüedad + liderazgo demostrado (entrenamientos hechos, casos bien resueltos). Se llega por nominación de Admin o Manager.'},
+{ico:'🔴',n:'Administrador',tag:'ADMIN',c:'#e11d2e',rama:'Administración',lvl:'Nivel 5',
+alias:'Admin · Administrador · Coordinador',
+f:'Gestiona el servidor y la comunidad: configura plugins, organiza eventos, maneja la economía y toma decisiones operativas. En Hypixel los Admins son empleados remunerados; en servidores pequeños es el rango del dueño directo.',
+puede:['Todo lo de Mod + permisos OP','Instalar y configurar plugins','Crear eventos y danos','/gamemode, /give, /tpahere','Gestionar regiones (WorldGuard)','Contratar staff junior','Acceso a logs y bases de datos'],
+no:['Tocar hosting/consola del proveedor','Cambiar dominio o tienda (Owner)','Despedir a Head Admins','Modificar código fuente sin Dev'],
+h:['LuckPerms: /lp','WorldEdit: //wand','WorldGuard: /rg','Vulcan: /vulcan reload','CoreProtect: /co purge','TAB: /tab reload'],
+u:'No se asciende "por tiempo": se nombra por confianza y necesidad. Requiere 6-12 meses de buen historial como Sr Mod + conocimiento técnico.'},
+{ico:'🧧',n:'Head Admin / Sr. Admin',tag:'HEAD-ADMIN',c:'#ff4d6d',rama:'Administración',lvl:'Nivel 6',
+alias:'Head Admin · Sr Admin · Admin Principal · Jefe de Staff',
+f:'Segundo al mando. Define la política de sanciones, supervisa a los Admins y es el responsable del equipo de staff completo. El punto de contacto final para reportes contra staff.',
+puede:['Supervisar y sancionar a Admins','Definir protocolos y políticas','Promover/demitir (dentro del staff)','Acceso completo a logs y appeals','Representar al servidor en Discord/foros','Aprobar cambios grandes'],
+no:['Tocar infraestructura del host','Decisiones financieras finales','Cambiar al dueño o vender el servidor'],
+h:['Paneles de sanciones','Logs administrativos','Herramientas de gestión de staff','/lp editor global'],
+u:'Solo lo nombra el Owner. Requiere años de historial impecable y experiencia previa como Admin.'},
+{ico:'👑',n:'Staff Manager / Community Manager',tag:'MANAGER',c:'#f5a623',rama:'Administración',lvl:'Gestión',
+alias:'Manager · Head of Staff · Community Manager · CM',
+f:'Gestiona personas, no servidores: coordinación de turnos, evaluaciones, applicationes, clima del equipo y relación con la comunidad. En servidores grandes es un puesto separado del Head Admin.',
+puede:['Diseñar procesos de selección','Entrevistar y evaluar staff','Programar rotaciones y turnos','Reportes de actividad y desempeño','Gestionar el Discord/comunidad','Proponer ascensos y dimisiones'],
+no:['Sancionar jugadores por capricho','Tocar configuración del servidor','Decisiones técnicas sin consultar'],
+h:['Plantillas de entrevista','Paneles de actividad','Formularios de aplicación','Sistema de reportes internos'],
+u:'Desde Head Admin con dotes de liderazgo, o reclutado externo. En servidores pequeños Admin y Manager suelen ser la misma persona.'},
+{ico:'🛠️',n:'Developer / SysAdmin',tag:'DEV',c:'#94a3b8',rama:'Técnico',lvl:'Técnico',
+alias:'Dev · Desarrollador · PluginDev · SysAdmin · Programador',
+f:'Se encarga de plugins, código, base de datos, host y rendimiento. Es el único que debe tocar consola del proveedor y archivos del servidor. No modera jugadores: su "sanción" es arreglar el bug.',
+puede:['Consola y archivos del servidor','Instalar y programar plugins','Configurar bases de datos','Optimizar rendimiento (TPS, RAM)','Desplegar actualizaciones','Acceso total técnico'],
+no:['Moderar jugadores (no es su rol)','Sancionar sin pasar por staff','Cambiar reglas de juego sin consultar'],
+h:['/restart','plugins/*.yml','MySQL','Git','Spark profiler','Server.properties'],
+u:'Reclutamiento por demostración de skill (plugins propios, portfolio). No se llega por ascenso de moderación.'},
+{ico:'🎫',n:'Soporte / Support',tag:'SUPPORT',c:'#14b8a6',rama:'Soporte',lvl:'Rama',
+alias:'Support · Soporte · Trial Support · Support Manager',
+f:'Atiende tickets: dudas técnicas, problemas de cuenta, compras y bugs. Primera respuesta formal fuera del chat del juego. Rama con estructura propia: Trial Support &rarr; Support &rarr; Support Manager.',
+puede:['Responder tickets con plantillas','Ayudar con dudas de cuenta y compra','Escalar casos técnicos a Dev/Admin','Cerrar tickets documentados','/nick para pruebas'],
+no:['Banear jugadores (salvo protocolo)','Configurar el servidor','Tomar decisiones de gameplay'],
+h:['Panel de tickets (Discord/Zendesk)','/nick','/whois','Plantillas de respuesta'],
+u:'Se entra como Trial Support desde Helper con buen trato al jugador. Ascenso por volumen de tickets bien resueltos y valoración.'},
+{ico:'⚡',n:'Owner / Fundador',tag:'OWNER',c:'#ffffff',rama:'Administración',lvl:'Nivel final',
+alias:'Dueño · Fundador · Coordinador · Creador · Propietario',
+f:'Máxima autoridad: financias, hosting, dirección del proyecto y últimas decisiones. En redes grandes puede delegar todo salvo lo económico y lo legal. En servidores pequeños suele ser también Dev y Admin.',
+puede:['Absolutamente todo (consola, host, dominio)','Contratar y despedir a Heads','Cambiar la dirección del proyecto','Gestionar tienda y finanzas','Vender o cerrar el servidor'],
+no:['Incumplir la EULA de Mojang y ToS de host','...único límite real'],
+h:['Consola del host','Panel de facturación','DNS / dominio','Repositorio de código'],
+u:'Es el puesto fundador: no se asciende hacia él, se crea el servidor o se le traspasa la propiedad.'}
+];
+var F='all';
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function draw(){
+var q=document.getElementById('q').value.toLowerCase();
+var h='',n=0;
+for(var i=0;i<RANKS.length;i++){
+var r=RANKS[i];
+if(F!=='all'&&r.rama!==F)continue;
+if(q&&(r.n+' '+r.alias+' '+r.f+' '+r.rama+' '+r.puede.join(' ')+' '+r.no.join(' ')).toLowerCase().indexOf(q)<0)continue;
+n++;
+h+='<div class="rcard">';
+h+='<div class="rhead"><span class="ric">'+r.ico+'</span><div><h3>'+esc(r.n)+'<span class="chip" style="color:'+r.c+'">'+esc(r.tag)+'</span></h3><div class="alias">'+esc(r.alias)+'</div></div><span class="lvl">'+esc(r.lvl)+'</span></div>';
+h+='<p class="func">'+r.f+'</p>';
+h+='<div class="duo"><div class="box ok"><b>✓ PUEDE</b><ul><li>'+r.puede.join('</li><li>')+'</li></ul></div>';
+h+='<div class="box no"><b>✗ NO PUEDE</b><ul><li>'+r.no.join('</li><li>')+'</li></ul></div></div>';
+h+='<div class="tools"><b>Herramientas típicas:</b> '+r.h.map(function(x){return '<code>'+esc(x)+'</code>'}).join('')+'</div>';
+h+='<div class="up"><b>↑ Cómo se llega / se asciende:</b> '+r.u+'</div>';
+h+='</div>';
+}
+document.getElementById('list').innerHTML=h||'<div class="rcard" style="text-align:center;color:var(--mut)">Sin resultados para "'+esc(q)+'".</div>';
+}
+function buildTags(){
+var ps={};
+for(var i=0;i<RANKS.length;i++)ps[RANKS[i].rama]=1;
+var h='<button class="on" data-f="all">Todos</button>';
+var keys=Object.keys(ps);
+for(var i=0;i<keys.length;i++)h+='<button data-f="'+keys[i]+'">'+keys[i]+'</button>';
+document.getElementById('tags').innerHTML=h;
+var btns=document.querySelectorAll('#tags button');
+for(var i=0;i<btns.length;i++)btns[i].addEventListener('click',function(){
+F=this.getAttribute('data-f');
+var all=document.querySelectorAll('#tags button');
+for(var j=0;j<all.length;j++)all[j].classList.remove('on');
+this.classList.add('on');
+draw();
+});
+}
+buildTags();
+draw();
+</script>
+</body>
+</html>
