@@ -641,7 +641,7 @@ loadReviews();
 <p style="margin-top:6px;letter-spacing:2px;font-size:12px;color:var(--mut)">DISCORD · <b style="color:#fff" id="f_ctaNick">scainetprrmn</b></p>
 <a class="btn p" href="https://discord.com/users/1307246359895740448" target="_blank" rel="noopener">Discord ↗</a> <a class="btn o" href="mailto:scainetprrmn@gmail.com">Correo ↗</a>
 </div>
-<footer>© 2026 Dylan David Gomez · scainetprr · hyperhard.space · Pista secreta: ↑↑↓↑←↓ B A<br><span style="font-size:11px;opacity:.7">Hydra Bot · <a href="hydra-tos_gh.html" style="color:inherit">Términos</a> · <a href="hydra-privacy_gh.html" style="color:inherit">Privacidad</a></span></footer>
+<footer>© 2026 Dylan David Gomez · scainetprr · hyperhard.space · Visitas: <span id="vcount">…</span> · Pista secreta: ↑↑↓↑←↓ B A<br><span style="font-size:11px;opacity:.7">Hydra Bot · <a href="hydra-tos_gh.html" style="color:inherit">Términos</a> · <a href="hydra-privacy_gh.html" style="color:inherit">Privacidad</a></span></footer>
 </div>
 
 <div class="modal" id="secret"><div class="sbox" style="max-width:780px;max-height:85vh;overflow-y:auto;text-align:left;scrollbar-width:thin;scrollbar-color:#e11d2e #0a0e1c">
@@ -707,6 +707,8 @@ const sects=document.querySelectorAll('section[id]');
 const navLinks=document.querySelectorAll('nav a.nl');
 const sno=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;navLinks.forEach(l=>{l.classList.toggle('act',l.getAttribute('href')==='#'+id)})}}),{threshold:.25});
 sects.forEach(s=>sno.observe(s));
+// contador de visitas (Abacus API: 1 incremento por sesión, luego lectura)
+(function(){var el=document.getElementById('vcount');if(!el)return;var BASE='https://abacus.jasoncameron.dev',NS='scainetprr.github.io',KEY='portafolio';var done=false;try{done=sessionStorage.getItem('vc_done')==='1'}catch(e){}fetch(BASE+(done?'/get/':'/hit/')+'/'+NS+'/'+KEY).then(function(r){return r.json()}).then(function(d){if(d&&d.value!=null){el.textContent=d.value;try{sessionStorage.setItem('vc_done','1')}catch(e){}}}).catch(function(){var n=0;try{n=parseInt(localStorage.getItem('vc_local')||'0',10)+1;localStorage.setItem('vc_local',String(n))}catch(e){}el.textContent=n>0?n:'—'})})();
 </script>
 </body>
 </html>
