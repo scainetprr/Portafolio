@@ -75,9 +75,11 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:26px}
 <p class="mut" style="margin-top:8px">Nota: YouTube no funciona como MP3 — usa la pestaña YouTube.</p>
 </div>
 <div class="card" id="tab-yt" style="display:none">
-<label class="mut">Pega link de YouTube (video o lista):</label>
-<input type="text" id="ytIn" placeholder="https://youtube.com/watch?v=...">
-<button class="btn p" id="bYt">Reproducir en YouTube</button>
+<label class="mut">Busca música por nombre (artista - canción):</label>
+<input type="text" id="ytIn" placeholder="Ej: C418 Sweden, Alan Walker Faded... (Enter para buscar)">
+<button class="btn p" id="bYt">🔍 Buscar</button>
+<p class="mut" style="margin-top:8px">Solo escribe el nombre y busca. Si ya tienes un link de YouTube, pégalo también: se reproduce directo.</p>
+<div class="pl" id="ytRes"></div>
 <div id="ytBox"></div>
 </div>
 <footer>scainetprr · Radio Gamer</footer>
@@ -109,7 +111,46 @@ document.getElementById('bAdd').addEventListener('click',function(){var u=docume
 document.getElementById('fileIn').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;PLAYLIST.push({n:f.name.slice(0,40),url:URL.createObjectURL(f),file:true});drawList()});
 function stopYT(){document.getElementById('ytBox').innerHTML=''}
 function ytId(u){var m=u.match(/[?&]v=([^&#]+)/)||u.match(/youtu\.be\/([^?&#]+)/)||u.match(/\/embed\/([^?&#]+)/)||u.match(/\/shorts\/([^?&#]+)/);return m?m[1]:null}
-document.getElementById('bYt').addEventListener('click',function(){var u=document.getElementById('ytIn').value.trim();var id=ytId(u);if(!id){alert('Pega un link válido de YouTube');return}stopAll();PLAYING=false;document.getElementById('bPlay').textContent='▶ Reproducir';document.getElementById('mPlay').textContent='▶ Reproducir';document.getElementById('ytBox').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'});
+function escY(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML}
+function fmtDur(s){s=parseInt(s,10)||0;if(s<=0)return'';var m=Math.floor(s/60),ss=s%60;return m+':'+(ss<10?'0':'')+ss}
+async function getJSON(u){var c=new AbortController();var t=setTimeout(function(){c.abort()},9000);try{var r=await fetch(u,{signal:c.signal});clearTimeout(t);if(!r.ok)return null;return await r.json()}catch(e){clearTimeout(t);return null}}
+var YTSRC=[{u:'https://api.piped.private.coffee/search?q={q}&filter=videos',t:'piped'},{u:'https://invidious.f5.si/api/v1/search?q={q}&type=video',t:'inv'}];
+async function ytSearch(q){
+var box=document.getElementById('ytRes');
+box.innerHTML='<p class="mut">Buscando "'+escY(q)+'"...</p>';
+for(var i=0;i<YTSRC.length;i++){
+var url=YTSRC[i].u.replace('{q}',encodeURIComponent(q));
+var j=await getJSON(url);
+var out=[];
+if(YTSRC[i].t==='piped'&&j&&j.items){
+for(var k=0;k<j.items.length&&out.length<10;k++){var it=j.items[k];if(!it||!it.url)continue;var m=String(it.url).match(/v=([\w-]{6,})/);if(m)out.push({id:m[1],t:it.title||'',ch:it.uploaderName||'',d:it.duration||0})}
+}else if(YTSRC[i].t==='inv'&&j&&j.length){
+for(var k2=0;k2<j.length&&out.length<10;k2++){var it2=j[k2];if(!it2||!it2.videoId)continue;out.push({id:it2.videoId,t:it2.title||'',ch:it2.author||'',d:it2.lengthSeconds||0})}
+}
+if(out.length){renderYT(out,q);return}
+}
+box.innerHTML='<p class="mut">No se pudo buscar ahora. Intentalo en unos segundos, o pega el link directo del video.</p>';
+}
+function renderYT(list,q){
+var box=document.getElementById('ytRes');
+var h='<p class="mut" style="margin:8px 0 4px">Resultados: '+escY(q)+' (clic para reproducir)</p>';
+for(var i=0;i<list.length;i++){
+var r=list[i];
+h+='<div class="trk" data-yid="'+r.id+'"><span>'+escY(r.t)+(r.ch?' <span class="mut">&middot; '+escY(r.ch)+'</span>':'')+'</span><span class="mut">'+fmtDur(r.d)+'</span></div>';
+}
+box.innerHTML=h;
+var ds=box.querySelectorAll('[data-yid]');
+for(var k=0;k<ds.length;k++)(function(el){el.addEventListener('click',function(){playYT(el.getAttribute('data-yid'))})})(ds[k]);
+}
+function playYT(id){
+if(!/^[\w-]{6,20}$/.test(id))return;
+stopAll();PLAYING=false;
+document.getElementById('bPlay').textContent='▶ Reproducir';
+document.getElementById('mPlay').textContent='▶ Reproducir';
+document.getElementById('ytBox').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+}
+document.getElementById('bYt').addEventListener('click',function(){var u=document.getElementById('ytIn').value.trim();if(!u)return;var id=ytId(u);if(id){playYT(id);return}ytSearch(u)});
+document.getElementById('ytIn').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('bYt').click()});
 var CV=document.getElementById('viz').getContext('2d');
 (function viz(){requestAnimationFrame(viz);CV.clearRect(0,0,600,110);if(!AN||!PLAYING){CV.fillStyle='#26304d';CV.font='12px Segoe UI';CV.fillText('visualizador en pausa',230,60);return}var d=new Uint8Array(AN.frequencyBinCount);AN.getByteFrequencyData(d);var bw=600/d.length;for(var i=0;i<d.length;i++){var h=d[i]/255*100;var g=CV.createLinearGradient(0,110-h,0,110);g.addColorStop(0,'#e11d2e');g.addColorStop(1,'#2b7fff');CV.fillStyle=g;CV.fillRect(i*bw+1,110-h,bw-2,h)}})();
 drawList();setMeta();
